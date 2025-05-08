@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BaitBagChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BaitBagChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BaitBagUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BaitBagUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BalladOfGalesChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BalladOfGalesChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BalladOfGalesUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BalladOfGalesUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerBombBagChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerBombBagChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerBombBagUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerBombBagUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerQuiverChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerQuiverChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerQuiverUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerQuiverUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerWalletChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerWalletChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggerWalletUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggerWalletUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggestBombBagChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggestBombBagChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggestQuiverChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggestQuiverChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BiggestWalletChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BiggestWalletChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BigKeyChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BigKeyChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BigKeyUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BigKeyUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BombsChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BombsChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BombsUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BombsUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BoomerangChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BoomerangChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BoomerangUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BoomerangUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bottle2Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\Bottle2Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bottle3Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\Bottle3Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bottle4Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\Bottle4Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BottleChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BottleChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BottleUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BottleUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BowChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowFireIceChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BowFireIceChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowLightChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BowLightChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\BowUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CabanaDeedChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\CabanaDeedChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CabanaDeedUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\CabanaDeedUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CommandMelodyChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\CommandMelodyChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CommandMelodyUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\CommandMelodyUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DekuLeafChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\DekuLeafChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DekuLeafUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\DekuLeafUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeliveryBagChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\DeliveryBagChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeliveryBagUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\DeliveryBagUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EarthGodsLyricChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\EarthGodsLyricChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EarthGodsLyricUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\EarthGodsLyricUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GhostShipChartChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\GhostShipChartChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GhostShipChartUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\GhostShipChartUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrapplingHookChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\GrapplingHookChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrapplingHookUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\GrapplingHookUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HerosCharmChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HerosCharmChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HerosCharmUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HerosCharmUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HookshotChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HookshotChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HookshotUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HookshotUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HurricaneSpinChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HurricaneSpinChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HurricaneSpinUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\HurricaneSpinUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IronBootsChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\IronBootsChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IronBootsUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\IronBootsUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaggiesLetterChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MaggiesLetterChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaggiesLetterUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MaggiesLetterUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MagicArmorChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MagicArmorChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MagicArmorUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MagicArmorUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MagicBottleChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MagicBottleChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MagicBottleUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MagicBottleUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MagicDoubleBottleChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MagicDoubleBottleChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MoblinsLetterChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MoblinsLetterChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MoblinsLetterUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\MoblinsLetterUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoteToMomChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\NoteToMomChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoteToMomUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\NoteToMomUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlDinsChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlDinsChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlDinsUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlDinsUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlFaroresChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlFaroresChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlFaroresUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlFaroresUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlNayrusChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlNayrusChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PearlNayrusUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PearlNayrusUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PictoBoxChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PictoBoxChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PictoBoxDeluxeChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PictoBoxDeluxeChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PictoBoxUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PictoBoxUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PowerBraceletsChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PowerBraceletsChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PowerBraceletsUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\PowerBraceletsUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SailChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SailChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SailSwiftChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SailSwiftChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SailUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SailUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShieldChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\ShieldChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShieldMirrorChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\ShieldMirrorChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShieldUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\ShieldUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SkullHammerChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SkullHammerChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SkullHammerUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SkullHammerUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SongOfPassingChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SongOfPassingChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SongOfPassingUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SongOfPassingUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpoilsBagChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SpoilsBagChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpoilsBagUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SpoilsBagUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwordHeroChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SwordHeroChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwordHeroUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SwordHeroUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwordMasterFullPoweredChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SwordMasterFullPoweredChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwordMasterHalfPoweredChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SwordMasterHalfPoweredChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwordMasterUnpoweredChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\SwordMasterUnpoweredChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TelescopeChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TelescopeChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TelescopeUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TelescopeUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleBottleChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleBottleChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleBottleUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleBottleUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatue1Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatue1Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatue2Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatue2Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatue3Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatue3Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatue4Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatue4Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatue5Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatue5Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TingleStatueUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TingleStatueUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trackerbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trackerbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriforceChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TriforceChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TriforceUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\TriforceUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindGodsAriaChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindGodsAriaChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindGodsAriaUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindGodsAriaUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindsRequiemChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindsRequiemChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindsRequiemUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindsRequiemUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindWakerChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindWakerChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindWakerUnchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemsList\WindWakerUnchecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
