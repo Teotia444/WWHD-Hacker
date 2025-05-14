@@ -48,11 +48,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="TCPGeckoAromaLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\TCPGecko\library\TCPGeckoAromaLibrary\TCPGeckoAromaLibrary\bin\Debug\TCPGeckoAromaLibrary.dll</HintPath>
+      <HintPath>..\..\TCPGeckoCSharp\bin\Debug\TCPGeckoAromaLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cheats.cs" />
+    <Compile Include="DataViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataViewer.Designer.cs">
+      <DependentUpon>DataViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +74,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scene.cs" />
+    <Compile Include="SeparateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeparateForm.Designer.cs">
+      <DependentUpon>SeparateForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DataViewer.resx">
+      <DependentUpon>DataViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +90,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeparateForm.resx">
+      <DependentUpon>SeparateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace WWHDHacker
 {
@@ -36,6 +37,10 @@ namespace WWHDHacker
             this.connect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.refreshAS = new System.Windows.Forms.Button();
+            this.currentAnimSet = new System.Windows.Forms.Label();
+            this.animSet1 = new System.Windows.Forms.Button();
+            this.animSet2 = new System.Windows.Forms.Button();
             this.resumeGame = new System.Windows.Forms.Button();
             this.pauseGame = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -105,7 +110,6 @@ namespace WWHDHacker
             this.reloadMapButton = new System.Windows.Forms.Button();
             this.softResetButton = new System.Windows.Forms.Button();
             this.dataViewerPanel = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
             this.advancedPanel = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -127,9 +131,9 @@ namespace WWHDHacker
             this.dataViewer = new System.Windows.Forms.Button();
             this.advanced = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.teleporter = new System.Windows.Forms.Button();
+            this.detachDataViewer = new System.Windows.Forms.Button();
+            this.memfilesManager = new System.Windows.Forms.Button();
             this.itemManagerButton = new System.Windows.Forms.Button();
             this.itemsManager = new System.Windows.Forms.Panel();
             this.autoupdateTracker = new System.Windows.Forms.CheckBox();
@@ -181,6 +185,10 @@ namespace WWHDHacker
             this.telescopeCheck = new WWHDHacker.CheckBoxImage();
             this.itemsList = new System.Windows.Forms.ImageList(this.components);
             this.CheckInv = new System.Windows.Forms.Timer(this.components);
+            this.memfilesPanel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.teleporterPanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.mainFeaturesPanel.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -196,7 +204,6 @@ namespace WWHDHacker
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.dataViewerPanel.SuspendLayout();
             this.advancedPanel.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.itemsManager.SuspendLayout();
@@ -243,6 +250,8 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).BeginInit();
+            this.memfilesPanel.SuspendLayout();
+            this.teleporterPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ipTextBox
@@ -274,6 +283,10 @@ namespace WWHDHacker
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.refreshAS);
+            this.panel1.Controls.Add(this.currentAnimSet);
+            this.panel1.Controls.Add(this.animSet1);
+            this.panel1.Controls.Add(this.animSet2);
             this.panel1.Controls.Add(this.resumeGame);
             this.panel1.Controls.Add(this.pauseGame);
             this.panel1.Controls.Add(this.button4);
@@ -301,40 +314,79 @@ namespace WWHDHacker
             this.panel1.Size = new System.Drawing.Size(803, 348);
             this.panel1.TabIndex = 16;
             // 
+            // refreshAS
+            // 
+            this.refreshAS.Location = new System.Drawing.Point(524, 8);
+            this.refreshAS.Name = "refreshAS";
+            this.refreshAS.Size = new System.Drawing.Size(99, 23);
+            this.refreshAS.TabIndex = 42;
+            this.refreshAS.Text = "Refresh anim set";
+            this.refreshAS.UseVisualStyleBackColor = true;
+            this.refreshAS.Click += new System.EventHandler(this.refreshAS_Click);
+            // 
+            // currentAnimSet
+            // 
+            this.currentAnimSet.AutoSize = true;
+            this.currentAnimSet.Location = new System.Drawing.Point(375, 14);
+            this.currentAnimSet.Name = "currentAnimSet";
+            this.currentAnimSet.Size = new System.Drawing.Size(138, 13);
+            this.currentAnimSet.TabIndex = 41;
+            this.currentAnimSet.Text = "Current anim set : Unknown";
+            // 
+            // animSet1
+            // 
+            this.animSet1.Location = new System.Drawing.Point(378, 50);
+            this.animSet1.Name = "animSet1";
+            this.animSet1.Size = new System.Drawing.Size(113, 23);
+            this.animSet1.TabIndex = 40;
+            this.animSet1.Text = "Anim set 1";
+            this.animSet1.UseVisualStyleBackColor = true;
+            this.animSet1.Click += new System.EventHandler(this.animSet1_Click);
+            // 
+            // animSet2
+            // 
+            this.animSet2.Location = new System.Drawing.Point(510, 50);
+            this.animSet2.Name = "animSet2";
+            this.animSet2.Size = new System.Drawing.Size(113, 23);
+            this.animSet2.TabIndex = 39;
+            this.animSet2.Text = "Anim set 2";
+            this.animSet2.UseVisualStyleBackColor = true;
+            this.animSet2.Click += new System.EventHandler(this.animSet2_Click);
+            // 
             // resumeGame
             // 
-            this.resumeGame.Location = new System.Drawing.Point(418, 86);
+            this.resumeGame.Location = new System.Drawing.Point(201, 39);
             this.resumeGame.Name = "resumeGame";
-            this.resumeGame.Size = new System.Drawing.Size(75, 23);
+            this.resumeGame.Size = new System.Drawing.Size(123, 23);
             this.resumeGame.TabIndex = 37;
-            this.resumeGame.Text = "button5";
+            this.resumeGame.Text = "Resume";
             this.resumeGame.UseVisualStyleBackColor = true;
             this.resumeGame.Click += new System.EventHandler(this.resumeGame_Click);
             // 
             // pauseGame
             // 
-            this.pauseGame.Location = new System.Drawing.Point(418, 59);
+            this.pauseGame.Location = new System.Drawing.Point(201, 12);
             this.pauseGame.Name = "pauseGame";
-            this.pauseGame.Size = new System.Drawing.Size(75, 23);
+            this.pauseGame.Size = new System.Drawing.Size(123, 23);
             this.pauseGame.TabIndex = 38;
-            this.pauseGame.Text = "button6";
+            this.pauseGame.Text = "Pause";
             this.pauseGame.UseVisualStyleBackColor = true;
             this.pauseGame.Click += new System.EventHandler(this.pauseGame_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(418, 13);
+            this.button4.Location = new System.Drawing.Point(201, 80);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(123, 23);
             this.button4.TabIndex = 37;
-            this.button4.Text = "button4";
+            this.button4.Text = "Advance one frame";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // infAir
             // 
             this.infAir.AutoSize = true;
-            this.infAir.Location = new System.Drawing.Point(217, 55);
+            this.infAir.Location = new System.Drawing.Point(211, 286);
             this.infAir.Name = "infAir";
             this.infAir.Size = new System.Drawing.Size(72, 17);
             this.infAir.TabIndex = 36;
@@ -344,7 +396,7 @@ namespace WWHDHacker
             // infMagic
             // 
             this.infMagic.AutoSize = true;
-            this.infMagic.Location = new System.Drawing.Point(217, 31);
+            this.infMagic.Location = new System.Drawing.Point(211, 262);
             this.infMagic.Name = "infMagic";
             this.infMagic.Size = new System.Drawing.Size(89, 17);
             this.infMagic.TabIndex = 35;
@@ -354,7 +406,7 @@ namespace WWHDHacker
             // infHealth
             // 
             this.infHealth.AutoSize = true;
-            this.infHealth.Location = new System.Drawing.Point(217, 8);
+            this.infHealth.Location = new System.Drawing.Point(211, 239);
             this.infHealth.Name = "infHealth";
             this.infHealth.Size = new System.Drawing.Size(91, 17);
             this.infHealth.TabIndex = 34;
@@ -1061,20 +1113,10 @@ namespace WWHDHacker
             // 
             // dataViewerPanel
             // 
-            this.dataViewerPanel.Controls.Add(this.label17);
             this.dataViewerPanel.Location = new System.Drawing.Point(7, 70);
             this.dataViewerPanel.Name = "dataViewerPanel";
             this.dataViewerPanel.Size = new System.Drawing.Size(803, 348);
             this.dataViewerPanel.TabIndex = 31;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(375, 74);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(86, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "im pretty tired ngl";
             // 
             // advancedPanel
             // 
@@ -1274,32 +1316,35 @@ namespace WWHDHacker
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // teleporter
             // 
-            this.button1.Location = new System.Drawing.Point(721, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 23);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "??";
-            this.button1.UseVisualStyleBackColor = true;
+            this.teleporter.Location = new System.Drawing.Point(721, 39);
+            this.teleporter.Name = "teleporter";
+            this.teleporter.Size = new System.Drawing.Size(89, 23);
+            this.teleporter.TabIndex = 36;
+            this.teleporter.Text = "Teleporter";
+            this.teleporter.UseVisualStyleBackColor = true;
+            this.teleporter.Click += new System.EventHandler(this.teleporter_Click);
             // 
-            // button2
+            // detachDataViewer
             // 
-            this.button2.Location = new System.Drawing.Point(592, 39);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 23);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "??";
-            this.button2.UseVisualStyleBackColor = true;
+            this.detachDataViewer.Location = new System.Drawing.Point(592, 39);
+            this.detachDataViewer.Name = "detachDataViewer";
+            this.detachDataViewer.Size = new System.Drawing.Size(123, 23);
+            this.detachDataViewer.TabIndex = 35;
+            this.detachDataViewer.Text = "Detached Data Viewer";
+            this.detachDataViewer.UseVisualStyleBackColor = true;
+            this.detachDataViewer.Click += new System.EventHandler(this.detachDataViewer_Click);
             // 
-            // button3
+            // memfilesManager
             // 
-            this.button3.Location = new System.Drawing.Point(463, 39);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 23);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "??";
-            this.button3.UseVisualStyleBackColor = true;
+            this.memfilesManager.Location = new System.Drawing.Point(463, 39);
+            this.memfilesManager.Name = "memfilesManager";
+            this.memfilesManager.Size = new System.Drawing.Size(123, 23);
+            this.memfilesManager.TabIndex = 34;
+            this.memfilesManager.Text = "Memfiles manager";
+            this.memfilesManager.UseVisualStyleBackColor = true;
+            this.memfilesManager.Click += new System.EventHandler(this.memfilesManager_Click);
             // 
             // itemManagerButton
             // 
@@ -2006,14 +2051,50 @@ namespace WWHDHacker
             this.CheckInv.Interval = 1000;
             this.CheckInv.Tick += new System.EventHandler(this.CheckInv_Tick);
             // 
+            // memfilesPanel
+            // 
+            this.memfilesPanel.Controls.Add(this.label5);
+            this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
+            this.memfilesPanel.Name = "memfilesPanel";
+            this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
+            this.memfilesPanel.TabIndex = 32;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(300, 173);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "memfiles";
+            // 
+            // teleporterPanel
+            // 
+            this.teleporterPanel.Controls.Add(this.label6);
+            this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
+            this.teleporterPanel.Name = "teleporterPanel";
+            this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
+            this.teleporterPanel.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(300, 173);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "teleporter";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 430);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.teleporterPanel);
+            this.Controls.Add(this.memfilesPanel);
+            this.Controls.Add(this.teleporter);
+            this.Controls.Add(this.detachDataViewer);
+            this.Controls.Add(this.memfilesManager);
             this.Controls.Add(this.itemManagerButton);
             this.Controls.Add(this.advanced);
             this.Controls.Add(this.dataViewer);
@@ -2022,11 +2103,11 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
+            this.Controls.Add(this.dataViewerPanel);
+            this.Controls.Add(this.mainFeaturesPanel);
             this.Controls.Add(this.itemsManager);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.advancedPanel);
-            this.Controls.Add(this.dataViewerPanel);
-            this.Controls.Add(this.mainFeaturesPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
@@ -2048,8 +2129,6 @@ namespace WWHDHacker
             this.groupBox4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.dataViewerPanel.ResumeLayout(false);
-            this.dataViewerPanel.PerformLayout();
             this.advancedPanel.ResumeLayout(false);
             this.advancedPanel.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -2100,10 +2179,16 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).EndInit();
+            this.memfilesPanel.ResumeLayout(false);
+            this.memfilesPanel.PerformLayout();
+            this.teleporterPanel.ResumeLayout(false);
+            this.teleporterPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+
 
         #endregion
         private System.Windows.Forms.TextBox ipTextBox;
@@ -2176,7 +2261,6 @@ namespace WWHDHacker
         private System.Windows.Forms.Button infArrows;
         private System.Windows.Forms.Button infBombs;
         private System.Windows.Forms.Panel dataViewerPanel;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel advancedPanel;
         private System.Windows.Forms.Button peekButton;
         private System.Windows.Forms.Button pokeButton;
@@ -2188,9 +2272,9 @@ namespace WWHDHacker
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button fullCapacities;
         private System.Windows.Forms.Button fullHealth;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button teleporter;
+        private System.Windows.Forms.Button detachDataViewer;
+        private System.Windows.Forms.Button memfilesManager;
         private System.Windows.Forms.Button itemManagerButton;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label2;
@@ -2255,6 +2339,14 @@ namespace WWHDHacker
         private System.Windows.Forms.Button resumeGame;
         private System.Windows.Forms.Button pauseGame;
         private System.Windows.Forms.CheckBox autoupdateTracker;
+        private System.Windows.Forms.Button refreshAS;
+        private System.Windows.Forms.Label currentAnimSet;
+        private System.Windows.Forms.Button animSet1;
+        private System.Windows.Forms.Button animSet2;
+        private Panel memfilesPanel;
+        private Label label5;
+        private Panel teleporterPanel;
+        private Label label6;
     }
 }
 

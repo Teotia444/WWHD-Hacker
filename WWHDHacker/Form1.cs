@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,7 +20,25 @@ namespace WWHDHacker
         float storedLinkZ;
         int storedLinkAngle;
         DateTime lastDpadRight;
+        DateTime lastFrameAdvance;
         bool doorCancelFromMacro;
+        bool paused;
+
+        DataViewer dataViewerControl;
+
+        SeparateForm separate = new SeparateForm();
+        DataViewer separateDataViewerControl;
+
+        public (int, int) mainStickValues { get; set; }
+        public (int, int) cStickValues { get; set; }
+        public (float, float, float) linkCoordinates { get; set; }
+        public int linkAngle { get; set; }
+        public float linkSpeed { get; set; }
+
+        public string stage { get; set; }
+        public int roomId { get; set; }
+        public int spawnId { get; set; }
+        public int layer { get; set; }
 
         unsafe int FloatToHex(float f)
         {
@@ -33,7 +53,8 @@ namespace WWHDHacker
         public Form1()
         {
             InitializeComponent();
-
+            
+            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) tcpGecko.Disconnect(); Application.Exit(); };
             mainFeaturesPanel.Visible = true;
             panel1.Visible = false;
             dataViewerPanel.Visible = false;
@@ -45,7 +66,12 @@ namespace WWHDHacker
             {
                 typeDropdown.Items.Add(i);
             }
+            dataViewerControl = new DataViewer(this);
+            separateDataViewerControl = new DataViewer(this);
+            dataViewerPanel.Controls.Add(dataViewerControl);
         }
+
+
 
         #region Top menu
         private void connect_Click(object sender, EventArgs e)
@@ -54,7 +80,7 @@ namespace WWHDHacker
             {
                 tcpGecko.Connect(ipTextBox.Text);
                 timer1.Start();
-                timer1.Interval = 50;
+                timer1.Interval = 10;
                 CheckInv.Start();
                 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
                 connect.Text = "Disconnect";
@@ -75,6 +101,8 @@ namespace WWHDHacker
             dataViewerPanel.Visible = false;
             advancedPanel.Visible = false;
             itemsManager.Visible = false;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = false;
         }
 
         private void miscFeatures_Click(object sender, EventArgs e)
@@ -84,6 +112,8 @@ namespace WWHDHacker
             dataViewerPanel.Visible = false;
             advancedPanel.Visible = false;
             itemsManager.Visible = false;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = false;
         }
 
         private void dataViewer_Click(object sender, EventArgs e)
@@ -93,6 +123,8 @@ namespace WWHDHacker
             dataViewerPanel.Visible = true;
             advancedPanel.Visible = false;
             itemsManager.Visible = false;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = false;
         }
 
         private void advanced_Click(object sender, EventArgs e)
@@ -102,6 +134,8 @@ namespace WWHDHacker
             dataViewerPanel.Visible = false;
             advancedPanel.Visible = true;
             itemsManager.Visible = false;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = false;
         }
 
         private void itemManagerButton_Click(object sender, EventArgs e)
@@ -111,6 +145,37 @@ namespace WWHDHacker
             dataViewerPanel.Visible = false;
             advancedPanel.Visible = false;
             itemsManager.Visible = true;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = false;
+        }
+
+        private void memfilesManager_Click(object sender, EventArgs e)
+        {
+            mainFeaturesPanel.Visible = false;
+            panel1.Visible = false;
+            dataViewerPanel.Visible = false;
+            advancedPanel.Visible = false;
+            itemsManager.Visible = false;
+            memfilesPanel.Visible = true;
+            teleporterPanel.Visible = false;
+        }
+
+        private void detachDataViewer_Click(object sender, EventArgs e)
+        {
+            separate.Controls.Clear();
+            separate.Controls.Add(separateDataViewerControl);
+            separate.Show();
+        }
+
+        private void teleporter_Click(object sender, EventArgs e)
+        {
+            mainFeaturesPanel.Visible = false;
+            panel1.Visible = false;
+            dataViewerPanel.Visible = false;
+            advancedPanel.Visible = false;
+            itemsManager.Visible = false;
+            memfilesPanel.Visible = false;
+            teleporterPanel.Visible = true;
         }
         #endregion
 
@@ -319,19 +384,51 @@ namespace WWHDHacker
 
         private void button4_Click(object sender, EventArgs e)
         {
-            tcpGecko.AdvanceExec();
-
+            if(paused && lastFrameAdvance + TimeSpan.FromMilliseconds(100) < DateTime.Now)
+            {
+                tcpGecko.AdvanceExec();
+                lastFrameAdvance = DateTime.Now;
+            }
         }
 
         private void pauseGame_Click(object sender, EventArgs e)
         {
+            paused = true;
             tcpGecko.PauseExec();
         }
 
         private void resumeGame_Click(object sender, EventArgs e)
         {
+            paused = false;
             tcpGecko.ResumeExec();
         }
+
+        private void refreshAS_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D), out int animSetByte);
+            currentAnimSet.Text = "Current anim set : Anim set " + (((animSetByte | 0b0000_0001) == animSetByte) ? "2" : "1");
+        }
+
+        private void animSet1_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D), out int animSetByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D, (animSetByte & ~0b0000_0001));
+            currentAnimSet.Text = "Current anim set : Anim set 1";
+        }
+
+        private void animSet2_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D), out int animSetByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D, (animSetByte | 0b0000_0001));
+            currentAnimSet.Text = "Current anim set : Anim set 2";
+        }
+
+        #endregion
+
+        #region Data viewer
+
+
+
         #endregion
 
         #region Advanced features
@@ -390,7 +487,7 @@ namespace WWHDHacker
         #region Timers
         private void CheckInv_Tick(object sender, EventArgs e)
         {
-            if (!autoupdateTracker.Checked) return;
+            
             if (infAir.Checked)
             {
                 tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 1200);
@@ -404,7 +501,7 @@ namespace WWHDHacker
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, 40);
             }
 
-            if (itemsManager.Visible != true)
+            if (itemsManager.Visible != true || !autoupdateTracker.Checked)
             {
                 return;
             }
@@ -450,8 +547,69 @@ namespace WWHDHacker
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x102F48A8), out int inputs);
+            int[] addresses = new int[]
+            {
+                0x102F48A8,
+                0x102F48B4,
+                0x102F48B8,
+                0x102F48BC,
+                0x102F48C0,
+                0x1096ef48,
+                0x1096ef4c,
+                0x1096ef50,
+                0x1096ef12,
+                0
+            };
             
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
+            addresses[9] = (link_ptr + 27156);
+            var raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addresses);
+            addresses = new int[]
+            {
+                0x109763F0,
+                0x109763F1,
+                0x109763F2,
+                0x109763F3,
+                0x109763F4,
+                0x109763F5,
+                0x109763F6,
+                0x109763F7,
+                0x109763F8,
+                0x109763F9,
+                0x109763FA,
+                0x109763FB,
+            };
+            var stageInfo = tcpGecko.PeekMultiple(TCPGecko.Datatype.u8, addresses);
+
+            if (raw.Count < 10) return;
+            Int32.TryParse(raw[0], out int inputs);
+            mainStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0) * 128));
+            cStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0) * 128));
+            linkCoordinates = ((BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[5])), 0)),
+                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[6])), 0)),
+                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[7])), 0)));
+            linkAngle = (int)(UInt32.Parse(raw[8]) >> 16);
+            linkSpeed = BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[9])), 0);
+
+
+
+
+            if (stageInfo.Count < 11) return;
+            stage = Encoding.ASCII.GetString(new byte[]{
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[0]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[1]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[2]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[3]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[4]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[5]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[6]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[7]))[0],
+            });
+
+            roomId = int.Parse(stageInfo[8]);
+            spawnId = int.Parse(stageInfo[9]);
+            layer = int.Parse(stageInfo[10]);
+
             //l
             if (Inputs.isPressed(inputs, Inputs.lButton) && Inputs.isNotPressed(inputs, Inputs.zrButton) && lToLevitateCheckbox.Checked)
             {
@@ -485,9 +643,7 @@ namespace WWHDHacker
             //right dpad
             if (Inputs.isPressed(inputs, Inputs.dpadRightButton) && Inputs.isNotPressed(inputs, Inputs.zrButton) && superswimCheckbox.Checked && lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
             {
-                float speedToApply = 0f;
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
-                float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, link_ptr + 27156), out speedToApply);
+                float speedToApply = linkSpeed;
                 bool flag = speedToApply < 0f;
                 speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + 500f) : ((speedToApply < -50f && flag) ? (speedToApply - 500f) : ((!(speedToApply < 50f) || flag) ? (speedToApply - 100f) : (speedToApply + 100f)));
                 tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, FloatToHex(speedToApply));
@@ -498,7 +654,16 @@ namespace WWHDHacker
             //down dpad 
             if (Inputs.isPressed(inputs, Inputs.dpadDownButton) && Inputs.isNotPressed(inputs, Inputs.zrButton) && storageCheckbox.Checked)
             {
-                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
+                if (!paused)
+                {
+                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
+                }
+                else if(lastFrameAdvance + TimeSpan.FromMilliseconds(500) < DateTime.Now)
+                {
+                    tcpGecko.AdvanceExec();
+                    lastFrameAdvance = DateTime.Now;
+                }
+                
             }
 
             //Masterkey
@@ -576,6 +741,14 @@ namespace WWHDHacker
                 Cheats.RestoreCollision(tcpGecko);
                 doorCancelFromMacro = false;
             }
+
+
+            dataViewerControl.RefreshSticks();
+            separateDataViewerControl.RefreshSticks();
+            dataViewerControl.RefreshInputs(inputs);
+            separateDataViewerControl.RefreshInputs(inputs);
+
+
         }
         #endregion
 
@@ -693,6 +866,11 @@ namespace WWHDHacker
                         case ItemEnum.FaroresPearl:
                             Int32.TryParse(Form1.tcpGecko.Peek(TCPGecko.Datatype.u8, itemsList[cindex].slot.address), out int v);
                             Form1.tcpGecko.Poke(TCPGecko.Datatype.u8, itemsList[cindex].slot.address, v & ~itemsList[cindex].value);
+                            break;
+                        case ItemEnum.MagicMeter:
+                            Int32.TryParse(Form1.tcpGecko.Peek(TCPGecko.Datatype.u8, itemsList[cindex].slot.address), out int maxMagic);
+                            if (itemsList[cindex].value > 0 && maxMagic > 32) break;
+                            Form1.tcpGecko.Poke(TCPGecko.Datatype.u8, itemsList[cindex].slot.address, itemsList[cindex].value);
                             break;
                         default:
                             Form1.tcpGecko.Poke(TCPGecko.Datatype.u8, itemsList[cindex].slot.address, itemsList[cindex].value);

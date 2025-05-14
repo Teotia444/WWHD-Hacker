@@ -32,6 +32,7 @@ namespace WWHDHacker
         public static Input aButton = new Input(0x8000);
         public static Input l3Button = new Input(0x40000);
         public static Input r3Button = new Input(0x20000);
+        public static Input tvButton = new Input(0x10000);
 
         public static bool isPressed(int inputs, Input button)
         {
