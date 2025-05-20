@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace WWHDHacker
 {
@@ -98,15 +99,15 @@ namespace WWHDHacker
 
         private void updateValuesTimer_Tick(object sender, EventArgs e)
         {
-            linkXTextbox.Text = origin.linkCoordinates.Item1.ToString();
-            linkYTextbox.Text = origin.linkCoordinates.Item2.ToString();
-            linkZTextbox.Text = origin.linkCoordinates.Item3.ToString();
+            linkXTextbox.Text = Decimal.Parse(origin.linkCoordinates.Item1.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString();
+            linkYTextbox.Text = Decimal.Parse(origin.linkCoordinates.Item2.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString();
+            linkZTextbox.Text = Decimal.Parse(origin.linkCoordinates.Item3.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString();
             angleTextbox.Text = origin.linkAngle.ToString();
-            potentialSpeedTextbox.Text = origin.linkSpeed.ToString();
-            actualSpeedTextbox.Text = origin.linkSpeed.ToString();
+            potentialSpeedTextbox.Text = Decimal.Parse(origin.linkSpeed.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString();
+            actualSpeedTextbox.Text = Decimal.Parse(origin.linkSpeed.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString(); ;
 
             stageTextbox.Text = origin.stage;
-            roomIdTextbox.Text = $"{origin.roomId:X}";
+            roomIdTextbox.Text = $"{origin.roomId}";
             spawnIdTextbox.Text = $"{origin.spawnId:X}";
             layerTextbox.Text = $"{origin.layer:X}";
 

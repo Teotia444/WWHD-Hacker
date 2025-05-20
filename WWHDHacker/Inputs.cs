@@ -1,11 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WWHDHacker
 {
+    enum InputEnum
+    {
+        Minus,
+        Plus,
+        R,
+        L,
+        ZR,
+        ZL,
+        DpadDown,
+        DpadUp,
+        DpadRight,
+        DpadLeft,
+        Y,
+        X,
+        B,
+        A,
+        L3,
+        R3,
+        TV
+    }
+
     class Input
     {
         public int value;
@@ -14,6 +36,7 @@ namespace WWHDHacker
             value = _value;
         }
     }
+
     class Inputs
     {
         public static Input minusButton = new Input(0x4);
@@ -44,6 +67,31 @@ namespace WWHDHacker
             return (inputs & ~button.value) == inputs;
         }
 
+        public static Input enumToInput(InputEnum e)
+        {
+            var fields = typeof(Inputs).GetFields();
+            return (Input)fields[(int)e].GetValue(null);
+
+        }
+
+    }
+
+    class JsonInput
+    {
+        public bool enabled;
+        public int input;
+        public bool masterkey;
+        public float value;
+        public bool alternative;
+
+        public JsonInput(int input, bool enabled = true, bool masterkey = false, float value = 0f, bool alternative = false)
+        {
+            this.enabled = enabled;
+            this.input = input;
+            this.masterkey = masterkey;
+            this.value = value;
+            this.alternative = alternative;
+        }
     }
 
 }

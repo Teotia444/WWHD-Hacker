@@ -63,6 +63,26 @@ namespace WWHDHacker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap area_empty {
+            get {
+                object obj = ResourceManager.GetObject("area_empty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] aroma {
+            get {
+                object obj = ResourceManager.GetObject("aroma", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap background {
             get {
                 object obj = ResourceManager.GetObject("background", resourceCulture);
@@ -573,6 +593,16 @@ namespace WWHDHacker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap legend_of_zelda_wind_waker_map_17 {
+            get {
+                object obj = ResourceManager.GetObject("legend-of-zelda-wind-waker-map-17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MaggiesLetterChecked {
             get {
                 object obj = ResourceManager.GetObject("MaggiesLetterChecked", resourceCulture);
@@ -636,6 +666,16 @@ namespace WWHDHacker.Properties {
         internal static System.Drawing.Bitmap MagicDoubleBottleChecked {
             get {
                 object obj = ResourceManager.GetObject("MagicDoubleBottleChecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MapLinkS_00_l_bflim {
+            get {
+                object obj = ResourceManager.GetObject("MapLinkS_00^l.bflim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

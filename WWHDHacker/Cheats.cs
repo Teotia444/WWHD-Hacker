@@ -147,5 +147,34 @@ namespace WWHDHacker
             DoorCancel(tcpGecko, false);
 
         }
+
+        public static void LToLevitate(TCPGecko tcpGecko, float value)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976ab4), out int hoverAddress);
+            tcpGecko.Poke(TCPGecko.Datatype.f32, hoverAddress + 0x340, Form1.FloatToHex(value));
+        }
+
+        public static void Superswim(TCPGecko tcpGecko, float value, float initialSpeed, bool convert, int link_ptr)
+        {
+            float speedToApply = initialSpeed;
+            bool flag = speedToApply < 0f;
+            
+            speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + 500f) : ((speedToApply < -50f && flag) ? (speedToApply - 500f) : ((!(speedToApply < 50f) || flag) ? (speedToApply - (convert ? 1 : -1) * 100f) : (speedToApply + (convert ? 1 : -1) * 100f)));
+            tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, Form1.FloatToHex(speedToApply));
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 900);
+        }
+
+        public static void ChangeWindDir(TCPGecko tcpGecko)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out int angle);
+            uint wind = (UInt16)((-angle - 0xC000));
+            wind += 0x1000;
+            wind /= 0x2000;
+            wind *= 0x2000;
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1097868E, (int)wind);
+        }
+
+
+
     }
 }
