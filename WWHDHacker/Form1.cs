@@ -57,6 +57,8 @@ namespace WWHDHacker
         public string settingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WWHDHacker");
         Dictionary<string, JsonInput> config;
 
+        List<MemViewerEntry> entries = Enumerable.Range(1, 16).Select(_ => new MemViewerEntry(0, 0, 0, 0, 0)).ToList();
+
         public static unsafe int FloatToHex(float f)
         {
             var i = *((int*)&f);
@@ -69,12 +71,13 @@ namespace WWHDHacker
 
         public Form1()
         {
+            
             InitializeComponent();
             string yml = Encoding.ASCII.GetString(Resources.aroma);
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .Build();
-
+            
 
             Directory.CreateDirectory(settingsDir);
             if (!File.Exists(settingsDir + "\\Config.json"))
@@ -100,8 +103,8 @@ namespace WWHDHacker
                 
             }
             config = JsonConvert.DeserializeObject<Dictionary<string, JsonInput>>(File.ReadAllText(settingsDir + "\\Config.json"));
-            
-            
+
+            if (Properties.Settings.Default.favorites == null) Properties.Settings.Default.favorites = new List<string>();
 
             yamlMap = deserializer.Deserialize<Dictionary<string, string>>(yml);
 
@@ -187,8 +190,13 @@ namespace WWHDHacker
             {
                 Properties.Settings.Default.wiiuIP = ipTextBox.Text;
                 Properties.Settings.Default.Save();
-                tcpGecko.Connect(ipTextBox.Text);
+                if (!tcpGecko.Connect(ipTextBox.Text)) { 
+                    return; 
+                }
                 timer1.Start();
+
+                Memfile test = Memfile.Create(tcpGecko);
+                Console.WriteLine(test.bombs);
 
                 timer1.Interval = 10;
                 CheckInv.Start();
@@ -862,11 +870,11 @@ namespace WWHDHacker
         {
             if (typeDropdown.SelectedIndex != 3)
             {
-                tcpGecko.Poke((TCPGecko.Datatype)typeDropdown.SelectedIndex, Convert.ToInt32(memoryAddress.Text, 16), Convert.ToInt32(valueTextbox.Text, 16));
+                tcpGecko.Poke((TCPGecko.Datatype)typeDropdown.SelectedIndex, unchecked((int)Convert.ToUInt32(memoryAddress.Text, 16)), Convert.ToInt32(valueTextbox.Text, 16));
             }
             else
             {
-                tcpGecko.Poke((TCPGecko.Datatype)typeDropdown.SelectedIndex, Convert.ToInt32(memoryAddress.Text, 16), FloatToHex(float.Parse(valueTextbox.Text)));
+                tcpGecko.Poke((TCPGecko.Datatype)typeDropdown.SelectedIndex, unchecked((int)Convert.ToUInt32(memoryAddress.Text, 16)), FloatToHex(float.Parse(valueTextbox.Text)));
             }
         }
 
@@ -1128,6 +1136,34 @@ namespace WWHDHacker
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, 40);
             }
 
+            if(memoryAddress.Text != "" && Convert.ToInt32(memoryAddress.Text, 16) > 0x10000000)
+            {
+                
+                var a = memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0";
+                Console.WriteLine($"0x{Convert.ToInt32(a, 16):X}");
+                List<int> addr = new List<int>();
+                for(int i = Convert.ToInt32(memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0", 16);
+                    i < Convert.ToInt32(memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0", 16) + 0x10 * 16; 
+                    i += 0x4)
+                {
+                    addr.Add(i);
+                }
+                Console.WriteLine($"0x{unchecked((UInt32) (-1)):X}");
+                List<string> raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addr.ToArray());
+                for (int i = 0; i < raw.Count; i+=4)
+                {
+                    uint zero = unchecked((UInt32)Int64.Parse(raw[i]));
+                    uint four = unchecked((UInt32)Int64.Parse(raw[i+1]));
+                    uint eight = unchecked((UInt32)Int64.Parse(raw[i+2]));
+                    uint c = unchecked((UInt32)Int64.Parse(raw[i+3]));
+                    entries[i / 4] = new MemViewerEntry(addr[i], zero, four, eight, c);
+                }
+                memViewer.DataSource = entries;
+                memViewer.Refresh();
+            }
+
+
+
             if (itemsManager.Visible != true || !autoupdateTracker.Checked)
             {
                 return;
@@ -1174,6 +1210,20 @@ namespace WWHDHacker
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (!tcpGecko.connected)
+            {
+                CheckInv.Stop();
+                timer1.Stop();
+                connect.Text = "Connect";
+                foreach (Control item in this.Controls)
+                {
+                    if (item.GetType() == typeof(Panel))
+                    {
+                        item.Enabled = false;
+                    }
+                }
+                return;
+            }
             
             if (ftDate + TimeSpan.FromMilliseconds(5000) < DateTime.Now && favoriteText)
             {
@@ -1415,6 +1465,24 @@ namespace WWHDHacker
 
 
         #endregion
+    }
+
+    public class MemViewerEntry
+    {
+        public string address {get; set;}
+        public string zero {get; set;}
+        public string four {get; set;}
+        public string eight {get; set;}
+        public string c { get; set; }
+
+        public MemViewerEntry(int address, uint zero, uint four, uint eight, uint c)
+        {
+            this.address = $"0x{address:X}";
+            this.zero = $"0x{zero:X}";
+            this.four = $"0x{four:X}";
+            this.eight = $"0x{eight:X}";
+            this.c = $"0x{c:X}";
+        }
     }
 
     //Class for having images that act as checkboxes 

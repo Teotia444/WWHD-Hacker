@@ -171,6 +171,7 @@ namespace WWHDHacker
             this.softResetButton = new System.Windows.Forms.Button();
             this.dataViewerPanel = new System.Windows.Forms.Panel();
             this.advancedPanel = new System.Windows.Forms.Panel();
+            this.memViewer = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -295,6 +296,7 @@ namespace WWHDHacker
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.advancedPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memViewer)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.itemsManager.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1898,6 +1900,7 @@ namespace WWHDHacker
             // 
             // advancedPanel
             // 
+            this.advancedPanel.Controls.Add(this.memViewer);
             this.advancedPanel.Controls.Add(this.groupBox6);
             this.advancedPanel.Controls.Add(this.peekButton);
             this.advancedPanel.Controls.Add(this.pokeButton);
@@ -1912,6 +1915,14 @@ namespace WWHDHacker
             this.advancedPanel.Size = new System.Drawing.Size(803, 348);
             this.advancedPanel.TabIndex = 32;
             // 
+            // memViewer
+            // 
+            this.memViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.memViewer.Location = new System.Drawing.Point(14, 128);
+            this.memViewer.Name = "memViewer";
+            this.memViewer.Size = new System.Drawing.Size(565, 209);
+            this.memViewer.TabIndex = 19;
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label2);
@@ -1920,9 +1931,9 @@ namespace WWHDHacker
             this.groupBox6.Controls.Add(this.addItem);
             this.groupBox6.Controls.Add(this.removeItem);
             this.groupBox6.Controls.Add(this.slotList);
-            this.groupBox6.Location = new System.Drawing.Point(444, 16);
+            this.groupBox6.Location = new System.Drawing.Point(603, 16);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(356, 325);
+            this.groupBox6.Size = new System.Drawing.Size(197, 325);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Item Modifier";
@@ -3078,13 +3089,13 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.miscFeaturesPanel);
             this.Controls.Add(this.advancedPanel);
             this.Controls.Add(this.teleporterPanel);
             this.Controls.Add(this.memfilesPanel);
             this.Controls.Add(this.dataViewerPanel);
             this.Controls.Add(this.mainFeaturesPanel);
             this.Controls.Add(this.itemsManager);
+            this.Controls.Add(this.miscFeaturesPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.miscFeaturesPanel.ResumeLayout(false);
@@ -3130,6 +3141,7 @@ namespace WWHDHacker
             this.groupBox1.ResumeLayout(false);
             this.advancedPanel.ResumeLayout(false);
             this.advancedPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memViewer)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.itemsManager.ResumeLayout(false);
@@ -3433,6 +3445,7 @@ namespace WWHDHacker
         private CheckBox refillHealthMK;
         private CheckBox refillMagicMK;
         private CheckBox refillAmmoMK;
+        private DataGridView memViewer;
     }
 }
 
