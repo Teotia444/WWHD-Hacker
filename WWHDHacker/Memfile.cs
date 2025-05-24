@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TCPGeckoAromaLibrary;
@@ -57,10 +58,10 @@ namespace WWHDHacker
         public List<uint> interiorFlags;
 
         public List<float> position;
-        public int angle;
+        public uint angle;
 
         public Memfile(uint health, uint magic, uint rupees, uint arrows, uint bombs, Dictionary<int, int> inventory, string stage, uint roomId, uint spawnId, uint layer, 
-            List<uint> globalFlags, List<uint> sceneFlags, List<uint> seaFlags, List<uint> ffFlags, List<uint> drcFlags, List<uint> fwFlags, List<uint> totgFlags, List<uint> etFlags, List<uint> wtFlags, List<uint> gtFlags, List<uint> hyruleFlags, List<uint> interiorFlags, List<float> position, int angle)
+            List<uint> globalFlags, List<uint> sceneFlags, List<uint> seaFlags, List<uint> ffFlags, List<uint> drcFlags, List<uint> fwFlags, List<uint> totgFlags, List<uint> etFlags, List<uint> wtFlags, List<uint> gtFlags, List<uint> hyruleFlags, List<uint> interiorFlags, List<float> position, uint angle)
         {
             this.health = health;
             this.magic = magic;
@@ -128,6 +129,14 @@ namespace WWHDHacker
             for (int i = hyruleflagStart; i < hyruleflagEnd; i+=4) everythingToWatch.Add(i);
             for (int i = interiorflagStart; i < interiorflagEnd; i+=4) everythingToWatch.Add(i);
 
+            FieldInfo[] staticFields = typeof(Slots).GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+
+            foreach (FieldInfo field in staticFields)
+            {
+                Slot current = (Slot)field.GetValue(null);
+                everythingToWatch.Add(current.address);
+            }
+
             List<List<int>> packed =  everythingToWatch.Select((x, i) => new { Index = i, Value = x })
             .GroupBy(x => x.Index / 20)
             .Select(x => x.Select(v => v.Value).ToList())
@@ -146,10 +155,9 @@ namespace WWHDHacker
             uint arrows = unchecked((UInt32.Parse(raw[3]) >> 24));
             uint bombs = unchecked((UInt32.Parse(raw[4]) >> 24));
 
-            //TODO: inv restoring
-            Dictionary<int, int> inventory = new Dictionary<int, int>();
 
-            string stage = Encoding.ASCII.GetString(BitConverter.GetBytes(UInt32.Parse(raw[5]))) + Encoding.Default.GetString(BitConverter.GetBytes(UInt32.Parse(raw[6])));
+
+            string stage = Encoding.ASCII.GetString(BitConverter.GetBytes(UInt32.Parse(raw[5])).Reverse().ToArray()) + Encoding.ASCII.GetString(BitConverter.GetBytes(UInt32.Parse(raw[6])).Reverse().ToArray());
             uint roomId = uint.Parse(raw[8]) >> 24;
             uint spawnId = uint.Parse(raw[9]) >> 24;
             uint layer = uint.Parse(raw[7]) >> 24;
@@ -159,7 +167,7 @@ namespace WWHDHacker
                 BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[11])), 0),
                 BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[12])), 0)
             };
-            int angle = unchecked((int)(UInt32.Parse(raw[13]) >> 16)); ;
+            uint angle = unchecked((uint)(UInt32.Parse(raw[13]) >> 16)); ;
 
             int currentIndex = 14;
 
@@ -239,6 +247,14 @@ namespace WWHDHacker
                 currentIndex++;
             }
 
+            
+            Dictionary<int, int> inventory = new Dictionary<int, int>();
+            for(int i = currentIndex; i < raw.Count; i++)
+            {
+                inventory[everythingToWatch[i]] = unchecked((int)UInt32.Parse(raw[i]) >> 24);
+            }
+
+
             return new Memfile(health, magic, rupees, arrows, bombs, inventory, stage, roomId, spawnId, layer, 
                 globalFlags, sceneFlags, seaFlags, ffFlags, drcFlags, fwFlags, totgFlags, etFlags, wtFlags, gtFlags, hyruleFlags, interiorFlags,
                 position, angle);
@@ -247,9 +263,44 @@ namespace WWHDHacker
 
         }
 
-        public void Load()
+        public void Load(TCPGecko tcpGecko)
         {
+            List<int> everythingToWatch = new List<int>
+            {
+                0x1506b503, // health
+                0x1506b514, // magic
+                0x1506b569, // arrows
+                0x1506b56a, // bombs
+                0x109763EC, // layer
+                0x10978CF8, // room id
+                0x109763ED, // spawn id
+            };
 
+            tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, everythingToWatch.ToArray(), new List<uint> { this.health, this.magic, this.arrows, this.bombs, this.layer, this.roomId, this.spawnId}.ToArray());
+            everythingToWatch = new List<int>
+            {              
+                0x1506b504, // rupees
+                0x1096ef12, // angle
+            };
+            tcpGecko.PokeMultiple(TCPGecko.Datatype.u16, everythingToWatch.ToArray(), new List<uint> { this.rupees, this.angle }.ToArray());
+
+
+            everythingToWatch = new List<int> {
+                0x1096ef48, // x
+                0x1096ef4c, // y
+                0x1096ef50, // z
+            };
+
+            byte[] array = new byte[stage.Length];
+            array = Encoding.ASCII.GetBytes(stage);
+
+            for (int i = 0; i < stage.Length; i++)
+            {
+                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763F0 + i, array[i]);
+            }
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763F0 + stage.Length, 0x0);
+
+            tcpGecko.PokeMultiple(TCPGecko.Datatype.f32, everythingToWatch.ToArray(), new List<uint> { (uint)Form1.FloatToHex(position[0]), (uint)Form1.FloatToHex(position[1]), (uint)Form1.FloatToHex(position[2]) }.ToArray());
         }
     }
 }

@@ -67,5 +67,29 @@ namespace WWHDHacker.Properties {
                 this["combos"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool warningRuns {
+            get {
+                return ((bool)(this["warningRuns"]));
+            }
+            set {
+                this["warningRuns"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool displayMacros {
+            get {
+                return ((bool)(this["displayMacros"]));
+            }
+            set {
+                this["displayMacros"] = value;
+            }
+        }
     }
 }

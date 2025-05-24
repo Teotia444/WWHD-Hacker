@@ -14,5 +14,11 @@
     <Setting Name="combos" Type="System.Collections.Generic.List&lt;System.Int32&gt;" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="warningRuns" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="displayMacros" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -66,6 +66,8 @@ namespace WWHDHacker
             return Convert.ToInt32(s, 16);
         }
 
+        Memfile test;
+
 
         public static TCPGecko tcpGecko = new TCPGecko();
 
@@ -150,10 +152,14 @@ namespace WWHDHacker
             ipTextBox.Text = Properties.Settings.Default.wiiuIP;
 
 
-            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) tcpGecko.Disconnect(); 
+            warningRuns.Checked = Properties.Settings.Default.warningRuns;
+            displayMacros.Checked = Properties.Settings.Default.displayMacros;
+
+            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); }; 
                 string json = JsonConvert.SerializeObject(config, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json); 
-                Application.Exit(); };
+                Application.Exit(); 
+            };
 
             mainFeaturesPanel.Visible = true;
             miscFeaturesPanel.Visible = false;
@@ -181,8 +187,6 @@ namespace WWHDHacker
             dataViewerPanel.Controls.Add(dataViewerControl);
         }
 
-
-
         #region Top menu
         private void connect_Click(object sender, EventArgs e)
         {
@@ -195,8 +199,7 @@ namespace WWHDHacker
                 }
                 timer1.Start();
 
-                Memfile test = Memfile.Create(tcpGecko);
-                Console.WriteLine(test.bombs);
+                tcpGecko.DisplayText(".", 255, 255, 255, 2);
 
                 timer1.Interval = 10;
                 CheckInv.Start();
@@ -212,6 +215,7 @@ namespace WWHDHacker
             }
             else
             {
+                tcpGecko.DisplayText(".", 255, 255, 255, 2);
                 tcpGecko.Disconnect();
                 CheckInv.Stop();
                 timer1.Stop();
@@ -552,6 +556,18 @@ namespace WWHDHacker
         #region Misc features
 
         #region Checkboxes
+        private void warningRuns_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.warningRuns = warningRuns.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void displayMacros_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.displayMacros = displayMacros.Checked;
+            Properties.Settings.Default.Save();
+        }
+
         private void lToLevitateCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             config["levitate"].enabled = lToLevitateCheckbox.Enabled;
@@ -842,6 +858,29 @@ namespace WWHDHacker
             tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D, (animSetByte | 0b0000_0001));
             currentAnimSet.Text = "Current anim set : Anim set 2";
         }
+        private void giveTunic_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2A), out int tunicByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2A, (tunicByte | 0b1000_0000));
+        }
+
+        private void removeTunic_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2A), out int tunicByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2A, (tunicByte & ~0b1000_0000));
+        }
+
+        private void giveMap_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x08), out int mapByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x08, (mapByte | 0b0000_0001));
+        }
+
+        private void removeMap_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x08), out int mapByte);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x08, (mapByte & ~0b0000_0001));
+        }
 
         #endregion
 
@@ -926,7 +965,7 @@ namespace WWHDHacker
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763F0 + i, array[i]);
                 }
-                tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, new int[] { 0x109763F0 + 3, 0x109763FA, 0x109763F9, 0x109763FB, 0x109763FC }, new int[] { 0x0, b, b2, b3, 1 });
+                tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, new int[] { 0x109763F0 + 3, 0x109763FA, 0x109763F9, 0x109763FB, 0x109763FC }, new uint[] { 0x0, b, b2, b3, 1 });
             }
             else if (me.Button == MouseButtons.Right)
             {
@@ -1039,7 +1078,7 @@ namespace WWHDHacker
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763F0 + i, array[i]);
                 }
-                tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, new int[] { 0x109763F0 + stage.Length, 0x109763FA, 0x109763F9, 0x109763FB, 0x109763FC }, new int[] { 0x0, b, b2, b3, 1 });
+                tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, new int[] { 0x109763F0 + stage.Length, 0x109763FA, 0x109763F9, 0x109763FB, 0x109763FC }, new uint[] { 0x0, b, b2, b3, 1 });
             }
             else if (me.Button == MouseButtons.Right)
             {
@@ -1295,12 +1334,15 @@ namespace WWHDHacker
             spawnId = int.Parse(stageInfo[10]);
             layer = int.Parse(stageInfo[8]);
 
+            bool cheatActivated = false;
+
             //l
             if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["levitate"].input)) &&
                 (config["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input))) 
                 && lToLevitateCheckbox.Checked)
             {
-                Cheats.LToLevitate(tcpGecko, config["levitate"].value);
+                Cheats.LToLevitate(tcpGecko, config["levitate"].value, displayMacros.Checked);
+                cheatActivated = true;
             }
             
             //left dpad
@@ -1310,6 +1352,8 @@ namespace WWHDHacker
             {
                 Cheats.DoorCancel(tcpGecko, true);
                 doorCancelFromMacro = true;
+                cheatActivated = true;
+                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Door Cancel", 255, 153, 0, 255);
             }
             else if (doorCancelFromMacro)
             {
@@ -1326,8 +1370,8 @@ namespace WWHDHacker
                 lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
             {
                 bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !config["superswim"].alternative;
-                Cheats.Superswim(tcpGecko, config["superswim"].value, linkSpeed, zlHeld, link_ptr);
-
+                Cheats.Superswim(tcpGecko, config["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
+                cheatActivated = true;
                 lastDpadRight = DateTime.Now;
             }
 
@@ -1337,13 +1381,16 @@ namespace WWHDHacker
                 && storageCheckbox.Checked)
             {
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
+                if(displayMacros.Checked) tcpGecko.DisplayText("[Macros] Give Storage", 255, 153, 0, 255);
+                cheatActivated = true;
             }
             //l3
             if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["windDirection"].input)) &&
                 (config["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
                 && storageCheckbox.Checked)
             {
-                Cheats.ChangeWindDir(tcpGecko);
+                Cheats.ChangeWindDir(tcpGecko, displayMacros.Checked);
+                cheatActivated = true;
             }
 
             //l + zr
@@ -1355,6 +1402,8 @@ namespace WWHDHacker
                 if (maxHealth != 0)
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, maxHealth);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Health", 255, 153, 0, 255);
+                    cheatActivated = true;
                 }
             }
 
@@ -1366,7 +1415,9 @@ namespace WWHDHacker
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b513), out int maxMagic);
                 if (maxMagic != 0)
                 {
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Magic", 255, 153, 0, 255);
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, maxMagic);
+                    cheatActivated = true;
                 }
             }
 
@@ -1378,14 +1429,18 @@ namespace WWHDHacker
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56f), out int maxArrows);
                 if (maxArrows != 0)
                 {
+
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, maxArrows);
+                    cheatActivated = true;
                 }
 
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b570), out int maxBombs);
                 if (maxBombs != 0)
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, maxBombs);
+                    cheatActivated = true;
                 }
+                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Ammo", 255, 153, 0, 255);
             }
 
             //dpad down + zr
@@ -1393,7 +1448,10 @@ namespace WWHDHacker
                 (config["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
                 && reloadRoomCheckbox.Checked)
             {
+
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763fc, 0x1);
+                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Reload Room", 255, 153, 0, 255);
+                cheatActivated = true;
             }
 
             //dpad left + zr
@@ -1408,6 +1466,8 @@ namespace WWHDHacker
                 tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
                 tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
                 Cheats.DoorCancel(tcpGecko, false);
+                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
+                cheatActivated = true;
             }
 
             //dpad right + zr
@@ -1419,6 +1479,8 @@ namespace WWHDHacker
                 float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
                 float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50), out storedLinkZ);
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out storedLinkAngle);
+                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
+                cheatActivated = true;
             }
             
             
@@ -1460,11 +1522,34 @@ namespace WWHDHacker
                 
 
             }
+
+
+            
+            if (stage.Contains("sea_T") && warningRuns.Checked)
+            {
+                tcpGecko.DisplayText("[Warning] Make sure to disable the TCPGecko plugin before starting a run!", 255, 0, 0, 255);
+            }
+            else if (!cheatActivated || !displayMacros.Checked)
+            {
+                tcpGecko.DisplayText(".", 255, 255, 255, 2);
+            }
         }
 
 
 
+
+
         #endregion
+
+        private void createMemfile_Click(object sender, EventArgs e)
+        {
+            test = Memfile.Create(tcpGecko);
+        }
+
+        private void loadMemfile_Click(object sender, EventArgs e)
+        {
+            test.Load(tcpGecko);
+        }
     }
 
     public class MemViewerEntry

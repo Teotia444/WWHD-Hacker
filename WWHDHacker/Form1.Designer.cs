@@ -37,6 +37,23 @@ namespace WWHDHacker
             this.connect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.miscFeaturesPanel = new System.Windows.Forms.Panel();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.infHealth = new System.Windows.Forms.CheckBox();
+            this.infMagic = new System.Windows.Forms.CheckBox();
+            this.infAir = new System.Windows.Forms.CheckBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.removeTunic = new System.Windows.Forms.Button();
+            this.giveTunic = new System.Windows.Forms.Button();
+            this.refreshAS = new System.Windows.Forms.Button();
+            this.animSet2 = new System.Windows.Forms.Button();
+            this.animSet1 = new System.Windows.Forms.Button();
+            this.currentAnimSet = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.pauseGame = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.resumeGame = new System.Windows.Forms.Button();
+            this.displayMacros = new System.Windows.Forms.CheckBox();
+            this.warningRuns = new System.Windows.Forms.CheckBox();
             this.Levitate = new System.Windows.Forms.GroupBox();
             this.levitateMK = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -95,16 +112,6 @@ namespace WWHDHacker
             this.refillAmmoCombo = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.refillAmmoCheckbox = new System.Windows.Forms.CheckBox();
-            this.refreshAS = new System.Windows.Forms.Button();
-            this.currentAnimSet = new System.Windows.Forms.Label();
-            this.animSet1 = new System.Windows.Forms.Button();
-            this.animSet2 = new System.Windows.Forms.Button();
-            this.resumeGame = new System.Windows.Forms.Button();
-            this.pauseGame = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.infAir = new System.Windows.Forms.CheckBox();
-            this.infMagic = new System.Windows.Forms.CheckBox();
-            this.infHealth = new System.Windows.Forms.CheckBox();
             this.fullCapacities = new System.Windows.Forms.Button();
             this.magic80 = new System.Windows.Forms.Button();
             this.fullHealth = new System.Windows.Forms.Button();
@@ -247,7 +254,8 @@ namespace WWHDHacker
             this.itemsList = new System.Windows.Forms.ImageList(this.components);
             this.CheckInv = new System.Windows.Forms.Timer(this.components);
             this.memfilesPanel = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.loadMemfile = new System.Windows.Forms.Button();
+            this.createMemfile = new System.Windows.Forms.Button();
             this.teleporterPanel = new System.Windows.Forms.Panel();
             this.displayOnMap = new System.Windows.Forms.CheckBox();
             this.transparentLayer = new System.Windows.Forms.Panel();
@@ -270,6 +278,9 @@ namespace WWHDHacker
             this.label6 = new System.Windows.Forms.Label();
             this.islandLabel = new System.Windows.Forms.Label();
             this.miscFeaturesPanel.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.Levitate.SuspendLayout();
             this.DoorCancel.SuspendLayout();
             this.Superspeed.SuspendLayout();
@@ -381,6 +392,11 @@ namespace WWHDHacker
             // 
             // miscFeaturesPanel
             // 
+            this.miscFeaturesPanel.Controls.Add(this.groupBox11);
+            this.miscFeaturesPanel.Controls.Add(this.groupBox10);
+            this.miscFeaturesPanel.Controls.Add(this.groupBox9);
+            this.miscFeaturesPanel.Controls.Add(this.displayMacros);
+            this.miscFeaturesPanel.Controls.Add(this.warningRuns);
             this.miscFeaturesPanel.Controls.Add(this.Levitate);
             this.miscFeaturesPanel.Controls.Add(this.DoorCancel);
             this.miscFeaturesPanel.Controls.Add(this.Superspeed);
@@ -392,26 +408,190 @@ namespace WWHDHacker
             this.miscFeaturesPanel.Controls.Add(this.RefillHealth);
             this.miscFeaturesPanel.Controls.Add(this.RefillMagic);
             this.miscFeaturesPanel.Controls.Add(this.RefillAmmo);
-            this.miscFeaturesPanel.Controls.Add(this.refreshAS);
-            this.miscFeaturesPanel.Controls.Add(this.currentAnimSet);
-            this.miscFeaturesPanel.Controls.Add(this.animSet1);
-            this.miscFeaturesPanel.Controls.Add(this.animSet2);
-            this.miscFeaturesPanel.Controls.Add(this.resumeGame);
-            this.miscFeaturesPanel.Controls.Add(this.pauseGame);
-            this.miscFeaturesPanel.Controls.Add(this.button4);
-            this.miscFeaturesPanel.Controls.Add(this.infAir);
-            this.miscFeaturesPanel.Controls.Add(this.infMagic);
-            this.miscFeaturesPanel.Controls.Add(this.infHealth);
-            this.miscFeaturesPanel.Controls.Add(this.fullCapacities);
-            this.miscFeaturesPanel.Controls.Add(this.magic80);
-            this.miscFeaturesPanel.Controls.Add(this.fullHealth);
-            this.miscFeaturesPanel.Controls.Add(this.infArrows);
-            this.miscFeaturesPanel.Controls.Add(this.infBombs);
-            this.miscFeaturesPanel.Controls.Add(this.allSongs);
             this.miscFeaturesPanel.Location = new System.Drawing.Point(7, 70);
             this.miscFeaturesPanel.Name = "miscFeaturesPanel";
             this.miscFeaturesPanel.Size = new System.Drawing.Size(803, 348);
             this.miscFeaturesPanel.TabIndex = 16;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.infHealth);
+            this.groupBox11.Controls.Add(this.infMagic);
+            this.groupBox11.Controls.Add(this.infAir);
+            this.groupBox11.Location = new System.Drawing.Point(689, 251);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(105, 91);
+            this.groupBox11.TabIndex = 58;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Infinite";
+            // 
+            // infHealth
+            // 
+            this.infHealth.AutoSize = true;
+            this.infHealth.Location = new System.Drawing.Point(9, 22);
+            this.infHealth.Name = "infHealth";
+            this.infHealth.Size = new System.Drawing.Size(91, 17);
+            this.infHealth.TabIndex = 34;
+            this.infHealth.Text = "Infinite Health";
+            this.infHealth.UseVisualStyleBackColor = true;
+            // 
+            // infMagic
+            // 
+            this.infMagic.AutoSize = true;
+            this.infMagic.Location = new System.Drawing.Point(9, 45);
+            this.infMagic.Name = "infMagic";
+            this.infMagic.Size = new System.Drawing.Size(89, 17);
+            this.infMagic.TabIndex = 35;
+            this.infMagic.Text = "Infinite Magic";
+            this.infMagic.UseVisualStyleBackColor = true;
+            // 
+            // infAir
+            // 
+            this.infAir.AutoSize = true;
+            this.infAir.Location = new System.Drawing.Point(9, 69);
+            this.infAir.Name = "infAir";
+            this.infAir.Size = new System.Drawing.Size(72, 17);
+            this.infAir.TabIndex = 36;
+            this.infAir.Text = "Infinite Air";
+            this.infAir.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.removeTunic);
+            this.groupBox10.Controls.Add(this.giveTunic);
+            this.groupBox10.Controls.Add(this.refreshAS);
+            this.groupBox10.Controls.Add(this.animSet2);
+            this.groupBox10.Controls.Add(this.animSet1);
+            this.groupBox10.Controls.Add(this.currentAnimSet);
+            this.groupBox10.Location = new System.Drawing.Point(510, 5);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(284, 117);
+            this.groupBox10.TabIndex = 57;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Flags";
+            // 
+            // removeTunic
+            // 
+            this.removeTunic.Location = new System.Drawing.Point(147, 81);
+            this.removeTunic.Name = "removeTunic";
+            this.removeTunic.Size = new System.Drawing.Size(113, 23);
+            this.removeTunic.TabIndex = 45;
+            this.removeTunic.Text = "Remove Tunic";
+            this.removeTunic.UseVisualStyleBackColor = true;
+            this.removeTunic.Click += new System.EventHandler(this.removeTunic_Click);
+            // 
+            // giveTunic
+            // 
+            this.giveTunic.Location = new System.Drawing.Point(15, 81);
+            this.giveTunic.Name = "giveTunic";
+            this.giveTunic.Size = new System.Drawing.Size(113, 23);
+            this.giveTunic.TabIndex = 43;
+            this.giveTunic.Text = "Give Tunic";
+            this.giveTunic.UseVisualStyleBackColor = true;
+            this.giveTunic.Click += new System.EventHandler(this.giveTunic_Click);
+            // 
+            // refreshAS
+            // 
+            this.refreshAS.Location = new System.Drawing.Point(161, 24);
+            this.refreshAS.Name = "refreshAS";
+            this.refreshAS.Size = new System.Drawing.Size(99, 23);
+            this.refreshAS.TabIndex = 42;
+            this.refreshAS.Text = "Refresh anim set";
+            this.refreshAS.UseVisualStyleBackColor = true;
+            this.refreshAS.Click += new System.EventHandler(this.refreshAS_Click);
+            // 
+            // animSet2
+            // 
+            this.animSet2.Location = new System.Drawing.Point(147, 50);
+            this.animSet2.Name = "animSet2";
+            this.animSet2.Size = new System.Drawing.Size(113, 23);
+            this.animSet2.TabIndex = 39;
+            this.animSet2.Text = "Anim set 2";
+            this.animSet2.UseVisualStyleBackColor = true;
+            this.animSet2.Click += new System.EventHandler(this.animSet2_Click);
+            // 
+            // animSet1
+            // 
+            this.animSet1.Location = new System.Drawing.Point(15, 50);
+            this.animSet1.Name = "animSet1";
+            this.animSet1.Size = new System.Drawing.Size(113, 23);
+            this.animSet1.TabIndex = 40;
+            this.animSet1.Text = "Anim set 1";
+            this.animSet1.UseVisualStyleBackColor = true;
+            this.animSet1.Click += new System.EventHandler(this.animSet1_Click);
+            // 
+            // currentAnimSet
+            // 
+            this.currentAnimSet.AutoSize = true;
+            this.currentAnimSet.Location = new System.Drawing.Point(12, 30);
+            this.currentAnimSet.Name = "currentAnimSet";
+            this.currentAnimSet.Size = new System.Drawing.Size(138, 13);
+            this.currentAnimSet.TabIndex = 41;
+            this.currentAnimSet.Text = "Current anim set : Unknown";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.pauseGame);
+            this.groupBox9.Controls.Add(this.button4);
+            this.groupBox9.Controls.Add(this.resumeGame);
+            this.groupBox9.Location = new System.Drawing.Point(539, 246);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(141, 96);
+            this.groupBox9.TabIndex = 56;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Frame advance";
+            // 
+            // pauseGame
+            // 
+            this.pauseGame.Location = new System.Drawing.Point(7, 17);
+            this.pauseGame.Name = "pauseGame";
+            this.pauseGame.Size = new System.Drawing.Size(123, 23);
+            this.pauseGame.TabIndex = 38;
+            this.pauseGame.Text = "Pause";
+            this.pauseGame.UseVisualStyleBackColor = true;
+            this.pauseGame.Click += new System.EventHandler(this.pauseGame_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(7, 69);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(123, 23);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "Advance one frame";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // resumeGame
+            // 
+            this.resumeGame.Location = new System.Drawing.Point(7, 44);
+            this.resumeGame.Name = "resumeGame";
+            this.resumeGame.Size = new System.Drawing.Size(123, 23);
+            this.resumeGame.TabIndex = 37;
+            this.resumeGame.Text = "Resume";
+            this.resumeGame.UseVisualStyleBackColor = true;
+            this.resumeGame.Click += new System.EventHandler(this.resumeGame_Click);
+            // 
+            // displayMacros
+            // 
+            this.displayMacros.AutoSize = true;
+            this.displayMacros.Location = new System.Drawing.Point(689, 216);
+            this.displayMacros.Name = "displayMacros";
+            this.displayMacros.Size = new System.Drawing.Size(101, 30);
+            this.displayMacros.TabIndex = 55;
+            this.displayMacros.Text = "Display Macros \r\nused on screen";
+            this.displayMacros.UseVisualStyleBackColor = true;
+            this.displayMacros.CheckedChanged += new System.EventHandler(this.displayMacros_CheckedChanged);
+            // 
+            // warningRuns
+            // 
+            this.warningRuns.AutoSize = true;
+            this.warningRuns.Location = new System.Drawing.Point(690, 186);
+            this.warningRuns.Name = "warningRuns";
+            this.warningRuns.Size = new System.Drawing.Size(102, 30);
+            this.warningRuns.TabIndex = 54;
+            this.warningRuns.Text = "Warning before \r\nstarting a run";
+            this.warningRuns.UseVisualStyleBackColor = true;
+            this.warningRuns.CheckedChanged += new System.EventHandler(this.warningRuns_CheckedChanged);
             // 
             // Levitate
             // 
@@ -972,7 +1152,7 @@ namespace WWHDHacker
             this.RefillMagic.Controls.Add(this.label31);
             this.RefillMagic.Controls.Add(this.refillMagicCombo);
             this.RefillMagic.Controls.Add(this.refillMagicCheckbox);
-            this.RefillMagic.Location = new System.Drawing.Point(386, 224);
+            this.RefillMagic.Location = new System.Drawing.Point(392, 168);
             this.RefillMagic.Name = "RefillMagic";
             this.RefillMagic.Size = new System.Drawing.Size(178, 58);
             this.RefillMagic.TabIndex = 53;
@@ -1082,108 +1262,9 @@ namespace WWHDHacker
             this.refillAmmoCheckbox.UseVisualStyleBackColor = true;
             this.refillAmmoCheckbox.CheckedChanged += new System.EventHandler(this.refillAmmoCheckbox_CheckedChanged);
             // 
-            // refreshAS
-            // 
-            this.refreshAS.Location = new System.Drawing.Point(692, 8);
-            this.refreshAS.Name = "refreshAS";
-            this.refreshAS.Size = new System.Drawing.Size(99, 23);
-            this.refreshAS.TabIndex = 42;
-            this.refreshAS.Text = "Refresh anim set";
-            this.refreshAS.UseVisualStyleBackColor = true;
-            this.refreshAS.Click += new System.EventHandler(this.refreshAS_Click);
-            // 
-            // currentAnimSet
-            // 
-            this.currentAnimSet.AutoSize = true;
-            this.currentAnimSet.Location = new System.Drawing.Point(543, 14);
-            this.currentAnimSet.Name = "currentAnimSet";
-            this.currentAnimSet.Size = new System.Drawing.Size(138, 13);
-            this.currentAnimSet.TabIndex = 41;
-            this.currentAnimSet.Text = "Current anim set : Unknown";
-            // 
-            // animSet1
-            // 
-            this.animSet1.Location = new System.Drawing.Point(546, 50);
-            this.animSet1.Name = "animSet1";
-            this.animSet1.Size = new System.Drawing.Size(113, 23);
-            this.animSet1.TabIndex = 40;
-            this.animSet1.Text = "Anim set 1";
-            this.animSet1.UseVisualStyleBackColor = true;
-            this.animSet1.Click += new System.EventHandler(this.animSet1_Click);
-            // 
-            // animSet2
-            // 
-            this.animSet2.Location = new System.Drawing.Point(678, 50);
-            this.animSet2.Name = "animSet2";
-            this.animSet2.Size = new System.Drawing.Size(113, 23);
-            this.animSet2.TabIndex = 39;
-            this.animSet2.Text = "Anim set 2";
-            this.animSet2.UseVisualStyleBackColor = true;
-            this.animSet2.Click += new System.EventHandler(this.animSet2_Click);
-            // 
-            // resumeGame
-            // 
-            this.resumeGame.Location = new System.Drawing.Point(674, 157);
-            this.resumeGame.Name = "resumeGame";
-            this.resumeGame.Size = new System.Drawing.Size(123, 23);
-            this.resumeGame.TabIndex = 37;
-            this.resumeGame.Text = "Resume";
-            this.resumeGame.UseVisualStyleBackColor = true;
-            this.resumeGame.Click += new System.EventHandler(this.resumeGame_Click);
-            // 
-            // pauseGame
-            // 
-            this.pauseGame.Location = new System.Drawing.Point(674, 130);
-            this.pauseGame.Name = "pauseGame";
-            this.pauseGame.Size = new System.Drawing.Size(123, 23);
-            this.pauseGame.TabIndex = 38;
-            this.pauseGame.Text = "Pause";
-            this.pauseGame.UseVisualStyleBackColor = true;
-            this.pauseGame.Click += new System.EventHandler(this.pauseGame_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(674, 182);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 23);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Advance one frame";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // infAir
-            // 
-            this.infAir.AutoSize = true;
-            this.infAir.Location = new System.Drawing.Point(700, 268);
-            this.infAir.Name = "infAir";
-            this.infAir.Size = new System.Drawing.Size(72, 17);
-            this.infAir.TabIndex = 36;
-            this.infAir.Text = "Infinite Air";
-            this.infAir.UseVisualStyleBackColor = true;
-            // 
-            // infMagic
-            // 
-            this.infMagic.AutoSize = true;
-            this.infMagic.Location = new System.Drawing.Point(700, 244);
-            this.infMagic.Name = "infMagic";
-            this.infMagic.Size = new System.Drawing.Size(89, 17);
-            this.infMagic.TabIndex = 35;
-            this.infMagic.Text = "Infinite Magic";
-            this.infMagic.UseVisualStyleBackColor = true;
-            // 
-            // infHealth
-            // 
-            this.infHealth.AutoSize = true;
-            this.infHealth.Location = new System.Drawing.Point(700, 221);
-            this.infHealth.Name = "infHealth";
-            this.infHealth.Size = new System.Drawing.Size(91, 17);
-            this.infHealth.TabIndex = 34;
-            this.infHealth.Text = "Infinite Health";
-            this.infHealth.UseVisualStyleBackColor = true;
-            // 
             // fullCapacities
             // 
-            this.fullCapacities.Location = new System.Drawing.Point(700, 291);
+            this.fullCapacities.Location = new System.Drawing.Point(700, 282);
             this.fullCapacities.Name = "fullCapacities";
             this.fullCapacities.Size = new System.Drawing.Size(92, 23);
             this.fullCapacities.TabIndex = 21;
@@ -1193,7 +1274,7 @@ namespace WWHDHacker
             // 
             // magic80
             // 
-            this.magic80.Location = new System.Drawing.Point(502, 320);
+            this.magic80.Location = new System.Drawing.Point(502, 311);
             this.magic80.Name = "magic80";
             this.magic80.Size = new System.Drawing.Size(94, 23);
             this.magic80.TabIndex = 33;
@@ -1203,7 +1284,7 @@ namespace WWHDHacker
             // 
             // fullHealth
             // 
-            this.fullHealth.Location = new System.Drawing.Point(602, 320);
+            this.fullHealth.Location = new System.Drawing.Point(602, 311);
             this.fullHealth.Name = "fullHealth";
             this.fullHealth.Size = new System.Drawing.Size(92, 23);
             this.fullHealth.TabIndex = 20;
@@ -1213,7 +1294,7 @@ namespace WWHDHacker
             // 
             // infArrows
             // 
-            this.infArrows.Location = new System.Drawing.Point(603, 291);
+            this.infArrows.Location = new System.Drawing.Point(603, 282);
             this.infArrows.Name = "infArrows";
             this.infArrows.Size = new System.Drawing.Size(91, 23);
             this.infArrows.TabIndex = 32;
@@ -1223,7 +1304,7 @@ namespace WWHDHacker
             // 
             // infBombs
             // 
-            this.infBombs.Location = new System.Drawing.Point(503, 291);
+            this.infBombs.Location = new System.Drawing.Point(503, 282);
             this.infBombs.Name = "infBombs";
             this.infBombs.Size = new System.Drawing.Size(94, 23);
             this.infBombs.TabIndex = 14;
@@ -1233,7 +1314,7 @@ namespace WWHDHacker
             // 
             // allSongs
             // 
-            this.allSongs.Location = new System.Drawing.Point(700, 320);
+            this.allSongs.Location = new System.Drawing.Point(700, 311);
             this.allSongs.Name = "allSongs";
             this.allSongs.Size = new System.Drawing.Size(92, 23);
             this.allSongs.TabIndex = 16;
@@ -2151,6 +2232,12 @@ namespace WWHDHacker
             this.itemsManager.Controls.Add(this.groupBox3);
             this.itemsManager.Controls.Add(this.giveAll);
             this.itemsManager.Controls.Add(this.itemsPanel);
+            this.itemsManager.Controls.Add(this.infBombs);
+            this.itemsManager.Controls.Add(this.infArrows);
+            this.itemsManager.Controls.Add(this.fullHealth);
+            this.itemsManager.Controls.Add(this.magic80);
+            this.itemsManager.Controls.Add(this.allSongs);
+            this.itemsManager.Controls.Add(this.fullCapacities);
             this.itemsManager.Location = new System.Drawing.Point(7, 70);
             this.itemsManager.Name = "itemsManager";
             this.itemsManager.Size = new System.Drawing.Size(803, 348);
@@ -2842,20 +2929,32 @@ namespace WWHDHacker
             // 
             // memfilesPanel
             // 
-            this.memfilesPanel.Controls.Add(this.label5);
+            this.memfilesPanel.Controls.Add(this.loadMemfile);
+            this.memfilesPanel.Controls.Add(this.createMemfile);
             this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
             this.memfilesPanel.Name = "memfilesPanel";
             this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
             this.memfilesPanel.TabIndex = 32;
             // 
-            // label5
+            // loadMemfile
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(300, 173);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "memfiles";
+            this.loadMemfile.Location = new System.Drawing.Point(23, 66);
+            this.loadMemfile.Name = "loadMemfile";
+            this.loadMemfile.Size = new System.Drawing.Size(97, 23);
+            this.loadMemfile.TabIndex = 1;
+            this.loadMemfile.Text = "Load Memfile";
+            this.loadMemfile.UseVisualStyleBackColor = true;
+            this.loadMemfile.Click += new System.EventHandler(this.loadMemfile_Click);
+            // 
+            // createMemfile
+            // 
+            this.createMemfile.Location = new System.Drawing.Point(23, 23);
+            this.createMemfile.Name = "createMemfile";
+            this.createMemfile.Size = new System.Drawing.Size(97, 23);
+            this.createMemfile.TabIndex = 0;
+            this.createMemfile.Text = "Create memfile";
+            this.createMemfile.UseVisualStyleBackColor = true;
+            this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
             // 
             // teleporterPanel
             // 
@@ -3089,17 +3188,22 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.advancedPanel);
-            this.Controls.Add(this.teleporterPanel);
             this.Controls.Add(this.memfilesPanel);
             this.Controls.Add(this.dataViewerPanel);
             this.Controls.Add(this.mainFeaturesPanel);
             this.Controls.Add(this.itemsManager);
             this.Controls.Add(this.miscFeaturesPanel);
+            this.Controls.Add(this.advancedPanel);
+            this.Controls.Add(this.teleporterPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.miscFeaturesPanel.ResumeLayout(false);
             this.miscFeaturesPanel.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
             this.Levitate.ResumeLayout(false);
             this.Levitate.PerformLayout();
             this.DoorCancel.ResumeLayout(false);
@@ -3191,7 +3295,6 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).EndInit();
             this.memfilesPanel.ResumeLayout(false);
-            this.memfilesPanel.PerformLayout();
             this.teleporterPanel.ResumeLayout(false);
             this.teleporterPanel.PerformLayout();
             this.transparentLayer.ResumeLayout(false);
@@ -3363,7 +3466,6 @@ namespace WWHDHacker
         private System.Windows.Forms.Button animSet1;
         private System.Windows.Forms.Button animSet2;
         private Panel memfilesPanel;
-        private Label label5;
         private Panel teleporterPanel;
         private PictureBox teleporterMap;
         private Label islandLabel;
@@ -3446,6 +3548,15 @@ namespace WWHDHacker
         private CheckBox refillMagicMK;
         private CheckBox refillAmmoMK;
         private DataGridView memViewer;
+        private CheckBox displayMacros;
+        private CheckBox warningRuns;
+        private GroupBox groupBox10;
+        private GroupBox groupBox9;
+        private GroupBox groupBox11;
+        private Button removeTunic;
+        private Button giveTunic;
+        private Button loadMemfile;
+        private Button createMemfile;
     }
 }
 

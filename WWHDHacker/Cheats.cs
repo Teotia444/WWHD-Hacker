@@ -148,13 +148,14 @@ namespace WWHDHacker
 
         }
 
-        public static void LToLevitate(TCPGecko tcpGecko, float value)
+        public static void LToLevitate(TCPGecko tcpGecko, float value, bool display)
         {
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976ab4), out int hoverAddress);
             tcpGecko.Poke(TCPGecko.Datatype.f32, hoverAddress + 0x340, Form1.FloatToHex(value));
+            if (display) tcpGecko.DisplayText("[Macros] Levitate", 255, 153, 0, 255);
         }
 
-        public static void Superswim(TCPGecko tcpGecko, float value, float initialSpeed, bool convert, int link_ptr)
+        public static void Superswim(TCPGecko tcpGecko, float value, float initialSpeed, bool convert, int link_ptr, bool display)
         {
             float speedToApply = initialSpeed;
             bool flag = speedToApply < 0f;
@@ -162,9 +163,10 @@ namespace WWHDHacker
             speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + 500f) : ((speedToApply < -50f && flag) ? (speedToApply - 500f) : ((!(speedToApply < 50f) || flag) ? (speedToApply - (convert ? 1 : -1) * 100f) : (speedToApply + (convert ? 1 : -1) * 100f)));
             tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, Form1.FloatToHex(speedToApply));
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 900);
+            if (display) tcpGecko.DisplayText("[Macros] Superswim", 255, 153, 0, 255);
         }
 
-        public static void ChangeWindDir(TCPGecko tcpGecko)
+        public static void ChangeWindDir(TCPGecko tcpGecko, bool display)
         {
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out int angle);
             uint wind = (UInt16)((-angle - 0xC000));
@@ -172,6 +174,7 @@ namespace WWHDHacker
             wind /= 0x2000;
             wind *= 0x2000;
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1097868E, (int)wind);
+            if (display) tcpGecko.DisplayText("[Macros] Change Wind Direction", 255, 153, 0, 255);
         }
 
 
