@@ -18,6 +18,7 @@ using YamlDotNet.Core;
 using System.Runtime.CompilerServices;
 using YamlDotNet.Core.Tokens;
 using System.Configuration;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WWHDHacker
 {
@@ -66,7 +67,10 @@ namespace WWHDHacker
             return Convert.ToInt32(s, 16);
         }
 
-        Memfile test;
+        Memfile tempMemfile;
+        List<Memfile> availableMemfiles;
+        FileSystemWatcher memfilesWatcher;
+        FileSystemWatcher savefilesWatcher;
 
 
         public static TCPGecko tcpGecko = new TCPGecko();
@@ -82,6 +86,8 @@ namespace WWHDHacker
             
 
             Directory.CreateDirectory(settingsDir);
+            Directory.CreateDirectory(settingsDir + "\\Memfiles");
+            Directory.CreateDirectory(settingsDir + "\\Savefiles");
             if (!File.Exists(settingsDir + "\\Config.json"))
             {
                 Dictionary<string, JsonInput> toadd = new Dictionary<string, JsonInput>()
@@ -135,6 +141,50 @@ namespace WWHDHacker
             refillMagicMK.Checked = config["refillHealth"].masterkey;
             refillAmmoMK.Checked = config["refillAmmo"].masterkey;
             windDirectionMK.Checked = config["windDirection"].masterkey;
+
+            levitateHeight.Value = (decimal)config["levitate"].value;
+            superswimSpeed.Value = (decimal)config["superswim"].value;
+
+            memfilesWatcher = new FileSystemWatcher(settingsDir + "\\Memfiles");
+
+            memfilesWatcher.NotifyFilter = NotifyFilters.Attributes
+                                 | NotifyFilters.CreationTime
+                                 | NotifyFilters.DirectoryName
+                                 | NotifyFilters.FileName
+                                 | NotifyFilters.LastAccess
+                                 | NotifyFilters.LastWrite
+                                 | NotifyFilters.Security
+                                 | NotifyFilters.Size;
+
+            memfilesWatcher.Changed += MemfileRefresh;
+            memfilesWatcher.Created += MemfileRefresh;
+            memfilesWatcher.Deleted += MemfileRefresh;
+            memfilesWatcher.Renamed += MemfileRefresh;
+
+            memfilesWatcher.Filter = "*.json";
+            memfilesWatcher.EnableRaisingEvents = true;
+
+
+            savefilesWatcher = new FileSystemWatcher(settingsDir + "\\Savefiles");
+
+            savefilesWatcher.NotifyFilter = NotifyFilters.Attributes
+                                 | NotifyFilters.CreationTime
+                                 | NotifyFilters.DirectoryName
+                                 | NotifyFilters.FileName
+                                 | NotifyFilters.LastAccess
+                                 | NotifyFilters.LastWrite
+                                 | NotifyFilters.Security
+                                 | NotifyFilters.Size;
+
+            savefilesWatcher.Changed += SavefileRefresh;
+            savefilesWatcher.Created += SavefileRefresh;
+            savefilesWatcher.Deleted += SavefileRefresh;
+            savefilesWatcher.Renamed += SavefileRefresh;
+
+            savefilesWatcher.EnableRaisingEvents = true;
+            injectGame.SelectedIndex = 0;
+
+            availableMemfiles = new List<Memfile>();
             
 
             foreach (GroupBox gb in miscFeaturesPanel.Controls.OfType<GroupBox>())
@@ -158,7 +208,8 @@ namespace WWHDHacker
             FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); }; 
                 string json = JsonConvert.SerializeObject(config, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json); 
-                Application.Exit(); 
+
+                System.Windows.Forms.Application.Exit(); 
             };
 
             mainFeaturesPanel.Visible = true;
@@ -192,6 +243,8 @@ namespace WWHDHacker
         {
             if (connect.Text == "Connect")
             {
+                MemfileRefresh(null, null);
+                SavefileRefresh(null, null);
                 Properties.Settings.Default.wiiuIP = ipTextBox.Text;
                 Properties.Settings.Default.Save();
                 if (!tcpGecko.Connect(ipTextBox.Text)) { 
@@ -1064,14 +1117,20 @@ namespace WWHDHacker
         {
             MouseEventArgs me = (MouseEventArgs)e;
             Label a = (Label)sender;
+
             string stage = yamlMap[a.Text];
             if (me.Button == MouseButtons.Left)
             {
+                
 
                 byte[] array = new byte[stage.Length];
 
                 array = Encoding.ASCII.GetBytes(stage);
+                
                 byte b = byte.Parse(teleporterRoomId.Text);
+                if (stage.Contains("M_Dra09")) b = byte.Parse("9");
+                if (stage.Contains("SirenMB")) b = byte.Parse("23");
+
                 byte b2 = Convert.ToByte(teleporterSpawnId.Text, 16);
                 byte b3 = Convert.ToByte(teleporterLayer.Text, 16);
                 for (int i = 0; i < stage.Length; i++)
@@ -1187,7 +1246,6 @@ namespace WWHDHacker
                 {
                     addr.Add(i);
                 }
-                Console.WriteLine($"0x{unchecked((UInt32) (-1)):X}");
                 List<string> raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addr.ToArray());
                 for (int i = 0; i < raw.Count; i+=4)
                 {
@@ -1268,6 +1326,7 @@ namespace WWHDHacker
             {
                 favoriteText = false;
                 addedRemoved.Text = "";
+                SavefileIndicator.Text = "";
             }
 
             int[] addresses = new int[]
@@ -1460,14 +1519,31 @@ namespace WWHDHacker
                 && (storedLinkX != 0 || storedLinkY != 0 || storedLinkZ != 0) 
                 && storeRestoreCheckbox.Checked)
             {
-                Cheats.DoorCancel(tcpGecko, true);
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
-                tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
-                Cheats.DoorCancel(tcpGecko, false);
-                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
-                cheatActivated = true;
+                if (!config["restorePosition"].alternative)
+                {
+                    Cheats.DoorCancel(tcpGecko, true);
+                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
+                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
+                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
+                    tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
+                    Cheats.DoorCancel(tcpGecko, false);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+                else
+                {
+                    if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
+                    {
+                        tempMemfile.Load(tcpGecko);
+                    }
+                    else
+                    {
+                        availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
+                    }
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore selected memfile", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+                
             }
 
             //dpad right + zr
@@ -1475,12 +1551,22 @@ namespace WWHDHacker
                 (config["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
                 && storeRestoreCheckbox.Checked)
             {
-                float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef48), out storedLinkX);
-                float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
-                float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50), out storedLinkZ);
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out storedLinkAngle);
-                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
-                cheatActivated = true;
+                if (!config["storePosition"].alternative)
+                {
+                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef48), out storedLinkX);
+                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
+                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50), out storedLinkZ);
+                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out storedLinkAngle);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+                else
+                {
+                    tempMemfile = Memfile.Create(tcpGecko);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Save into temp memfile", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+                
             }
             
             
@@ -1531,7 +1617,15 @@ namespace WWHDHacker
             }
             else if (!cheatActivated || !displayMacros.Checked)
             {
-                tcpGecko.DisplayText(".", 255, 255, 255, 2);
+                if(dataViewerPanel.Visible || separate.Visible)
+                {
+                    tcpGecko.DisplayText(".", 255, 0, 0, 2);
+                }
+                else
+                {
+                    tcpGecko.DisplayText(".", 255, 255, 255, 2);
+                }
+                
             }
         }
 
@@ -1543,12 +1637,190 @@ namespace WWHDHacker
 
         private void createMemfile_Click(object sender, EventArgs e)
         {
-            test = Memfile.Create(tcpGecko);
+            if (memfileSelector.SelectedIndices.Contains(0))
+            {
+                tempMemfile = Memfile.Create(tcpGecko);
+                ftDate = DateTime.Now;
+                SavefileIndicator.Text = "Memfile saved on temporary slot!";
+                favoriteText = true;
+                return;
+            }
+            string name = Prompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
+            if(name != "")
+            {
+                Memfile memfile = Memfile.Create(tcpGecko);
+                string json = JsonConvert.SerializeObject(memfile, Formatting.Indented);
+                File.WriteAllText(settingsDir + "\\Memfiles\\" + name + ".json", json);
+                ftDate = DateTime.Now;
+                SavefileIndicator.Text = "Succesfully created the memfile!";
+                favoriteText = true;
+            }
+            
         }
 
         private void loadMemfile_Click(object sender, EventArgs e)
         {
-            test.Load(tcpGecko);
+            if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
+            {
+                tempMemfile.Load(tcpGecko);
+            }
+            else
+            {
+                availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
+            }
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully loaded the memfile!";
+            favoriteText = true;
+        }
+
+        void MemfileRefresh(object sender, FileSystemEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(memfileSelector.Items.Clear));
+            this.Invoke(new MethodInvoker(memfileSelector.SelectedIndices.Clear));
+            this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add("(Temporary memfile)")));
+            availableMemfiles.Clear();
+            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Memfiles");
+
+            foreach (var file in d.GetFiles("*.json"))
+            {
+                if (File.Exists(file.FullName))
+                {
+                    using (StreamReader fi = File.OpenText(file.FullName))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        Memfile get = (Memfile)serializer.Deserialize(fi, typeof(Memfile));
+                        availableMemfiles.Add(get);
+                        this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add(file.Name.Replace(".json", ""))));
+                    }
+                }
+                
+            }
+            Invoke(new EventHandler((s, ee) => memfileSelector.SelectedIndices.Add(0)));
+        }
+
+        void SavefileRefresh(object sender, FileSystemEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(fileRep.Items.Clear));
+            this.Invoke(new MethodInvoker(fileRep.SelectedIndices.Clear));
+            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Savefiles");
+
+            foreach (var dir in d.GetDirectories())
+            {
+                if (Directory.Exists(dir.FullName))
+                {
+                    this.Invoke(new EventHandler((s, ee) => fileRep.Items.Add(dir.Name)));
+                }
+
+            }
+
+        }
+
+        private void deleteMemfile_Click(object sender, EventArgs e)
+        {
+            File.Delete(settingsDir + "\\Memfiles\\" + memfileSelector.SelectedItems[0].Text + ".json");
+        }
+
+        private void openMemfileFolder_Click(object sender, EventArgs e)
+        {
+            Process.Start(settingsDir + "\\Memfiles\\");
+        }
+
+        private void openSFDir_Click(object sender, EventArgs e)
+        {
+            Process.Start(settingsDir + "\\Savefiles\\");
+        }
+
+        private void loadSF_Click(object sender, EventArgs e)
+        {
+
+            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
+            {
+                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
+                return;
+            }
+            else if (Memfile.ListFolders("fs\\vol\\content\\Cafe", 2000) != "DirNotFound")
+            {
+                MessageBox.Show("Return to the home menu before injecting a save file!", "Alert");
+                return;
+            }
+
+            if (fileRep.Items.Count == 0 || fileRep.SelectedItems.Count == 0 || injectGame.SelectedIndex == -1) return;
+
+            string filePath = "storage_mlc\\usr\\save\\00050000\\";
+            if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
+            else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
+            else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
+
+            
+
+            if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
+            {
+                MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
+                return;
+            }
+
+            filePath += "user\\80000001\\cking.sav";
+
+            Memfile.Upload(filePath, settingsDir + "\\Savefiles\\" + fileRep.Items[fileRep.SelectedIndices[0]].Text + "\\cking.sav");
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully injected the save!";
+            favoriteText = true;
+
+        }
+
+        private void dumpSF_Click(object sender, EventArgs e)
+        {
+            
+            string filePath = "storage_mlc\\usr\\save\\00050000\\";
+
+            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
+            {
+                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
+                return;
+            }
+
+            if (Memfile.ListFolders("fs\\vol\\save\\80000001", 2000) != "DirNotFound")
+            {
+                filePath = "fs\\vol\\save\\80000001\\cking.sav";
+            }
+            else
+            {
+                if (injectGame.SelectedIndex == -1) return;
+                if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
+                else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
+                else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
+
+                if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
+                {
+                    MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
+                    return;
+                }
+                filePath += "user\\80000001\\cking.sav";
+            }
+            string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
+
+            Directory.CreateDirectory(settingsDir + "\\Savefiles\\" + name);
+            FileStream fs = File.Create(settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+            fs.Close();
+            Memfile.Download(filePath, settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully dumped the save!";
+            favoriteText = true;
+        }
+
+        private void levitateHeight_ValueChanged(object sender, EventArgs e)
+        {
+            config["levitate"].value = (float)levitateHeight.Value;
+        }
+
+        private void superswimSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            config["superswim"].value = (float)superswimSpeed.Value;
+        }
+
+        private void addCustomFavorite_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -1722,6 +1994,30 @@ namespace WWHDHacker
             Cursor = Cursors.Hand;
             Click += (sender, e) => {if(Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
             DoubleClick += (sender, e) => { if (Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
+        }
+    }
+    public static class Prompt
+    {
+        public static string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 300,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
+            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
 }

@@ -32,6 +32,7 @@ namespace WWHDHacker
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("(Temporary memfile)");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ipTextBox = new System.Windows.Forms.TextBox();
             this.connect = new System.Windows.Forms.Button();
@@ -55,6 +56,8 @@ namespace WWHDHacker
             this.displayMacros = new System.Windows.Forms.CheckBox();
             this.warningRuns = new System.Windows.Forms.CheckBox();
             this.Levitate = new System.Windows.Forms.GroupBox();
+            this.levitateHeight = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.levitateMK = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.levitateCombo = new System.Windows.Forms.ComboBox();
@@ -65,7 +68,9 @@ namespace WWHDHacker
             this.doorCancelCombo = new System.Windows.Forms.ComboBox();
             this.doorCancelCheckbox = new System.Windows.Forms.CheckBox();
             this.Superspeed = new System.Windows.Forms.GroupBox();
+            this.superswimSpeed = new System.Windows.Forms.NumericUpDown();
             this.superswimMK = new System.Windows.Forms.CheckBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.superswimCombo = new System.Windows.Forms.ComboBox();
             this.superswimCheckbox = new System.Windows.Forms.CheckBox();
@@ -211,52 +216,27 @@ namespace WWHDHacker
             this.setHCValue = new System.Windows.Forms.NumericUpDown();
             this.giveAll = new System.Windows.Forms.Button();
             this.itemsPanel = new System.Windows.Forms.Panel();
-            this.nayrusPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.faroresPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.dinsPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.triforceCheck = new WWHDHacker.CheckBoxImage();
-            this.quiverCheck = new WWHDHacker.CheckBoxImage();
-            this.bombBagCheck = new WWHDHacker.CheckBoxImage();
-            this.magicCheck = new WWHDHacker.CheckBoxImage();
-            this.walletCheck = new WWHDHacker.CheckBoxImage();
-            this.heroCharmCheck = new WWHDHacker.CheckBoxImage();
-            this.songOfPassingCheck = new WWHDHacker.CheckBoxImage();
-            this.windGodAriaCheck = new WWHDHacker.CheckBoxImage();
-            this.earthGodLyricCheck = new WWHDHacker.CheckBoxImage();
-            this.commandMelodyCheck = new WWHDHacker.CheckBoxImage();
-            this.balladOfGalesCheck = new WWHDHacker.CheckBoxImage();
-            this.windsRequiemCheck = new WWHDHacker.CheckBoxImage();
-            this.bottleCheck = new WWHDHacker.CheckBoxImage();
-            this.powerBraceletsCheck = new WWHDHacker.CheckBoxImage();
-            this.skullHammerCheck = new WWHDHacker.CheckBoxImage();
-            this.hookshotCheck = new WWHDHacker.CheckBoxImage();
-            this.deliveryBagCheck = new WWHDHacker.CheckBoxImage();
-            this.noteToMomCheck = new WWHDHacker.CheckBoxImage();
-            this.moblinsLetterCheck = new WWHDHacker.CheckBoxImage();
-            this.maggiesLetterCheck = new WWHDHacker.CheckBoxImage();
-            this.cabanaDeedCheck = new WWHDHacker.CheckBoxImage();
-            this.shieldCheck = new WWHDHacker.CheckBoxImage();
-            this.bombsCheck = new WWHDHacker.CheckBoxImage();
-            this.bowCheck = new WWHDHacker.CheckBoxImage();
-            this.baitBagCheck = new WWHDHacker.CheckBoxImage();
-            this.magicArmorCheck = new WWHDHacker.CheckBoxImage();
-            this.ironBootsCheck = new WWHDHacker.CheckBoxImage();
-            this.pictoboxCheck = new WWHDHacker.CheckBoxImage();
-            this.tingleBottleCheck = new WWHDHacker.CheckBoxImage();
-            this.swordCheck = new WWHDHacker.CheckBoxImage();
-            this.leafCheck = new WWHDHacker.CheckBoxImage();
-            this.boomerangCheck = new WWHDHacker.CheckBoxImage();
-            this.spoilsBagCheck = new WWHDHacker.CheckBoxImage();
-            this.grapplingHookCheck = new WWHDHacker.CheckBoxImage();
-            this.windWakerCheck = new WWHDHacker.CheckBoxImage();
-            this.sailCheck = new WWHDHacker.CheckBoxImage();
-            this.telescopeCheck = new WWHDHacker.CheckBoxImage();
             this.itemsList = new System.Windows.Forms.ImageList(this.components);
             this.CheckInv = new System.Windows.Forms.Timer(this.components);
             this.memfilesPanel = new System.Windows.Forms.Panel();
+            this.SavefileIndicator = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.deleteMemfile = new System.Windows.Forms.Button();
+            this.openMemfileFolder = new System.Windows.Forms.Button();
+            this.memfileSelector = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.loadMemfile = new System.Windows.Forms.Button();
             this.createMemfile = new System.Windows.Forms.Button();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.injectGame = new System.Windows.Forms.ComboBox();
+            this.openSFDir = new System.Windows.Forms.Button();
+            this.dumpSF = new System.Windows.Forms.Button();
+            this.loadSF = new System.Windows.Forms.Button();
+            this.fileRep = new System.Windows.Forms.ListView();
+            this.Save = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.teleporterPanel = new System.Windows.Forms.Panel();
+            this.addCustomFavorite = new System.Windows.Forms.Button();
             this.displayOnMap = new System.Windows.Forms.CheckBox();
             this.transparentLayer = new System.Windows.Forms.Panel();
             this.movingLink = new System.Windows.Forms.PictureBox();
@@ -277,13 +257,55 @@ namespace WWHDHacker
             this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.islandLabel = new System.Windows.Forms.Label();
+            this.checkBoxImage1 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage2 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage3 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage4 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage5 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage6 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage7 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage8 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage9 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage10 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage11 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage12 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage13 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage14 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage15 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage16 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage17 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage18 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage19 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage20 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage21 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage22 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage23 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage24 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage25 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage26 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage27 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage28 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage29 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage30 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage31 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage32 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage33 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage34 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage35 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage36 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage37 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage38 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage39 = new WWHDHacker.CheckBoxImage();
+            this.checkBoxImage40 = new WWHDHacker.CheckBoxImage();
             this.miscFeaturesPanel.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.Levitate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levitateHeight)).BeginInit();
             this.DoorCancel.SuspendLayout();
             this.Superspeed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.superswimSpeed)).BeginInit();
             this.Storage.SuspendLayout();
             this.WindDirection.SuspendLayout();
             this.MasterkeyGroup.SuspendLayout();
@@ -313,47 +335,9 @@ namespace WWHDHacker
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).BeginInit();
             this.itemsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nayrusPearlCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faroresPearlCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dinsPearlCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.triforceCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quiverCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bombBagCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.magicCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.walletCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heroCharmCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.songOfPassingCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windGodAriaCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.earthGodLyricCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.commandMelodyCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balladOfGalesCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windsRequiemCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottleCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.powerBraceletsCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skullHammerCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hookshotCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryBagCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noteToMomCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moblinsLetterCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maggiesLetterCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cabanaDeedCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shieldCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bombsCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bowCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baitBagCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.magicArmorCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ironBootsCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictoboxCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tingleBottleCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swordCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leafCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.boomerangCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spoilsBagCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grapplingHookCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).BeginInit();
             this.memfilesPanel.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.teleporterPanel.SuspendLayout();
             this.transparentLayer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movingLink)).BeginInit();
@@ -361,6 +345,46 @@ namespace WWHDHacker
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).BeginInit();
             this.SuspendLayout();
             // 
             // ipTextBox
@@ -418,7 +442,7 @@ namespace WWHDHacker
             this.groupBox11.Controls.Add(this.infHealth);
             this.groupBox11.Controls.Add(this.infMagic);
             this.groupBox11.Controls.Add(this.infAir);
-            this.groupBox11.Location = new System.Drawing.Point(689, 251);
+            this.groupBox11.Location = new System.Drawing.Point(689, 124);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(105, 91);
             this.groupBox11.TabIndex = 58;
@@ -463,9 +487,9 @@ namespace WWHDHacker
             this.groupBox10.Controls.Add(this.animSet2);
             this.groupBox10.Controls.Add(this.animSet1);
             this.groupBox10.Controls.Add(this.currentAnimSet);
-            this.groupBox10.Location = new System.Drawing.Point(510, 5);
+            this.groupBox10.Location = new System.Drawing.Point(530, 5);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(284, 117);
+            this.groupBox10.Size = new System.Drawing.Size(264, 117);
             this.groupBox10.TabIndex = 57;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Flags";
@@ -534,7 +558,7 @@ namespace WWHDHacker
             this.groupBox9.Controls.Add(this.pauseGame);
             this.groupBox9.Controls.Add(this.button4);
             this.groupBox9.Controls.Add(this.resumeGame);
-            this.groupBox9.Location = new System.Drawing.Point(539, 246);
+            this.groupBox9.Location = new System.Drawing.Point(653, 248);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(141, 96);
             this.groupBox9.TabIndex = 56;
@@ -574,7 +598,7 @@ namespace WWHDHacker
             // displayMacros
             // 
             this.displayMacros.AutoSize = true;
-            this.displayMacros.Location = new System.Drawing.Point(689, 216);
+            this.displayMacros.Location = new System.Drawing.Point(578, 159);
             this.displayMacros.Name = "displayMacros";
             this.displayMacros.Size = new System.Drawing.Size(101, 30);
             this.displayMacros.TabIndex = 55;
@@ -585,7 +609,7 @@ namespace WWHDHacker
             // warningRuns
             // 
             this.warningRuns.AutoSize = true;
-            this.warningRuns.Location = new System.Drawing.Point(690, 186);
+            this.warningRuns.Location = new System.Drawing.Point(578, 126);
             this.warningRuns.Name = "warningRuns";
             this.warningRuns.Size = new System.Drawing.Size(102, 30);
             this.warningRuns.TabIndex = 54;
@@ -595,16 +619,45 @@ namespace WWHDHacker
             // 
             // Levitate
             // 
+            this.Levitate.Controls.Add(this.levitateHeight);
+            this.Levitate.Controls.Add(this.label5);
             this.Levitate.Controls.Add(this.levitateMK);
             this.Levitate.Controls.Add(this.label21);
             this.Levitate.Controls.Add(this.levitateCombo);
             this.Levitate.Controls.Add(this.lToLevitateCheckbox);
-            this.Levitate.Location = new System.Drawing.Point(5, 3);
+            this.Levitate.Location = new System.Drawing.Point(8, 195);
             this.Levitate.Name = "Levitate";
-            this.Levitate.Size = new System.Drawing.Size(178, 58);
+            this.Levitate.Size = new System.Drawing.Size(244, 58);
             this.Levitate.TabIndex = 47;
             this.Levitate.TabStop = false;
             this.Levitate.Text = "Levitate";
+            // 
+            // levitateHeight
+            // 
+            this.levitateHeight.Location = new System.Drawing.Point(187, 33);
+            this.levitateHeight.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.levitateHeight.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.levitateHeight.Name = "levitateHeight";
+            this.levitateHeight.Size = new System.Drawing.Size(49, 20);
+            this.levitateHeight.TabIndex = 50;
+            this.levitateHeight.ValueChanged += new System.EventHandler(this.levitateHeight_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(184, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Height";
             // 
             // levitateMK
             // 
@@ -657,7 +710,7 @@ namespace WWHDHacker
             this.DoorCancel.Controls.Add(this.label22);
             this.DoorCancel.Controls.Add(this.doorCancelCombo);
             this.DoorCancel.Controls.Add(this.doorCancelCheckbox);
-            this.DoorCancel.Location = new System.Drawing.Point(5, 66);
+            this.DoorCancel.Location = new System.Drawing.Point(8, 69);
             this.DoorCancel.Name = "DoorCancel";
             this.DoorCancel.Size = new System.Drawing.Size(178, 61);
             this.DoorCancel.TabIndex = 48;
@@ -711,17 +764,37 @@ namespace WWHDHacker
             // 
             // Superspeed
             // 
+            this.Superspeed.Controls.Add(this.superswimSpeed);
             this.Superspeed.Controls.Add(this.superswimMK);
+            this.Superspeed.Controls.Add(this.label34);
             this.Superspeed.Controls.Add(this.label23);
             this.Superspeed.Controls.Add(this.superswimCombo);
             this.Superspeed.Controls.Add(this.superswimCheckbox);
             this.Superspeed.Controls.Add(this.alternativeDpadRight);
-            this.Superspeed.Location = new System.Drawing.Point(5, 134);
+            this.Superspeed.Location = new System.Drawing.Point(8, 254);
             this.Superspeed.Name = "Superspeed";
-            this.Superspeed.Size = new System.Drawing.Size(178, 90);
+            this.Superspeed.Size = new System.Drawing.Size(244, 90);
             this.Superspeed.TabIndex = 49;
             this.Superspeed.TabStop = false;
             this.Superspeed.Text = "Superswim";
+            // 
+            // superswimSpeed
+            // 
+            this.superswimSpeed.Location = new System.Drawing.Point(188, 62);
+            this.superswimSpeed.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.superswimSpeed.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.superswimSpeed.Name = "superswimSpeed";
+            this.superswimSpeed.Size = new System.Drawing.Size(49, 20);
+            this.superswimSpeed.TabIndex = 52;
+            this.superswimSpeed.ValueChanged += new System.EventHandler(this.superswimSpeed_ValueChanged);
             // 
             // superswimMK
             // 
@@ -735,6 +808,15 @@ namespace WWHDHacker
             this.superswimMK.Text = "Masterkey";
             this.superswimMK.UseVisualStyleBackColor = true;
             this.superswimMK.CheckedChanged += new System.EventHandler(this.superswimMK_CheckedChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(185, 46);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(38, 13);
+            this.label34.TabIndex = 51;
+            this.label34.Text = "Speed";
             // 
             // label23
             // 
@@ -785,7 +867,7 @@ namespace WWHDHacker
             this.Storage.Controls.Add(this.label24);
             this.Storage.Controls.Add(this.storageCombo);
             this.Storage.Controls.Add(this.storageCheckbox);
-            this.Storage.Location = new System.Drawing.Point(5, 228);
+            this.Storage.Location = new System.Drawing.Point(196, 13);
             this.Storage.Name = "Storage";
             this.Storage.Size = new System.Drawing.Size(178, 58);
             this.Storage.TabIndex = 50;
@@ -843,7 +925,7 @@ namespace WWHDHacker
             this.WindDirection.Controls.Add(this.label30);
             this.WindDirection.Controls.Add(this.windDirectionCombo);
             this.WindDirection.Controls.Add(this.changeWindCheckbox);
-            this.WindDirection.Location = new System.Drawing.Point(5, 288);
+            this.WindDirection.Location = new System.Drawing.Point(8, 129);
             this.WindDirection.Name = "WindDirection";
             this.WindDirection.Size = new System.Drawing.Size(178, 58);
             this.WindDirection.TabIndex = 51;
@@ -900,7 +982,7 @@ namespace WWHDHacker
             this.MasterkeyGroup.Controls.Add(this.label25);
             this.MasterkeyGroup.Controls.Add(this.masterkeyCombo);
             this.MasterkeyGroup.Controls.Add(this.masterkey);
-            this.MasterkeyGroup.Location = new System.Drawing.Point(202, 3);
+            this.MasterkeyGroup.Location = new System.Drawing.Point(8, 9);
             this.MasterkeyGroup.Name = "MasterkeyGroup";
             this.MasterkeyGroup.Size = new System.Drawing.Size(178, 58);
             this.MasterkeyGroup.TabIndex = 51;
@@ -948,7 +1030,7 @@ namespace WWHDHacker
             this.SaveReloadPos.Controls.Add(this.label26);
             this.SaveReloadPos.Controls.Add(this.alternativeMemfiles);
             this.SaveReloadPos.Controls.Add(this.storeRestoreCheckbox);
-            this.SaveReloadPos.Location = new System.Drawing.Point(202, 68);
+            this.SaveReloadPos.Location = new System.Drawing.Point(196, 74);
             this.SaveReloadPos.Name = "SaveReloadPos";
             this.SaveReloadPos.Size = new System.Drawing.Size(289, 96);
             this.SaveReloadPos.TabIndex = 52;
@@ -1036,7 +1118,7 @@ namespace WWHDHacker
             this.ReloadRoom.Controls.Add(this.label27);
             this.ReloadRoom.Controls.Add(this.reloadRoomCombo);
             this.ReloadRoom.Controls.Add(this.reloadRoomCheckbox);
-            this.ReloadRoom.Location = new System.Drawing.Point(202, 165);
+            this.ReloadRoom.Location = new System.Drawing.Point(264, 223);
             this.ReloadRoom.Name = "ReloadRoom";
             this.ReloadRoom.Size = new System.Drawing.Size(178, 58);
             this.ReloadRoom.TabIndex = 51;
@@ -1094,7 +1176,7 @@ namespace WWHDHacker
             this.RefillHealth.Controls.Add(this.label28);
             this.RefillHealth.Controls.Add(this.refillHealthCombo);
             this.RefillHealth.Controls.Add(this.refillHealthCheckbox);
-            this.RefillHealth.Location = new System.Drawing.Point(202, 224);
+            this.RefillHealth.Location = new System.Drawing.Point(264, 285);
             this.RefillHealth.Name = "RefillHealth";
             this.RefillHealth.Size = new System.Drawing.Size(178, 58);
             this.RefillHealth.TabIndex = 51;
@@ -1152,7 +1234,7 @@ namespace WWHDHacker
             this.RefillMagic.Controls.Add(this.label31);
             this.RefillMagic.Controls.Add(this.refillMagicCombo);
             this.RefillMagic.Controls.Add(this.refillMagicCheckbox);
-            this.RefillMagic.Location = new System.Drawing.Point(392, 168);
+            this.RefillMagic.Location = new System.Drawing.Point(458, 284);
             this.RefillMagic.Name = "RefillMagic";
             this.RefillMagic.Size = new System.Drawing.Size(178, 58);
             this.RefillMagic.TabIndex = 53;
@@ -1210,7 +1292,7 @@ namespace WWHDHacker
             this.RefillAmmo.Controls.Add(this.refillAmmoCombo);
             this.RefillAmmo.Controls.Add(this.label29);
             this.RefillAmmo.Controls.Add(this.refillAmmoCheckbox);
-            this.RefillAmmo.Location = new System.Drawing.Point(202, 288);
+            this.RefillAmmo.Location = new System.Drawing.Point(458, 226);
             this.RefillAmmo.Name = "RefillAmmo";
             this.RefillAmmo.Size = new System.Drawing.Size(178, 58);
             this.RefillAmmo.TabIndex = 51;
@@ -2018,6 +2100,7 @@ namespace WWHDHacker
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Item Modifier";
+            this.groupBox6.Visible = false;
             // 
             // label2
             // 
@@ -2310,611 +2393,50 @@ namespace WWHDHacker
             // 
             this.itemsPanel.BackgroundImage = global::WWHDHacker.Properties.Resources.trackerbg;
             this.itemsPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.itemsPanel.Controls.Add(this.nayrusPearlCheck);
-            this.itemsPanel.Controls.Add(this.faroresPearlCheck);
-            this.itemsPanel.Controls.Add(this.dinsPearlCheck);
-            this.itemsPanel.Controls.Add(this.triforceCheck);
-            this.itemsPanel.Controls.Add(this.quiverCheck);
-            this.itemsPanel.Controls.Add(this.bombBagCheck);
-            this.itemsPanel.Controls.Add(this.magicCheck);
-            this.itemsPanel.Controls.Add(this.walletCheck);
-            this.itemsPanel.Controls.Add(this.heroCharmCheck);
-            this.itemsPanel.Controls.Add(this.songOfPassingCheck);
-            this.itemsPanel.Controls.Add(this.windGodAriaCheck);
-            this.itemsPanel.Controls.Add(this.earthGodLyricCheck);
-            this.itemsPanel.Controls.Add(this.commandMelodyCheck);
-            this.itemsPanel.Controls.Add(this.balladOfGalesCheck);
-            this.itemsPanel.Controls.Add(this.windsRequiemCheck);
-            this.itemsPanel.Controls.Add(this.bottleCheck);
-            this.itemsPanel.Controls.Add(this.powerBraceletsCheck);
-            this.itemsPanel.Controls.Add(this.skullHammerCheck);
-            this.itemsPanel.Controls.Add(this.hookshotCheck);
-            this.itemsPanel.Controls.Add(this.deliveryBagCheck);
-            this.itemsPanel.Controls.Add(this.noteToMomCheck);
-            this.itemsPanel.Controls.Add(this.moblinsLetterCheck);
-            this.itemsPanel.Controls.Add(this.maggiesLetterCheck);
-            this.itemsPanel.Controls.Add(this.cabanaDeedCheck);
-            this.itemsPanel.Controls.Add(this.shieldCheck);
-            this.itemsPanel.Controls.Add(this.bombsCheck);
-            this.itemsPanel.Controls.Add(this.bowCheck);
-            this.itemsPanel.Controls.Add(this.baitBagCheck);
-            this.itemsPanel.Controls.Add(this.magicArmorCheck);
-            this.itemsPanel.Controls.Add(this.ironBootsCheck);
-            this.itemsPanel.Controls.Add(this.pictoboxCheck);
-            this.itemsPanel.Controls.Add(this.tingleBottleCheck);
-            this.itemsPanel.Controls.Add(this.swordCheck);
-            this.itemsPanel.Controls.Add(this.leafCheck);
-            this.itemsPanel.Controls.Add(this.boomerangCheck);
-            this.itemsPanel.Controls.Add(this.spoilsBagCheck);
-            this.itemsPanel.Controls.Add(this.grapplingHookCheck);
-            this.itemsPanel.Controls.Add(this.windWakerCheck);
-            this.itemsPanel.Controls.Add(this.sailCheck);
-            this.itemsPanel.Controls.Add(this.telescopeCheck);
+            this.itemsPanel.Controls.Add(this.checkBoxImage40);
+            this.itemsPanel.Controls.Add(this.checkBoxImage39);
+            this.itemsPanel.Controls.Add(this.checkBoxImage38);
+            this.itemsPanel.Controls.Add(this.checkBoxImage37);
+            this.itemsPanel.Controls.Add(this.checkBoxImage33);
+            this.itemsPanel.Controls.Add(this.checkBoxImage34);
+            this.itemsPanel.Controls.Add(this.checkBoxImage35);
+            this.itemsPanel.Controls.Add(this.checkBoxImage36);
+            this.itemsPanel.Controls.Add(this.checkBoxImage25);
+            this.itemsPanel.Controls.Add(this.checkBoxImage26);
+            this.itemsPanel.Controls.Add(this.checkBoxImage27);
+            this.itemsPanel.Controls.Add(this.checkBoxImage28);
+            this.itemsPanel.Controls.Add(this.checkBoxImage29);
+            this.itemsPanel.Controls.Add(this.checkBoxImage30);
+            this.itemsPanel.Controls.Add(this.checkBoxImage31);
+            this.itemsPanel.Controls.Add(this.checkBoxImage32);
+            this.itemsPanel.Controls.Add(this.checkBoxImage17);
+            this.itemsPanel.Controls.Add(this.checkBoxImage18);
+            this.itemsPanel.Controls.Add(this.checkBoxImage19);
+            this.itemsPanel.Controls.Add(this.checkBoxImage20);
+            this.itemsPanel.Controls.Add(this.checkBoxImage21);
+            this.itemsPanel.Controls.Add(this.checkBoxImage22);
+            this.itemsPanel.Controls.Add(this.checkBoxImage23);
+            this.itemsPanel.Controls.Add(this.checkBoxImage24);
+            this.itemsPanel.Controls.Add(this.checkBoxImage9);
+            this.itemsPanel.Controls.Add(this.checkBoxImage10);
+            this.itemsPanel.Controls.Add(this.checkBoxImage11);
+            this.itemsPanel.Controls.Add(this.checkBoxImage12);
+            this.itemsPanel.Controls.Add(this.checkBoxImage13);
+            this.itemsPanel.Controls.Add(this.checkBoxImage14);
+            this.itemsPanel.Controls.Add(this.checkBoxImage15);
+            this.itemsPanel.Controls.Add(this.checkBoxImage16);
+            this.itemsPanel.Controls.Add(this.checkBoxImage8);
+            this.itemsPanel.Controls.Add(this.checkBoxImage7);
+            this.itemsPanel.Controls.Add(this.checkBoxImage6);
+            this.itemsPanel.Controls.Add(this.checkBoxImage5);
+            this.itemsPanel.Controls.Add(this.checkBoxImage4);
+            this.itemsPanel.Controls.Add(this.checkBoxImage3);
+            this.itemsPanel.Controls.Add(this.checkBoxImage2);
+            this.itemsPanel.Controls.Add(this.checkBoxImage1);
             this.itemsPanel.Location = new System.Drawing.Point(11, 9);
             this.itemsPanel.Name = "itemsPanel";
             this.itemsPanel.Size = new System.Drawing.Size(450, 332);
             this.itemsPanel.TabIndex = 39;
-            // 
-            // nayrusPearlCheck
-            // 
-            this.nayrusPearlCheck.BackColor = System.Drawing.Color.Transparent;
-            this.nayrusPearlCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nayrusPearlCheck.Image = ((System.Drawing.Image)(resources.GetObject("nayrusPearlCheck.Image")));
-            this.nayrusPearlCheck.Index = 0;
-            this.nayrusPearlCheck.Location = new System.Drawing.Point(34, 228);
-            this.nayrusPearlCheck.Max = 1;
-            this.nayrusPearlCheck.Name = "nayrusPearlCheck";
-            this.nayrusPearlCheck.SelectedItem = WWHDHacker.ItemEnum.NayrusPearl;
-            this.nayrusPearlCheck.Size = new System.Drawing.Size(48, 48);
-            this.nayrusPearlCheck.TabIndex = 39;
-            this.nayrusPearlCheck.TabStop = false;
-            // 
-            // faroresPearlCheck
-            // 
-            this.faroresPearlCheck.BackColor = System.Drawing.Color.Transparent;
-            this.faroresPearlCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.faroresPearlCheck.Image = ((System.Drawing.Image)(resources.GetObject("faroresPearlCheck.Image")));
-            this.faroresPearlCheck.Index = 0;
-            this.faroresPearlCheck.Location = new System.Drawing.Point(61, 271);
-            this.faroresPearlCheck.Max = 1;
-            this.faroresPearlCheck.Name = "faroresPearlCheck";
-            this.faroresPearlCheck.SelectedItem = WWHDHacker.ItemEnum.FaroresPearl;
-            this.faroresPearlCheck.Size = new System.Drawing.Size(48, 48);
-            this.faroresPearlCheck.TabIndex = 38;
-            this.faroresPearlCheck.TabStop = false;
-            // 
-            // dinsPearlCheck
-            // 
-            this.dinsPearlCheck.BackColor = System.Drawing.Color.Transparent;
-            this.dinsPearlCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dinsPearlCheck.Image = ((System.Drawing.Image)(resources.GetObject("dinsPearlCheck.Image")));
-            this.dinsPearlCheck.Index = 0;
-            this.dinsPearlCheck.Location = new System.Drawing.Point(7, 271);
-            this.dinsPearlCheck.Max = 1;
-            this.dinsPearlCheck.Name = "dinsPearlCheck";
-            this.dinsPearlCheck.SelectedItem = WWHDHacker.ItemEnum.DinsPearl;
-            this.dinsPearlCheck.Size = new System.Drawing.Size(48, 48);
-            this.dinsPearlCheck.TabIndex = 37;
-            this.dinsPearlCheck.TabStop = false;
-            // 
-            // triforceCheck
-            // 
-            this.triforceCheck.BackColor = System.Drawing.Color.Transparent;
-            this.triforceCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.triforceCheck.Image = ((System.Drawing.Image)(resources.GetObject("triforceCheck.Image")));
-            this.triforceCheck.Index = 0;
-            this.triforceCheck.Location = new System.Drawing.Point(116, 230);
-            this.triforceCheck.Max = 1;
-            this.triforceCheck.Name = "triforceCheck";
-            this.triforceCheck.SelectedItem = WWHDHacker.ItemEnum.Triforce;
-            this.triforceCheck.Size = new System.Drawing.Size(101, 89);
-            this.triforceCheck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.triforceCheck.TabIndex = 36;
-            this.triforceCheck.TabStop = false;
-            // 
-            // quiverCheck
-            // 
-            this.quiverCheck.BackColor = System.Drawing.Color.Transparent;
-            this.quiverCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.quiverCheck.Image = ((System.Drawing.Image)(resources.GetObject("quiverCheck.Image")));
-            this.quiverCheck.Index = 0;
-            this.quiverCheck.Location = new System.Drawing.Point(277, 229);
-            this.quiverCheck.Max = 2;
-            this.quiverCheck.Name = "quiverCheck";
-            this.quiverCheck.SelectedItem = WWHDHacker.ItemEnum.Quiver;
-            this.quiverCheck.Size = new System.Drawing.Size(48, 48);
-            this.quiverCheck.TabIndex = 35;
-            this.quiverCheck.TabStop = false;
-            // 
-            // bombBagCheck
-            // 
-            this.bombBagCheck.BackColor = System.Drawing.Color.Transparent;
-            this.bombBagCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bombBagCheck.Image = ((System.Drawing.Image)(resources.GetObject("bombBagCheck.Image")));
-            this.bombBagCheck.Index = 0;
-            this.bombBagCheck.Location = new System.Drawing.Point(223, 229);
-            this.bombBagCheck.Max = 2;
-            this.bombBagCheck.Name = "bombBagCheck";
-            this.bombBagCheck.SelectedItem = WWHDHacker.ItemEnum.BombBag;
-            this.bombBagCheck.Size = new System.Drawing.Size(48, 48);
-            this.bombBagCheck.TabIndex = 34;
-            this.bombBagCheck.TabStop = false;
-            // 
-            // magicCheck
-            // 
-            this.magicCheck.BackColor = System.Drawing.Color.Transparent;
-            this.magicCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.magicCheck.Image = ((System.Drawing.Image)(resources.GetObject("magicCheck.Image")));
-            this.magicCheck.Index = 0;
-            this.magicCheck.Location = new System.Drawing.Point(390, 230);
-            this.magicCheck.Max = 2;
-            this.magicCheck.Name = "magicCheck";
-            this.magicCheck.SelectedItem = WWHDHacker.ItemEnum.MagicMeter;
-            this.magicCheck.Size = new System.Drawing.Size(48, 48);
-            this.magicCheck.TabIndex = 33;
-            this.magicCheck.TabStop = false;
-            // 
-            // walletCheck
-            // 
-            this.walletCheck.BackColor = System.Drawing.Color.Transparent;
-            this.walletCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.walletCheck.Image = ((System.Drawing.Image)(resources.GetObject("walletCheck.Image")));
-            this.walletCheck.Index = 0;
-            this.walletCheck.Location = new System.Drawing.Point(336, 230);
-            this.walletCheck.Max = 2;
-            this.walletCheck.Name = "walletCheck";
-            this.walletCheck.SelectedItem = WWHDHacker.ItemEnum.Wallet;
-            this.walletCheck.Size = new System.Drawing.Size(48, 48);
-            this.walletCheck.TabIndex = 32;
-            this.walletCheck.TabStop = false;
-            // 
-            // heroCharmCheck
-            // 
-            this.heroCharmCheck.BackColor = System.Drawing.Color.Transparent;
-            this.heroCharmCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.heroCharmCheck.Image = ((System.Drawing.Image)(resources.GetObject("heroCharmCheck.Image")));
-            this.heroCharmCheck.Index = 0;
-            this.heroCharmCheck.Location = new System.Drawing.Point(390, 173);
-            this.heroCharmCheck.Max = 1;
-            this.heroCharmCheck.Name = "heroCharmCheck";
-            this.heroCharmCheck.SelectedItem = WWHDHacker.ItemEnum.HeroCharm;
-            this.heroCharmCheck.Size = new System.Drawing.Size(48, 48);
-            this.heroCharmCheck.TabIndex = 31;
-            this.heroCharmCheck.TabStop = false;
-            // 
-            // songOfPassingCheck
-            // 
-            this.songOfPassingCheck.BackColor = System.Drawing.Color.Transparent;
-            this.songOfPassingCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.songOfPassingCheck.Image = ((System.Drawing.Image)(resources.GetObject("songOfPassingCheck.Image")));
-            this.songOfPassingCheck.Index = 0;
-            this.songOfPassingCheck.Location = new System.Drawing.Point(336, 173);
-            this.songOfPassingCheck.Max = 1;
-            this.songOfPassingCheck.Name = "songOfPassingCheck";
-            this.songOfPassingCheck.SelectedItem = WWHDHacker.ItemEnum.SongOfPassing;
-            this.songOfPassingCheck.Size = new System.Drawing.Size(48, 48);
-            this.songOfPassingCheck.TabIndex = 30;
-            this.songOfPassingCheck.TabStop = false;
-            // 
-            // windGodAriaCheck
-            // 
-            this.windGodAriaCheck.BackColor = System.Drawing.Color.Transparent;
-            this.windGodAriaCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windGodAriaCheck.Image = ((System.Drawing.Image)(resources.GetObject("windGodAriaCheck.Image")));
-            this.windGodAriaCheck.Index = 0;
-            this.windGodAriaCheck.Location = new System.Drawing.Point(282, 173);
-            this.windGodAriaCheck.Max = 1;
-            this.windGodAriaCheck.Name = "windGodAriaCheck";
-            this.windGodAriaCheck.SelectedItem = WWHDHacker.ItemEnum.WindGodAria;
-            this.windGodAriaCheck.Size = new System.Drawing.Size(48, 48);
-            this.windGodAriaCheck.TabIndex = 29;
-            this.windGodAriaCheck.TabStop = false;
-            // 
-            // earthGodLyricCheck
-            // 
-            this.earthGodLyricCheck.BackColor = System.Drawing.Color.Transparent;
-            this.earthGodLyricCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.earthGodLyricCheck.Image = ((System.Drawing.Image)(resources.GetObject("earthGodLyricCheck.Image")));
-            this.earthGodLyricCheck.Index = 0;
-            this.earthGodLyricCheck.Location = new System.Drawing.Point(228, 173);
-            this.earthGodLyricCheck.Max = 1;
-            this.earthGodLyricCheck.Name = "earthGodLyricCheck";
-            this.earthGodLyricCheck.SelectedItem = WWHDHacker.ItemEnum.EarthGodLyric;
-            this.earthGodLyricCheck.Size = new System.Drawing.Size(48, 48);
-            this.earthGodLyricCheck.TabIndex = 28;
-            this.earthGodLyricCheck.TabStop = false;
-            // 
-            // commandMelodyCheck
-            // 
-            this.commandMelodyCheck.BackColor = System.Drawing.Color.Transparent;
-            this.commandMelodyCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.commandMelodyCheck.Image = ((System.Drawing.Image)(resources.GetObject("commandMelodyCheck.Image")));
-            this.commandMelodyCheck.Index = 0;
-            this.commandMelodyCheck.Location = new System.Drawing.Point(174, 173);
-            this.commandMelodyCheck.Max = 1;
-            this.commandMelodyCheck.Name = "commandMelodyCheck";
-            this.commandMelodyCheck.SelectedItem = WWHDHacker.ItemEnum.CommandMelody;
-            this.commandMelodyCheck.Size = new System.Drawing.Size(48, 48);
-            this.commandMelodyCheck.TabIndex = 27;
-            this.commandMelodyCheck.TabStop = false;
-            // 
-            // balladOfGalesCheck
-            // 
-            this.balladOfGalesCheck.BackColor = System.Drawing.Color.Transparent;
-            this.balladOfGalesCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.balladOfGalesCheck.Image = ((System.Drawing.Image)(resources.GetObject("balladOfGalesCheck.Image")));
-            this.balladOfGalesCheck.Index = 0;
-            this.balladOfGalesCheck.Location = new System.Drawing.Point(120, 173);
-            this.balladOfGalesCheck.Max = 1;
-            this.balladOfGalesCheck.Name = "balladOfGalesCheck";
-            this.balladOfGalesCheck.SelectedItem = WWHDHacker.ItemEnum.BalladOfGales;
-            this.balladOfGalesCheck.Size = new System.Drawing.Size(48, 48);
-            this.balladOfGalesCheck.TabIndex = 26;
-            this.balladOfGalesCheck.TabStop = false;
-            // 
-            // windsRequiemCheck
-            // 
-            this.windsRequiemCheck.BackColor = System.Drawing.Color.Transparent;
-            this.windsRequiemCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windsRequiemCheck.Image = ((System.Drawing.Image)(resources.GetObject("windsRequiemCheck.Image")));
-            this.windsRequiemCheck.Index = 0;
-            this.windsRequiemCheck.Location = new System.Drawing.Point(66, 173);
-            this.windsRequiemCheck.Max = 1;
-            this.windsRequiemCheck.Name = "windsRequiemCheck";
-            this.windsRequiemCheck.SelectedItem = WWHDHacker.ItemEnum.WindsRequiem;
-            this.windsRequiemCheck.Size = new System.Drawing.Size(48, 48);
-            this.windsRequiemCheck.TabIndex = 25;
-            this.windsRequiemCheck.TabStop = false;
-            // 
-            // bottleCheck
-            // 
-            this.bottleCheck.BackColor = System.Drawing.Color.Transparent;
-            this.bottleCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bottleCheck.Image = ((System.Drawing.Image)(resources.GetObject("bottleCheck.Image")));
-            this.bottleCheck.Index = 0;
-            this.bottleCheck.Location = new System.Drawing.Point(12, 174);
-            this.bottleCheck.Max = 1;
-            this.bottleCheck.Name = "bottleCheck";
-            this.bottleCheck.SelectedItem = WWHDHacker.ItemEnum.Bottle;
-            this.bottleCheck.Size = new System.Drawing.Size(48, 48);
-            this.bottleCheck.TabIndex = 24;
-            this.bottleCheck.TabStop = false;
-            // 
-            // powerBraceletsCheck
-            // 
-            this.powerBraceletsCheck.BackColor = System.Drawing.Color.Transparent;
-            this.powerBraceletsCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.powerBraceletsCheck.Image = ((System.Drawing.Image)(resources.GetObject("powerBraceletsCheck.Image")));
-            this.powerBraceletsCheck.Index = 0;
-            this.powerBraceletsCheck.Location = new System.Drawing.Point(391, 119);
-            this.powerBraceletsCheck.Max = 1;
-            this.powerBraceletsCheck.Name = "powerBraceletsCheck";
-            this.powerBraceletsCheck.SelectedItem = WWHDHacker.ItemEnum.PowerBracelets;
-            this.powerBraceletsCheck.Size = new System.Drawing.Size(48, 48);
-            this.powerBraceletsCheck.TabIndex = 23;
-            this.powerBraceletsCheck.TabStop = false;
-            // 
-            // skullHammerCheck
-            // 
-            this.skullHammerCheck.BackColor = System.Drawing.Color.Transparent;
-            this.skullHammerCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.skullHammerCheck.Image = ((System.Drawing.Image)(resources.GetObject("skullHammerCheck.Image")));
-            this.skullHammerCheck.Index = 0;
-            this.skullHammerCheck.Location = new System.Drawing.Point(337, 119);
-            this.skullHammerCheck.Max = 1;
-            this.skullHammerCheck.Name = "skullHammerCheck";
-            this.skullHammerCheck.SelectedItem = WWHDHacker.ItemEnum.Hammer;
-            this.skullHammerCheck.Size = new System.Drawing.Size(48, 48);
-            this.skullHammerCheck.TabIndex = 22;
-            this.skullHammerCheck.TabStop = false;
-            // 
-            // hookshotCheck
-            // 
-            this.hookshotCheck.BackColor = System.Drawing.Color.Transparent;
-            this.hookshotCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hookshotCheck.Image = ((System.Drawing.Image)(resources.GetObject("hookshotCheck.Image")));
-            this.hookshotCheck.Index = 0;
-            this.hookshotCheck.Location = new System.Drawing.Point(283, 119);
-            this.hookshotCheck.Max = 1;
-            this.hookshotCheck.Name = "hookshotCheck";
-            this.hookshotCheck.SelectedItem = WWHDHacker.ItemEnum.Hookshot;
-            this.hookshotCheck.Size = new System.Drawing.Size(48, 48);
-            this.hookshotCheck.TabIndex = 21;
-            this.hookshotCheck.TabStop = false;
-            // 
-            // deliveryBagCheck
-            // 
-            this.deliveryBagCheck.BackColor = System.Drawing.Color.Transparent;
-            this.deliveryBagCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.deliveryBagCheck.Image = ((System.Drawing.Image)(resources.GetObject("deliveryBagCheck.Image")));
-            this.deliveryBagCheck.Index = 0;
-            this.deliveryBagCheck.Location = new System.Drawing.Point(229, 119);
-            this.deliveryBagCheck.Max = 1;
-            this.deliveryBagCheck.Name = "deliveryBagCheck";
-            this.deliveryBagCheck.SelectedItem = WWHDHacker.ItemEnum.DeliveryBag;
-            this.deliveryBagCheck.Size = new System.Drawing.Size(48, 48);
-            this.deliveryBagCheck.TabIndex = 20;
-            this.deliveryBagCheck.TabStop = false;
-            // 
-            // noteToMomCheck
-            // 
-            this.noteToMomCheck.BackColor = System.Drawing.Color.Transparent;
-            this.noteToMomCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.noteToMomCheck.Image = ((System.Drawing.Image)(resources.GetObject("noteToMomCheck.Image")));
-            this.noteToMomCheck.Index = 0;
-            this.noteToMomCheck.Location = new System.Drawing.Point(175, 119);
-            this.noteToMomCheck.Max = 1;
-            this.noteToMomCheck.Name = "noteToMomCheck";
-            this.noteToMomCheck.SelectedItem = WWHDHacker.ItemEnum.NoteToMom;
-            this.noteToMomCheck.Size = new System.Drawing.Size(48, 48);
-            this.noteToMomCheck.TabIndex = 19;
-            this.noteToMomCheck.TabStop = false;
-            // 
-            // moblinsLetterCheck
-            // 
-            this.moblinsLetterCheck.BackColor = System.Drawing.Color.Transparent;
-            this.moblinsLetterCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.moblinsLetterCheck.Image = ((System.Drawing.Image)(resources.GetObject("moblinsLetterCheck.Image")));
-            this.moblinsLetterCheck.Index = 0;
-            this.moblinsLetterCheck.Location = new System.Drawing.Point(121, 119);
-            this.moblinsLetterCheck.Max = 1;
-            this.moblinsLetterCheck.Name = "moblinsLetterCheck";
-            this.moblinsLetterCheck.SelectedItem = WWHDHacker.ItemEnum.MoblinsLetter;
-            this.moblinsLetterCheck.Size = new System.Drawing.Size(48, 48);
-            this.moblinsLetterCheck.TabIndex = 18;
-            this.moblinsLetterCheck.TabStop = false;
-            // 
-            // maggiesLetterCheck
-            // 
-            this.maggiesLetterCheck.BackColor = System.Drawing.Color.Transparent;
-            this.maggiesLetterCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.maggiesLetterCheck.Image = ((System.Drawing.Image)(resources.GetObject("maggiesLetterCheck.Image")));
-            this.maggiesLetterCheck.Index = 0;
-            this.maggiesLetterCheck.Location = new System.Drawing.Point(67, 119);
-            this.maggiesLetterCheck.Max = 1;
-            this.maggiesLetterCheck.Name = "maggiesLetterCheck";
-            this.maggiesLetterCheck.SelectedItem = WWHDHacker.ItemEnum.MaggiesLetter;
-            this.maggiesLetterCheck.Size = new System.Drawing.Size(48, 48);
-            this.maggiesLetterCheck.TabIndex = 17;
-            this.maggiesLetterCheck.TabStop = false;
-            // 
-            // cabanaDeedCheck
-            // 
-            this.cabanaDeedCheck.BackColor = System.Drawing.Color.Transparent;
-            this.cabanaDeedCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cabanaDeedCheck.Image = ((System.Drawing.Image)(resources.GetObject("cabanaDeedCheck.Image")));
-            this.cabanaDeedCheck.Index = 0;
-            this.cabanaDeedCheck.Location = new System.Drawing.Point(13, 120);
-            this.cabanaDeedCheck.Max = 1;
-            this.cabanaDeedCheck.Name = "cabanaDeedCheck";
-            this.cabanaDeedCheck.SelectedItem = WWHDHacker.ItemEnum.CabanaDeed;
-            this.cabanaDeedCheck.Size = new System.Drawing.Size(48, 48);
-            this.cabanaDeedCheck.TabIndex = 16;
-            this.cabanaDeedCheck.TabStop = false;
-            // 
-            // shieldCheck
-            // 
-            this.shieldCheck.BackColor = System.Drawing.Color.Transparent;
-            this.shieldCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.shieldCheck.Image = ((System.Drawing.Image)(resources.GetObject("shieldCheck.Image")));
-            this.shieldCheck.Index = 0;
-            this.shieldCheck.Location = new System.Drawing.Point(391, 65);
-            this.shieldCheck.Max = 2;
-            this.shieldCheck.Name = "shieldCheck";
-            this.shieldCheck.SelectedItem = WWHDHacker.ItemEnum.Shield;
-            this.shieldCheck.Size = new System.Drawing.Size(48, 48);
-            this.shieldCheck.TabIndex = 15;
-            this.shieldCheck.TabStop = false;
-            // 
-            // bombsCheck
-            // 
-            this.bombsCheck.BackColor = System.Drawing.Color.Transparent;
-            this.bombsCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bombsCheck.Image = ((System.Drawing.Image)(resources.GetObject("bombsCheck.Image")));
-            this.bombsCheck.Index = 0;
-            this.bombsCheck.Location = new System.Drawing.Point(337, 65);
-            this.bombsCheck.Max = 1;
-            this.bombsCheck.Name = "bombsCheck";
-            this.bombsCheck.SelectedItem = WWHDHacker.ItemEnum.Bombs;
-            this.bombsCheck.Size = new System.Drawing.Size(48, 48);
-            this.bombsCheck.TabIndex = 14;
-            this.bombsCheck.TabStop = false;
-            // 
-            // bowCheck
-            // 
-            this.bowCheck.BackColor = System.Drawing.Color.Transparent;
-            this.bowCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bowCheck.Image = ((System.Drawing.Image)(resources.GetObject("bowCheck.Image")));
-            this.bowCheck.Index = 0;
-            this.bowCheck.Location = new System.Drawing.Point(283, 65);
-            this.bowCheck.Max = 3;
-            this.bowCheck.Name = "bowCheck";
-            this.bowCheck.SelectedItem = WWHDHacker.ItemEnum.Bow;
-            this.bowCheck.Size = new System.Drawing.Size(48, 48);
-            this.bowCheck.TabIndex = 13;
-            this.bowCheck.TabStop = false;
-            // 
-            // baitBagCheck
-            // 
-            this.baitBagCheck.BackColor = System.Drawing.Color.Transparent;
-            this.baitBagCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.baitBagCheck.Image = ((System.Drawing.Image)(resources.GetObject("baitBagCheck.Image")));
-            this.baitBagCheck.Index = 0;
-            this.baitBagCheck.Location = new System.Drawing.Point(229, 65);
-            this.baitBagCheck.Max = 1;
-            this.baitBagCheck.Name = "baitBagCheck";
-            this.baitBagCheck.SelectedItem = WWHDHacker.ItemEnum.BaitBag;
-            this.baitBagCheck.Size = new System.Drawing.Size(48, 48);
-            this.baitBagCheck.TabIndex = 12;
-            this.baitBagCheck.TabStop = false;
-            // 
-            // magicArmorCheck
-            // 
-            this.magicArmorCheck.BackColor = System.Drawing.Color.Transparent;
-            this.magicArmorCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.magicArmorCheck.Image = ((System.Drawing.Image)(resources.GetObject("magicArmorCheck.Image")));
-            this.magicArmorCheck.Index = 0;
-            this.magicArmorCheck.Location = new System.Drawing.Point(175, 65);
-            this.magicArmorCheck.Max = 1;
-            this.magicArmorCheck.Name = "magicArmorCheck";
-            this.magicArmorCheck.SelectedItem = WWHDHacker.ItemEnum.MagicArmor;
-            this.magicArmorCheck.Size = new System.Drawing.Size(48, 48);
-            this.magicArmorCheck.TabIndex = 11;
-            this.magicArmorCheck.TabStop = false;
-            // 
-            // ironBootsCheck
-            // 
-            this.ironBootsCheck.BackColor = System.Drawing.Color.Transparent;
-            this.ironBootsCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ironBootsCheck.Image = ((System.Drawing.Image)(resources.GetObject("ironBootsCheck.Image")));
-            this.ironBootsCheck.Index = 0;
-            this.ironBootsCheck.Location = new System.Drawing.Point(121, 65);
-            this.ironBootsCheck.Max = 1;
-            this.ironBootsCheck.Name = "ironBootsCheck";
-            this.ironBootsCheck.SelectedItem = WWHDHacker.ItemEnum.IronBoots;
-            this.ironBootsCheck.Size = new System.Drawing.Size(48, 48);
-            this.ironBootsCheck.TabIndex = 10;
-            this.ironBootsCheck.TabStop = false;
-            // 
-            // pictoboxCheck
-            // 
-            this.pictoboxCheck.BackColor = System.Drawing.Color.Transparent;
-            this.pictoboxCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictoboxCheck.Image = ((System.Drawing.Image)(resources.GetObject("pictoboxCheck.Image")));
-            this.pictoboxCheck.Index = 0;
-            this.pictoboxCheck.Location = new System.Drawing.Point(67, 65);
-            this.pictoboxCheck.Max = 2;
-            this.pictoboxCheck.Name = "pictoboxCheck";
-            this.pictoboxCheck.SelectedItem = WWHDHacker.ItemEnum.Pictobox;
-            this.pictoboxCheck.Size = new System.Drawing.Size(48, 48);
-            this.pictoboxCheck.TabIndex = 9;
-            this.pictoboxCheck.TabStop = false;
-            // 
-            // tingleBottleCheck
-            // 
-            this.tingleBottleCheck.BackColor = System.Drawing.Color.Transparent;
-            this.tingleBottleCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tingleBottleCheck.Image = ((System.Drawing.Image)(resources.GetObject("tingleBottleCheck.Image")));
-            this.tingleBottleCheck.Index = 0;
-            this.tingleBottleCheck.Location = new System.Drawing.Point(13, 66);
-            this.tingleBottleCheck.Max = 1;
-            this.tingleBottleCheck.Name = "tingleBottleCheck";
-            this.tingleBottleCheck.SelectedItem = WWHDHacker.ItemEnum.TingleBottle;
-            this.tingleBottleCheck.Size = new System.Drawing.Size(48, 48);
-            this.tingleBottleCheck.TabIndex = 8;
-            this.tingleBottleCheck.TabStop = false;
-            // 
-            // swordCheck
-            // 
-            this.swordCheck.BackColor = System.Drawing.Color.Transparent;
-            this.swordCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.swordCheck.Image = ((System.Drawing.Image)(resources.GetObject("swordCheck.Image")));
-            this.swordCheck.Index = 0;
-            this.swordCheck.Location = new System.Drawing.Point(390, 11);
-            this.swordCheck.Max = 4;
-            this.swordCheck.Name = "swordCheck";
-            this.swordCheck.SelectedItem = WWHDHacker.ItemEnum.Sword;
-            this.swordCheck.Size = new System.Drawing.Size(48, 48);
-            this.swordCheck.TabIndex = 7;
-            this.swordCheck.TabStop = false;
-            // 
-            // leafCheck
-            // 
-            this.leafCheck.BackColor = System.Drawing.Color.Transparent;
-            this.leafCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.leafCheck.Image = ((System.Drawing.Image)(resources.GetObject("leafCheck.Image")));
-            this.leafCheck.Index = 0;
-            this.leafCheck.Location = new System.Drawing.Point(336, 11);
-            this.leafCheck.Max = 1;
-            this.leafCheck.Name = "leafCheck";
-            this.leafCheck.SelectedItem = WWHDHacker.ItemEnum.Leaf;
-            this.leafCheck.Size = new System.Drawing.Size(48, 48);
-            this.leafCheck.TabIndex = 6;
-            this.leafCheck.TabStop = false;
-            // 
-            // boomerangCheck
-            // 
-            this.boomerangCheck.BackColor = System.Drawing.Color.Transparent;
-            this.boomerangCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.boomerangCheck.Image = ((System.Drawing.Image)(resources.GetObject("boomerangCheck.Image")));
-            this.boomerangCheck.Index = 0;
-            this.boomerangCheck.Location = new System.Drawing.Point(282, 11);
-            this.boomerangCheck.Max = 1;
-            this.boomerangCheck.Name = "boomerangCheck";
-            this.boomerangCheck.SelectedItem = WWHDHacker.ItemEnum.Boomerang;
-            this.boomerangCheck.Size = new System.Drawing.Size(48, 48);
-            this.boomerangCheck.TabIndex = 5;
-            this.boomerangCheck.TabStop = false;
-            // 
-            // spoilsBagCheck
-            // 
-            this.spoilsBagCheck.BackColor = System.Drawing.Color.Transparent;
-            this.spoilsBagCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.spoilsBagCheck.Image = ((System.Drawing.Image)(resources.GetObject("spoilsBagCheck.Image")));
-            this.spoilsBagCheck.Index = 0;
-            this.spoilsBagCheck.Location = new System.Drawing.Point(228, 11);
-            this.spoilsBagCheck.Max = 1;
-            this.spoilsBagCheck.Name = "spoilsBagCheck";
-            this.spoilsBagCheck.SelectedItem = WWHDHacker.ItemEnum.SpoilsBag;
-            this.spoilsBagCheck.Size = new System.Drawing.Size(48, 48);
-            this.spoilsBagCheck.TabIndex = 4;
-            this.spoilsBagCheck.TabStop = false;
-            // 
-            // grapplingHookCheck
-            // 
-            this.grapplingHookCheck.BackColor = System.Drawing.Color.Transparent;
-            this.grapplingHookCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.grapplingHookCheck.Image = ((System.Drawing.Image)(resources.GetObject("grapplingHookCheck.Image")));
-            this.grapplingHookCheck.Index = 0;
-            this.grapplingHookCheck.Location = new System.Drawing.Point(174, 11);
-            this.grapplingHookCheck.Max = 1;
-            this.grapplingHookCheck.Name = "grapplingHookCheck";
-            this.grapplingHookCheck.SelectedItem = WWHDHacker.ItemEnum.GrapplingHook;
-            this.grapplingHookCheck.Size = new System.Drawing.Size(48, 48);
-            this.grapplingHookCheck.TabIndex = 3;
-            this.grapplingHookCheck.TabStop = false;
-            // 
-            // windWakerCheck
-            // 
-            this.windWakerCheck.BackColor = System.Drawing.Color.Transparent;
-            this.windWakerCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windWakerCheck.Image = ((System.Drawing.Image)(resources.GetObject("windWakerCheck.Image")));
-            this.windWakerCheck.Index = 0;
-            this.windWakerCheck.Location = new System.Drawing.Point(120, 11);
-            this.windWakerCheck.Max = 1;
-            this.windWakerCheck.Name = "windWakerCheck";
-            this.windWakerCheck.SelectedItem = WWHDHacker.ItemEnum.WindWaker;
-            this.windWakerCheck.Size = new System.Drawing.Size(48, 48);
-            this.windWakerCheck.TabIndex = 2;
-            this.windWakerCheck.TabStop = false;
-            // 
-            // sailCheck
-            // 
-            this.sailCheck.BackColor = System.Drawing.Color.Transparent;
-            this.sailCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sailCheck.Image = ((System.Drawing.Image)(resources.GetObject("sailCheck.Image")));
-            this.sailCheck.Index = 0;
-            this.sailCheck.Location = new System.Drawing.Point(66, 11);
-            this.sailCheck.Max = 2;
-            this.sailCheck.Name = "sailCheck";
-            this.sailCheck.SelectedItem = WWHDHacker.ItemEnum.Sail;
-            this.sailCheck.Size = new System.Drawing.Size(48, 48);
-            this.sailCheck.TabIndex = 1;
-            this.sailCheck.TabStop = false;
-            // 
-            // telescopeCheck
-            // 
-            this.telescopeCheck.BackColor = System.Drawing.Color.Transparent;
-            this.telescopeCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.telescopeCheck.Image = ((System.Drawing.Image)(resources.GetObject("telescopeCheck.Image")));
-            this.telescopeCheck.Index = 0;
-            this.telescopeCheck.Location = new System.Drawing.Point(12, 12);
-            this.telescopeCheck.Max = 1;
-            this.telescopeCheck.Name = "telescopeCheck";
-            this.telescopeCheck.SelectedItem = WWHDHacker.ItemEnum.Telescope;
-            this.telescopeCheck.Size = new System.Drawing.Size(48, 48);
-            this.telescopeCheck.TabIndex = 0;
-            this.telescopeCheck.TabStop = false;
             // 
             // itemsList
             // 
@@ -2929,18 +2451,84 @@ namespace WWHDHacker
             // 
             // memfilesPanel
             // 
-            this.memfilesPanel.Controls.Add(this.loadMemfile);
-            this.memfilesPanel.Controls.Add(this.createMemfile);
+            this.memfilesPanel.Controls.Add(this.SavefileIndicator);
+            this.memfilesPanel.Controls.Add(this.groupBox13);
+            this.memfilesPanel.Controls.Add(this.groupBox12);
             this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
             this.memfilesPanel.Name = "memfilesPanel";
             this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
             this.memfilesPanel.TabIndex = 32;
             // 
+            // SavefileIndicator
+            // 
+            this.SavefileIndicator.AutoSize = true;
+            this.SavefileIndicator.ForeColor = System.Drawing.Color.ForestGreen;
+            this.SavefileIndicator.Location = new System.Drawing.Point(16, 330);
+            this.SavefileIndicator.Name = "SavefileIndicator";
+            this.SavefileIndicator.Size = new System.Drawing.Size(0, 13);
+            this.SavefileIndicator.TabIndex = 5;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.deleteMemfile);
+            this.groupBox13.Controls.Add(this.openMemfileFolder);
+            this.groupBox13.Controls.Add(this.memfileSelector);
+            this.groupBox13.Controls.Add(this.loadMemfile);
+            this.groupBox13.Controls.Add(this.createMemfile);
+            this.groupBox13.Location = new System.Drawing.Point(14, 13);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(325, 315);
+            this.groupBox13.TabIndex = 4;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Memfiles";
+            // 
+            // deleteMemfile
+            // 
+            this.deleteMemfile.Location = new System.Drawing.Point(4, 280);
+            this.deleteMemfile.Name = "deleteMemfile";
+            this.deleteMemfile.Size = new System.Drawing.Size(126, 23);
+            this.deleteMemfile.TabIndex = 8;
+            this.deleteMemfile.Text = "Delete memfile";
+            this.deleteMemfile.UseVisualStyleBackColor = true;
+            this.deleteMemfile.Click += new System.EventHandler(this.deleteMemfile_Click);
+            // 
+            // openMemfileFolder
+            // 
+            this.openMemfileFolder.Location = new System.Drawing.Point(205, 280);
+            this.openMemfileFolder.Name = "openMemfileFolder";
+            this.openMemfileFolder.Size = new System.Drawing.Size(114, 23);
+            this.openMemfileFolder.TabIndex = 7;
+            this.openMemfileFolder.Text = "Open Memfile Folder";
+            this.openMemfileFolder.UseVisualStyleBackColor = true;
+            this.openMemfileFolder.Click += new System.EventHandler(this.openMemfileFolder_Click);
+            // 
+            // memfileSelector
+            // 
+            this.memfileSelector.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.memfileSelector.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.memfileSelector.HideSelection = false;
+            listViewItem1.StateImageIndex = 0;
+            this.memfileSelector.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.memfileSelector.Location = new System.Drawing.Point(10, 27);
+            this.memfileSelector.MultiSelect = false;
+            this.memfileSelector.Name = "memfileSelector";
+            this.memfileSelector.Size = new System.Drawing.Size(305, 211);
+            this.memfileSelector.TabIndex = 6;
+            this.memfileSelector.UseCompatibleStateImageBehavior = false;
+            this.memfileSelector.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "List";
+            this.columnHeader1.Width = 300;
+            // 
             // loadMemfile
             // 
-            this.loadMemfile.Location = new System.Drawing.Point(23, 66);
+            this.loadMemfile.Location = new System.Drawing.Point(205, 252);
             this.loadMemfile.Name = "loadMemfile";
-            this.loadMemfile.Size = new System.Drawing.Size(97, 23);
+            this.loadMemfile.Size = new System.Drawing.Size(114, 23);
             this.loadMemfile.TabIndex = 1;
             this.loadMemfile.Text = "Load Memfile";
             this.loadMemfile.UseVisualStyleBackColor = true;
@@ -2948,16 +2536,102 @@ namespace WWHDHacker
             // 
             // createMemfile
             // 
-            this.createMemfile.Location = new System.Drawing.Point(23, 23);
+            this.createMemfile.Location = new System.Drawing.Point(3, 252);
             this.createMemfile.Name = "createMemfile";
-            this.createMemfile.Size = new System.Drawing.Size(97, 23);
+            this.createMemfile.Size = new System.Drawing.Size(127, 23);
             this.createMemfile.TabIndex = 0;
             this.createMemfile.Text = "Create memfile";
             this.createMemfile.UseVisualStyleBackColor = true;
             this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
             // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label33);
+            this.groupBox12.Controls.Add(this.injectGame);
+            this.groupBox12.Controls.Add(this.openSFDir);
+            this.groupBox12.Controls.Add(this.dumpSF);
+            this.groupBox12.Controls.Add(this.loadSF);
+            this.groupBox12.Controls.Add(this.fileRep);
+            this.groupBox12.Location = new System.Drawing.Point(467, 13);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(327, 315);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Save files";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(26, 251);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(95, 13);
+            this.label33.TabIndex = 10;
+            this.label33.Text = "Selected version : ";
+            // 
+            // injectGame
+            // 
+            this.injectGame.FormattingEnabled = true;
+            this.injectGame.Items.AddRange(new object[] {
+            "PAL",
+            "NTSC",
+            "Rando"});
+            this.injectGame.Location = new System.Drawing.Point(133, 246);
+            this.injectGame.Name = "injectGame";
+            this.injectGame.Size = new System.Drawing.Size(97, 21);
+            this.injectGame.TabIndex = 9;
+            // 
+            // openSFDir
+            // 
+            this.openSFDir.Location = new System.Drawing.Point(116, 278);
+            this.openSFDir.Name = "openSFDir";
+            this.openSFDir.Size = new System.Drawing.Size(103, 33);
+            this.openSFDir.TabIndex = 8;
+            this.openSFDir.Text = "Open Savefiles Dir";
+            this.openSFDir.UseVisualStyleBackColor = true;
+            this.openSFDir.Click += new System.EventHandler(this.openSFDir_Click);
+            // 
+            // dumpSF
+            // 
+            this.dumpSF.Location = new System.Drawing.Point(223, 278);
+            this.dumpSF.Name = "dumpSF";
+            this.dumpSF.Size = new System.Drawing.Size(90, 33);
+            this.dumpSF.TabIndex = 7;
+            this.dumpSF.Text = "Dump Savefile";
+            this.dumpSF.UseVisualStyleBackColor = true;
+            this.dumpSF.Click += new System.EventHandler(this.dumpSF_Click);
+            // 
+            // loadSF
+            // 
+            this.loadSF.Location = new System.Drawing.Point(20, 278);
+            this.loadSF.Name = "loadSF";
+            this.loadSF.Size = new System.Drawing.Size(90, 33);
+            this.loadSF.TabIndex = 6;
+            this.loadSF.Text = "Load Savefile";
+            this.loadSF.UseVisualStyleBackColor = true;
+            this.loadSF.Click += new System.EventHandler(this.loadSF_Click);
+            // 
+            // fileRep
+            // 
+            this.fileRep.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.fileRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Save});
+            this.fileRep.HideSelection = false;
+            this.fileRep.Location = new System.Drawing.Point(20, 26);
+            this.fileRep.MultiSelect = false;
+            this.fileRep.Name = "fileRep";
+            this.fileRep.Size = new System.Drawing.Size(288, 212);
+            this.fileRep.TabIndex = 5;
+            this.fileRep.UseCompatibleStateImageBehavior = false;
+            this.fileRep.View = System.Windows.Forms.View.Details;
+            // 
+            // Save
+            // 
+            this.Save.Text = "Save";
+            this.Save.Width = 284;
+            // 
             // teleporterPanel
             // 
+            this.teleporterPanel.Controls.Add(this.addCustomFavorite);
             this.teleporterPanel.Controls.Add(this.displayOnMap);
             this.teleporterPanel.Controls.Add(this.transparentLayer);
             this.teleporterPanel.Controls.Add(this.addedRemoved);
@@ -2973,10 +2647,21 @@ namespace WWHDHacker
             this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
             this.teleporterPanel.TabIndex = 33;
             // 
+            // addCustomFavorite
+            // 
+            this.addCustomFavorite.Location = new System.Drawing.Point(662, 251);
+            this.addCustomFavorite.Name = "addCustomFavorite";
+            this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
+            this.addCustomFavorite.TabIndex = 20;
+            this.addCustomFavorite.Text = "Add custom favorite";
+            this.addCustomFavorite.UseVisualStyleBackColor = true;
+            this.addCustomFavorite.Visible = false;
+            this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
+            // 
             // displayOnMap
             // 
             this.displayOnMap.AutoSize = true;
-            this.displayOnMap.Location = new System.Drawing.Point(665, 265);
+            this.displayOnMap.Location = new System.Drawing.Point(665, 223);
             this.displayOnMap.Name = "displayOnMap";
             this.displayOnMap.Size = new System.Drawing.Size(98, 17);
             this.displayOnMap.TabIndex = 19;
@@ -3045,7 +2730,7 @@ namespace WWHDHacker
             this.groupBox8.Controls.Add(this.teleporterLayer);
             this.groupBox8.Controls.Add(this.teleporterSpawnId);
             this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Location = new System.Drawing.Point(665, 68);
+            this.groupBox8.Location = new System.Drawing.Point(665, 26);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(122, 156);
             this.groupBox8.TabIndex = 16;
@@ -3106,7 +2791,7 @@ namespace WWHDHacker
             // linkLocationLabel
             // 
             this.linkLocationLabel.AutoSize = true;
-            this.linkLocationLabel.Location = new System.Drawing.Point(703, 233);
+            this.linkLocationLabel.Location = new System.Drawing.Point(703, 191);
             this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
             this.linkLocationLabel.Name = "linkLocationLabel";
             this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
@@ -3116,7 +2801,7 @@ namespace WWHDHacker
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WWHDHacker.Properties.Resources.MapLinkS_00_l_bflim;
-            this.pictureBox1.Location = new System.Drawing.Point(662, 230);
+            this.pictureBox1.Location = new System.Drawing.Point(662, 188);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(35, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -3172,6 +2857,567 @@ namespace WWHDHacker
             this.islandLabel.TabIndex = 1;
             this.islandLabel.Text = "Island : ";
             // 
+            // checkBoxImage1
+            // 
+            this.checkBoxImage1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage1.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage1.Image")));
+            this.checkBoxImage1.Index = 0;
+            this.checkBoxImage1.Location = new System.Drawing.Point(14, 17);
+            this.checkBoxImage1.Max = 1;
+            this.checkBoxImage1.Name = "checkBoxImage1";
+            this.checkBoxImage1.SelectedItem = WWHDHacker.ItemEnum.Telescope;
+            this.checkBoxImage1.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage1.TabIndex = 0;
+            this.checkBoxImage1.TabStop = false;
+            // 
+            // checkBoxImage2
+            // 
+            this.checkBoxImage2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage2.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage2.Image")));
+            this.checkBoxImage2.Index = 0;
+            this.checkBoxImage2.Location = new System.Drawing.Point(67, 17);
+            this.checkBoxImage2.Max = 2;
+            this.checkBoxImage2.Name = "checkBoxImage2";
+            this.checkBoxImage2.SelectedItem = WWHDHacker.ItemEnum.Sail;
+            this.checkBoxImage2.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage2.TabIndex = 1;
+            this.checkBoxImage2.TabStop = false;
+            // 
+            // checkBoxImage3
+            // 
+            this.checkBoxImage3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage3.Image")));
+            this.checkBoxImage3.Index = 0;
+            this.checkBoxImage3.Location = new System.Drawing.Point(121, 17);
+            this.checkBoxImage3.Max = 1;
+            this.checkBoxImage3.Name = "checkBoxImage3";
+            this.checkBoxImage3.SelectedItem = WWHDHacker.ItemEnum.WindWaker;
+            this.checkBoxImage3.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage3.TabIndex = 2;
+            this.checkBoxImage3.TabStop = false;
+            // 
+            // checkBoxImage4
+            // 
+            this.checkBoxImage4.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage4.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage4.Image")));
+            this.checkBoxImage4.Index = 0;
+            this.checkBoxImage4.Location = new System.Drawing.Point(175, 17);
+            this.checkBoxImage4.Max = 1;
+            this.checkBoxImage4.Name = "checkBoxImage4";
+            this.checkBoxImage4.SelectedItem = WWHDHacker.ItemEnum.GrapplingHook;
+            this.checkBoxImage4.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage4.TabIndex = 3;
+            this.checkBoxImage4.TabStop = false;
+            // 
+            // checkBoxImage5
+            // 
+            this.checkBoxImage5.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage5.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage5.Image")));
+            this.checkBoxImage5.Index = 0;
+            this.checkBoxImage5.Location = new System.Drawing.Point(228, 17);
+            this.checkBoxImage5.Max = 1;
+            this.checkBoxImage5.Name = "checkBoxImage5";
+            this.checkBoxImage5.SelectedItem = WWHDHacker.ItemEnum.SpoilsBag;
+            this.checkBoxImage5.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage5.TabIndex = 4;
+            this.checkBoxImage5.TabStop = false;
+            // 
+            // checkBoxImage6
+            // 
+            this.checkBoxImage6.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage6.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage6.Image")));
+            this.checkBoxImage6.Index = 0;
+            this.checkBoxImage6.Location = new System.Drawing.Point(391, 16);
+            this.checkBoxImage6.Max = 4;
+            this.checkBoxImage6.Name = "checkBoxImage6";
+            this.checkBoxImage6.SelectedItem = WWHDHacker.ItemEnum.Sword;
+            this.checkBoxImage6.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage6.TabIndex = 5;
+            this.checkBoxImage6.TabStop = false;
+            // 
+            // checkBoxImage7
+            // 
+            this.checkBoxImage7.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage7.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage7.Image")));
+            this.checkBoxImage7.Index = 0;
+            this.checkBoxImage7.Location = new System.Drawing.Point(339, 17);
+            this.checkBoxImage7.Max = 1;
+            this.checkBoxImage7.Name = "checkBoxImage7";
+            this.checkBoxImage7.SelectedItem = WWHDHacker.ItemEnum.Leaf;
+            this.checkBoxImage7.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage7.TabIndex = 6;
+            this.checkBoxImage7.TabStop = false;
+            // 
+            // checkBoxImage8
+            // 
+            this.checkBoxImage8.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage8.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage8.Image")));
+            this.checkBoxImage8.Index = 0;
+            this.checkBoxImage8.Location = new System.Drawing.Point(284, 17);
+            this.checkBoxImage8.Max = 1;
+            this.checkBoxImage8.Name = "checkBoxImage8";
+            this.checkBoxImage8.SelectedItem = WWHDHacker.ItemEnum.Boomerang;
+            this.checkBoxImage8.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage8.TabIndex = 7;
+            this.checkBoxImage8.TabStop = false;
+            // 
+            // checkBoxImage9
+            // 
+            this.checkBoxImage9.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage9.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage9.Image")));
+            this.checkBoxImage9.Index = 0;
+            this.checkBoxImage9.Location = new System.Drawing.Point(283, 70);
+            this.checkBoxImage9.Max = 3;
+            this.checkBoxImage9.Name = "checkBoxImage9";
+            this.checkBoxImage9.SelectedItem = WWHDHacker.ItemEnum.Bow;
+            this.checkBoxImage9.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage9.TabIndex = 15;
+            this.checkBoxImage9.TabStop = false;
+            // 
+            // checkBoxImage10
+            // 
+            this.checkBoxImage10.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage10.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage10.Image")));
+            this.checkBoxImage10.Index = 0;
+            this.checkBoxImage10.Location = new System.Drawing.Point(338, 70);
+            this.checkBoxImage10.Max = 1;
+            this.checkBoxImage10.Name = "checkBoxImage10";
+            this.checkBoxImage10.SelectedItem = WWHDHacker.ItemEnum.Bombs;
+            this.checkBoxImage10.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage10.TabIndex = 14;
+            this.checkBoxImage10.TabStop = false;
+            // 
+            // checkBoxImage11
+            // 
+            this.checkBoxImage11.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage11.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage11.Image")));
+            this.checkBoxImage11.Index = 0;
+            this.checkBoxImage11.Location = new System.Drawing.Point(390, 69);
+            this.checkBoxImage11.Max = 2;
+            this.checkBoxImage11.Name = "checkBoxImage11";
+            this.checkBoxImage11.SelectedItem = WWHDHacker.ItemEnum.Shield;
+            this.checkBoxImage11.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage11.TabIndex = 13;
+            this.checkBoxImage11.TabStop = false;
+            // 
+            // checkBoxImage12
+            // 
+            this.checkBoxImage12.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage12.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage12.Image")));
+            this.checkBoxImage12.Index = 0;
+            this.checkBoxImage12.Location = new System.Drawing.Point(227, 70);
+            this.checkBoxImage12.Max = 1;
+            this.checkBoxImage12.Name = "checkBoxImage12";
+            this.checkBoxImage12.SelectedItem = WWHDHacker.ItemEnum.BaitBag;
+            this.checkBoxImage12.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage12.TabIndex = 12;
+            this.checkBoxImage12.TabStop = false;
+            // 
+            // checkBoxImage13
+            // 
+            this.checkBoxImage13.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage13.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage13.Image")));
+            this.checkBoxImage13.Index = 0;
+            this.checkBoxImage13.Location = new System.Drawing.Point(174, 70);
+            this.checkBoxImage13.Max = 1;
+            this.checkBoxImage13.Name = "checkBoxImage13";
+            this.checkBoxImage13.SelectedItem = WWHDHacker.ItemEnum.MagicArmor;
+            this.checkBoxImage13.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage13.TabIndex = 11;
+            this.checkBoxImage13.TabStop = false;
+            // 
+            // checkBoxImage14
+            // 
+            this.checkBoxImage14.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage14.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage14.Image")));
+            this.checkBoxImage14.Index = 0;
+            this.checkBoxImage14.Location = new System.Drawing.Point(120, 70);
+            this.checkBoxImage14.Max = 1;
+            this.checkBoxImage14.Name = "checkBoxImage14";
+            this.checkBoxImage14.SelectedItem = WWHDHacker.ItemEnum.IronBoots;
+            this.checkBoxImage14.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage14.TabIndex = 10;
+            this.checkBoxImage14.TabStop = false;
+            // 
+            // checkBoxImage15
+            // 
+            this.checkBoxImage15.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage15.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage15.Image")));
+            this.checkBoxImage15.Index = 0;
+            this.checkBoxImage15.Location = new System.Drawing.Point(66, 70);
+            this.checkBoxImage15.Max = 2;
+            this.checkBoxImage15.Name = "checkBoxImage15";
+            this.checkBoxImage15.SelectedItem = WWHDHacker.ItemEnum.Pictobox;
+            this.checkBoxImage15.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage15.TabIndex = 9;
+            this.checkBoxImage15.TabStop = false;
+            // 
+            // checkBoxImage16
+            // 
+            this.checkBoxImage16.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage16.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage16.Image")));
+            this.checkBoxImage16.Index = 0;
+            this.checkBoxImage16.Location = new System.Drawing.Point(13, 70);
+            this.checkBoxImage16.Max = 1;
+            this.checkBoxImage16.Name = "checkBoxImage16";
+            this.checkBoxImage16.SelectedItem = WWHDHacker.ItemEnum.TingleBottle;
+            this.checkBoxImage16.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage16.TabIndex = 8;
+            this.checkBoxImage16.TabStop = false;
+            // 
+            // checkBoxImage17
+            // 
+            this.checkBoxImage17.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage17.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage17.Image")));
+            this.checkBoxImage17.Index = 0;
+            this.checkBoxImage17.Location = new System.Drawing.Point(283, 124);
+            this.checkBoxImage17.Max = 1;
+            this.checkBoxImage17.Name = "checkBoxImage17";
+            this.checkBoxImage17.SelectedItem = WWHDHacker.ItemEnum.Hookshot;
+            this.checkBoxImage17.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage17.TabIndex = 23;
+            this.checkBoxImage17.TabStop = false;
+            // 
+            // checkBoxImage18
+            // 
+            this.checkBoxImage18.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage18.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage18.Image")));
+            this.checkBoxImage18.Index = 0;
+            this.checkBoxImage18.Location = new System.Drawing.Point(338, 124);
+            this.checkBoxImage18.Max = 1;
+            this.checkBoxImage18.Name = "checkBoxImage18";
+            this.checkBoxImage18.SelectedItem = WWHDHacker.ItemEnum.Hammer;
+            this.checkBoxImage18.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage18.TabIndex = 22;
+            this.checkBoxImage18.TabStop = false;
+            // 
+            // checkBoxImage19
+            // 
+            this.checkBoxImage19.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage19.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage19.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage19.Image")));
+            this.checkBoxImage19.Index = 0;
+            this.checkBoxImage19.Location = new System.Drawing.Point(390, 123);
+            this.checkBoxImage19.Max = 1;
+            this.checkBoxImage19.Name = "checkBoxImage19";
+            this.checkBoxImage19.SelectedItem = WWHDHacker.ItemEnum.PowerBracelets;
+            this.checkBoxImage19.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage19.TabIndex = 21;
+            this.checkBoxImage19.TabStop = false;
+            // 
+            // checkBoxImage20
+            // 
+            this.checkBoxImage20.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage20.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage20.Image")));
+            this.checkBoxImage20.Index = 0;
+            this.checkBoxImage20.Location = new System.Drawing.Point(227, 124);
+            this.checkBoxImage20.Max = 1;
+            this.checkBoxImage20.Name = "checkBoxImage20";
+            this.checkBoxImage20.SelectedItem = WWHDHacker.ItemEnum.DeliveryBag;
+            this.checkBoxImage20.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage20.TabIndex = 20;
+            this.checkBoxImage20.TabStop = false;
+            // 
+            // checkBoxImage21
+            // 
+            this.checkBoxImage21.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage21.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage21.Image")));
+            this.checkBoxImage21.Index = 0;
+            this.checkBoxImage21.Location = new System.Drawing.Point(174, 124);
+            this.checkBoxImage21.Max = 1;
+            this.checkBoxImage21.Name = "checkBoxImage21";
+            this.checkBoxImage21.SelectedItem = WWHDHacker.ItemEnum.NoteToMom;
+            this.checkBoxImage21.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage21.TabIndex = 19;
+            this.checkBoxImage21.TabStop = false;
+            // 
+            // checkBoxImage22
+            // 
+            this.checkBoxImage22.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage22.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage22.Image")));
+            this.checkBoxImage22.Index = 0;
+            this.checkBoxImage22.Location = new System.Drawing.Point(120, 124);
+            this.checkBoxImage22.Max = 1;
+            this.checkBoxImage22.Name = "checkBoxImage22";
+            this.checkBoxImage22.SelectedItem = WWHDHacker.ItemEnum.MoblinsLetter;
+            this.checkBoxImage22.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage22.TabIndex = 18;
+            this.checkBoxImage22.TabStop = false;
+            // 
+            // checkBoxImage23
+            // 
+            this.checkBoxImage23.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage23.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage23.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage23.Image")));
+            this.checkBoxImage23.Index = 0;
+            this.checkBoxImage23.Location = new System.Drawing.Point(66, 124);
+            this.checkBoxImage23.Max = 1;
+            this.checkBoxImage23.Name = "checkBoxImage23";
+            this.checkBoxImage23.SelectedItem = WWHDHacker.ItemEnum.MaggiesLetter;
+            this.checkBoxImage23.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage23.TabIndex = 17;
+            this.checkBoxImage23.TabStop = false;
+            // 
+            // checkBoxImage24
+            // 
+            this.checkBoxImage24.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage24.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage24.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage24.Image")));
+            this.checkBoxImage24.Index = 0;
+            this.checkBoxImage24.Location = new System.Drawing.Point(13, 124);
+            this.checkBoxImage24.Max = 1;
+            this.checkBoxImage24.Name = "checkBoxImage24";
+            this.checkBoxImage24.SelectedItem = WWHDHacker.ItemEnum.CabanaDeed;
+            this.checkBoxImage24.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage24.TabIndex = 16;
+            this.checkBoxImage24.TabStop = false;
+            // 
+            // checkBoxImage25
+            // 
+            this.checkBoxImage25.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage25.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage25.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage25.Image")));
+            this.checkBoxImage25.Index = 0;
+            this.checkBoxImage25.Location = new System.Drawing.Point(283, 176);
+            this.checkBoxImage25.Max = 1;
+            this.checkBoxImage25.Name = "checkBoxImage25";
+            this.checkBoxImage25.SelectedItem = WWHDHacker.ItemEnum.WindGodAria;
+            this.checkBoxImage25.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage25.TabIndex = 31;
+            this.checkBoxImage25.TabStop = false;
+            // 
+            // checkBoxImage26
+            // 
+            this.checkBoxImage26.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage26.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage26.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage26.Image")));
+            this.checkBoxImage26.Index = 0;
+            this.checkBoxImage26.Location = new System.Drawing.Point(338, 176);
+            this.checkBoxImage26.Max = 1;
+            this.checkBoxImage26.Name = "checkBoxImage26";
+            this.checkBoxImage26.SelectedItem = WWHDHacker.ItemEnum.SongOfPassing;
+            this.checkBoxImage26.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage26.TabIndex = 30;
+            this.checkBoxImage26.TabStop = false;
+            // 
+            // checkBoxImage27
+            // 
+            this.checkBoxImage27.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage27.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage27.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage27.Image")));
+            this.checkBoxImage27.Index = 0;
+            this.checkBoxImage27.Location = new System.Drawing.Point(390, 175);
+            this.checkBoxImage27.Max = 1;
+            this.checkBoxImage27.Name = "checkBoxImage27";
+            this.checkBoxImage27.SelectedItem = WWHDHacker.ItemEnum.HeroCharm;
+            this.checkBoxImage27.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage27.TabIndex = 29;
+            this.checkBoxImage27.TabStop = false;
+            // 
+            // checkBoxImage28
+            // 
+            this.checkBoxImage28.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage28.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage28.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage28.Image")));
+            this.checkBoxImage28.Index = 0;
+            this.checkBoxImage28.Location = new System.Drawing.Point(227, 176);
+            this.checkBoxImage28.Max = 1;
+            this.checkBoxImage28.Name = "checkBoxImage28";
+            this.checkBoxImage28.SelectedItem = WWHDHacker.ItemEnum.EarthGodLyric;
+            this.checkBoxImage28.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage28.TabIndex = 28;
+            this.checkBoxImage28.TabStop = false;
+            // 
+            // checkBoxImage29
+            // 
+            this.checkBoxImage29.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage29.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage29.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage29.Image")));
+            this.checkBoxImage29.Index = 0;
+            this.checkBoxImage29.Location = new System.Drawing.Point(174, 176);
+            this.checkBoxImage29.Max = 1;
+            this.checkBoxImage29.Name = "checkBoxImage29";
+            this.checkBoxImage29.SelectedItem = WWHDHacker.ItemEnum.CommandMelody;
+            this.checkBoxImage29.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage29.TabIndex = 27;
+            this.checkBoxImage29.TabStop = false;
+            // 
+            // checkBoxImage30
+            // 
+            this.checkBoxImage30.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage30.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage30.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage30.Image")));
+            this.checkBoxImage30.Index = 0;
+            this.checkBoxImage30.Location = new System.Drawing.Point(120, 176);
+            this.checkBoxImage30.Max = 1;
+            this.checkBoxImage30.Name = "checkBoxImage30";
+            this.checkBoxImage30.SelectedItem = WWHDHacker.ItemEnum.BalladOfGales;
+            this.checkBoxImage30.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage30.TabIndex = 26;
+            this.checkBoxImage30.TabStop = false;
+            // 
+            // checkBoxImage31
+            // 
+            this.checkBoxImage31.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage31.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage31.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage31.Image")));
+            this.checkBoxImage31.Index = 0;
+            this.checkBoxImage31.Location = new System.Drawing.Point(66, 176);
+            this.checkBoxImage31.Max = 1;
+            this.checkBoxImage31.Name = "checkBoxImage31";
+            this.checkBoxImage31.SelectedItem = WWHDHacker.ItemEnum.WindsRequiem;
+            this.checkBoxImage31.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage31.TabIndex = 25;
+            this.checkBoxImage31.TabStop = false;
+            // 
+            // checkBoxImage32
+            // 
+            this.checkBoxImage32.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage32.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage32.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage32.Image")));
+            this.checkBoxImage32.Index = 0;
+            this.checkBoxImage32.Location = new System.Drawing.Point(13, 176);
+            this.checkBoxImage32.Max = 1;
+            this.checkBoxImage32.Name = "checkBoxImage32";
+            this.checkBoxImage32.SelectedItem = WWHDHacker.ItemEnum.Bottle;
+            this.checkBoxImage32.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage32.TabIndex = 24;
+            this.checkBoxImage32.TabStop = false;
+            // 
+            // checkBoxImage33
+            // 
+            this.checkBoxImage33.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage33.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage33.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage33.Image")));
+            this.checkBoxImage33.Index = 0;
+            this.checkBoxImage33.Location = new System.Drawing.Point(283, 235);
+            this.checkBoxImage33.Max = 2;
+            this.checkBoxImage33.Name = "checkBoxImage33";
+            this.checkBoxImage33.SelectedItem = WWHDHacker.ItemEnum.Quiver;
+            this.checkBoxImage33.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage33.TabIndex = 35;
+            this.checkBoxImage33.TabStop = false;
+            // 
+            // checkBoxImage34
+            // 
+            this.checkBoxImage34.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage34.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage34.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage34.Image")));
+            this.checkBoxImage34.Index = 0;
+            this.checkBoxImage34.Location = new System.Drawing.Point(338, 235);
+            this.checkBoxImage34.Max = 2;
+            this.checkBoxImage34.Name = "checkBoxImage34";
+            this.checkBoxImage34.SelectedItem = WWHDHacker.ItemEnum.Wallet;
+            this.checkBoxImage34.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage34.TabIndex = 34;
+            this.checkBoxImage34.TabStop = false;
+            // 
+            // checkBoxImage35
+            // 
+            this.checkBoxImage35.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage35.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage35.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage35.Image")));
+            this.checkBoxImage35.Index = 0;
+            this.checkBoxImage35.Location = new System.Drawing.Point(390, 234);
+            this.checkBoxImage35.Max = 2;
+            this.checkBoxImage35.Name = "checkBoxImage35";
+            this.checkBoxImage35.SelectedItem = WWHDHacker.ItemEnum.MagicMeter;
+            this.checkBoxImage35.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage35.TabIndex = 33;
+            this.checkBoxImage35.TabStop = false;
+            // 
+            // checkBoxImage36
+            // 
+            this.checkBoxImage36.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage36.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage36.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage36.Image")));
+            this.checkBoxImage36.Index = 0;
+            this.checkBoxImage36.Location = new System.Drawing.Point(227, 235);
+            this.checkBoxImage36.Max = 2;
+            this.checkBoxImage36.Name = "checkBoxImage36";
+            this.checkBoxImage36.SelectedItem = WWHDHacker.ItemEnum.BombBag;
+            this.checkBoxImage36.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage36.TabIndex = 32;
+            this.checkBoxImage36.TabStop = false;
+            // 
+            // checkBoxImage37
+            // 
+            this.checkBoxImage37.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage37.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage37.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage37.Image")));
+            this.checkBoxImage37.Index = 0;
+            this.checkBoxImage37.Location = new System.Drawing.Point(115, 230);
+            this.checkBoxImage37.Max = 1;
+            this.checkBoxImage37.Name = "checkBoxImage37";
+            this.checkBoxImage37.SelectedItem = WWHDHacker.ItemEnum.Triforce;
+            this.checkBoxImage37.Size = new System.Drawing.Size(110, 102);
+            this.checkBoxImage37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.checkBoxImage37.TabIndex = 36;
+            this.checkBoxImage37.TabStop = false;
+            // 
+            // checkBoxImage38
+            // 
+            this.checkBoxImage38.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage38.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage38.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage38.Image")));
+            this.checkBoxImage38.Index = 0;
+            this.checkBoxImage38.Location = new System.Drawing.Point(11, 275);
+            this.checkBoxImage38.Max = 1;
+            this.checkBoxImage38.Name = "checkBoxImage38";
+            this.checkBoxImage38.SelectedItem = WWHDHacker.ItemEnum.DinsPearl;
+            this.checkBoxImage38.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage38.TabIndex = 37;
+            this.checkBoxImage38.TabStop = false;
+            // 
+            // checkBoxImage39
+            // 
+            this.checkBoxImage39.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage39.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage39.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage39.Image")));
+            this.checkBoxImage39.Index = 0;
+            this.checkBoxImage39.Location = new System.Drawing.Point(65, 275);
+            this.checkBoxImage39.Max = 1;
+            this.checkBoxImage39.Name = "checkBoxImage39";
+            this.checkBoxImage39.SelectedItem = WWHDHacker.ItemEnum.FaroresPearl;
+            this.checkBoxImage39.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage39.TabIndex = 38;
+            this.checkBoxImage39.TabStop = false;
+            // 
+            // checkBoxImage40
+            // 
+            this.checkBoxImage40.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxImage40.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxImage40.Image = ((System.Drawing.Image)(resources.GetObject("checkBoxImage40.Image")));
+            this.checkBoxImage40.Index = 0;
+            this.checkBoxImage40.Location = new System.Drawing.Point(38, 227);
+            this.checkBoxImage40.Max = 1;
+            this.checkBoxImage40.Name = "checkBoxImage40";
+            this.checkBoxImage40.SelectedItem = WWHDHacker.ItemEnum.NayrusPearl;
+            this.checkBoxImage40.Size = new System.Drawing.Size(48, 48);
+            this.checkBoxImage40.TabIndex = 39;
+            this.checkBoxImage40.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3188,13 +3434,13 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.memfilesPanel);
-            this.Controls.Add(this.dataViewerPanel);
-            this.Controls.Add(this.mainFeaturesPanel);
             this.Controls.Add(this.itemsManager);
             this.Controls.Add(this.miscFeaturesPanel);
             this.Controls.Add(this.advancedPanel);
             this.Controls.Add(this.teleporterPanel);
+            this.Controls.Add(this.memfilesPanel);
+            this.Controls.Add(this.dataViewerPanel);
+            this.Controls.Add(this.mainFeaturesPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.miscFeaturesPanel.ResumeLayout(false);
@@ -3206,10 +3452,12 @@ namespace WWHDHacker
             this.groupBox9.ResumeLayout(false);
             this.Levitate.ResumeLayout(false);
             this.Levitate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levitateHeight)).EndInit();
             this.DoorCancel.ResumeLayout(false);
             this.DoorCancel.PerformLayout();
             this.Superspeed.ResumeLayout(false);
             this.Superspeed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.superswimSpeed)).EndInit();
             this.Storage.ResumeLayout(false);
             this.Storage.PerformLayout();
             this.WindDirection.ResumeLayout(false);
@@ -3254,47 +3502,12 @@ namespace WWHDHacker
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).EndInit();
             this.itemsPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nayrusPearlCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faroresPearlCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dinsPearlCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.triforceCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quiverCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bombBagCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.magicCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.walletCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heroCharmCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.songOfPassingCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windGodAriaCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.earthGodLyricCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.commandMelodyCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balladOfGalesCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windsRequiemCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottleCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.powerBraceletsCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skullHammerCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hookshotCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryBagCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noteToMomCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moblinsLetterCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maggiesLetterCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cabanaDeedCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shieldCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bombsCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bowCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baitBagCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.magicArmorCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ironBootsCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictoboxCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tingleBottleCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swordCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leafCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.boomerangCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spoilsBagCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grapplingHookCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).EndInit();
+            this.itemsPanel.PerformLayout();
             this.memfilesPanel.ResumeLayout(false);
+            this.memfilesPanel.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.teleporterPanel.ResumeLayout(false);
             this.teleporterPanel.PerformLayout();
             this.transparentLayer.ResumeLayout(false);
@@ -3305,6 +3518,46 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3408,46 +3661,6 @@ namespace WWHDHacker
         private System.Windows.Forms.Panel itemsManager;
         private System.Windows.Forms.Panel itemsPanel;
         private System.Windows.Forms.ImageList itemsList;
-        private CheckBoxImage telescopeCheck;
-        private CheckBoxImage leafCheck;
-        private CheckBoxImage boomerangCheck;
-        private CheckBoxImage spoilsBagCheck;
-        private CheckBoxImage grapplingHookCheck;
-        private CheckBoxImage windWakerCheck;
-        private CheckBoxImage sailCheck;
-        private CheckBoxImage swordCheck;
-        private CheckBoxImage shieldCheck;
-        private CheckBoxImage bombsCheck;
-        private CheckBoxImage bowCheck;
-        private CheckBoxImage baitBagCheck;
-        private CheckBoxImage magicArmorCheck;
-        private CheckBoxImage ironBootsCheck;
-        private CheckBoxImage pictoboxCheck;
-        private CheckBoxImage tingleBottleCheck;
-        private CheckBoxImage powerBraceletsCheck;
-        private CheckBoxImage skullHammerCheck;
-        private CheckBoxImage hookshotCheck;
-        private CheckBoxImage deliveryBagCheck;
-        private CheckBoxImage noteToMomCheck;
-        private CheckBoxImage moblinsLetterCheck;
-        private CheckBoxImage maggiesLetterCheck;
-        private CheckBoxImage cabanaDeedCheck;
-        private CheckBoxImage heroCharmCheck;
-        private CheckBoxImage songOfPassingCheck;
-        private CheckBoxImage windGodAriaCheck;
-        private CheckBoxImage earthGodLyricCheck;
-        private CheckBoxImage commandMelodyCheck;
-        private CheckBoxImage balladOfGalesCheck;
-        private CheckBoxImage windsRequiemCheck;
-        private CheckBoxImage bottleCheck;
-        private CheckBoxImage nayrusPearlCheck;
-        private CheckBoxImage faroresPearlCheck;
-        private CheckBoxImage dinsPearlCheck;
-        private CheckBoxImage triforceCheck;
-        private CheckBoxImage quiverCheck;
-        private CheckBoxImage bombBagCheck;
-        private CheckBoxImage magicCheck;
-        private CheckBoxImage walletCheck;
         private System.Windows.Forms.Button giveAll;
         private System.Windows.Forms.Timer CheckInv;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -3557,6 +3770,65 @@ namespace WWHDHacker
         private Button giveTunic;
         private Button loadMemfile;
         private Button createMemfile;
+        private GroupBox groupBox13;
+        private GroupBox groupBox12;
+        private ListView fileRep;
+        private ColumnHeader Save;
+        private ListView memfileSelector;
+        private ColumnHeader columnHeader1;
+        private Button loadSF;
+        private Button deleteMemfile;
+        private Button openMemfileFolder;
+        private Button dumpSF;
+        private Button openSFDir;
+        private Label label33;
+        private ComboBox injectGame;
+        private Label SavefileIndicator;
+        private NumericUpDown levitateHeight;
+        private Label label5;
+        private NumericUpDown superswimSpeed;
+        private Label label34;
+        private Button addCustomFavorite;
+        private CheckBoxImage checkBoxImage1;
+        private CheckBoxImage checkBoxImage8;
+        private CheckBoxImage checkBoxImage7;
+        private CheckBoxImage checkBoxImage6;
+        private CheckBoxImage checkBoxImage5;
+        private CheckBoxImage checkBoxImage4;
+        private CheckBoxImage checkBoxImage3;
+        private CheckBoxImage checkBoxImage2;
+        private CheckBoxImage checkBoxImage40;
+        private CheckBoxImage checkBoxImage39;
+        private CheckBoxImage checkBoxImage38;
+        private CheckBoxImage checkBoxImage37;
+        private CheckBoxImage checkBoxImage33;
+        private CheckBoxImage checkBoxImage34;
+        private CheckBoxImage checkBoxImage35;
+        private CheckBoxImage checkBoxImage36;
+        private CheckBoxImage checkBoxImage25;
+        private CheckBoxImage checkBoxImage26;
+        private CheckBoxImage checkBoxImage27;
+        private CheckBoxImage checkBoxImage28;
+        private CheckBoxImage checkBoxImage29;
+        private CheckBoxImage checkBoxImage30;
+        private CheckBoxImage checkBoxImage31;
+        private CheckBoxImage checkBoxImage32;
+        private CheckBoxImage checkBoxImage17;
+        private CheckBoxImage checkBoxImage18;
+        private CheckBoxImage checkBoxImage19;
+        private CheckBoxImage checkBoxImage20;
+        private CheckBoxImage checkBoxImage21;
+        private CheckBoxImage checkBoxImage22;
+        private CheckBoxImage checkBoxImage23;
+        private CheckBoxImage checkBoxImage24;
+        private CheckBoxImage checkBoxImage9;
+        private CheckBoxImage checkBoxImage10;
+        private CheckBoxImage checkBoxImage11;
+        private CheckBoxImage checkBoxImage12;
+        private CheckBoxImage checkBoxImage13;
+        private CheckBoxImage checkBoxImage14;
+        private CheckBoxImage checkBoxImage15;
+        private CheckBoxImage checkBoxImage16;
     }
 }
 

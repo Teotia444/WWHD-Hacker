@@ -246,9 +246,9 @@ namespace WWHDHacker
         public static Item shop_guru_statue = Item.Instance(Slots.mail_bag_1_slot, 0x97, "(Delivery Item) Shop Guru Statue", ItemEnum.NotSlot);
         public static Item father_letter = Item.Instance(Slots.mail_bag_1_slot, 0x98, "(Delivery Item) Father's Letter", ItemEnum.NotSlot);
         public static Item note_to_mom = Item.Instance(Slots.mail_bag_1_slot, 0x99, "NoteToMom", ItemEnum.NoteToMom);
-        public static Item maggie_letter = Item.Instance(Slots.mail_bag_1_slot, 0x9a, "MaggiesLetter", ItemEnum.MaggiesLetter);
-        public static Item moblin_letter = Item.Instance(Slots.mail_bag_1_slot, 0x9b, "MoblinsLetter", ItemEnum.MoblinsLetter);
-        public static Item cabana_deed = Item.Instance(Slots.mail_bag_1_slot, 0x9c, "CabanaDeed", ItemEnum.CabanaDeed);
+        public static Item maggie_letter = Item.Instance(Slots.mail_bag_2_slot, 0x9a, "MaggiesLetter", ItemEnum.MaggiesLetter);
+        public static Item moblin_letter = Item.Instance(Slots.mail_bag_3_slot, 0x9b, "MoblinsLetter", ItemEnum.MoblinsLetter);
+        public static Item cabana_deed = Item.Instance(Slots.mail_bag_4_slot, 0x9c, "CabanaDeed", ItemEnum.CabanaDeed);
         public static Item complimentary_id = Item.Instance(Slots.mail_bag_1_slot, 0x9d, "(Delivery Item) Complimentary Id", ItemEnum.NotSlot);
         public static Item fill_up_coupon = Item.Instance(Slots.mail_bag_1_slot, 0x9e, "(Delivery Item) Fill Up Coupon", ItemEnum.NotSlot);
 

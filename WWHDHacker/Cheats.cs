@@ -160,7 +160,7 @@ namespace WWHDHacker
             float speedToApply = initialSpeed;
             bool flag = speedToApply < 0f;
             
-            speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + 500f) : ((speedToApply < -50f && flag) ? (speedToApply - 500f) : ((!(speedToApply < 50f) || flag) ? (speedToApply - (convert ? 1 : -1) * 100f) : (speedToApply + (convert ? 1 : -1) * 100f)));
+            speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + value) : ((speedToApply < -50f && flag) ? (speedToApply - value) : ((!(speedToApply < 50f) || flag) ? (speedToApply - (convert ? 1 : -1) * 100f) : (speedToApply + (convert ? 1 : -1) * 100f)));
             tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, Form1.FloatToHex(speedToApply));
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 900);
             if (display) tcpGecko.DisplayText("[Macros] Superswim", 255, 153, 0, 255);
