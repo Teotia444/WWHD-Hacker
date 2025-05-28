@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,16 +13,15 @@ using TCPGeckoAromaLibrary;
 using WWHDHacker.Properties;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization;
-using YamlDotNet.Core;
-using System.Runtime.CompilerServices;
-using YamlDotNet.Core.Tokens;
-using System.Configuration;
-using static System.Net.Mime.MediaTypeNames;
+using Octokit;
+using System.Threading.Tasks;
 
 namespace WWHDHacker
 {
     public partial class Form1: Form
     {
+        static Version local = new Version("1.0.0");
+
         Dictionary<string, string> yamlMap;
         float storedLinkX;
         float storedLinkY;
@@ -83,11 +81,14 @@ namespace WWHDHacker
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .Build();
+
+            Task.Run(CheckGitHubNewerVersion);
             
 
             Directory.CreateDirectory(settingsDir);
             Directory.CreateDirectory(settingsDir + "\\Memfiles");
             Directory.CreateDirectory(settingsDir + "\\Savefiles");
+
             if (!File.Exists(settingsDir + "\\Config.json"))
             {
                 Dictionary<string, JsonInput> toadd = new Dictionary<string, JsonInput>()
@@ -110,6 +111,7 @@ namespace WWHDHacker
                 File.WriteAllText(settingsDir + "\\Config.json", json);
                 
             }
+            
             config = JsonConvert.DeserializeObject<Dictionary<string, JsonInput>>(File.ReadAllText(settingsDir + "\\Config.json"));
 
             if (Properties.Settings.Default.favorites == null) Properties.Settings.Default.favorites = new List<string>();
@@ -609,6 +611,17 @@ namespace WWHDHacker
         #region Misc features
 
         #region Checkboxes
+
+        private void levitateHeight_ValueChanged(object sender, EventArgs e)
+        {
+            config["levitate"].value = (float)levitateHeight.Value;
+        }
+
+        private void superswimSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            config["superswim"].value = (float)superswimSpeed.Value;
+        }
+
         private void warningRuns_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.warningRuns = warningRuns.Checked;
@@ -996,7 +1009,190 @@ namespace WWHDHacker
         }
         #endregion
 
+        #region Memfiles
+
+        private void createMemfile_Click(object sender, EventArgs e)
+        {
+            if (memfileSelector.SelectedIndices.Contains(0))
+            {
+                tempMemfile = Memfile.Create(tcpGecko);
+                ftDate = DateTime.Now;
+                SavefileIndicator.Text = "Memfile saved on temporary slot!";
+                favoriteText = true;
+                return;
+            }
+            string name = Prompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
+            if (name != "")
+            {
+                Memfile memfile = Memfile.Create(tcpGecko);
+                string json = JsonConvert.SerializeObject(memfile, Formatting.Indented);
+                File.WriteAllText(settingsDir + "\\Memfiles\\" + name + ".json", json);
+                ftDate = DateTime.Now;
+                SavefileIndicator.Text = "Succesfully created the memfile!";
+                favoriteText = true;
+            }
+
+        }
+
+        private void loadMemfile_Click(object sender, EventArgs e)
+        {
+            if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
+            {
+                tempMemfile.Load(tcpGecko);
+            }
+            else
+            {
+                availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
+            }
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully loaded the memfile!";
+            favoriteText = true;
+        }
+
+        void MemfileRefresh(object sender, FileSystemEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(memfileSelector.Items.Clear));
+            this.Invoke(new MethodInvoker(memfileSelector.SelectedIndices.Clear));
+            this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add("(Temporary memfile)")));
+            availableMemfiles.Clear();
+            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Memfiles");
+
+            foreach (var file in d.GetFiles("*.json"))
+            {
+                if (File.Exists(file.FullName))
+                {
+                    using (StreamReader fi = File.OpenText(file.FullName))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        Memfile get = (Memfile)serializer.Deserialize(fi, typeof(Memfile));
+                        availableMemfiles.Add(get);
+                        this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add(file.Name.Replace(".json", ""))));
+                    }
+                }
+
+            }
+            Invoke(new EventHandler((s, ee) => memfileSelector.SelectedIndices.Add(0)));
+        }
+
+        void SavefileRefresh(object sender, FileSystemEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(fileRep.Items.Clear));
+            this.Invoke(new MethodInvoker(fileRep.SelectedIndices.Clear));
+            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Savefiles");
+
+            foreach (var dir in d.GetDirectories())
+            {
+                if (Directory.Exists(dir.FullName))
+                {
+                    this.Invoke(new EventHandler((s, ee) => fileRep.Items.Add(dir.Name)));
+                }
+
+            }
+
+        }
+
+        private void deleteMemfile_Click(object sender, EventArgs e)
+        {
+            File.Delete(settingsDir + "\\Memfiles\\" + memfileSelector.SelectedItems[0].Text + ".json");
+        }
+
+        private void openMemfileFolder_Click(object sender, EventArgs e)
+        {
+            Process.Start(settingsDir + "\\Memfiles\\");
+        }
+
+        private void openSFDir_Click(object sender, EventArgs e)
+        {
+            Process.Start(settingsDir + "\\Savefiles\\");
+        }
+
+        private void loadSF_Click(object sender, EventArgs e)
+        {
+
+            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
+            {
+                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
+                return;
+            }
+            else if (Memfile.ListFolders("fs\\vol\\content\\Cafe", 2000) != "DirNotFound")
+            {
+                MessageBox.Show("Return to the home menu before injecting a save file!", "Alert");
+                return;
+            }
+
+            if (fileRep.Items.Count == 0 || fileRep.SelectedItems.Count == 0 || injectGame.SelectedIndex == -1) return;
+
+            string filePath = "storage_mlc\\usr\\save\\00050000\\";
+            if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
+            else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
+            else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
+
+
+
+            if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
+            {
+                MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
+                return;
+            }
+
+            filePath += "user\\80000001\\cking.sav";
+
+            Memfile.Upload(filePath, settingsDir + "\\Savefiles\\" + fileRep.Items[fileRep.SelectedIndices[0]].Text + "\\cking.sav");
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully injected the save!";
+            favoriteText = true;
+
+        }
+
+        private void dumpSF_Click(object sender, EventArgs e)
+        {
+
+            string filePath = "storage_mlc\\usr\\save\\00050000\\";
+
+            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
+            {
+                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
+                return;
+            }
+
+            if (Memfile.ListFolders("fs\\vol\\save\\80000001", 2000) != "DirNotFound")
+            {
+                filePath = "fs\\vol\\save\\80000001\\cking.sav";
+            }
+            else
+            {
+                if (injectGame.SelectedIndex == -1) return;
+                if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
+                else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
+                else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
+
+                if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
+                {
+                    MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
+                    return;
+                }
+                filePath += "user\\80000001\\cking.sav";
+            }
+            string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
+
+            Directory.CreateDirectory(settingsDir + "\\Savefiles\\" + name);
+            FileStream fs = File.Create(settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+            fs.Close();
+            Memfile.Download(filePath, settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+            ftDate = DateTime.Now;
+            SavefileIndicator.Text = "Succesfully dumped the save!";
+            favoriteText = true;
+        }
+
+
+        #endregion
+
         #region Teleporter
+
+        private void addCustomFavorite_Click(object sender, EventArgs e)
+        {
+            //Later
+        }
 
         private void teleporterMap_Click(object sender, EventArgs e)
         {
@@ -1028,7 +1224,7 @@ namespace WWHDHacker
                 {
                     if (key.StartsWith(Stages.islands[mapIndex - 1].usingName) || key.StartsWith("Inside " + Stages.islands[mapIndex - 1].usingName))
                     {
-                        Label element = new Label();
+                        System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                         element.Text = key;
                         element.MinimumSize = new Size(200, 5);
                         element.MaximumSize = new Size(200, 20);
@@ -1041,7 +1237,7 @@ namespace WWHDHacker
                         case 1: // drc
                             if (key.Contains("Dragon Roost Cavern"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1052,7 +1248,7 @@ namespace WWHDHacker
                         case 2: // fw
                             if (key.Contains("Forbidden Woods"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1063,7 +1259,7 @@ namespace WWHDHacker
                         case 3: // totg
                             if (key.Contains("Tower of Gods"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1077,7 +1273,7 @@ namespace WWHDHacker
                         case 5: // et
                             if (key.Contains("Earth Temple"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1088,7 +1284,7 @@ namespace WWHDHacker
                         case 6: // wt
                             if (key.Contains("Wind Temple"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1099,7 +1295,7 @@ namespace WWHDHacker
                         case 7: // hyrule
                             if (key.Contains("Hyrule") || key.StartsWith("Ganon"))
                             {
-                                Label element = new Label();
+                                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
                                 element.MinimumSize = new Size(200, 5);
                                 element.MaximumSize = new Size(200, 20);
@@ -1116,7 +1312,7 @@ namespace WWHDHacker
         private void ListTeleportHandler(object sender, EventArgs e)
         {
             MouseEventArgs me = (MouseEventArgs)e;
-            Label a = (Label)sender;
+            System.Windows.Forms.Label a = (System.Windows.Forms.Label)sender;
 
             string stage = yamlMap[a.Text];
             if (me.Button == MouseButtons.Left)
@@ -1189,7 +1385,7 @@ namespace WWHDHacker
             {
                 if (key.Contains("Hyrule") || key.StartsWith("Ganon"))
                 {
-                    Label element = new Label();
+                    System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                     element.Text = key;
                     element.MinimumSize = new Size(200, 5);
                     element.MaximumSize = new Size(200, 15);
@@ -1206,7 +1402,7 @@ namespace WWHDHacker
             subAreas.Controls.Clear();
             foreach (string key in Properties.Settings.Default.favorites)
             {
-                Label element = new Label();
+                System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                 element.Text = key;
                 element.MinimumSize = new Size(200, 5);
                 element.MaximumSize = new Size(200, 15);
@@ -1629,199 +1825,31 @@ namespace WWHDHacker
             }
         }
 
+        private static async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        {
+            GitHubClient client = new GitHubClient(new ProductHeaderValue("WWHD-Hacker"));
+            IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("Teotia444", "WWHD-Hacker");
 
+            Version latestGitHubVersion = new Version(releases[0].TagName);
 
-
-
+            int versionComparison = local.CompareTo(latestGitHubVersion);
+            if (versionComparison < 0)
+            {
+                DialogResult yesno = MessageBox.Show("There is a newer version available on github. Would you like to download it?", "Update", MessageBoxButtons.YesNo);
+                if (yesno == DialogResult.Yes)
+                {
+                    Process.Start("https://github.com/Teotia444/WWHD-Hacker/releases/latest");
+                }
+            }
+        }
         #endregion
 
-        private void createMemfile_Click(object sender, EventArgs e)
-        {
-            if (memfileSelector.SelectedIndices.Contains(0))
-            {
-                tempMemfile = Memfile.Create(tcpGecko);
-                ftDate = DateTime.Now;
-                SavefileIndicator.Text = "Memfile saved on temporary slot!";
-                favoriteText = true;
-                return;
-            }
-            string name = Prompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
-            if(name != "")
-            {
-                Memfile memfile = Memfile.Create(tcpGecko);
-                string json = JsonConvert.SerializeObject(memfile, Formatting.Indented);
-                File.WriteAllText(settingsDir + "\\Memfiles\\" + name + ".json", json);
-                ftDate = DateTime.Now;
-                SavefileIndicator.Text = "Succesfully created the memfile!";
-                favoriteText = true;
-            }
-            
-        }
 
-        private void loadMemfile_Click(object sender, EventArgs e)
-        {
-            if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
-            {
-                tempMemfile.Load(tcpGecko);
-            }
-            else
-            {
-                availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
-            }
-            ftDate = DateTime.Now;
-            SavefileIndicator.Text = "Succesfully loaded the memfile!";
-            favoriteText = true;
-        }
 
-        void MemfileRefresh(object sender, FileSystemEventArgs e)
-        {
-            this.Invoke(new MethodInvoker(memfileSelector.Items.Clear));
-            this.Invoke(new MethodInvoker(memfileSelector.SelectedIndices.Clear));
-            this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add("(Temporary memfile)")));
-            availableMemfiles.Clear();
-            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Memfiles");
 
-            foreach (var file in d.GetFiles("*.json"))
-            {
-                if (File.Exists(file.FullName))
-                {
-                    using (StreamReader fi = File.OpenText(file.FullName))
-                    {
-                        JsonSerializer serializer = new JsonSerializer();
-                        Memfile get = (Memfile)serializer.Deserialize(fi, typeof(Memfile));
-                        availableMemfiles.Add(get);
-                        this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add(file.Name.Replace(".json", ""))));
-                    }
-                }
-                
-            }
-            Invoke(new EventHandler((s, ee) => memfileSelector.SelectedIndices.Add(0)));
-        }
 
-        void SavefileRefresh(object sender, FileSystemEventArgs e)
-        {
-            this.Invoke(new MethodInvoker(fileRep.Items.Clear));
-            this.Invoke(new MethodInvoker(fileRep.SelectedIndices.Clear));
-            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Savefiles");
 
-            foreach (var dir in d.GetDirectories())
-            {
-                if (Directory.Exists(dir.FullName))
-                {
-                    this.Invoke(new EventHandler((s, ee) => fileRep.Items.Add(dir.Name)));
-                }
 
-            }
-
-        }
-
-        private void deleteMemfile_Click(object sender, EventArgs e)
-        {
-            File.Delete(settingsDir + "\\Memfiles\\" + memfileSelector.SelectedItems[0].Text + ".json");
-        }
-
-        private void openMemfileFolder_Click(object sender, EventArgs e)
-        {
-            Process.Start(settingsDir + "\\Memfiles\\");
-        }
-
-        private void openSFDir_Click(object sender, EventArgs e)
-        {
-            Process.Start(settingsDir + "\\Savefiles\\");
-        }
-
-        private void loadSF_Click(object sender, EventArgs e)
-        {
-
-            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
-            {
-                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
-                return;
-            }
-            else if (Memfile.ListFolders("fs\\vol\\content\\Cafe", 2000) != "DirNotFound")
-            {
-                MessageBox.Show("Return to the home menu before injecting a save file!", "Alert");
-                return;
-            }
-
-            if (fileRep.Items.Count == 0 || fileRep.SelectedItems.Count == 0 || injectGame.SelectedIndex == -1) return;
-
-            string filePath = "storage_mlc\\usr\\save\\00050000\\";
-            if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
-            else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
-            else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
-
-            
-
-            if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
-            {
-                MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
-                return;
-            }
-
-            filePath += "user\\80000001\\cking.sav";
-
-            Memfile.Upload(filePath, settingsDir + "\\Savefiles\\" + fileRep.Items[fileRep.SelectedIndices[0]].Text + "\\cking.sav");
-            ftDate = DateTime.Now;
-            SavefileIndicator.Text = "Succesfully injected the save!";
-            favoriteText = true;
-
-        }
-
-        private void dumpSF_Click(object sender, EventArgs e)
-        {
-            
-            string filePath = "storage_mlc\\usr\\save\\00050000\\";
-
-            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
-            {
-                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
-                return;
-            }
-
-            if (Memfile.ListFolders("fs\\vol\\save\\80000001", 2000) != "DirNotFound")
-            {
-                filePath = "fs\\vol\\save\\80000001\\cking.sav";
-            }
-            else
-            {
-                if (injectGame.SelectedIndex == -1) return;
-                if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
-                else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
-                else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
-
-                if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
-                {
-                    MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
-                    return;
-                }
-                filePath += "user\\80000001\\cking.sav";
-            }
-            string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
-
-            Directory.CreateDirectory(settingsDir + "\\Savefiles\\" + name);
-            FileStream fs = File.Create(settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
-            fs.Close();
-            Memfile.Download(filePath, settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
-            ftDate = DateTime.Now;
-            SavefileIndicator.Text = "Succesfully dumped the save!";
-            favoriteText = true;
-        }
-
-        private void levitateHeight_ValueChanged(object sender, EventArgs e)
-        {
-            config["levitate"].value = (float)levitateHeight.Value;
-        }
-
-        private void superswimSpeed_ValueChanged(object sender, EventArgs e)
-        {
-            config["superswim"].value = (float)superswimSpeed.Value;
-        }
-
-        private void addCustomFavorite_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class MemViewerEntry
@@ -1996,6 +2024,7 @@ namespace WWHDHacker
             DoubleClick += (sender, e) => { if (Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
         }
     }
+    
     public static class Prompt
     {
         public static string ShowDialog(string text, string caption)
@@ -2008,13 +2037,13 @@ namespace WWHDHacker
                 Text = caption,
                 StartPosition = FormStartPosition.CenterScreen
             };
-            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            System.Windows.Forms.Label textSystemLabel = new System.Windows.Forms.Label() { Left = 50, Top = 20, Text = text };
             TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
             Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 70, DialogResult = DialogResult.OK };
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
-            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(textSystemLabel);
             prompt.AcceptButton = confirmation;
 
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";

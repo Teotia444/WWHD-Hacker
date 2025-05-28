@@ -539,7 +539,7 @@ namespace WWHDHacker
                 ftpResponse.Close();
                 ftpRequest = null;
             }
-            catch (WebException ex)
+            catch
             {
                 return;
             }
