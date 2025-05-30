@@ -76,22 +76,6 @@ namespace WWHDHacker
 
     }
 
-    class JsonInput
-    {
-        public bool enabled;
-        public int input;
-        public bool masterkey;
-        public float value;
-        public bool alternative;
-
-        public JsonInput(int input, bool enabled = true, bool masterkey = false, float value = 0f, bool alternative = false)
-        {
-            this.enabled = enabled;
-            this.input = input;
-            this.masterkey = masterkey;
-            this.value = value;
-            this.alternative = alternative;
-        }
-    }
+    
 
 }

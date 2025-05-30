@@ -37,34 +37,12 @@ namespace WWHDHacker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Generic.List<System.Boolean> macros {
-            get {
-                return ((global::System.Collections.Generic.List<System.Boolean>)(this["macros"]));
-            }
-            set {
-                this["macros"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Collections.Generic.List<System.String> favorites {
             get {
                 return ((global::System.Collections.Generic.List<System.String>)(this["favorites"]));
             }
             set {
                 this["favorites"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Generic.List<System.Int32> combos {
-            get {
-                return ((global::System.Collections.Generic.List<System.Int32>)(this["combos"]));
-            }
-            set {
-                this["combos"] = value;
             }
         }
         

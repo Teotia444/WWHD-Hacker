@@ -6,40 +6,24 @@ using System.Threading.Tasks;
 
 namespace WWHDHacker
 {
-    class Stage
+    public class Stage
     {
         public string usingName;
         public string stage;
         public int dungeonId;
         public bool dungeon;
-        public Stage(string usingName, string stage, int dungeonId, bool dungeon = false)
+
+        public int roomId;
+        public int spawnId;
+        public int layer;
+
+        public Stage(string usingName, string stage, int dungeonId, bool dungeon = false, int roomId = 0, int spawnId = 0, int layer = 0xFF)
         {
             this.usingName = usingName;
             this.stage = stage;
             this.dungeonId = dungeonId;
             this.dungeon = dungeon;
-        }
-    }
-
-    class Room
-    {
-        public Stage stage;
-        public int roomId;
-        public Room(Stage stage, int roomId)
-        {
-            this.stage = stage;
             this.roomId = roomId;
-        }
-    }
-
-    class Spawn
-    {
-        public Room room;
-        public int spawnId;
-        public int layer;
-        public Spawn(Room room, int spawnId, int layer)
-        {
-            this.room = room;
             this.spawnId = spawnId;
             this.layer = layer;
         }
@@ -99,11 +83,5 @@ namespace WWHDHacker
             new Stage("Five-Star Isles", "sea", 0),
             new Stage("Hyrule", "Hyroom", 7)
         };
-
-
     }
-
-
-
-
 }

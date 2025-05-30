@@ -423,7 +423,7 @@ namespace WWHDHacker
             try
             {
                 /* Create an FTP Request */
-                FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + Properties.Settings.Default.wiiuIP + ":21/" + remoteFile);
+                FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + ConfigObject.config.wiiuIP + ":21/" + remoteFile);
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential("anonymous", "whatever");
                 /* When in doubt, use these options */
@@ -461,7 +461,7 @@ namespace WWHDHacker
         public static string ListFolders(string path, int timeout)
         {
             // Get the object used to communicate with the server.
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + Properties.Settings.Default.wiiuIP + ":21/" + path);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + ConfigObject.config.wiiuIP + ":21/" + path);
             request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
             request.Timeout = timeout;
             // This example assumes the FTP site uses anonymous logon.
@@ -498,7 +498,7 @@ namespace WWHDHacker
         {
             try { 
             /* Create an FTP Request */
-                FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + Properties.Settings.Default.wiiuIP + ":21/" + remoteFile);
+                FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create("ftp://" + ConfigObject.config.wiiuIP + ":21/" + remoteFile);
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential("anonymous", "whatever");
                 /* When in doubt, use these options */

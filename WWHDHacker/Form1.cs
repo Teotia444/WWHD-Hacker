@@ -15,6 +15,9 @@ using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization;
 using Octokit;
 using System.Threading.Tasks;
+using System.Security.AccessControl;
+using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.CompilerServices;
 
 namespace WWHDHacker
 {
@@ -22,7 +25,8 @@ namespace WWHDHacker
     {
         static Version local = new Version("1.0.0");
 
-        Dictionary<string, string> yamlMap;
+        public static Dictionary<string, string> yamlMap;
+        
         float storedLinkX;
         float storedLinkY;
         float storedLinkZ;
@@ -54,7 +58,7 @@ namespace WWHDHacker
         public DateTime ftDate;
 
         public string settingsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WWHDHacker");
-        Dictionary<string, JsonInput> config;
+        
 
         List<MemViewerEntry> entries = Enumerable.Range(1, 16).Select(_ => new MemViewerEntry(0, 0, 0, 0, 0)).ToList();
 
@@ -75,12 +79,12 @@ namespace WWHDHacker
 
         public Form1()
         {
-            
             InitializeComponent();
             string yml = Encoding.ASCII.GetString(Resources.aroma);
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .Build();
+            yamlMap = deserializer.Deserialize<Dictionary<string, string>>(yml);
 
             Task.Run(CheckGitHubNewerVersion);
             
@@ -91,62 +95,52 @@ namespace WWHDHacker
 
             if (!File.Exists(settingsDir + "\\Config.json"))
             {
-                Dictionary<string, JsonInput> toadd = new Dictionary<string, JsonInput>()
-                {
-                    { "levitate", new JsonInput((int)InputEnum.L, value:64f)},
-                    { "doorCancel", new JsonInput((int)InputEnum.DpadLeft)},
-                    { "superswim", new JsonInput((int)InputEnum.DpadRight, value:500f)},
-                    { "storage", new JsonInput((int)InputEnum.DpadDown)},
-                    { "masterkey", new JsonInput((int)InputEnum.ZR)},
-                    { "storePosition", new JsonInput((int)InputEnum.DpadRight, masterkey:true)},
-                    { "restorePosition", new JsonInput((int)InputEnum.DpadLeft, masterkey:true)},
-                    { "reloadRoom", new JsonInput((int)InputEnum.DpadDown, masterkey:true)},
-                    { "refillMagic", new JsonInput((int)InputEnum.R, masterkey:true)},
-                    { "refillHealth", new JsonInput((int)InputEnum.L, masterkey:true)},
-                    { "refillAmmo", new JsonInput((int)InputEnum.DpadUp, masterkey:true)},
-                    { "windDirection", new JsonInput((int)InputEnum.L3)},
-                };
-
-                string json = JsonConvert.SerializeObject(toadd, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(ConfigObject.Default(), Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json);
-                
             }
+
             
-            config = JsonConvert.DeserializeObject<Dictionary<string, JsonInput>>(File.ReadAllText(settingsDir + "\\Config.json"));
+            ConfigObject.config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText(settingsDir + "\\Config.json"));
+            ConfigObject.config.FillConfig();
 
-            if (Properties.Settings.Default.favorites == null) Properties.Settings.Default.favorites = new List<string>();
 
-            yamlMap = deserializer.Deserialize<Dictionary<string, string>>(yml);
+            if (ConfigObject.config.favorites == null) ConfigObject.config.favorites = new Dictionary<string, Stage>();
 
-            lToLevitateCheckbox.Checked = config["levitate"].enabled;
-            doorCancelCheckbox.Checked = config["doorCancel"].enabled;
-            superswimCheckbox.Checked = config["superswim"].enabled;
-            storageCheckbox.Checked = config["storage"].enabled;
-            masterkey.Checked = config["masterkey"].enabled;
-            storeRestoreCheckbox.Checked = config["storePosition"].enabled;
-            reloadRoomCheckbox.Checked = config["reloadRoom"].enabled;
-            refillMagicCheckbox.Checked = config["refillMagic"].enabled;
-            refillHealthCheckbox.Checked = config["refillHealth"].enabled;
-            refillAmmoCheckbox.Checked = config["refillAmmo"].enabled;
-            changeWindCheckbox.Checked = config["windDirection"].enabled;
-            alternativeDpadRight.Checked = config["superswim"].alternative;
-            alternativeMemfiles.Checked = config["storePosition"].alternative;
-
-            levitateMK.Checked = config["levitate"].masterkey;
-            doorCancelMK.Checked = config["doorCancel"].masterkey;
-            superswimMK.Checked = config["superswim"].masterkey;
-            storageMK.Checked = config["storage"].masterkey;
             
-            saveReloadMK.Checked = config["storePosition"].masterkey;
-            reloadRoomMK.Checked = config["reloadRoom"].masterkey;
-            refillHealthMK.Checked = config["refillMagic"].masterkey;
-            refillMagicMK.Checked = config["refillHealth"].masterkey;
-            refillAmmoMK.Checked = config["refillAmmo"].masterkey;
-            windDirectionMK.Checked = config["windDirection"].masterkey;
 
-            levitateHeight.Value = (decimal)config["levitate"].value;
-            superswimSpeed.Value = (decimal)config["superswim"].value;
+            #region Config checks
+            lToLevitateCheckbox.Checked = ConfigObject.config.macros["levitate"].enabled;
+            doorCancelCheckbox.Checked = ConfigObject.config.macros["doorCancel"].enabled;
+            superswimCheckbox.Checked = ConfigObject.config.macros["superswim"].enabled;
+            storageCheckbox.Checked = ConfigObject.config.macros["storage"].enabled;
+            masterkey.Checked = ConfigObject.config.macros["masterkey"].enabled;
+            storeRestoreCheckbox.Checked = ConfigObject.config.macros["storePosition"].enabled;
+            reloadRoomCheckbox.Checked = ConfigObject.config.macros["reloadRoom"].enabled;
+            refillMagicCheckbox.Checked = ConfigObject.config.macros["refillMagic"].enabled;
+            refillHealthCheckbox.Checked = ConfigObject.config.macros["refillHealth"].enabled;
+            refillAmmoCheckbox.Checked = ConfigObject.config.macros["refillAmmo"].enabled;
+            changeWindCheckbox.Checked = ConfigObject.config.macros["windDirection"].enabled;
+            alternativeDpadRight.Checked = ConfigObject.config.macros["superswim"].alternative;
+            alternativeMemfiles.Checked = ConfigObject.config.macros["storePosition"].alternative;
 
+            levitateMK.Checked = ConfigObject.config.macros["levitate"].masterkey;
+            doorCancelMK.Checked = ConfigObject.config.macros["doorCancel"].masterkey;
+            superswimMK.Checked = ConfigObject.config.macros["superswim"].masterkey;
+            storageMK.Checked = ConfigObject.config.macros["storage"].masterkey;
+            
+            saveReloadMK.Checked = ConfigObject.config.macros["storePosition"].masterkey;
+            reloadRoomMK.Checked = ConfigObject.config.macros["reloadRoom"].masterkey;
+            refillHealthMK.Checked = ConfigObject.config.macros["refillMagic"].masterkey;
+            refillMagicMK.Checked = ConfigObject.config.macros["refillHealth"].masterkey;
+            refillAmmoMK.Checked = ConfigObject.config.macros["refillAmmo"].masterkey;
+            windDirectionMK.Checked = ConfigObject.config.macros["windDirection"].masterkey;
+
+            levitateHeight.Value = (decimal)ConfigObject.config.macros["levitate"].value;
+            superswimSpeed.Value = (decimal)ConfigObject.config.macros["superswim"].value;
+
+            #endregion
+
+            #region FSWatcher
             memfilesWatcher = new FileSystemWatcher(settingsDir + "\\Memfiles");
 
             memfilesWatcher.NotifyFilter = NotifyFilters.Attributes
@@ -184,11 +178,10 @@ namespace WWHDHacker
             savefilesWatcher.Renamed += SavefileRefresh;
 
             savefilesWatcher.EnableRaisingEvents = true;
-            injectGame.SelectedIndex = 0;
-
+            #endregion
+            
             availableMemfiles = new List<Memfile>();
             
-
             foreach (GroupBox gb in miscFeaturesPanel.Controls.OfType<GroupBox>())
             {
                 foreach (ComboBox item in gb.Controls.OfType<ComboBox>())
@@ -197,18 +190,18 @@ namespace WWHDHacker
                     {
                         item.Items.Add(e);
                     }
-                    item.SelectedIndex = config[item.Name.Substring(0, item.Name.LastIndexOf("Combo"))].input;
+                    item.SelectedIndex = ConfigObject.config.macros[item.Name.Substring(0, item.Name.LastIndexOf("Combo"))].input;
                 }
             }
 
-            ipTextBox.Text = Properties.Settings.Default.wiiuIP;
 
 
-            warningRuns.Checked = Properties.Settings.Default.warningRuns;
-            displayMacros.Checked = Properties.Settings.Default.displayMacros;
+            ipTextBox.Text = ConfigObject.config.wiiuIP;
+            warningRuns.Checked = ConfigObject.config.warningBeforeRuns;
+            displayMacros.Checked = ConfigObject.config.displayMacros;
 
             FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); }; 
-                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(ConfigObject.config, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json); 
 
                 System.Windows.Forms.Application.Exit(); 
@@ -222,7 +215,7 @@ namespace WWHDHacker
             memfilesPanel.Visible = false;
             teleporterPanel.Visible = false;
 
-            foreach (Control item in this.Controls)
+            foreach (Control item in Controls)
             {
                 if (item.GetType() == typeof(Panel))
                 {
@@ -243,12 +236,13 @@ namespace WWHDHacker
         #region Top menu
         private void connect_Click(object sender, EventArgs e)
         {
+            
             if (connect.Text == "Connect")
             {
                 MemfileRefresh(null, null);
                 SavefileRefresh(null, null);
-                Properties.Settings.Default.wiiuIP = ipTextBox.Text;
-                Properties.Settings.Default.Save();
+                ConfigObject.config.wiiuIP = ipTextBox.Text;
+                
                 if (!tcpGecko.Connect(ipTextBox.Text)) { 
                     return; 
                 }
@@ -614,234 +608,233 @@ namespace WWHDHacker
 
         private void levitateHeight_ValueChanged(object sender, EventArgs e)
         {
-            config["levitate"].value = (float)levitateHeight.Value;
+            ConfigObject.config.macros["levitate"].value = (float)levitateHeight.Value;
         }
 
         private void superswimSpeed_ValueChanged(object sender, EventArgs e)
         {
-            config["superswim"].value = (float)superswimSpeed.Value;
+            ConfigObject.config.macros["superswim"].value = (float)superswimSpeed.Value;
         }
 
         private void warningRuns_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.warningRuns = warningRuns.Checked;
-            Properties.Settings.Default.Save();
+            ConfigObject.config.warningBeforeRuns = warningRuns.Checked;
         }
 
         private void displayMacros_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.displayMacros = displayMacros.Checked;
-            Properties.Settings.Default.Save();
+            ConfigObject.config.displayMacros = displayMacros.Checked;
+            
         }
 
         private void lToLevitateCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["levitate"].enabled = lToLevitateCheckbox.Enabled;
+            ConfigObject.config.macros["levitate"].enabled = lToLevitateCheckbox.Enabled;
         }
 
         private void doorCancelCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["doorCancel"].enabled = doorCancelCheckbox.Checked;
+            ConfigObject.config.macros["doorCancel"].enabled = doorCancelCheckbox.Checked;
             
         }
 
         private void superswimCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["superswim"].enabled = superswimCheckbox.Checked;
+            ConfigObject.config.macros["superswim"].enabled = superswimCheckbox.Checked;
             
         }
         private void storageCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["storage"].enabled = storageCheckbox.Checked;
+            ConfigObject.config.macros["storage"].enabled = storageCheckbox.Checked;
             
         }
 
         private void masterkey_CheckedChanged(object sender, EventArgs e)
         {
-            config["masterkey"].enabled = masterkey.Checked;
+            ConfigObject.config.macros["masterkey"].enabled = masterkey.Checked;
             
         }
 
         private void storeRestoreCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["storePosition"].enabled = storeRestoreCheckbox.Checked;
-            config["restorePosition"].enabled = storeRestoreCheckbox.Checked;
+            ConfigObject.config.macros["storePosition"].enabled = storeRestoreCheckbox.Checked;
+            ConfigObject.config.macros["restorePosition"].enabled = storeRestoreCheckbox.Checked;
             
         }
 
         private void reloadRoomCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["reloadRoom"].enabled = reloadRoomCheckbox.Checked;
+            ConfigObject.config.macros["reloadRoom"].enabled = reloadRoomCheckbox.Checked;
             
         }
 
         private void refillMagicCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillMagic"].enabled = refillMagicCheckbox.Checked;
+            ConfigObject.config.macros["refillMagic"].enabled = refillMagicCheckbox.Checked;
             
         }
 
         private void refillHealthCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillHealth"].enabled = refillHealthCheckbox.Checked;
+            ConfigObject.config.macros["refillHealth"].enabled = refillHealthCheckbox.Checked;
             
         }
 
         private void refillAmmoCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillAmmo"].enabled = refillAmmoCheckbox.Checked;
+            ConfigObject.config.macros["refillAmmo"].enabled = refillAmmoCheckbox.Checked;
             
         }
 
         private void changeWindCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            config["windDirection"].enabled = changeWindCheckbox.Checked;
+            ConfigObject.config.macros["windDirection"].enabled = changeWindCheckbox.Checked;
             
         }
 
         private void alternativeDpadRight_CheckedChanged(object sender, EventArgs e)
         {
-            config["superswim"].alternative = alternativeDpadRight.Checked;
+            ConfigObject.config.macros["superswim"].alternative = alternativeDpadRight.Checked;
             
         }
 
         private void alternativeMemfiles_CheckedChanged(object sender, EventArgs e)
         {
-            config["storePosition"].alternative = alternativeMemfiles.Checked;
-            config["restorePosition"].alternative = alternativeMemfiles.Checked;
+            ConfigObject.config.macros["storePosition"].alternative = alternativeMemfiles.Checked;
+            ConfigObject.config.macros["restorePosition"].alternative = alternativeMemfiles.Checked;
             
         }
 
         private void levitateMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["levitate"].masterkey = levitateMK.Checked;
+            ConfigObject.config.macros["levitate"].masterkey = levitateMK.Checked;
         }
 
         private void doorCancelMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["doorCancel"].masterkey = doorCancelMK.Checked;
+            ConfigObject.config.macros["doorCancel"].masterkey = doorCancelMK.Checked;
         }
 
         private void superswimMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["superswim"].masterkey = superswimMK.Checked;
+            ConfigObject.config.macros["superswim"].masterkey = superswimMK.Checked;
         }
 
         private void storageMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["storage"].masterkey = storageMK.Checked;
+            ConfigObject.config.macros["storage"].masterkey = storageMK.Checked;
         }
 
         private void windDirectionMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["windDirection"].masterkey = windDirectionMK.Checked;
+            ConfigObject.config.macros["windDirection"].masterkey = windDirectionMK.Checked;
         }
 
         private void saveReloadMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["storePosition"].masterkey = saveReloadMK.Checked;
-            config["restorePosition"].masterkey = saveReloadMK.Checked;
+            ConfigObject.config.macros["storePosition"].masterkey = saveReloadMK.Checked;
+            ConfigObject.config.macros["restorePosition"].masterkey = saveReloadMK.Checked;
         }
 
         private void reloadRoomMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["reloadRoom"].masterkey = reloadRoomMK.Checked;
+            ConfigObject.config.macros["reloadRoom"].masterkey = reloadRoomMK.Checked;
         }
 
         private void refillHealthMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillHealth"].masterkey = refillHealthMK.Checked;
+            ConfigObject.config.macros["refillHealth"].masterkey = refillHealthMK.Checked;
         }
 
         private void refillMagicMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillMagic"].masterkey = refillMagicMK.Checked;
+            ConfigObject.config.macros["refillMagic"].masterkey = refillMagicMK.Checked;
         }
 
         private void refillAmmoMK_CheckedChanged(object sender, EventArgs e)
         {
-            config["refillAmmo"].masterkey = refillAmmoMK.Checked;
+            ConfigObject.config.macros["refillAmmo"].masterkey = refillAmmoMK.Checked;
         }
         #endregion
 
         #region Combos
         private void levitateCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["levitate"].input = levitateCombo.SelectedIndex;
-            config["levitate"].masterkey = levitateMK.Checked;
+            ConfigObject.config.macros["levitate"].input = levitateCombo.SelectedIndex;
+            ConfigObject.config.macros["levitate"].masterkey = levitateMK.Checked;
         }
 
         private void doorCancelCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["doorCancel"].input = doorCancelCombo.SelectedIndex;
-            config["doorCancel"].masterkey = doorCancelMK.Checked;
+            ConfigObject.config.macros["doorCancel"].input = doorCancelCombo.SelectedIndex;
+            ConfigObject.config.macros["doorCancel"].masterkey = doorCancelMK.Checked;
         }
 
         private void superspeedCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["superswim"].input = superswimCombo.SelectedIndex;
-            config["superswim"].masterkey = superswimMK.Checked;
+            ConfigObject.config.macros["superswim"].input = superswimCombo.SelectedIndex;
+            ConfigObject.config.macros["superswim"].masterkey = superswimMK.Checked;
             
         }
 
         private void storageCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["storage"].input = storageCombo.SelectedIndex;
-            config["storage"].masterkey = storageMK.Checked;
+            ConfigObject.config.macros["storage"].input = storageCombo.SelectedIndex;
+            ConfigObject.config.macros["storage"].masterkey = storageMK.Checked;
             
         }
 
         private void windDirectionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["windDirection"].input = windDirectionCombo.SelectedIndex;
-            config["windDirection"].masterkey = windDirectionMK.Checked;
+            ConfigObject.config.macros["windDirection"].input = windDirectionCombo.SelectedIndex;
+            ConfigObject.config.macros["windDirection"].masterkey = windDirectionMK.Checked;
             
         }
 
         private void masterkeyCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["masterkey"].input = masterkeyCombo.SelectedIndex;
+            ConfigObject.config.macros["masterkey"].input = masterkeyCombo.SelectedIndex;
             
         }
 
         private void savePosCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["storePosition"].input = storePositionCombo.SelectedIndex;
-            config["storePosition"].masterkey = saveReloadMK.Checked;
+            ConfigObject.config.macros["storePosition"].input = storePositionCombo.SelectedIndex;
+            ConfigObject.config.macros["storePosition"].masterkey = saveReloadMK.Checked;
             
         }
 
         private void reloadPosCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["restorePosition"].input = restorePositionCombo.SelectedIndex;
-            config["restorePosition"].masterkey = saveReloadMK.Checked;
+            ConfigObject.config.macros["restorePosition"].input = restorePositionCombo.SelectedIndex;
+            ConfigObject.config.macros["restorePosition"].masterkey = saveReloadMK.Checked;
         }
 
         private void reloadRoomCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["reloadRoom"].input = reloadRoomCombo.SelectedIndex;
-            config["reloadRoom"].masterkey = reloadRoomMK.Checked;
+            ConfigObject.config.macros["reloadRoom"].input = reloadRoomCombo.SelectedIndex;
+            ConfigObject.config.macros["reloadRoom"].masterkey = reloadRoomMK.Checked;
             
         }
 
         private void refillHealthCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["refillHealth"].input = refillHealthCombo.SelectedIndex;
-            config["refillHealth"].masterkey = refillHealthMK.Checked;
+            ConfigObject.config.macros["refillHealth"].input = refillHealthCombo.SelectedIndex;
+            ConfigObject.config.macros["refillHealth"].masterkey = refillHealthMK.Checked;
             
         }
 
         private void refillMagicCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["refillMagic"].input = refillMagicCombo.SelectedIndex;
-            config["refillMagic"].masterkey = refillMagicMK.Checked;
+            ConfigObject.config.macros["refillMagic"].input = refillMagicCombo.SelectedIndex;
+            ConfigObject.config.macros["refillMagic"].masterkey = refillMagicMK.Checked;
 
         }
 
         private void refillAmmoCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            config["refillAmmo"].input = refillAmmoCombo.SelectedIndex;
-            config["refillAmmo"].masterkey = refillAmmoMK.Checked;
+            ConfigObject.config.macros["refillAmmo"].input = refillAmmoCombo.SelectedIndex;
+            ConfigObject.config.macros["refillAmmo"].masterkey = refillAmmoMK.Checked;
 
         }
         #endregion
@@ -1108,36 +1101,102 @@ namespace WWHDHacker
 
         private void loadSF_Click(object sender, EventArgs e)
         {
+            var filepath = settingsDir + "\\Savefiles\\" + fileRep.Items[fileRep.SelectedIndices[0]].Text + "\\cking.sav";
+            byte[] allBytes = File.ReadAllBytes(filepath);
 
-            if (Memfile.ListFolders("storage_mlc", 2000) == "ServerUnk")
+            List<uint> firstBatch = new List<uint>();
+            List<int> everythingToWatch = new List<int>();
+            for (int i = 0;  i < 0x1FBC; i+=4)
             {
-                MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
-                return;
-            }
-            else if (Memfile.ListFolders("fs\\vol\\content\\Cafe", 2000) != "DirNotFound")
-            {
-                MessageBox.Show("Return to the home menu before injecting a save file!", "Alert");
-                return;
-            }
-
-            if (fileRep.Items.Count == 0 || fileRep.SelectedItems.Count == 0 || injectGame.SelectedIndex == -1) return;
-
-            string filePath = "storage_mlc\\usr\\save\\00050000\\";
-            if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
-            else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
-            else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
-
-
-
-            if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
-            {
-                MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
-                return;
+                byte[] toadd = new byte[4] { allBytes[i], allBytes[i + 1], allBytes[i + 2], allBytes[i + 3] };
+                Array.Reverse(toadd);
+                firstBatch.Add(BitConverter.ToUInt32(toadd, 0));
             }
 
-            filePath += "user\\80000001\\cking.sav";
 
-            Memfile.Upload(filePath, settingsDir + "\\Savefiles\\" + fileRep.Items[fileRep.SelectedIndices[0]].Text + "\\cking.sav");
+            for (int i = 0x14FBC600; i < 0x14FBC600 + 0x1FBC; i+=4)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            List<List<int>> packedAddress = everythingToWatch.Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(x => x.Index / 20)
+            .Select(x => x.Select(v => v.Value).ToList())
+            .ToList();
+            
+            List<List<uint>> packedValues = firstBatch.Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(x => x.Index / 20)
+            .Select(x => x.Select(v => v.Value).ToList())
+            .ToList();
+
+            for (int i = 0; i < packedAddress.Count; i++)
+            {
+                tcpGecko.PokeMultiple(TCPGecko.Datatype.u32, packedAddress[i].ToArray(), packedValues[i].ToArray());
+            }
+
+            everythingToWatch.Clear();
+            List<uint> nameBatch = new List<uint>();
+
+            for(int i = 0x2035; i < 0x2035 + 18*3; i++)
+            {
+                nameBatch.Add(allBytes[i]);
+            }
+
+            for (int i = 0x14FBC600 + 0xB024D; i < 0x14FBC600 + 0xB024D + 18; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            for (int i = 0x14FBC600 + 0xB028D; i < 0x14FBC600 + 0xB028D + 18; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            for (int i = 0x14FBC600 + 0xB02CD; i < 0x14FBC600 + 0xB02CD + 18; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            for (int i = 0x2035; i < 0x2035 + 18 * 3; i+=2)
+            {
+                nameBatch.Add(allBytes[i]);
+            }
+
+            for (int i = 0x14FBC600 + 0xB01EC; i < 0x14FBC600 + 0xB01EC + 9; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            for (int i = 0x14FBC600 + 0xB022C; i < 0x14FBC600 + 0xB022C + 9; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+            for (int i = 0x14FBC600 + 0xB026C; i < 0x14FBC600 + 0xB026C + 9; i++)
+            {
+                everythingToWatch.Add(i);
+            }
+
+
+            Console.WriteLine(everythingToWatch.Count);
+            Console.WriteLine(nameBatch.Count);
+
+
+            packedAddress = everythingToWatch.Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(x => x.Index / 20)
+            .Select(x => x.Select(v => v.Value).ToList())
+            .ToList();
+
+            packedValues = nameBatch.Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(x => x.Index / 20)
+            .Select(x => x.Select(v => v.Value).ToList())
+            .ToList();
+
+            for (int i = 0; i < packedAddress.Count; i++)
+            {
+                tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, packedAddress[i].ToArray(), packedValues[i].ToArray());
+            }
+
             ftDate = DateTime.Now;
             SavefileIndicator.Text = "Succesfully injected the save!";
             favoriteText = true;
@@ -1158,30 +1217,17 @@ namespace WWHDHacker
             if (Memfile.ListFolders("fs\\vol\\save\\80000001", 2000) != "DirNotFound")
             {
                 filePath = "fs\\vol\\save\\80000001\\cking.sav";
-            }
-            else
-            {
-                if (injectGame.SelectedIndex == -1) return;
-                if (injectGame.SelectedIndex == 0) filePath += "10143600\\";
-                else if (injectGame.SelectedIndex == 1) filePath += "10143500\\";
-                else if (injectGame.SelectedIndex == 2) filePath += "10143599\\";
 
-                if (Memfile.ListFolders(filePath, 2000) == "DirNotFound")
-                {
-                    MessageBox.Show("Save files for this version of the game doesnt exist!", "Alert");
-                    return;
-                }
-                filePath += "user\\80000001\\cking.sav";
-            }
-            string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
+                string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
 
-            Directory.CreateDirectory(settingsDir + "\\Savefiles\\" + name);
-            FileStream fs = File.Create(settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
-            fs.Close();
-            Memfile.Download(filePath, settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
-            ftDate = DateTime.Now;
-            SavefileIndicator.Text = "Succesfully dumped the save!";
-            favoriteText = true;
+                Directory.CreateDirectory(settingsDir + "\\Savefiles\\" + name);
+                FileStream fs = File.Create(settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+                fs.Close();
+                Memfile.Download(filePath, settingsDir + "\\Savefiles\\" + name + "\\cking.sav");
+                ftDate = DateTime.Now;
+                SavefileIndicator.Text = "Succesfully dumped the save!";
+                favoriteText = true;
+            }
         }
 
 
@@ -1191,7 +1237,15 @@ namespace WWHDHacker
 
         private void addCustomFavorite_Click(object sender, EventArgs e)
         {
-            //Later
+            (string, Stage) fav = FavoritePrompt.ShowDialog();
+            if (fav.Item1 == "") return;
+            ConfigObject.config.favorites.Add(fav.Item1, fav.Item2);
+            if (favoriteMode) teleporterToggleFavorites_Click(sender, e);
+            addedRemoved.ForeColor = Color.Green;
+            favoriteText = true;
+            ftDate = DateTime.Now;
+            addedRemoved.Text = "Added " + fav.Item1 + " as favorite";
+
         }
 
         private void teleporterMap_Click(object sender, EventArgs e)
@@ -1313,22 +1367,41 @@ namespace WWHDHacker
         {
             MouseEventArgs me = (MouseEventArgs)e;
             System.Windows.Forms.Label a = (System.Windows.Forms.Label)sender;
+            string stage = "";
+            byte b;
+            byte b2;
+            byte b3;
 
-            string stage = yamlMap[a.Text];
+            if (yamlMap.ContainsKey(a.Text))
+            {
+                stage = yamlMap[a.Text];
+                b = byte.Parse(teleporterRoomId.Text);
+                if (stage.Contains("M_Dra09") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("9");
+                if (stage.Contains("kinMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("10");
+                if (stage.Contains("SirenMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("23");
+                if (stage.Contains("M_DaiMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("12");
+                if (stage.Contains("kazeMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("06");
+
+                b2 = Convert.ToByte(teleporterSpawnId.Text, 16);
+                b3 = Convert.ToByte(teleporterLayer.Text, 16);
+            }
+            else
+            {
+                stage = ConfigObject.config.favorites[a.Text].stage;
+                b = Convert.ToByte(ConfigObject.config.favorites[a.Text].roomId);
+                b2 = Convert.ToByte(ConfigObject.config.favorites[a.Text].spawnId);
+                b3 = Convert.ToByte(ConfigObject.config.favorites[a.Text].layer);
+            }
+
+
+
             if (me.Button == MouseButtons.Left)
             {
-                
-
                 byte[] array = new byte[stage.Length];
 
                 array = Encoding.ASCII.GetBytes(stage);
-                
-                byte b = byte.Parse(teleporterRoomId.Text);
-                if (stage.Contains("M_Dra09")) b = byte.Parse("9");
-                if (stage.Contains("SirenMB")) b = byte.Parse("23");
 
-                byte b2 = Convert.ToByte(teleporterSpawnId.Text, 16);
-                byte b3 = Convert.ToByte(teleporterLayer.Text, 16);
+
                 for (int i = 0; i < stage.Length; i++)
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763F0 + i, array[i]);
@@ -1337,23 +1410,21 @@ namespace WWHDHacker
             }
             else if (me.Button == MouseButtons.Right)
             {
-                
-                if (!Properties.Settings.Default.favorites.Contains(a.Text))
+
+                if (!ConfigObject.config.favorites.ContainsKey(a.Text))
                 {
-                    
-                    Properties.Settings.Default.favorites.Add(a.Text);
-                    Properties.Settings.Default.Save();
+                    string text = Prompt.ShowDialog("Enter favorite name:", "Add favorite");
+                    if (text == "") return;
+                    ConfigObject.config.favorites.Add(text, new Stage("", stage, 0, false, byte.Parse(teleporterRoomId.Text), Convert.ToByte(teleporterSpawnId.Text, 16), Convert.ToByte(teleporterLayer.Text, 16)));
                     addedRemoved.ForeColor = Color.Green;
                     favoriteText = true;
                     ftDate = DateTime.Now;
-                    addedRemoved.Text = "Added " + a.Text + " as favorite";
+                    addedRemoved.Text = "Added " + text + " as favorite";
                 }
                 else
                 {
-                    
-                    Properties.Settings.Default.favorites.Remove(a.Text);
-                    Properties.Settings.Default.Save();
-                    if(favoriteMode) teleporterToggleFavorites_Click(sender, e);
+                    ConfigObject.config.favorites.Remove(a.Text);
+                    if (favoriteMode) teleporterToggleFavorites_Click(sender, e);
                     addedRemoved.ForeColor = Color.Red;
                     favoriteText = true;
                     ftDate = DateTime.Now;
@@ -1400,7 +1471,7 @@ namespace WWHDHacker
         {
             favoriteMode = true;
             subAreas.Controls.Clear();
-            foreach (string key in Properties.Settings.Default.favorites)
+            foreach (string key in ConfigObject.config.favorites.Keys)
             {
                 System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                 element.Text = key;
@@ -1430,19 +1501,33 @@ namespace WWHDHacker
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, 40);
             }
 
-            if(memoryAddress.Text != "" && Convert.ToInt32(memoryAddress.Text, 16) > 0x10000000)
+            if(memoryAddress.Text != "" && memoryAddress.Text.Length == 10 && Convert.ToInt32(memoryAddress.Text, 16) > 0x10000000)
             {
                 
                 var a = memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0";
-                Console.WriteLine($"0x{Convert.ToInt32(a, 16):X}");
+                int startAddress = Convert.ToInt32(a, 16);
                 List<int> addr = new List<int>();
-                for(int i = Convert.ToInt32(memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0", 16);
-                    i < Convert.ToInt32(memoryAddress.Text.Substring(0, memoryAddress.Text.Length - 1) + "0", 16) + 0x10 * 16; 
+                for(int i = startAddress;
+                    i < startAddress + 0x10 * 16; 
                     i += 0x4)
                 {
                     addr.Add(i);
                 }
-                List<string> raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addr.ToArray());
+
+                List<List<int>> packed = addr.Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / 20)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+
+                List<string> raw = new List<string>();
+                foreach (List<int> toSend in packed)
+                {
+                    raw.AddRange(tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, toSend.ToArray()));
+                }
+
+                Console.WriteLine(addr.Count);
+                Console.WriteLine(raw.Count);
+
                 for (int i = 0; i < raw.Count; i+=4)
                 {
                     uint zero = unchecked((UInt32)Int64.Parse(raw[i]));
@@ -1592,17 +1677,17 @@ namespace WWHDHacker
             bool cheatActivated = false;
 
             //l
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["levitate"].input)) &&
-                (config["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input))) 
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["levitate"].input)) &&
+                (ConfigObject.config.macros["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input))) 
                 && lToLevitateCheckbox.Checked)
             {
-                Cheats.LToLevitate(tcpGecko, config["levitate"].value, displayMacros.Checked);
+                Cheats.LToLevitate(tcpGecko, ConfigObject.config.macros["levitate"].value, displayMacros.Checked);
                 cheatActivated = true;
             }
             
             //left dpad
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["doorCancel"].input)) &&
-                (config["doorCancel"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input)) &&
+                (ConfigObject.config.macros["doorCancel"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && doorCancelCheckbox.Checked)
             {
                 Cheats.DoorCancel(tcpGecko, true);
@@ -1619,20 +1704,20 @@ namespace WWHDHacker
 
 
             //right dpad
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["superswim"].input)) &&
-                (config["superswim"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["superswim"].input)) &&
+                (ConfigObject.config.macros["superswim"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && superswimCheckbox.Checked && 
                 lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
             {
-                bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !config["superswim"].alternative;
-                Cheats.Superswim(tcpGecko, config["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
+                bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !ConfigObject.config.macros["superswim"].alternative;
+                Cheats.Superswim(tcpGecko, ConfigObject.config.macros["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
                 cheatActivated = true;
                 lastDpadRight = DateTime.Now;
             }
 
             //down dpad 
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["storage"].input)) &&
-                (config["storage"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storage"].input)) &&
+                (ConfigObject.config.macros["storage"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && storageCheckbox.Checked)
             {
                 tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
@@ -1640,8 +1725,8 @@ namespace WWHDHacker
                 cheatActivated = true;
             }
             //l3
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["windDirection"].input)) &&
-                (config["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["windDirection"].input)) &&
+                (ConfigObject.config.macros["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && storageCheckbox.Checked)
             {
                 Cheats.ChangeWindDir(tcpGecko, displayMacros.Checked);
@@ -1649,8 +1734,8 @@ namespace WWHDHacker
             }
 
             //l + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["refillHealth"].input)) &&
-                (config["refillHealth"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillHealth"].input)) &&
+                (ConfigObject.config.macros["refillHealth"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && refillHealthCheckbox.Checked)
             {
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b501), out int maxHealth);
@@ -1663,8 +1748,8 @@ namespace WWHDHacker
             }
 
             //r + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["refillMagic"].input)) &&
-                (config["refillMagic"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillMagic"].input)) &&
+                (ConfigObject.config.macros["refillMagic"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && refillMagicCheckbox.Checked)
             {
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b513), out int maxMagic);
@@ -1677,8 +1762,8 @@ namespace WWHDHacker
             }
 
             //dpad up + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["refillAmmo"].input)) &&
-                (config["refillAmmo"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillAmmo"].input)) &&
+                (ConfigObject.config.macros["refillAmmo"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && refillAmmoCheckbox.Checked)
             {
                 Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56f), out int maxArrows);
@@ -1699,8 +1784,8 @@ namespace WWHDHacker
             }
 
             //dpad down + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["reloadRoom"].input)) &&
-                (config["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadRoom"].input)) &&
+                (ConfigObject.config.macros["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && reloadRoomCheckbox.Checked)
             {
 
@@ -1710,12 +1795,12 @@ namespace WWHDHacker
             }
 
             //dpad left + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["restorePosition"].input)) &&
-                (config["restorePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["restorePosition"].input)) &&
+                (ConfigObject.config.macros["restorePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && (storedLinkX != 0 || storedLinkY != 0 || storedLinkZ != 0) 
                 && storeRestoreCheckbox.Checked)
             {
-                if (!config["restorePosition"].alternative)
+                if (!ConfigObject.config.macros["restorePosition"].alternative)
                 {
                     Cheats.DoorCancel(tcpGecko, true);
                     tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
@@ -1743,11 +1828,11 @@ namespace WWHDHacker
             }
 
             //dpad right + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["storePosition"].input)) &&
-                (config["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)config["masterkey"].input)))
+            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storePosition"].input)) &&
+                (ConfigObject.config.macros["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                 && storeRestoreCheckbox.Checked)
             {
-                if (!config["storePosition"].alternative)
+                if (!ConfigObject.config.macros["storePosition"].alternative)
                 {
                     float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef48), out storedLinkX);
                     float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
@@ -1767,7 +1852,7 @@ namespace WWHDHacker
             
             
 
-            if (Inputs.isNotPressed(inputs, Inputs.enumToInput((InputEnum)config["doorCancel"].input))
+            if (Inputs.isNotPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input))
                 && doorCancelFromMacro)
             {
                 Cheats.RestoreCollision(tcpGecko);
@@ -1844,12 +1929,6 @@ namespace WWHDHacker
         }
         #endregion
 
-
-
-
-
-
-
     }
 
     public class MemViewerEntry
@@ -1863,10 +1942,10 @@ namespace WWHDHacker
         public MemViewerEntry(int address, uint zero, uint four, uint eight, uint c)
         {
             this.address = $"0x{address:X}";
-            this.zero = $"0x{zero:X}";
-            this.four = $"0x{four:X}";
-            this.eight = $"0x{eight:X}";
-            this.c = $"0x{c:X}";
+            this.zero = $"0x{zero:X8}";
+            this.four = $"0x{four:X8}";
+            this.eight = $"0x{eight:X8}";
+            this.c = $"0x{c:X8}";
         }
     }
 
@@ -2047,6 +2126,53 @@ namespace WWHDHacker
             prompt.AcceptButton = confirmation;
 
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+        }
+    }
+    
+    public static class FavoritePrompt
+    {
+        public static (string, Stage) ShowDialog()
+        {
+            Form prompt = new Form()
+            {
+                Width = 300,
+                Height = 350,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Add favorite",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            System.Windows.Forms.Label nameLabel = new System.Windows.Forms.Label() { Left = 50, Top = 20, Text = "Favorite name" };
+            TextBox nameTextbox = new TextBox() { Left = 50, Top = 40, Width = 200 };
+            System.Windows.Forms.Label stageLabel = new System.Windows.Forms.Label() { Left = 50, Top = 70, Text = "Stage" };
+            TextBox stageTextbox = new TextBox() { Left = 50, Top = 90, Width = 200 };
+            System.Windows.Forms.Label roomIdLabel = new System.Windows.Forms.Label() { Left = 50, Top = 120, Text = "Room ID" };
+            TextBox roomIdTextbox = new TextBox() { Left = 50, Top = 140, Width = 200 };
+            System.Windows.Forms.Label spawnIdLabel = new System.Windows.Forms.Label() { Left = 50, Top = 170, Text = "Spawn ID" };
+            TextBox spawnIdTextbox = new TextBox() { Left = 50, Top = 190, Width = 200 };
+            System.Windows.Forms.Label layerLabel = new System.Windows.Forms.Label() { Left = 50, Top = 220, Text = "Layer" };
+            TextBox layerTextbox = new TextBox() { Left = 50, Top = 240, Width = 200 };
+            Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 280, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(nameTextbox);
+            prompt.Controls.Add(stageTextbox);
+            prompt.Controls.Add(roomIdTextbox);
+            prompt.Controls.Add(spawnIdTextbox);
+            prompt.Controls.Add(layerTextbox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(nameLabel);
+            prompt.Controls.Add(stageLabel);
+            prompt.Controls.Add(roomIdLabel);
+            prompt.Controls.Add(spawnIdLabel);
+            prompt.Controls.Add(layerLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? (nameTextbox.Text, new Stage("",
+                                                                                         stageTextbox.Text,
+                                                                                         0,
+                                                                                         false,
+                                                                                         Convert.ToByte(roomIdTextbox.Text),
+                                                                                         Convert.ToByte(spawnIdTextbox.Text, 16),
+                                                                                         Convert.ToByte(layerTextbox.Text, 16))) : ("", new Stage("","",0,false,0,0));
         }
     }
 }

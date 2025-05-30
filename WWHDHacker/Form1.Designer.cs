@@ -268,8 +268,6 @@ namespace WWHDHacker
             this.loadMemfile = new System.Windows.Forms.Button();
             this.createMemfile = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.injectGame = new System.Windows.Forms.ComboBox();
             this.openSFDir = new System.Windows.Forms.Button();
             this.dumpSF = new System.Windows.Forms.Button();
             this.loadSF = new System.Windows.Forms.Button();
@@ -3107,8 +3105,6 @@ namespace WWHDHacker
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.label33);
-            this.groupBox12.Controls.Add(this.injectGame);
             this.groupBox12.Controls.Add(this.openSFDir);
             this.groupBox12.Controls.Add(this.dumpSF);
             this.groupBox12.Controls.Add(this.loadSF);
@@ -3119,27 +3115,6 @@ namespace WWHDHacker
             this.groupBox12.TabIndex = 3;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Save files";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(26, 251);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(95, 13);
-            this.label33.TabIndex = 10;
-            this.label33.Text = "Selected version : ";
-            // 
-            // injectGame
-            // 
-            this.injectGame.FormattingEnabled = true;
-            this.injectGame.Items.AddRange(new object[] {
-            "PAL",
-            "NTSC",
-            "Rando"});
-            this.injectGame.Location = new System.Drawing.Point(133, 246);
-            this.injectGame.Name = "injectGame";
-            this.injectGame.Size = new System.Drawing.Size(97, 21);
-            this.injectGame.TabIndex = 9;
             // 
             // openSFDir
             // 
@@ -3180,7 +3155,7 @@ namespace WWHDHacker
             this.fileRep.Location = new System.Drawing.Point(20, 26);
             this.fileRep.MultiSelect = false;
             this.fileRep.Name = "fileRep";
-            this.fileRep.Size = new System.Drawing.Size(288, 212);
+            this.fileRep.Size = new System.Drawing.Size(288, 239);
             this.fileRep.TabIndex = 5;
             this.fileRep.UseCompatibleStateImageBehavior = false;
             this.fileRep.View = System.Windows.Forms.View.Details;
@@ -3216,13 +3191,12 @@ namespace WWHDHacker
             this.addCustomFavorite.TabIndex = 20;
             this.addCustomFavorite.Text = "Add custom favorite";
             this.addCustomFavorite.UseVisualStyleBackColor = true;
-            this.addCustomFavorite.Visible = false;
             this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
             // 
             // displayOnMap
             // 
             this.displayOnMap.AutoSize = true;
-            this.displayOnMap.Location = new System.Drawing.Point(665, 223);
+            this.displayOnMap.Location = new System.Drawing.Point(665, 235);
             this.displayOnMap.Name = "displayOnMap";
             this.displayOnMap.Size = new System.Drawing.Size(98, 17);
             this.displayOnMap.TabIndex = 19;
@@ -3434,13 +3408,13 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.itemsManager);
-            this.Controls.Add(this.miscFeaturesPanel);
-            this.Controls.Add(this.advancedPanel);
             this.Controls.Add(this.teleporterPanel);
             this.Controls.Add(this.memfilesPanel);
             this.Controls.Add(this.dataViewerPanel);
             this.Controls.Add(this.mainFeaturesPanel);
+            this.Controls.Add(this.itemsManager);
+            this.Controls.Add(this.miscFeaturesPanel);
+            this.Controls.Add(this.advancedPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "WWHD Hacker";
@@ -3548,7 +3522,6 @@ namespace WWHDHacker
             this.memfilesPanel.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
             this.teleporterPanel.ResumeLayout(false);
             this.teleporterPanel.PerformLayout();
             this.transparentLayer.ResumeLayout(false);
@@ -3782,8 +3755,6 @@ namespace WWHDHacker
         private Button openMemfileFolder;
         private Button dumpSF;
         private Button openSFDir;
-        private Label label33;
-        private ComboBox injectGame;
         private Label SavefileIndicator;
         private NumericUpDown levitateHeight;
         private Label label5;
