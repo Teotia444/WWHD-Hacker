@@ -33,7 +33,7 @@ namespace WWHDHacker
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("(Temporary memfile)");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("(Temporary memfile)");
             this.ipTextBox = new System.Windows.Forms.TextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -3067,9 +3067,9 @@ namespace WWHDHacker
             this.memfileSelector.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.memfileSelector.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
             this.memfileSelector.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.memfileSelector.Location = new System.Drawing.Point(10, 27);
             this.memfileSelector.MultiSelect = false;
             this.memfileSelector.Name = "memfileSelector";

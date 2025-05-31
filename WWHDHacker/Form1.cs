@@ -96,17 +96,13 @@ namespace WWHDHacker
             if (!File.Exists(settingsDir + "\\Config.json"))
             {
                 string json = JsonConvert.SerializeObject(ConfigObject.Default(), Formatting.Indented);
+
                 File.WriteAllText(settingsDir + "\\Config.json", json);
             }
 
             
             ConfigObject.config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText(settingsDir + "\\Config.json"));
             ConfigObject.config.FillConfig();
-
-
-            if (ConfigObject.config.favorites == null) ConfigObject.config.favorites = new Dictionary<string, Stage>();
-
-            
 
             #region Config checks
             lToLevitateCheckbox.Checked = ConfigObject.config.macros["levitate"].enabled;

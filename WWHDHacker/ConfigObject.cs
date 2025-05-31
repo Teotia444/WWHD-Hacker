@@ -38,11 +38,20 @@ namespace WWHDHacker
 
         public ConfigObject(string wiiuIP = "", bool warningBeforeRuns = true, bool displayMacros = true, Dictionary<string, JsonInput> macros = null, Dictionary<string, Stage> favorites = null)
         {
+
             this.wiiuIP = wiiuIP;
             this.warningBeforeRuns = warningBeforeRuns;
             this.displayMacros = displayMacros;
             this.macros = macros;
-            this.favorites = favorites;
+            if(favorites == null)
+            {
+                this.favorites = new Dictionary<string, Stage>();
+            }
+            else
+            {
+                this.favorites = favorites;
+            }
+                
         }
 
         public static ConfigObject Default()
@@ -52,25 +61,23 @@ namespace WWHDHacker
 
         public void FillConfig()
         {
-            if (wiiuIP == null)
+            Console.WriteLine(Settings.Default.wiiuIP);
+            if (wiiuIP == null || wiiuIP == "")
             {
-                wiiuIP = Settings.Default.wiiuIP == "192.168." ? defaultWiiuIP : Settings.Default.wiiuIP;
+                wiiuIP = Settings.Default.wiiuIP;
             }
             if (macros == null)
             {
                 macros = defaultMacros;
             }
-            if (favorites == null)
+            if (favorites is null)
             {
-                Console.WriteLine("test");
-
                 if (Settings.Default.favorites.Count == 0)
                 {
                     favorites = defaultFavorites;
                 }
                 else
                 {
-                    favorites = new Dictionary<string, Stage>();
                     foreach (string fav in Settings.Default.favorites)
                     {
                         favorites.Add(fav, new Stage("", Form1.yamlMap[fav], 0, false, 0, 0, 0xFF));
@@ -78,8 +85,6 @@ namespace WWHDHacker
                 }
             }
         }
-
-
     }
 
     public class JsonInput
