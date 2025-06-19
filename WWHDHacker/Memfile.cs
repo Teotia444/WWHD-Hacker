@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,6 +35,7 @@ namespace WWHDHacker
         public static int hyruleflagEnd = 0x1506B9E8;
         public static int interiorflagStart = 0x1506BA0C;
         public static int interiorflagEnd = 0x1506BA30;
+        public static bool isLoading = false;
 
         public uint health;
         public uint magic;
@@ -67,8 +70,12 @@ namespace WWHDHacker
         public List<float> position;
         public uint angle;
 
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(true)]
+        public bool usesPosition;
+
         public Memfile(uint health, uint magic, uint rupees, uint arrows, uint bombs, uint maxhealth, uint maxmagic, uint maxarrows, uint maxbombs, Dictionary<int, uint> inventory, string stage, uint roomId, uint spawnId, uint layer, 
-            List<uint> globalFlags, List<uint> sceneFlags, List<uint> seaFlags, List<uint> ffFlags, List<uint> drcFlags, List<uint> fwFlags, List<uint> totgFlags, List<uint> etFlags, List<uint> wtFlags, List<uint> gtFlags, List<uint> hyruleFlags, List<uint> interiorFlags, List<float> position, uint angle)
+            List<uint> globalFlags, List<uint> sceneFlags, List<uint> seaFlags, List<uint> ffFlags, List<uint> drcFlags, List<uint> fwFlags, List<uint> totgFlags, List<uint> etFlags, List<uint> wtFlags, List<uint> gtFlags, List<uint> hyruleFlags, List<uint> interiorFlags, List<float> position, uint angle, bool usesPosition)
         {
             this.health = health;
             this.magic = magic;
@@ -89,6 +96,8 @@ namespace WWHDHacker
 
             this.position = position;
             this.angle = angle;
+            
+            this.usesPosition = usesPosition;
 
             this.globalFlags = globalFlags;
             this.sceneFlags = sceneFlags;
@@ -106,7 +115,7 @@ namespace WWHDHacker
 
         }
 
-        public static Memfile Create(TCPGecko tcpGecko)
+        public static Memfile Create(TCPGecko tcpGecko, bool savePos)
         {
             List<int> everythingToWatch = new List<int>
             {
@@ -121,7 +130,7 @@ namespace WWHDHacker
                 0x1506b570, // max bombs
                 0x109763E4, // stage 1st half
                 0x109763E8, // stage 2nd half
-                0x109763EC, // layer
+                0x109763EF, // layer
                 0x10978CF8, // room id
                 0x109763ED, // spawn id
                 0x1096ef48, // x
@@ -190,9 +199,26 @@ namespace WWHDHacker
 
 
             string stage = Encoding.ASCII.GetString(BitConverter.GetBytes(UInt32.Parse(raw[9])).Reverse().ToArray()) + Encoding.ASCII.GetString(BitConverter.GetBytes(UInt32.Parse(raw[10])).Reverse().ToArray());
+
             uint roomId = uint.Parse(raw[12]) >> 24;
             uint spawnId = uint.Parse(raw[13]) >> 24;
             uint layer = uint.Parse(raw[11]) >> 24;
+
+            if (stage.Contains("M_Dai\0") || stage.Contains("kaze\0"))
+            {
+                spawnId = roomId;
+                if(stage.Contains("M_Dai\0") && spawnId > 0x3)
+                {
+                    spawnId++;
+                }
+                if (stage.Contains("M_Dai\0") && (spawnId > 0x10 || (spawnId > 0x9 && spawnId < 0xc)))
+                {
+                    spawnId++;
+                }
+                roomId = 0;
+            }
+
+            
 
             List<float> position = new List<float>{
                 BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[14])), 0),
@@ -292,14 +318,15 @@ namespace WWHDHacker
 
             return new Memfile(health, magic, rupees, arrows, bombs, maxhealth, maxmagic, maxarrows, maxbombs, inventory, stage, roomId, spawnId, layer,
                 globalFlags, sceneFlags, seaFlags, ffFlags, drcFlags, fwFlags, totgFlags, etFlags, wtFlags, gtFlags, hyruleFlags, interiorFlags,
-                position, angle);
+                position, angle, savePos);
 
 
 
         }
 
-        public void Load(TCPGecko tcpGecko)
+        public void Load(TCPGecko tcpGecko, Form1 infos)
         {
+            Memfile.isLoading = true;
             List<int> everythingToWatch = new List<int>
             {
                 0x1506b503, // health
@@ -401,21 +428,71 @@ namespace WWHDHacker
             tcpGecko.PokeMultiple(TCPGecko.Datatype.u32, everythingToWatch.ToArray(), globalFlags.ToArray());
             
             tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763FC, 1);
-
-
             Thread.Sleep(2000);
 
-            if (tcpGecko.Peek(TCPGecko.Datatype.u32, 0x109763E4) == tcpGecko.Peek(TCPGecko.Datatype.u32, 0x109763F0))//Check if a loading transition is in progress (prevents crash)
+            if (!this.usesPosition)
             {
-                Cheats.DoorCancel(tcpGecko, true);
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, Form1.FloatToHex(position[0]));
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, Form1.FloatToHex(position[1]));
-                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, Form1.FloatToHex(position[2]));
-                tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, angle);
-                Cheats.DoorCancel(tcpGecko, false);
+                Memfile.isLoading = false;
+                return;
             }
 
+            int retries = 0;
+
+            while (UInt32.Parse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976542)) != 0xFFFF && this.stage != infos.stage && this.roomId != infos.roomId && this.spawnId != infos.roomId)//Check if a loading transition is in progress (prevents crash)
+            {
+                Thread.Sleep(300);
+                retries++;
+                if (retries >= 10) { Memfile.isLoading = false; return; }
+            }
+
+
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+            Thread.Sleep(500);
+
+            tcpGecko.PauseExec();
             
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+            Cheats.DoorCancel(tcpGecko, true);
+
+            Thread.Sleep(100);
+            tcpGecko.AdvanceExec();
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+            //account for 2 frame of falling
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, angle);
+            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, Form1.FloatToHex(position[1] + 7f));
+
+            Thread.Sleep(100);
+            tcpGecko.AdvanceExec();
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+
+            while (float.Parse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef48)) != position[0])
+            {
+                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, Form1.FloatToHex(position[0]));
+                Thread.Sleep(100);
+            }
+            
+            tcpGecko.AdvanceExec();
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+            while (float.Parse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50)) != position[2])
+            {
+                tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, Form1.FloatToHex(position[2]));
+                Thread.Sleep(100);
+            }
+
+            Thread.Sleep(100);
+            tcpGecko.AdvanceExec();
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+            Cheats.DoorCancel(tcpGecko, false);
+
+            Thread.Sleep(400);
+            tcpGecko.ResumeExec();
+            tcpGecko.ResumeExec();
+            tcpGecko.ResumeExec();
+            while (tcpGecko.commands.Count != 0) Thread.Sleep(100);
+
+            Memfile.isLoading = false;
+            
+
         }
 
         public static void Upload(string remoteFile, string localFile)

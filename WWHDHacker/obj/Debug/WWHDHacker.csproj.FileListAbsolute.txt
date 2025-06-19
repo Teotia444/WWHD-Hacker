@@ -15,6 +15,7 @@ C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\WWHDHacker.exe.
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\WWHDHacker.exe
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\WWHDHacker.pdb
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Newtonsoft.Json.xml
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\YamlDotNet.xml
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.AssemblyReference.cache
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.DataViewer.resources
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.Form1.resources
@@ -25,6 +26,6 @@ C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.cspr
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.Up2Date
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.exe
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.pdb
-C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\YamlDotNet.xml
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Octokit.xml
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.Fody.CopyLocal.cache
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.Fody.RuntimeCopyLocal.cache

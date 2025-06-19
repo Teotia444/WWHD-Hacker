@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,16 +35,27 @@ namespace WWHDHacker
         public string wiiuIP;
         public bool warningBeforeRuns;
         public bool displayMacros;
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(true)]
+        public bool disableMacrosWhenPaused;
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [DefaultValue(false)]
+        public bool accuratePosRestore;
         public Dictionary<string, JsonInput> macros;
         public Dictionary<string, Stage> favorites;
 
-        public ConfigObject(string wiiuIP = "", bool warningBeforeRuns = true, bool displayMacros = true, Dictionary<string, JsonInput> macros = null, Dictionary<string, Stage> favorites = null)
-        {
+        
 
+        public ConfigObject(string wiiuIP = "", bool warningBeforeRuns = true, bool displayMacros = true, Dictionary<string, JsonInput> macros = null, Dictionary<string, Stage> favorites = null, bool disableMacrosWhenPaused = true, bool accuratePosRestore = false)
+        {
             this.wiiuIP = wiiuIP;
             this.warningBeforeRuns = warningBeforeRuns;
             this.displayMacros = displayMacros;
             this.macros = macros;
+
+            this.disableMacrosWhenPaused = disableMacrosWhenPaused;
+            this.accuratePosRestore = accuratePosRestore;
+
             if(favorites == null)
             {
                 this.favorites = new Dictionary<string, Stage>();

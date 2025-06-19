@@ -23,7 +23,9 @@ namespace WWHDHacker
 {
     public partial class Form1: Form
     {
-        static Version local = new Version("1.0.0");
+        // paused : 0x106EC269
+
+        static Version local = new Version("1.0.1");
 
         public static Dictionary<string, string> yamlMap;
         
@@ -35,6 +37,8 @@ namespace WWHDHacker
         DateTime lastFrameAdvance;
         bool doorCancelFromMacro;
         bool paused;
+
+        Thread looping;
 
         DataViewer dataViewerControl;
 
@@ -70,7 +74,7 @@ namespace WWHDHacker
         }
 
         Memfile tempMemfile;
-        List<Memfile> availableMemfiles;
+        Dictionary<string, Memfile> availableMemfiles;
         FileSystemWatcher memfilesWatcher;
         FileSystemWatcher savefilesWatcher;
 
@@ -153,7 +157,6 @@ namespace WWHDHacker
             memfilesWatcher.Deleted += MemfileRefresh;
             memfilesWatcher.Renamed += MemfileRefresh;
 
-            memfilesWatcher.Filter = "*.json";
             memfilesWatcher.EnableRaisingEvents = true;
 
 
@@ -176,7 +179,7 @@ namespace WWHDHacker
             savefilesWatcher.EnableRaisingEvents = true;
             #endregion
             
-            availableMemfiles = new List<Memfile>();
+            availableMemfiles = new Dictionary<string, Memfile>();
             
             foreach (GroupBox gb in miscFeaturesPanel.Controls.OfType<GroupBox>())
             {
@@ -195,8 +198,11 @@ namespace WWHDHacker
             ipTextBox.Text = ConfigObject.config.wiiuIP;
             warningRuns.Checked = ConfigObject.config.warningBeforeRuns;
             displayMacros.Checked = ConfigObject.config.displayMacros;
+            macrosPausedCheckBox.Checked = ConfigObject.config.disableMacrosWhenPaused;
+            accuratePositionRestore.Checked = ConfigObject.config.accuratePosRestore;
 
-            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); }; 
+            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); looping.Abort(); }
+                ; 
                 string json = JsonConvert.SerializeObject(ConfigObject.config, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json); 
 
@@ -242,11 +248,12 @@ namespace WWHDHacker
                 if (!tcpGecko.Connect(ipTextBox.Text)) { 
                     return; 
                 }
-                timer1.Start();
+
+                looping = new Thread(new ThreadStart(Loopthread));
+                looping.Start();
 
                 tcpGecko.DisplayText(".", 255, 255, 255, 2);
 
-                timer1.Interval = 10;
                 CheckInv.Start();
                 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
                 connect.Text = "Disconnect";
@@ -263,7 +270,7 @@ namespace WWHDHacker
                 tcpGecko.DisplayText(".", 255, 255, 255, 2);
                 tcpGecko.Disconnect();
                 CheckInv.Stop();
-                timer1.Stop();
+                looping.Abort();
                 connect.Text = "Connect";
                 foreach (Control item in this.Controls)
                 {
@@ -751,6 +758,16 @@ namespace WWHDHacker
         {
             ConfigObject.config.macros["refillAmmo"].masterkey = refillAmmoMK.Checked;
         }
+
+        private void macrosPausedCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigObject.config.disableMacrosWhenPaused = macrosPausedCheckBox.Checked;
+        }
+
+        private void accuratePositionRestore_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigObject.config.accuratePosRestore = accuratePositionRestore.Checked;
+        }
         #endregion
 
         #region Combos
@@ -1002,20 +1019,21 @@ namespace WWHDHacker
 
         private void createMemfile_Click(object sender, EventArgs e)
         {
-            if (memfileSelector.SelectedIndices.Contains(0))
+            if (memfilesViewer.SelectedNode != null && memfilesViewer.SelectedNode.Text == "(Temporary memfile)")
             {
-                tempMemfile = Memfile.Create(tcpGecko);
+                tempMemfile = Memfile.Create(tcpGecko, true);
                 ftDate = DateTime.Now;
                 SavefileIndicator.Text = "Memfile saved on temporary slot!";
                 favoriteText = true;
                 return;
             }
-            string name = Prompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
-            if (name != "")
+            (bool, string) infos = MemfilePrompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
+            if (infos.Item2 != "")
             {
-                Memfile memfile = Memfile.Create(tcpGecko);
+                Console.WriteLine(infos.Item1);
+                Memfile memfile = Memfile.Create(tcpGecko, infos.Item1);
                 string json = JsonConvert.SerializeObject(memfile, Formatting.Indented);
-                File.WriteAllText(settingsDir + "\\Memfiles\\" + name + ".json", json);
+                File.WriteAllText(settingsDir + "\\Memfiles\\" + ((memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Nodes.Count == 0)? "" : memfilesViewer.SelectedNode.FullPath + "\\") + infos.Item2 + ".json", json);
                 ftDate = DateTime.Now;
                 SavefileIndicator.Text = "Succesfully created the memfile!";
                 favoriteText = true;
@@ -1025,13 +1043,15 @@ namespace WWHDHacker
 
         private void loadMemfile_Click(object sender, EventArgs e)
         {
-            if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
+            if (memfilesViewer.SelectedNode.Nodes.Count != 0) return;
+
+            if (memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Text == "(Temporary memfile)")
             {
-                tempMemfile.Load(tcpGecko);
+                tempMemfile.Load(tcpGecko, this);
             }
             else
             {
-                availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
+                availableMemfiles[memfilesViewer.SelectedNode.Text].Load(tcpGecko, this);
             }
             ftDate = DateTime.Now;
             SavefileIndicator.Text = "Succesfully loaded the memfile!";
@@ -1040,13 +1060,22 @@ namespace WWHDHacker
 
         void MemfileRefresh(object sender, FileSystemEventArgs e)
         {
-            this.Invoke(new MethodInvoker(memfileSelector.Items.Clear));
-            this.Invoke(new MethodInvoker(memfileSelector.SelectedIndices.Clear));
-            this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add("(Temporary memfile)")));
+            this.Invoke(new MethodInvoker(memfilesViewer.Nodes.Clear));
+            
+            this.Invoke(new EventHandler((s, ee) => memfilesViewer.Nodes.Add("(Temporary memfile)")));
             availableMemfiles.Clear();
-            DirectoryInfo d = new DirectoryInfo(settingsDir + "\\Memfiles");
 
-            foreach (var file in d.GetFiles("*.json"))
+            TreeNode[] tn = GetDirectoryNodes(settingsDir + "\\Memfiles\\").Nodes.OfType<TreeNode>().ToArray();
+            Invoke(new EventHandler((s, ee) => memfilesViewer.Nodes.AddRange(tn)));
+           
+        }
+
+        private TreeNode GetDirectoryNodes(string path)
+        {
+            
+            DirectoryInfo dir = new DirectoryInfo(path);
+            TreeNode tree = new TreeNode(dir.Name);
+            foreach (var file in dir.GetFiles("*.json"))
             {
                 if (File.Exists(file.FullName))
                 {
@@ -1054,13 +1083,16 @@ namespace WWHDHacker
                     {
                         JsonSerializer serializer = new JsonSerializer();
                         Memfile get = (Memfile)serializer.Deserialize(fi, typeof(Memfile));
-                        availableMemfiles.Add(get);
-                        this.Invoke(new EventHandler((s, ee) => memfileSelector.Items.Add(file.Name.Replace(".json", ""))));
+                        availableMemfiles.Add(file.Name.Replace(".json", ""), get);
+                        this.Invoke(new EventHandler((s, ee) => tree.Nodes.Add(file.Name.Replace(".json", ""))));
                     }
                 }
-
             }
-            Invoke(new EventHandler((s, ee) => memfileSelector.SelectedIndices.Add(0)));
+
+            var subDirs = Directory.GetDirectories(path).Select(d => GetDirectoryNodes(d)).ToArray();
+            tree.Nodes.AddRange(subDirs);
+
+            return tree;
         }
 
         void SavefileRefresh(object sender, FileSystemEventArgs e)
@@ -1082,7 +1114,7 @@ namespace WWHDHacker
 
         private void deleteMemfile_Click(object sender, EventArgs e)
         {
-            File.Delete(settingsDir + "\\Memfiles\\" + memfileSelector.SelectedItems[0].Text + ".json");
+            File.Delete(settingsDir + "\\Memfiles\\" + memfilesViewer.SelectedNode.FullPath + ".json");
         }
 
         private void openMemfileFolder_Click(object sender, EventArgs e)
@@ -1481,6 +1513,372 @@ namespace WWHDHacker
         #endregion
 
         #region Timers
+
+        public void Loopthread()
+        {
+            while (tcpGecko.connected)
+            {
+                Loop();
+            }
+            looping.Abort();
+            return;
+        }
+
+        public void Loop()
+        {
+            if (!tcpGecko.connected)
+            {
+                CheckInv.Stop();
+                timer1.Stop();
+                connect.Text = "Connect";
+                foreach (Control item in this.Controls)
+                {
+                    if (item.GetType() == typeof(Panel))
+                    {
+                        item.Enabled = false;
+                    }
+                }
+                return;
+            }
+
+            if (Memfile.isLoading)
+            {
+                return;
+            }
+
+            int[] addresses = new int[]
+            {
+                0x102F48A8,
+                0x102F48B4,
+                0x102F48B8,
+                0x102F48BC,
+                0x102F48C0,
+                0x1096ef48,
+                0x1096ef4c,
+                0x1096ef50,
+                0x1096ef12,
+                0
+            };
+
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
+            addresses[9] = (link_ptr + 27156);
+            var raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addresses);
+            addresses = new int[]
+            {
+                0x109763E4, // stage
+                0x109763E5,
+                0x109763E6,
+                0x109763E7,
+                0x109763E8,
+                0x109763E9,
+                0x109763EA,
+                0x109763EB, // stage
+
+                0x109763EF, // layer
+                0x10978CF8, // roomId
+                0x109763ED, // spawnId
+                0x106EC269, // pause status
+            };
+            var stageInfo = tcpGecko.PeekMultiple(TCPGecko.Datatype.u8, addresses);
+
+            if (raw.Count < 10) return;
+            Int32.TryParse(raw[0], out int inputs);
+            mainStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0) * 128));
+            cStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0) * 128));
+            linkCoordinates = ((BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[5])), 0)),
+                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[6])), 0)),
+                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[7])), 0)));
+
+            linkAngle = (int)(UInt32.Parse(raw[8]) >> 16);
+            linkSpeed = BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[9])), 0);
+
+
+
+
+            if (stageInfo.Count < 11) return;
+            stage = Encoding.ASCII.GetString(new byte[]{
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[0]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[1]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[2]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[3]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[4]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[5]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[6]))[0],
+                    BitConverter.GetBytes(UInt32.Parse(stageInfo[7]))[0],
+            });
+
+            roomId = int.Parse(stageInfo[9]);
+            spawnId = int.Parse(stageInfo[10]);
+            layer = int.Parse(stageInfo[8]);
+
+            bool cheatActivated = false;
+
+            if (!(ConfigObject.config.disableMacrosWhenPaused && int.Parse(stageInfo[11]) == 1))
+            {
+                //l
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["levitate"].input)) &&
+                    (ConfigObject.config.macros["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && lToLevitateCheckbox.Checked)
+                {
+                    Cheats.LToLevitate(tcpGecko, ConfigObject.config.macros["levitate"].value, displayMacros.Checked);
+                    cheatActivated = true;
+                }
+
+                //left dpad
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input)) &&
+                    (ConfigObject.config.macros["doorCancel"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && doorCancelCheckbox.Checked)
+                {
+                    Cheats.DoorCancel(tcpGecko, true);
+                    doorCancelFromMacro = true;
+                    cheatActivated = true;
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Door Cancel", 255, 153, 0, 255);
+                }
+                else if (doorCancelFromMacro)
+                {
+                    Cheats.DoorCancel(tcpGecko, false);
+                    doorCancelFromMacro = false;
+                }
+
+
+
+                //right dpad
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["superswim"].input)) &&
+                    (ConfigObject.config.macros["superswim"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && superswimCheckbox.Checked &&
+                    lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
+                {
+                    bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !ConfigObject.config.macros["superswim"].alternative;
+                    Cheats.Superswim(tcpGecko, ConfigObject.config.macros["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
+                    cheatActivated = true;
+                    lastDpadRight = DateTime.Now;
+                }
+
+                //down dpad 
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storage"].input)) &&
+                    (ConfigObject.config.macros["storage"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && storageCheckbox.Checked)
+                {
+                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Give Storage", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+                //l3
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["windDirection"].input)) &&
+                    (ConfigObject.config.macros["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && storageCheckbox.Checked)
+                {
+                    Cheats.ChangeWindDir(tcpGecko, displayMacros.Checked);
+                    cheatActivated = true;
+                }
+
+                //l + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillHealth"].input)) &&
+                    (ConfigObject.config.macros["refillHealth"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && refillHealthCheckbox.Checked)
+                {
+                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b501), out int maxHealth);
+                    if (maxHealth != 0)
+                    {
+                        tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, maxHealth);
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Health", 255, 153, 0, 255);
+                        cheatActivated = true;
+                    }
+                }
+
+                //r + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillMagic"].input)) &&
+                    (ConfigObject.config.macros["refillMagic"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && refillMagicCheckbox.Checked)
+                {
+                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b513), out int maxMagic);
+                    if (maxMagic != 0)
+                    {
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Magic", 255, 153, 0, 255);
+                        tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, maxMagic);
+                        cheatActivated = true;
+                    }
+                }
+
+                //dpad up + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillAmmo"].input)) &&
+                    (ConfigObject.config.macros["refillAmmo"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && refillAmmoCheckbox.Checked)
+                {
+                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56f), out int maxArrows);
+                    if (maxArrows != 0)
+                    {
+
+                        tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, maxArrows);
+                        cheatActivated = true;
+                    }
+
+                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b570), out int maxBombs);
+                    if (maxBombs != 0)
+                    {
+                        tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, maxBombs);
+                        cheatActivated = true;
+                    }
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Ammo", 255, 153, 0, 255);
+                }
+
+                //dpad down + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadRoom"].input)) &&
+                    (ConfigObject.config.macros["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && reloadRoomCheckbox.Checked)
+                {
+                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763fc, 0x1);
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Reload Room", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+
+                //dpad left + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["restorePosition"].input)) &&
+                    (ConfigObject.config.macros["restorePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && storeRestoreCheckbox.Checked)
+                {
+                    if (!ConfigObject.config.macros["restorePosition"].alternative && (storedLinkX != 0 || storedLinkY != 0 || storedLinkZ != 0))
+                    {
+                        
+                        if (ConfigObject.config.accuratePosRestore)
+                        {
+                            tcpGecko.PauseExec();
+                            Cheats.DoorCancel(tcpGecko, true);
+                            Thread.Sleep(100);
+
+                            tcpGecko.AdvanceExec();
+                            //account for 1 frame of falling
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
+
+                            Thread.Sleep(100);
+
+                            tcpGecko.AdvanceExec();
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
+                            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
+                            Cheats.DoorCancel(tcpGecko, false);
+
+                            Thread.Sleep(100);
+                            tcpGecko.ResumeExec();
+
+                        }
+                        else
+                        {
+                            Cheats.DoorCancel(tcpGecko, true);
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
+                            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
+                            Cheats.DoorCancel(tcpGecko, false);
+                        }
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
+                        cheatActivated = true;
+                    }
+                    else if (ConfigObject.config.macros["restorePosition"].alternative)
+                    {
+                        if (memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Text == "(Temporary memfile)")
+                        {
+                            tempMemfile.Load(tcpGecko, this);
+                        }
+                        else
+                        {
+                            availableMemfiles[memfilesViewer.SelectedNode.Name].Load(tcpGecko, this);
+                        }
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore selected memfile", 255, 153, 0, 255);
+                        cheatActivated = true;
+                    }
+
+                }
+
+                //dpad right + zr
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storePosition"].input)) &&
+                    (ConfigObject.config.macros["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && storeRestoreCheckbox.Checked)
+                {
+                    if (!ConfigObject.config.macros["storePosition"].alternative)
+                    {
+                        storedLinkX = linkCoordinates.Item1;
+                        storedLinkY = linkCoordinates.Item2;
+                        storedLinkZ = linkCoordinates.Item3;
+                        storedLinkAngle = linkAngle;
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
+                        cheatActivated = true;
+                    }
+                    else
+                    {
+                        tempMemfile = Memfile.Create(tcpGecko, true);
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Save into temp memfile", 255, 153, 0, 255);
+                        cheatActivated = true;
+                    }
+                }
+                if (Inputs.isNotPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input))
+                    && doorCancelFromMacro)
+                {
+                    Cheats.RestoreCollision(tcpGecko);
+                    doorCancelFromMacro = false;
+                }
+            }
+            
+
+
+            this.Invoke(new MethodInvoker(dataViewerControl.RefreshSticks));
+            this.Invoke(new MethodInvoker(separateDataViewerControl.RefreshSticks));
+            this.Invoke(new Action<int>(dataViewerControl.RefreshInputs), inputs);
+            this.Invoke(new Action<int>(separateDataViewerControl.RefreshInputs), inputs);
+
+            this.Invoke(new MethodInvoker(UpdateLinkLabel));
+
+            if (stage.Contains("sea_T") && warningRuns.Checked)
+            {
+                tcpGecko.DisplayText("[Warning] Make sure to disable the TCPGecko plugin before starting a run!", 255, 0, 0, 255);
+            }
+            else if (!cheatActivated || !displayMacros.Checked)
+            {
+                if (dataViewerPanel.Visible || separate.Visible)
+                {
+                    tcpGecko.DisplayText(".", 255, 0, 0, 2);
+                }
+                else
+                {
+                    tcpGecko.DisplayText(".", 255, 255, 255, 2);
+                }
+
+            }
+        }
+
+        public void UpdateLinkLabel()
+        {
+            if (ftDate + TimeSpan.FromMilliseconds(5000) < DateTime.Now && favoriteText)
+            {
+                favoriteText = false;
+                addedRemoved.Text = "";
+                SavefileIndicator.Text = "";
+            }
+
+            if (stage.StartsWith("sea"))
+            {
+                int mapQuadrant = Math.Min(Math.Max((int)(linkCoordinates.Item1 + 340000) / (680000 / 7), 0), 6) + 7 * (int)Math.Min(Math.Max((int)(linkCoordinates.Item3 + 340000) / (680000 / 7), 0), 6);
+                linkLocationLabel.Text = Stages.islands[mapQuadrant].usingName;
+                movingLink.Visible = displayOnMap.Checked;
+                movingLink.Location = new Point((int)(((linkCoordinates.Item1 + 340000) / 680000) * transparentLayer.Width) - movingLink.Width / 2, (int)(((linkCoordinates.Item3 + 340000) / 680000) * transparentLayer.Height) - movingLink.Height / 2);
+            }
+            else
+            {
+                movingLink.Visible = false;
+                bool found = false;
+                foreach (var item in yamlMap.Keys)
+                {
+                    if (stage.Split(new[] { '\0' }, 2)[0] == yamlMap[item])
+                    {
+                        linkLocationLabel.Text = item;
+                        found = true;
+                        break;
+                    }
+
+                }
+                if (!found) linkLocationLabel.Text = "Unknown";
+            }
+        }
+
         private void CheckInv_Tick(object sender, EventArgs e)
         {
             
@@ -1582,330 +1980,6 @@ namespace WWHDHacker
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (!tcpGecko.connected)
-            {
-                CheckInv.Stop();
-                timer1.Stop();
-                connect.Text = "Connect";
-                foreach (Control item in this.Controls)
-                {
-                    if (item.GetType() == typeof(Panel))
-                    {
-                        item.Enabled = false;
-                    }
-                }
-                return;
-            }
-            
-            if (ftDate + TimeSpan.FromMilliseconds(5000) < DateTime.Now && favoriteText)
-            {
-                favoriteText = false;
-                addedRemoved.Text = "";
-                SavefileIndicator.Text = "";
-            }
-
-            int[] addresses = new int[]
-            {
-                0x102F48A8,
-                0x102F48B4,
-                0x102F48B8,
-                0x102F48BC,
-                0x102F48C0,
-                0x1096ef48,
-                0x1096ef4c,
-                0x1096ef50,
-                0x1096ef12,
-                0
-            };
-            
-            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
-            addresses[9] = (link_ptr + 27156);
-            var raw = tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, addresses);
-            addresses = new int[]
-            {
-                0x109763E4,
-                0x109763E5,
-                0x109763E6,
-                0x109763E7,
-                0x109763E8,
-                0x109763E9,
-                0x109763EA,
-                0x109763EB,
-                0x109763EC,
-                0x10978CF8,
-                0x109763ED,
-                0x109763EF,
-            };
-            var stageInfo = tcpGecko.PeekMultiple(TCPGecko.Datatype.u8, addresses);
-
-            if (raw.Count < 10) return;
-            Int32.TryParse(raw[0], out int inputs);
-            mainStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0) * 128));
-            cStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0) * 128));
-            linkCoordinates = ((BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[5])), 0)),
-                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[6])), 0)),
-                (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[7])), 0)));
-
-            linkAngle = (int)(UInt32.Parse(raw[8]) >> 16);
-            linkSpeed = BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[9])), 0);
-
-
-
-
-            if (stageInfo.Count < 11) return;
-            stage = Encoding.ASCII.GetString(new byte[]{
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[0]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[1]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[2]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[3]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[4]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[5]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[6]))[0],
-                    BitConverter.GetBytes(UInt32.Parse(stageInfo[7]))[0],
-            });
-
-            roomId = int.Parse(stageInfo[9]);
-            spawnId = int.Parse(stageInfo[10]);
-            layer = int.Parse(stageInfo[8]);
-
-            bool cheatActivated = false;
-
-            //l
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["levitate"].input)) &&
-                (ConfigObject.config.macros["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input))) 
-                && lToLevitateCheckbox.Checked)
-            {
-                Cheats.LToLevitate(tcpGecko, ConfigObject.config.macros["levitate"].value, displayMacros.Checked);
-                cheatActivated = true;
-            }
-            
-            //left dpad
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input)) &&
-                (ConfigObject.config.macros["doorCancel"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && doorCancelCheckbox.Checked)
-            {
-                Cheats.DoorCancel(tcpGecko, true);
-                doorCancelFromMacro = true;
-                cheatActivated = true;
-                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Door Cancel", 255, 153, 0, 255);
-            }
-            else if (doorCancelFromMacro)
-            {
-                Cheats.DoorCancel(tcpGecko, false);
-                doorCancelFromMacro = false;
-            }
-
-
-
-            //right dpad
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["superswim"].input)) &&
-                (ConfigObject.config.macros["superswim"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && superswimCheckbox.Checked && 
-                lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
-            {
-                bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !ConfigObject.config.macros["superswim"].alternative;
-                Cheats.Superswim(tcpGecko, ConfigObject.config.macros["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
-                cheatActivated = true;
-                lastDpadRight = DateTime.Now;
-            }
-
-            //down dpad 
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storage"].input)) &&
-                (ConfigObject.config.macros["storage"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && storageCheckbox.Checked)
-            {
-                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
-                if(displayMacros.Checked) tcpGecko.DisplayText("[Macros] Give Storage", 255, 153, 0, 255);
-                cheatActivated = true;
-            }
-            //l3
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["windDirection"].input)) &&
-                (ConfigObject.config.macros["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && storageCheckbox.Checked)
-            {
-                Cheats.ChangeWindDir(tcpGecko, displayMacros.Checked);
-                cheatActivated = true;
-            }
-
-            //l + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillHealth"].input)) &&
-                (ConfigObject.config.macros["refillHealth"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && refillHealthCheckbox.Checked)
-            {
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b501), out int maxHealth);
-                if (maxHealth != 0)
-                {
-                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, maxHealth);
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Health", 255, 153, 0, 255);
-                    cheatActivated = true;
-                }
-            }
-
-            //r + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillMagic"].input)) &&
-                (ConfigObject.config.macros["refillMagic"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && refillMagicCheckbox.Checked)
-            {
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b513), out int maxMagic);
-                if (maxMagic != 0)
-                {
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Magic", 255, 153, 0, 255);
-                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, maxMagic);
-                    cheatActivated = true;
-                }
-            }
-
-            //dpad up + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillAmmo"].input)) &&
-                (ConfigObject.config.macros["refillAmmo"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && refillAmmoCheckbox.Checked)
-            {
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56f), out int maxArrows);
-                if (maxArrows != 0)
-                {
-
-                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, maxArrows);
-                    cheatActivated = true;
-                }
-
-                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b570), out int maxBombs);
-                if (maxBombs != 0)
-                {
-                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, maxBombs);
-                    cheatActivated = true;
-                }
-                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Refill Ammo", 255, 153, 0, 255);
-            }
-
-            //dpad down + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadRoom"].input)) &&
-                (ConfigObject.config.macros["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && reloadRoomCheckbox.Checked)
-            {
-
-                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763fc, 0x1);
-                if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Reload Room", 255, 153, 0, 255);
-                cheatActivated = true;
-            }
-
-            //dpad left + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["restorePosition"].input)) &&
-                (ConfigObject.config.macros["restorePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && (storedLinkX != 0 || storedLinkY != 0 || storedLinkZ != 0) 
-                && storeRestoreCheckbox.Checked)
-            {
-                if (!ConfigObject.config.macros["restorePosition"].alternative)
-                {
-                    Cheats.DoorCancel(tcpGecko, true);
-                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
-                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
-                    tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
-                    tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
-                    Cheats.DoorCancel(tcpGecko, false);
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
-                    cheatActivated = true;
-                }
-                else
-                {
-                    if (memfileSelector.SelectedIndices.Contains(0) || memfileSelector.SelectedIndices.Count == 0)
-                    {
-                        tempMemfile.Load(tcpGecko);
-                    }
-                    else
-                    {
-                        availableMemfiles[memfileSelector.SelectedIndices[0] - 1].Load(tcpGecko);
-                    }
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore selected memfile", 255, 153, 0, 255);
-                    cheatActivated = true;
-                }
-                
-            }
-
-            //dpad right + zr
-            if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storePosition"].input)) &&
-                (ConfigObject.config.macros["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                && storeRestoreCheckbox.Checked)
-            {
-                if (!ConfigObject.config.macros["storePosition"].alternative)
-                {
-                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef48), out storedLinkX);
-                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
-                    float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50), out storedLinkZ);
-                    Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out storedLinkAngle);
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
-                    cheatActivated = true;
-                }
-                else
-                {
-                    tempMemfile = Memfile.Create(tcpGecko);
-                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Save into temp memfile", 255, 153, 0, 255);
-                    cheatActivated = true;
-                }
-                
-            }
-            
-            
-
-            if (Inputs.isNotPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input))
-                && doorCancelFromMacro)
-            {
-                Cheats.RestoreCollision(tcpGecko);
-                doorCancelFromMacro = false;
-            }
-            
-
-            dataViewerControl.RefreshSticks();
-            separateDataViewerControl.RefreshSticks();
-            dataViewerControl.RefreshInputs(inputs);
-            separateDataViewerControl.RefreshInputs(inputs);
-
-            if (stage.StartsWith("sea"))
-            {
-                int mapQuadrant = Math.Min(Math.Max((int)(linkCoordinates.Item1 + 340000) / (680000 / 7), 0), 6) + 7 * (int)Math.Min(Math.Max((int)(linkCoordinates.Item3 + 340000) / (680000 / 7), 0), 6);
-                linkLocationLabel.Text = Stages.islands[mapQuadrant].usingName;
-                movingLink.Visible = displayOnMap.Checked;
-                movingLink.Location = new Point((int)(((linkCoordinates.Item1 + 340000) /680000)*transparentLayer.Width) - movingLink.Width / 2, (int)(((linkCoordinates.Item3 + 340000) / 680000) * transparentLayer.Height) - movingLink.Height / 2);
-            }
-            else
-            {
-                movingLink.Visible = false;
-                bool found = false;
-                foreach (var item in yamlMap.Keys)
-                {
-                    if (stage.Split(new[] { '\0' }, 2)[0] == yamlMap[item]){
-                        linkLocationLabel.Text = item;
-                        found = true;
-                        break;
-                    }
-
-                }
-                if (!found) linkLocationLabel.Text = "Unknown";
-                
-
-            }
-
-
-            
-            if (stage.Contains("sea_T") && warningRuns.Checked)
-            {
-                tcpGecko.DisplayText("[Warning] Make sure to disable the TCPGecko plugin before starting a run!", 255, 0, 0, 255);
-            }
-            else if (!cheatActivated || !displayMacros.Checked)
-            {
-                if(dataViewerPanel.Visible || separate.Visible)
-                {
-                    tcpGecko.DisplayText(".", 255, 0, 0, 2);
-                }
-                else
-                {
-                    tcpGecko.DisplayText(".", 255, 255, 255, 2);
-                }
-                
-            }
-        }
-
         private static async System.Threading.Tasks.Task CheckGitHubNewerVersion()
         {
             GitHubClient client = new GitHubClient(new ProductHeaderValue("WWHD-Hacker"));
@@ -1923,7 +1997,9 @@ namespace WWHDHacker
                 }
             }
         }
+
         #endregion
+
 
     }
 
@@ -2099,7 +2175,7 @@ namespace WWHDHacker
             DoubleClick += (sender, e) => { if (Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
         }
     }
-    
+
     public static class Prompt
     {
         public static string ShowDialog(string text, string caption)
@@ -2115,6 +2191,7 @@ namespace WWHDHacker
             System.Windows.Forms.Label textSystemLabel = new System.Windows.Forms.Label() { Left = 50, Top = 20, Text = text };
             TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
             Button confirmation = new Button() { Text = "Ok", Left = 150, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
@@ -2125,6 +2202,34 @@ namespace WWHDHacker
         }
     }
     
+    public static class MemfilePrompt
+    {
+        public static (bool, string) ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 300,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            System.Windows.Forms.Label textSystemLabel = new System.Windows.Forms.Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
+            CheckBox savePos = new CheckBox() { Text = "Restore position when loaded", Left = 20, Top = 70, Checked = true };
+
+            Button confirmation = new Button() { Text = "Ok", Left = 170, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(savePos);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textSystemLabel);
+            prompt.AcceptButton = confirmation;
+
+            return  prompt.ShowDialog() == DialogResult.OK ? (savePos.Checked, textBox.Text) : (false, "");
+        }
+    }
+
     public static class FavoritePrompt
     {
         public static (string, Stage) ShowDialog()
