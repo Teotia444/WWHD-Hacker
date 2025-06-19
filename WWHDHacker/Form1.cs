@@ -25,7 +25,7 @@ namespace WWHDHacker
     {
         // paused : 0x106EC269
 
-        static Version local = new Version("1.0.1");
+        static Version local = new Version("1.0.2");
 
         public static Dictionary<string, string> yamlMap;
         

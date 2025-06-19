@@ -27,5 +27,11 @@ C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.cspr
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.exe
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.pdb
 C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Octokit.xml
-C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.Fody.CopyLocal.cache
-C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\obj\Debug\WWHDHacker.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Costura.dll
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Newtonsoft.Json.dll
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Octokit.dll
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\TCPGeckoAromaLibrary.dll
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\YamlDotNet.dll
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Costura.pdb
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\Costura.xml
+C:\Users\teoti\Documents\GitHub\WWHD-Hacker\WWHDHacker\bin\Debug\TCPGeckoAromaLibrary.pdb
