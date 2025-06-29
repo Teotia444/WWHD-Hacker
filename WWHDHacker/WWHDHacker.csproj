@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Cheats.cs" />
     <Compile Include="ConfigObject.cs" />
+    <Compile Include="DarkModeCS.cs" />
     <Compile Include="DataViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>

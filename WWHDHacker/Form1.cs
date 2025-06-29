@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Security.AccessControl;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.CompilerServices;
+using DarkModeForms;
 
 namespace WWHDHacker
 {
@@ -37,6 +38,7 @@ namespace WWHDHacker
         DateTime lastFrameAdvance;
         bool doorCancelFromMacro;
         bool paused;
+        public static ToolTip generalTT;
 
         Thread looping;
 
@@ -80,10 +82,15 @@ namespace WWHDHacker
 
 
         public static TCPGecko tcpGecko = new TCPGecko();
+        private DarkModeCS dm = null;
+
 
         public Form1()
         {
+            SetStyle(System.Windows.Forms.ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
+
+            generalTT = new ToolTip();
             string yml = Encoding.ASCII.GetString(Resources.aroma);
             var deserializer = new DeserializerBuilder()
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
@@ -108,6 +115,7 @@ namespace WWHDHacker
             ConfigObject.config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText(settingsDir + "\\Config.json"));
             ConfigObject.config.FillConfig();
 
+            
             #region Config checks
             lToLevitateCheckbox.Checked = ConfigObject.config.macros["levitate"].enabled;
             doorCancelCheckbox.Checked = ConfigObject.config.macros["doorCancel"].enabled;
@@ -585,20 +593,20 @@ namespace WWHDHacker
 
         private void fetchSpawnId_Click(object sender, EventArgs e)
         {
-            spawnIdLoader.Text = spawnId.ToString();
+            spawnIdLoader.Text = spawnId.ToString("X2");
         }
 
         private void fetchLayer_Click(object sender, EventArgs e)
         {
-            layerLoader.Text = layer.ToString();
+            layerLoader.Text = layer.ToString("X2");
         }
 
         private void fetchAllTeleport_Click(object sender, EventArgs e)
         {
             stageNameLoader.Text = stage;
             roomIdLoader.Text = roomId.ToString();
-            spawnIdLoader.Text = spawnId.ToString();
-            layerLoader.Text = layer.ToString();
+            spawnIdLoader.Text = spawnId.ToString("X2");
+            layerLoader.Text = layer.ToString("X2");
         }
 
         #endregion
@@ -1077,6 +1085,8 @@ namespace WWHDHacker
             TreeNode tree = new TreeNode(dir.Name);
             foreach (var file in dir.GetFiles("*.json"))
             {
+                if (availableMemfiles.ContainsKey(file.Name.Replace(".json", ""))) break;
+
                 if (File.Exists(file.FullName))
                 {
                     using (StreamReader fi = File.OpenText(file.FullName))
@@ -1300,6 +1310,7 @@ namespace WWHDHacker
             }
             else if (me.Button == MouseButtons.Right)
             {
+                
                 favoriteMode = false;
                 subAreas.Controls.Clear();
                 foreach (string key in yamlMap.Keys)
@@ -1768,10 +1779,12 @@ namespace WWHDHacker
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
+                            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
                             Cheats.DoorCancel(tcpGecko, false);
                         }
                         if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
                         cheatActivated = true;
+
                     }
                     else if (ConfigObject.config.macros["restorePosition"].alternative)
                     {
@@ -1998,9 +2011,13 @@ namespace WWHDHacker
             }
         }
 
+
         #endregion
 
-
+        private void setKey_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bc78 + 0x20, (int)keyNumber.Value);
+        }
     }
 
     public class MemViewerEntry
@@ -2173,6 +2190,7 @@ namespace WWHDHacker
             Cursor = Cursors.Hand;
             Click += (sender, e) => {if(Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
             DoubleClick += (sender, e) => { if (Form1.tcpGecko.connected) Index = (((MouseEventArgs)e).Button == MouseButtons.Left ? 1 : -1) * 1 + Index; };
+            MouseHover += (sender, e) => { Form1.generalTT.SetToolTip(this, this.SelectedItem.ToString()); };
         }
     }
 

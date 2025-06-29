@@ -32,9 +32,9 @@ namespace WWHDHacker
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("b");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("a", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("b");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("a", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ipTextBox = new System.Windows.Forms.TextBox();
             this.connect = new System.Windows.Forms.Button();
@@ -223,9 +223,9 @@ namespace WWHDHacker
             this.itemsList = new System.Windows.Forms.ImageList(this.components);
             this.CheckInv = new System.Windows.Forms.Timer(this.components);
             this.memfilesPanel = new System.Windows.Forms.Panel();
-            this.memfilesViewer = new System.Windows.Forms.TreeView();
             this.SavefileIndicator = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.memfilesViewer = new System.Windows.Forms.TreeView();
             this.deleteMemfile = new System.Windows.Forms.Button();
             this.openMemfileFolder = new System.Windows.Forms.Button();
             this.loadMemfile = new System.Windows.Forms.Button();
@@ -254,10 +254,10 @@ namespace WWHDHacker
             this.linkLocationLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.teleporterToggleHyrule = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
             this.islandLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.checkBoxImage40 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage39 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage38 = new WWHDHacker.CheckBoxImage();
@@ -298,6 +298,10 @@ namespace WWHDHacker
             this.checkBoxImage3 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage2 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage1 = new WWHDHacker.CheckBoxImage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.setKey = new System.Windows.Forms.Button();
+            this.keyNumber = new System.Windows.Forms.NumericUpDown();
             this.miscFeaturesPanel.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -345,7 +349,7 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).BeginInit();
@@ -386,6 +390,8 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).BeginInit();
+            this.groupBox14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keyNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // ipTextBox
@@ -2332,6 +2338,7 @@ namespace WWHDHacker
             // 
             // itemsManager
             // 
+            this.itemsManager.Controls.Add(this.groupBox14);
             this.itemsManager.Controls.Add(this.autoupdateTracker);
             this.itemsManager.Controls.Add(this.groupBox3);
             this.itemsManager.Controls.Add(this.giveAll);
@@ -2480,19 +2487,6 @@ namespace WWHDHacker
             this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
             this.memfilesPanel.TabIndex = 32;
             // 
-            // memfilesViewer
-            // 
-            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
-            this.memfilesViewer.Name = "memfilesViewer";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "b";
-            treeNode2.Name = "test";
-            treeNode2.Text = "a";
-            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
-            this.memfilesViewer.TabIndex = 6;
-            // 
             // SavefileIndicator
             // 
             this.SavefileIndicator.AutoSize = true;
@@ -2515,6 +2509,19 @@ namespace WWHDHacker
             this.groupBox13.TabIndex = 4;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Memfiles";
+            // 
+            // memfilesViewer
+            // 
+            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
+            this.memfilesViewer.Name = "memfilesViewer";
+            treeNode3.Name = "Node1";
+            treeNode3.Text = "b";
+            treeNode4.Name = "test";
+            treeNode4.Text = "a";
+            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
+            this.memfilesViewer.TabIndex = 6;
             // 
             // deleteMemfile
             // 
@@ -2620,6 +2627,7 @@ namespace WWHDHacker
             // 
             // teleporterPanel
             // 
+            this.teleporterPanel.Controls.Add(this.panel1);
             this.teleporterPanel.Controls.Add(this.addCustomFavorite);
             this.teleporterPanel.Controls.Add(this.displayOnMap);
             this.teleporterPanel.Controls.Add(this.transparentLayer);
@@ -2629,7 +2637,6 @@ namespace WWHDHacker
             this.teleporterPanel.Controls.Add(this.linkLocationLabel);
             this.teleporterPanel.Controls.Add(this.pictureBox1);
             this.teleporterPanel.Controls.Add(this.teleporterToggleHyrule);
-            this.teleporterPanel.Controls.Add(this.panel2);
             this.teleporterPanel.Controls.Add(this.islandLabel);
             this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
             this.teleporterPanel.Name = "teleporterPanel";
@@ -2638,7 +2645,7 @@ namespace WWHDHacker
             // 
             // addCustomFavorite
             // 
-            this.addCustomFavorite.Location = new System.Drawing.Point(662, 251);
+            this.addCustomFavorite.Location = new System.Drawing.Point(660, 251);
             this.addCustomFavorite.Name = "addCustomFavorite";
             this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
             this.addCustomFavorite.TabIndex = 20;
@@ -2649,7 +2656,7 @@ namespace WWHDHacker
             // displayOnMap
             // 
             this.displayOnMap.AutoSize = true;
-            this.displayOnMap.Location = new System.Drawing.Point(665, 235);
+            this.displayOnMap.Location = new System.Drawing.Point(663, 235);
             this.displayOnMap.Name = "displayOnMap";
             this.displayOnMap.Size = new System.Drawing.Size(98, 17);
             this.displayOnMap.TabIndex = 19;
@@ -2662,7 +2669,7 @@ namespace WWHDHacker
             this.transparentLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.transparentLayer.Controls.Add(this.movingLink);
             this.transparentLayer.Controls.Add(this.teleporterMap);
-            this.transparentLayer.Location = new System.Drawing.Point(23, 26);
+            this.transparentLayer.Location = new System.Drawing.Point(19, 26);
             this.transparentLayer.Name = "transparentLayer";
             this.transparentLayer.Size = new System.Drawing.Size(306, 302);
             this.transparentLayer.TabIndex = 18;
@@ -2702,7 +2709,7 @@ namespace WWHDHacker
             // 
             // teleporterToggleFavorites
             // 
-            this.teleporterToggleFavorites.Location = new System.Drawing.Point(662, 291);
+            this.teleporterToggleFavorites.Location = new System.Drawing.Point(660, 291);
             this.teleporterToggleFavorites.Name = "teleporterToggleFavorites";
             this.teleporterToggleFavorites.Size = new System.Drawing.Size(100, 23);
             this.teleporterToggleFavorites.TabIndex = 5;
@@ -2718,7 +2725,7 @@ namespace WWHDHacker
             this.groupBox8.Controls.Add(this.teleporterLayer);
             this.groupBox8.Controls.Add(this.teleporterSpawnId);
             this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Location = new System.Drawing.Point(665, 26);
+            this.groupBox8.Location = new System.Drawing.Point(663, 26);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(122, 156);
             this.groupBox8.TabIndex = 16;
@@ -2779,7 +2786,7 @@ namespace WWHDHacker
             // linkLocationLabel
             // 
             this.linkLocationLabel.AutoSize = true;
-            this.linkLocationLabel.Location = new System.Drawing.Point(703, 191);
+            this.linkLocationLabel.Location = new System.Drawing.Point(701, 191);
             this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
             this.linkLocationLabel.Name = "linkLocationLabel";
             this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
@@ -2789,7 +2796,7 @@ namespace WWHDHacker
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WWHDHacker.Properties.Resources.MapLinkS_00_l_bflim;
-            this.pictureBox1.Location = new System.Drawing.Point(662, 188);
+            this.pictureBox1.Location = new System.Drawing.Point(660, 188);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(35, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2798,7 +2805,7 @@ namespace WWHDHacker
             // 
             // teleporterToggleHyrule
             // 
-            this.teleporterToggleHyrule.Location = new System.Drawing.Point(662, 314);
+            this.teleporterToggleHyrule.Location = new System.Drawing.Point(660, 314);
             this.teleporterToggleHyrule.Name = "teleporterToggleHyrule";
             this.teleporterToggleHyrule.Size = new System.Drawing.Size(101, 23);
             this.teleporterToggleHyrule.TabIndex = 5;
@@ -2806,44 +2813,46 @@ namespace WWHDHacker
             this.teleporterToggleHyrule.UseVisualStyleBackColor = true;
             this.teleporterToggleHyrule.Click += new System.EventHandler(this.teleporterToggleHyrule_Click);
             // 
-            // panel2
-            // 
-            this.panel2.BackgroundImage = global::WWHDHacker.Properties.Resources.area_empty;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.subAreas);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(352, 26);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(304, 302);
-            this.panel2.TabIndex = 4;
-            // 
             // subAreas
             // 
+            this.subAreas.AutoScroll = true;
             this.subAreas.BackColor = System.Drawing.Color.Transparent;
-            this.subAreas.Location = new System.Drawing.Point(14, 19);
+            this.subAreas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.subAreas.Location = new System.Drawing.Point(10, 26);
             this.subAreas.Name = "subAreas";
-            this.subAreas.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.subAreas.Size = new System.Drawing.Size(279, 273);
+            this.subAreas.Size = new System.Drawing.Size(280, 260);
             this.subAreas.TabIndex = 4;
+            // 
+            // islandLabel
+            // 
+            this.islandLabel.AutoSize = true;
+            this.islandLabel.Location = new System.Drawing.Point(22, 328);
+            this.islandLabel.Name = "islandLabel";
+            this.islandLabel.Size = new System.Drawing.Size(44, 13);
+            this.islandLabel.TabIndex = 1;
+            this.islandLabel.Text = "Island : ";
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::WWHDHacker.Properties.Resources.area_empty;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.subAreas);
+            this.panel1.Location = new System.Drawing.Point(339, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 304);
+            this.panel1.TabIndex = 21;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(17, 5);
+            this.label6.Location = new System.Drawing.Point(10, 9);
+            this.label6.MaximumSize = new System.Drawing.Size(92, 60);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Island : ";
-            // 
-            // islandLabel
-            // 
-            this.islandLabel.AutoSize = true;
-            this.islandLabel.Location = new System.Drawing.Point(28, 328);
-            this.islandLabel.Name = "islandLabel";
-            this.islandLabel.Size = new System.Drawing.Size(44, 13);
-            this.islandLabel.TabIndex = 1;
-            this.islandLabel.Text = "Island : ";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Island: ";
             // 
             // checkBoxImage40
             // 
@@ -3406,6 +3415,44 @@ namespace WWHDHacker
             this.checkBoxImage1.TabIndex = 0;
             this.checkBoxImage1.TabStop = false;
             // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label33);
+            this.groupBox14.Controls.Add(this.setKey);
+            this.groupBox14.Controls.Add(this.keyNumber);
+            this.groupBox14.Location = new System.Drawing.Point(483, 124);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(263, 65);
+            this.groupBox14.TabIndex = 45;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Key counter (works in dungeons only)";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(136, 18);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(37, 13);
+            this.label33.TabIndex = 44;
+            this.label33.Text = "Value:";
+            // 
+            // setKey
+            // 
+            this.setKey.Location = new System.Drawing.Point(13, 32);
+            this.setKey.Name = "setKey";
+            this.setKey.Size = new System.Drawing.Size(114, 23);
+            this.setKey.TabIndex = 41;
+            this.setKey.Text = "Set key counter";
+            this.setKey.UseVisualStyleBackColor = true;
+            this.setKey.Click += new System.EventHandler(this.setKey_Click);
+            // 
+            // keyNumber
+            // 
+            this.keyNumber.Location = new System.Drawing.Point(139, 34);
+            this.keyNumber.Name = "keyNumber";
+            this.keyNumber.Size = new System.Drawing.Size(120, 20);
+            this.keyNumber.TabIndex = 43;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3422,13 +3469,13 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.memfilesPanel);
-            this.Controls.Add(this.dataViewerPanel);
-            this.Controls.Add(this.mainFeaturesPanel);
             this.Controls.Add(this.itemsManager);
             this.Controls.Add(this.miscFeaturesPanel);
             this.Controls.Add(this.advancedPanel);
             this.Controls.Add(this.teleporterPanel);
+            this.Controls.Add(this.memfilesPanel);
+            this.Controls.Add(this.dataViewerPanel);
+            this.Controls.Add(this.mainFeaturesPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "WWHD Hacker";
@@ -3504,8 +3551,8 @@ namespace WWHDHacker
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).EndInit();
@@ -3546,6 +3593,9 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).EndInit();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keyNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3670,8 +3720,6 @@ namespace WWHDHacker
         private Panel teleporterPanel;
         private PictureBox teleporterMap;
         private Label islandLabel;
-        private Panel panel2;
-        private Label label6;
         private FlowLayoutPanel subAreas;
         private CheckBox changeWindCheckbox;
         private CheckBox alternativeMemfiles;
@@ -3816,6 +3864,12 @@ namespace WWHDHacker
         private CheckBox accuratePositionRestore;
         private CheckBox macrosPausedCheckBox;
         private TreeView memfilesViewer;
+        private Panel panel1;
+        private Label label6;
+        private GroupBox groupBox14;
+        private Label label33;
+        private Button setKey;
+        private NumericUpDown keyNumber;
     }
 }
 
