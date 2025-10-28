@@ -105,6 +105,7 @@ namespace WWHDHacker
             angleTextbox.Text = origin.linkAngle.ToString();
             potentialSpeedTextbox.Text = Decimal.Parse(origin.linkSpeed.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString();
             actualSpeedTextbox.Text = Decimal.Parse(origin.linkSpeed.ToString(), NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign).ToString(); ;
+            speedAngleTextbox.Text = origin.linkSpeedAngle.ToString();
 
             stageTextbox.Text = origin.stage;
             roomIdTextbox.Text = $"{origin.roomId}";

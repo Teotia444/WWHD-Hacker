@@ -52,6 +52,7 @@ namespace WWHDHacker
         public (float, float, float) linkCoordinates { get; set; }
         public int linkAngle { get; set; }
         public float linkSpeed { get; set; }
+        public int linkSpeedAngle { get; set; }
 
         public string stage { get; set; }
         public int roomId { get; set; }
@@ -484,7 +485,7 @@ namespace WWHDHacker
 
         private void setSAButton_Click(object sender, EventArgs e)
         {
-            tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096EF0A, FloatToHex((float)speedAngleNumber.Value));
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096EF0A, (int)speedAngleNumber.Value);
         }
 
         private void setPositionButton_Click(object sender, EventArgs e)
@@ -1568,7 +1569,8 @@ namespace WWHDHacker
                 0x1096ef4c,
                 0x1096ef50,
                 0x1096ef12,
-                0
+                0,
+                0x1096EF0A
             };
 
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
@@ -1592,7 +1594,7 @@ namespace WWHDHacker
             };
             var stageInfo = tcpGecko.PeekMultiple(TCPGecko.Datatype.u8, addresses);
 
-            if (raw.Count < 10) return;
+            if (raw.Count < 11) return;
             Int32.TryParse(raw[0], out int inputs);
             mainStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0) * 128));
             cStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0) * 128));
@@ -1603,7 +1605,7 @@ namespace WWHDHacker
             linkAngle = (int)(UInt32.Parse(raw[8]) >> 16);
             linkSpeed = BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[9])), 0);
 
-
+            linkSpeedAngle = (int)(UInt32.Parse(raw[10]) >> 16);
 
 
             if (stageInfo.Count < 11) return;

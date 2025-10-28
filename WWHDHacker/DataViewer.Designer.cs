@@ -32,11 +32,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewer));
             this.dataViewerPanel = new System.Windows.Forms.Panel();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.roomIdTextbox = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.stageTextbox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.spawnIdTextbox = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.layerTextbox = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.angleTextbox = new System.Windows.Forms.TextBox();
             this.linkZTextbox = new System.Windows.Forms.TextBox();
@@ -123,6 +132,46 @@
             this.setHCValue = new System.Windows.Forms.NumericUpDown();
             this.giveAll = new System.Windows.Forms.Button();
             this.itemsPanel = new System.Windows.Forms.Panel();
+            this.nayrusPearlCheck = new WWHDHacker.CheckBoxImage();
+            this.faroresPearlCheck = new WWHDHacker.CheckBoxImage();
+            this.dinsPearlCheck = new WWHDHacker.CheckBoxImage();
+            this.triforceCheck = new WWHDHacker.CheckBoxImage();
+            this.quiverCheck = new WWHDHacker.CheckBoxImage();
+            this.bombBagCheck = new WWHDHacker.CheckBoxImage();
+            this.magicCheck = new WWHDHacker.CheckBoxImage();
+            this.walletCheck = new WWHDHacker.CheckBoxImage();
+            this.heroCharmCheck = new WWHDHacker.CheckBoxImage();
+            this.songOfPassingCheck = new WWHDHacker.CheckBoxImage();
+            this.windGodAriaCheck = new WWHDHacker.CheckBoxImage();
+            this.earthGodLyricCheck = new WWHDHacker.CheckBoxImage();
+            this.commandMelodyCheck = new WWHDHacker.CheckBoxImage();
+            this.balladOfGalesCheck = new WWHDHacker.CheckBoxImage();
+            this.windsRequiemCheck = new WWHDHacker.CheckBoxImage();
+            this.bottleCheck = new WWHDHacker.CheckBoxImage();
+            this.powerBraceletsCheck = new WWHDHacker.CheckBoxImage();
+            this.skullHammerCheck = new WWHDHacker.CheckBoxImage();
+            this.hookshotCheck = new WWHDHacker.CheckBoxImage();
+            this.deliveryBagCheck = new WWHDHacker.CheckBoxImage();
+            this.noteToMomCheck = new WWHDHacker.CheckBoxImage();
+            this.moblinsLetterCheck = new WWHDHacker.CheckBoxImage();
+            this.maggiesLetterCheck = new WWHDHacker.CheckBoxImage();
+            this.cabanaDeedCheck = new WWHDHacker.CheckBoxImage();
+            this.shieldCheck = new WWHDHacker.CheckBoxImage();
+            this.bombsCheck = new WWHDHacker.CheckBoxImage();
+            this.bowCheck = new WWHDHacker.CheckBoxImage();
+            this.baitBagCheck = new WWHDHacker.CheckBoxImage();
+            this.magicArmorCheck = new WWHDHacker.CheckBoxImage();
+            this.ironBootsCheck = new WWHDHacker.CheckBoxImage();
+            this.pictoboxCheck = new WWHDHacker.CheckBoxImage();
+            this.tingleBottleCheck = new WWHDHacker.CheckBoxImage();
+            this.swordCheck = new WWHDHacker.CheckBoxImage();
+            this.leafCheck = new WWHDHacker.CheckBoxImage();
+            this.boomerangCheck = new WWHDHacker.CheckBoxImage();
+            this.spoilsBagCheck = new WWHDHacker.CheckBoxImage();
+            this.grapplingHookCheck = new WWHDHacker.CheckBoxImage();
+            this.windWakerCheck = new WWHDHacker.CheckBoxImage();
+            this.sailCheck = new WWHDHacker.CheckBoxImage();
+            this.telescopeCheck = new WWHDHacker.CheckBoxImage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.refreshAS = new System.Windows.Forms.Button();
             this.currentAnimSet = new System.Windows.Forms.Label();
@@ -166,56 +215,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.nayrusPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.faroresPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.dinsPearlCheck = new WWHDHacker.CheckBoxImage();
-            this.triforceCheck = new WWHDHacker.CheckBoxImage();
-            this.quiverCheck = new WWHDHacker.CheckBoxImage();
-            this.bombBagCheck = new WWHDHacker.CheckBoxImage();
-            this.magicCheck = new WWHDHacker.CheckBoxImage();
-            this.walletCheck = new WWHDHacker.CheckBoxImage();
-            this.heroCharmCheck = new WWHDHacker.CheckBoxImage();
-            this.songOfPassingCheck = new WWHDHacker.CheckBoxImage();
-            this.windGodAriaCheck = new WWHDHacker.CheckBoxImage();
-            this.earthGodLyricCheck = new WWHDHacker.CheckBoxImage();
-            this.commandMelodyCheck = new WWHDHacker.CheckBoxImage();
-            this.balladOfGalesCheck = new WWHDHacker.CheckBoxImage();
-            this.windsRequiemCheck = new WWHDHacker.CheckBoxImage();
-            this.bottleCheck = new WWHDHacker.CheckBoxImage();
-            this.powerBraceletsCheck = new WWHDHacker.CheckBoxImage();
-            this.skullHammerCheck = new WWHDHacker.CheckBoxImage();
-            this.hookshotCheck = new WWHDHacker.CheckBoxImage();
-            this.deliveryBagCheck = new WWHDHacker.CheckBoxImage();
-            this.noteToMomCheck = new WWHDHacker.CheckBoxImage();
-            this.moblinsLetterCheck = new WWHDHacker.CheckBoxImage();
-            this.maggiesLetterCheck = new WWHDHacker.CheckBoxImage();
-            this.cabanaDeedCheck = new WWHDHacker.CheckBoxImage();
-            this.shieldCheck = new WWHDHacker.CheckBoxImage();
-            this.bombsCheck = new WWHDHacker.CheckBoxImage();
-            this.bowCheck = new WWHDHacker.CheckBoxImage();
-            this.baitBagCheck = new WWHDHacker.CheckBoxImage();
-            this.magicArmorCheck = new WWHDHacker.CheckBoxImage();
-            this.ironBootsCheck = new WWHDHacker.CheckBoxImage();
-            this.pictoboxCheck = new WWHDHacker.CheckBoxImage();
-            this.tingleBottleCheck = new WWHDHacker.CheckBoxImage();
-            this.swordCheck = new WWHDHacker.CheckBoxImage();
-            this.leafCheck = new WWHDHacker.CheckBoxImage();
-            this.boomerangCheck = new WWHDHacker.CheckBoxImage();
-            this.spoilsBagCheck = new WWHDHacker.CheckBoxImage();
-            this.grapplingHookCheck = new WWHDHacker.CheckBoxImage();
-            this.windWakerCheck = new WWHDHacker.CheckBoxImage();
-            this.sailCheck = new WWHDHacker.CheckBoxImage();
-            this.telescopeCheck = new WWHDHacker.CheckBoxImage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.updateValuesTimer = new System.Windows.Forms.Timer(this.components);
+            this.label27 = new System.Windows.Forms.Label();
+            this.speedAngleTextbox = new System.Windows.Forms.TextBox();
             this.dataViewerPanel.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -240,9 +242,6 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).BeginInit();
             this.itemsPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.advancedPanel.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nayrusPearlCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.faroresPearlCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dinsPearlCheck)).BeginInit();
@@ -283,10 +282,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.advancedPanel.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataViewerPanel
             // 
+            this.dataViewerPanel.Controls.Add(this.label27);
             this.dataViewerPanel.Controls.Add(this.groupBox9);
             this.dataViewerPanel.Controls.Add(this.groupBox10);
             this.dataViewerPanel.Controls.Add(this.inputDisplay);
@@ -312,6 +315,15 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Current Stage";
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(10, 99);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 13);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "Layer :";
+            // 
             // roomIdTextbox
             // 
             this.roomIdTextbox.Location = new System.Drawing.Point(136, 42);
@@ -319,6 +331,15 @@
             this.roomIdTextbox.ReadOnly = true;
             this.roomIdTextbox.Size = new System.Drawing.Size(100, 20);
             this.roomIdTextbox.TabIndex = 9;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(10, 73);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(60, 13);
+            this.label24.TabIndex = 14;
+            this.label24.Text = "Spawn ID :";
             // 
             // stageTextbox
             // 
@@ -328,6 +349,15 @@
             this.stageTextbox.Size = new System.Drawing.Size(100, 20);
             this.stageTextbox.TabIndex = 8;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(10, 48);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(55, 13);
+            this.label25.TabIndex = 13;
+            this.label25.Text = "Room ID :";
+            // 
             // spawnIdTextbox
             // 
             this.spawnIdTextbox.Location = new System.Drawing.Point(136, 69);
@@ -335,6 +365,15 @@
             this.spawnIdTextbox.ReadOnly = true;
             this.spawnIdTextbox.Size = new System.Drawing.Size(100, 20);
             this.spawnIdTextbox.TabIndex = 6;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(10, 22);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(41, 13);
+            this.label26.TabIndex = 12;
+            this.label26.Text = "Stage :";
             // 
             // layerTextbox
             // 
@@ -348,6 +387,7 @@
             // 
             this.groupBox10.Controls.Add(this.label22);
             this.groupBox10.Controls.Add(this.label21);
+            this.groupBox10.Controls.Add(this.speedAngleTextbox);
             this.groupBox10.Controls.Add(this.label17);
             this.groupBox10.Controls.Add(this.label8);
             this.groupBox10.Controls.Add(this.label1);
@@ -364,6 +404,51 @@
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Link";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(18, 156);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 13);
+            this.label22.TabIndex = 11;
+            this.label22.Text = "Actual Speed :";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(18, 130);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(88, 13);
+            this.label21.TabIndex = 10;
+            this.label21.Text = "Potential Speed :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(18, 105);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Angle :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 79);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Link Z:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Link Y:";
             // 
             // label7
             // 
@@ -692,7 +777,6 @@
             this.mainStick.Size = new System.Drawing.Size(134, 134);
             this.mainStick.TabIndex = 1;
             this.mainStick.TabStop = false;
-            
             // 
             // cStick
             // 
@@ -1321,456 +1405,6 @@
             this.itemsPanel.Size = new System.Drawing.Size(450, 332);
             this.itemsPanel.TabIndex = 39;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.refreshAS);
-            this.panel1.Controls.Add(this.currentAnimSet);
-            this.panel1.Controls.Add(this.animSet1);
-            this.panel1.Controls.Add(this.animSet2);
-            this.panel1.Controls.Add(this.resumeGame);
-            this.panel1.Controls.Add(this.pauseGame);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.infAir);
-            this.panel1.Controls.Add(this.infMagic);
-            this.panel1.Controls.Add(this.infHealth);
-            this.panel1.Controls.Add(this.fullCapacities);
-            this.panel1.Controls.Add(this.magic80);
-            this.panel1.Controls.Add(this.fullHealth);
-            this.panel1.Controls.Add(this.infArrows);
-            this.panel1.Controls.Add(this.infBombs);
-            this.panel1.Controls.Add(this.allSongs);
-            this.panel1.Controls.Add(this.storageCheckbox);
-            this.panel1.Controls.Add(this.refillAmmoCheckbox);
-            this.panel1.Controls.Add(this.refillHealthCheckbox);
-            this.panel1.Controls.Add(this.refillMagicCheckbox);
-            this.panel1.Controls.Add(this.reloadRoomCheckbox);
-            this.panel1.Controls.Add(this.superswimCheckbox);
-            this.panel1.Controls.Add(this.doorCancelCheckbox);
-            this.panel1.Controls.Add(this.masterkey);
-            this.panel1.Controls.Add(this.storeRestoreCheckbox);
-            this.panel1.Controls.Add(this.lToLevitateCheckbox);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(803, 348);
-            this.panel1.TabIndex = 35;
-            // 
-            // refreshAS
-            // 
-            this.refreshAS.Location = new System.Drawing.Point(524, 8);
-            this.refreshAS.Name = "refreshAS";
-            this.refreshAS.Size = new System.Drawing.Size(99, 23);
-            this.refreshAS.TabIndex = 42;
-            this.refreshAS.Text = "Refresh anim set";
-            this.refreshAS.UseVisualStyleBackColor = true;
-            // 
-            // currentAnimSet
-            // 
-            this.currentAnimSet.AutoSize = true;
-            this.currentAnimSet.Location = new System.Drawing.Point(375, 14);
-            this.currentAnimSet.Name = "currentAnimSet";
-            this.currentAnimSet.Size = new System.Drawing.Size(138, 13);
-            this.currentAnimSet.TabIndex = 41;
-            this.currentAnimSet.Text = "Current anim set : Unknown";
-            // 
-            // animSet1
-            // 
-            this.animSet1.Location = new System.Drawing.Point(378, 50);
-            this.animSet1.Name = "animSet1";
-            this.animSet1.Size = new System.Drawing.Size(113, 23);
-            this.animSet1.TabIndex = 40;
-            this.animSet1.Text = "Anim set 1";
-            this.animSet1.UseVisualStyleBackColor = true;
-            // 
-            // animSet2
-            // 
-            this.animSet2.Location = new System.Drawing.Point(510, 50);
-            this.animSet2.Name = "animSet2";
-            this.animSet2.Size = new System.Drawing.Size(113, 23);
-            this.animSet2.TabIndex = 39;
-            this.animSet2.Text = "Anim set 2";
-            this.animSet2.UseVisualStyleBackColor = true;
-            // 
-            // resumeGame
-            // 
-            this.resumeGame.Location = new System.Drawing.Point(201, 39);
-            this.resumeGame.Name = "resumeGame";
-            this.resumeGame.Size = new System.Drawing.Size(123, 23);
-            this.resumeGame.TabIndex = 37;
-            this.resumeGame.Text = "Resume";
-            this.resumeGame.UseVisualStyleBackColor = true;
-            // 
-            // pauseGame
-            // 
-            this.pauseGame.Location = new System.Drawing.Point(201, 12);
-            this.pauseGame.Name = "pauseGame";
-            this.pauseGame.Size = new System.Drawing.Size(123, 23);
-            this.pauseGame.TabIndex = 38;
-            this.pauseGame.Text = "Pause";
-            this.pauseGame.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(201, 80);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 23);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Advance one frame";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // infAir
-            // 
-            this.infAir.AutoSize = true;
-            this.infAir.Location = new System.Drawing.Point(211, 286);
-            this.infAir.Name = "infAir";
-            this.infAir.Size = new System.Drawing.Size(72, 17);
-            this.infAir.TabIndex = 36;
-            this.infAir.Text = "Infinite Air";
-            this.infAir.UseVisualStyleBackColor = true;
-            // 
-            // infMagic
-            // 
-            this.infMagic.AutoSize = true;
-            this.infMagic.Location = new System.Drawing.Point(211, 262);
-            this.infMagic.Name = "infMagic";
-            this.infMagic.Size = new System.Drawing.Size(89, 17);
-            this.infMagic.TabIndex = 35;
-            this.infMagic.Text = "Infinite Magic";
-            this.infMagic.UseVisualStyleBackColor = true;
-            // 
-            // infHealth
-            // 
-            this.infHealth.AutoSize = true;
-            this.infHealth.Location = new System.Drawing.Point(211, 239);
-            this.infHealth.Name = "infHealth";
-            this.infHealth.Size = new System.Drawing.Size(91, 17);
-            this.infHealth.TabIndex = 34;
-            this.infHealth.Text = "Infinite Health";
-            this.infHealth.UseVisualStyleBackColor = true;
-            // 
-            // fullCapacities
-            // 
-            this.fullCapacities.Location = new System.Drawing.Point(700, 291);
-            this.fullCapacities.Name = "fullCapacities";
-            this.fullCapacities.Size = new System.Drawing.Size(92, 23);
-            this.fullCapacities.TabIndex = 21;
-            this.fullCapacities.Text = "Full Capacities";
-            this.fullCapacities.UseVisualStyleBackColor = true;
-            // 
-            // magic80
-            // 
-            this.magic80.Location = new System.Drawing.Point(502, 320);
-            this.magic80.Name = "magic80";
-            this.magic80.Size = new System.Drawing.Size(94, 23);
-            this.magic80.TabIndex = 33;
-            this.magic80.Text = "80x Magic";
-            this.magic80.UseVisualStyleBackColor = true;
-            // 
-            // fullHealth
-            // 
-            this.fullHealth.Location = new System.Drawing.Point(602, 320);
-            this.fullHealth.Name = "fullHealth";
-            this.fullHealth.Size = new System.Drawing.Size(92, 23);
-            this.fullHealth.TabIndex = 20;
-            this.fullHealth.Text = "20 hearts";
-            this.fullHealth.UseVisualStyleBackColor = true;
-            // 
-            // infArrows
-            // 
-            this.infArrows.Location = new System.Drawing.Point(603, 291);
-            this.infArrows.Name = "infArrows";
-            this.infArrows.Size = new System.Drawing.Size(91, 23);
-            this.infArrows.TabIndex = 32;
-            this.infArrows.Text = "255 Max Arrows";
-            this.infArrows.UseVisualStyleBackColor = true;
-            // 
-            // infBombs
-            // 
-            this.infBombs.Location = new System.Drawing.Point(503, 291);
-            this.infBombs.Name = "infBombs";
-            this.infBombs.Size = new System.Drawing.Size(94, 23);
-            this.infBombs.TabIndex = 14;
-            this.infBombs.Text = "255 Max Bombs";
-            this.infBombs.UseVisualStyleBackColor = true;
-            // 
-            // allSongs
-            // 
-            this.allSongs.Location = new System.Drawing.Point(700, 320);
-            this.allSongs.Name = "allSongs";
-            this.allSongs.Size = new System.Drawing.Size(92, 23);
-            this.allSongs.TabIndex = 16;
-            this.allSongs.Text = "Give All Songs";
-            this.allSongs.UseVisualStyleBackColor = true;
-            // 
-            // storageCheckbox
-            // 
-            this.storageCheckbox.AutoSize = true;
-            this.storageCheckbox.Checked = true;
-            this.storageCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.storageCheckbox.Location = new System.Drawing.Point(18, 75);
-            this.storageCheckbox.Name = "storageCheckbox";
-            this.storageCheckbox.Size = new System.Drawing.Size(134, 17);
-            this.storageCheckbox.TabIndex = 31;
-            this.storageCheckbox.Text = "Dpad down for storage";
-            this.storageCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // refillAmmoCheckbox
-            // 
-            this.refillAmmoCheckbox.AutoSize = true;
-            this.refillAmmoCheckbox.Checked = true;
-            this.refillAmmoCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillAmmoCheckbox.Location = new System.Drawing.Point(18, 275);
-            this.refillAmmoCheckbox.Name = "refillAmmoCheckbox";
-            this.refillAmmoCheckbox.Size = new System.Drawing.Size(170, 30);
-            this.refillAmmoCheckbox.TabIndex = 29;
-            this.refillAmmoCheckbox.Text = "(Masterkey)\r\nDpad up to refill bombs/arrows";
-            this.refillAmmoCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // refillHealthCheckbox
-            // 
-            this.refillHealthCheckbox.AutoSize = true;
-            this.refillHealthCheckbox.Checked = true;
-            this.refillHealthCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillHealthCheckbox.Location = new System.Drawing.Point(18, 244);
-            this.refillHealthCheckbox.Name = "refillHealthCheckbox";
-            this.refillHealthCheckbox.Size = new System.Drawing.Size(99, 30);
-            this.refillHealthCheckbox.TabIndex = 28;
-            this.refillHealthCheckbox.Text = "(Masterkey)\r\nR to refill health";
-            this.refillHealthCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // refillMagicCheckbox
-            // 
-            this.refillMagicCheckbox.AutoSize = true;
-            this.refillMagicCheckbox.Checked = true;
-            this.refillMagicCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillMagicCheckbox.Location = new System.Drawing.Point(18, 208);
-            this.refillMagicCheckbox.Name = "refillMagicCheckbox";
-            this.refillMagicCheckbox.Size = new System.Drawing.Size(96, 30);
-            this.refillMagicCheckbox.TabIndex = 27;
-            this.refillMagicCheckbox.Text = "(Masterkey)\r\nL to refill magic";
-            this.refillMagicCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // reloadRoomCheckbox
-            // 
-            this.reloadRoomCheckbox.AutoSize = true;
-            this.reloadRoomCheckbox.Checked = true;
-            this.reloadRoomCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.reloadRoomCheckbox.Location = new System.Drawing.Point(18, 172);
-            this.reloadRoomCheckbox.Name = "reloadRoomCheckbox";
-            this.reloadRoomCheckbox.Size = new System.Drawing.Size(151, 30);
-            this.reloadRoomCheckbox.TabIndex = 26;
-            this.reloadRoomCheckbox.Text = "(Masterkey)\r\nDpad down to reload room";
-            this.reloadRoomCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // superswimCheckbox
-            // 
-            this.superswimCheckbox.AutoSize = true;
-            this.superswimCheckbox.Checked = true;
-            this.superswimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.superswimCheckbox.Location = new System.Drawing.Point(18, 54);
-            this.superswimCheckbox.Name = "superswimCheckbox";
-            this.superswimCheckbox.Size = new System.Drawing.Size(148, 17);
-            this.superswimCheckbox.TabIndex = 25;
-            this.superswimCheckbox.Text = "Dpad right for superspeed";
-            this.superswimCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // doorCancelCheckbox
-            // 
-            this.doorCancelCheckbox.AutoSize = true;
-            this.doorCancelCheckbox.Checked = true;
-            this.doorCancelCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.doorCancelCheckbox.Location = new System.Drawing.Point(18, 31);
-            this.doorCancelCheckbox.Name = "doorCancelCheckbox";
-            this.doorCancelCheckbox.Size = new System.Drawing.Size(143, 17);
-            this.doorCancelCheckbox.TabIndex = 24;
-            this.doorCancelCheckbox.Text = "Dpad left for door cancel\r\n";
-            this.doorCancelCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // masterkey
-            // 
-            this.masterkey.AutoSize = true;
-            this.masterkey.Checked = true;
-            this.masterkey.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.masterkey.Location = new System.Drawing.Point(18, 98);
-            this.masterkey.Name = "masterkey";
-            this.masterkey.Size = new System.Drawing.Size(132, 17);
-            this.masterkey.TabIndex = 21;
-            this.masterkey.Text = "Hold ZR for masterkey";
-            this.masterkey.UseVisualStyleBackColor = true;
-            // 
-            // storeRestoreCheckbox
-            // 
-            this.storeRestoreCheckbox.AutoSize = true;
-            this.storeRestoreCheckbox.Checked = true;
-            this.storeRestoreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.storeRestoreCheckbox.Location = new System.Drawing.Point(18, 121);
-            this.storeRestoreCheckbox.Name = "storeRestoreCheckbox";
-            this.storeRestoreCheckbox.Size = new System.Drawing.Size(122, 43);
-            this.storeRestoreCheckbox.TabIndex = 22;
-            this.storeRestoreCheckbox.Text = "(Masterkey)\r\nDpad right for store, \r\nDpad left for restore\r\n";
-            this.storeRestoreCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // lToLevitateCheckbox
-            // 
-            this.lToLevitateCheckbox.AutoSize = true;
-            this.lToLevitateCheckbox.Checked = true;
-            this.lToLevitateCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lToLevitateCheckbox.Location = new System.Drawing.Point(18, 8);
-            this.lToLevitateCheckbox.Name = "lToLevitateCheckbox";
-            this.lToLevitateCheckbox.Size = new System.Drawing.Size(81, 17);
-            this.lToLevitateCheckbox.TabIndex = 23;
-            this.lToLevitateCheckbox.Text = "L to levitate";
-            this.lToLevitateCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // advancedPanel
-            // 
-            this.advancedPanel.Controls.Add(this.groupBox6);
-            this.advancedPanel.Controls.Add(this.peekButton);
-            this.advancedPanel.Controls.Add(this.pokeButton);
-            this.advancedPanel.Controls.Add(this.typeDropdown);
-            this.advancedPanel.Controls.Add(this.valueTextbox);
-            this.advancedPanel.Controls.Add(this.memoryAddress);
-            this.advancedPanel.Controls.Add(this.label20);
-            this.advancedPanel.Controls.Add(this.label19);
-            this.advancedPanel.Controls.Add(this.label18);
-            this.advancedPanel.Location = new System.Drawing.Point(0, 0);
-            this.advancedPanel.Name = "advancedPanel";
-            this.advancedPanel.Size = new System.Drawing.Size(803, 348);
-            this.advancedPanel.TabIndex = 38;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.itemList);
-            this.groupBox6.Controls.Add(this.addItem);
-            this.groupBox6.Controls.Add(this.removeItem);
-            this.groupBox6.Controls.Add(this.slotList);
-            this.groupBox6.Location = new System.Drawing.Point(444, 16);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(356, 325);
-            this.groupBox6.TabIndex = 17;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Item Modifier";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Will go into slot...";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Item ...";
-            // 
-            // itemList
-            // 
-            this.itemList.FormattingEnabled = true;
-            this.itemList.Location = new System.Drawing.Point(8, 32);
-            this.itemList.Name = "itemList";
-            this.itemList.Size = new System.Drawing.Size(324, 95);
-            this.itemList.TabIndex = 14;
-            // 
-            // addItem
-            // 
-            this.addItem.Location = new System.Drawing.Point(8, 255);
-            this.addItem.Name = "addItem";
-            this.addItem.Size = new System.Drawing.Size(92, 23);
-            this.addItem.TabIndex = 6;
-            this.addItem.Text = "Add";
-            this.addItem.UseVisualStyleBackColor = true;
-            // 
-            // removeItem
-            // 
-            this.removeItem.Location = new System.Drawing.Point(245, 255);
-            this.removeItem.Name = "removeItem";
-            this.removeItem.Size = new System.Drawing.Size(87, 23);
-            this.removeItem.TabIndex = 9;
-            this.removeItem.Text = "Remove";
-            this.removeItem.UseVisualStyleBackColor = true;
-            // 
-            // slotList
-            // 
-            this.slotList.FormattingEnabled = true;
-            this.slotList.Location = new System.Drawing.Point(8, 148);
-            this.slotList.Name = "slotList";
-            this.slotList.Size = new System.Drawing.Size(324, 95);
-            this.slotList.TabIndex = 15;
-            // 
-            // peekButton
-            // 
-            this.peekButton.Location = new System.Drawing.Point(211, 86);
-            this.peekButton.Name = "peekButton";
-            this.peekButton.Size = new System.Drawing.Size(75, 23);
-            this.peekButton.TabIndex = 7;
-            this.peekButton.Text = "Peek";
-            this.peekButton.UseVisualStyleBackColor = true;
-            // 
-            // pokeButton
-            // 
-            this.pokeButton.Location = new System.Drawing.Point(292, 86);
-            this.pokeButton.Name = "pokeButton";
-            this.pokeButton.Size = new System.Drawing.Size(75, 23);
-            this.pokeButton.TabIndex = 6;
-            this.pokeButton.Text = "Poke";
-            this.pokeButton.UseVisualStyleBackColor = true;
-            // 
-            // typeDropdown
-            // 
-            this.typeDropdown.FormattingEnabled = true;
-            this.typeDropdown.Location = new System.Drawing.Point(5, 80);
-            this.typeDropdown.Name = "typeDropdown";
-            this.typeDropdown.Size = new System.Drawing.Size(121, 21);
-            this.typeDropdown.TabIndex = 5;
-            // 
-            // valueTextbox
-            // 
-            this.valueTextbox.Location = new System.Drawing.Point(211, 26);
-            this.valueTextbox.Name = "valueTextbox";
-            this.valueTextbox.Size = new System.Drawing.Size(100, 20);
-            this.valueTextbox.TabIndex = 4;
-            // 
-            // memoryAddress
-            // 
-            this.memoryAddress.Location = new System.Drawing.Point(5, 29);
-            this.memoryAddress.Name = "memoryAddress";
-            this.memoryAddress.Size = new System.Drawing.Size(100, 20);
-            this.memoryAddress.TabIndex = 3;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(5, 64);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(31, 13);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "Type";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(210, 6);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(87, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Value (Hex/float)";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(8, 6);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(112, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Memory address (Hex)";
-            // 
             // nayrusPearlCheck
             // 
             this.nayrusPearlCheck.BackColor = System.Drawing.Color.Transparent;
@@ -2332,91 +1966,477 @@
             this.telescopeCheck.TabIndex = 0;
             this.telescopeCheck.TabStop = false;
             // 
-            // label1
+            // panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Link Y:";
+            this.panel1.Controls.Add(this.refreshAS);
+            this.panel1.Controls.Add(this.currentAnimSet);
+            this.panel1.Controls.Add(this.animSet1);
+            this.panel1.Controls.Add(this.animSet2);
+            this.panel1.Controls.Add(this.resumeGame);
+            this.panel1.Controls.Add(this.pauseGame);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.infAir);
+            this.panel1.Controls.Add(this.infMagic);
+            this.panel1.Controls.Add(this.infHealth);
+            this.panel1.Controls.Add(this.fullCapacities);
+            this.panel1.Controls.Add(this.magic80);
+            this.panel1.Controls.Add(this.fullHealth);
+            this.panel1.Controls.Add(this.infArrows);
+            this.panel1.Controls.Add(this.infBombs);
+            this.panel1.Controls.Add(this.allSongs);
+            this.panel1.Controls.Add(this.storageCheckbox);
+            this.panel1.Controls.Add(this.refillAmmoCheckbox);
+            this.panel1.Controls.Add(this.refillHealthCheckbox);
+            this.panel1.Controls.Add(this.refillMagicCheckbox);
+            this.panel1.Controls.Add(this.reloadRoomCheckbox);
+            this.panel1.Controls.Add(this.superswimCheckbox);
+            this.panel1.Controls.Add(this.doorCancelCheckbox);
+            this.panel1.Controls.Add(this.masterkey);
+            this.panel1.Controls.Add(this.storeRestoreCheckbox);
+            this.panel1.Controls.Add(this.lToLevitateCheckbox);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(803, 348);
+            this.panel1.TabIndex = 35;
             // 
-            // label8
+            // refreshAS
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 79);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Link Z:";
+            this.refreshAS.Location = new System.Drawing.Point(524, 8);
+            this.refreshAS.Name = "refreshAS";
+            this.refreshAS.Size = new System.Drawing.Size(99, 23);
+            this.refreshAS.TabIndex = 42;
+            this.refreshAS.Text = "Refresh anim set";
+            this.refreshAS.UseVisualStyleBackColor = true;
             // 
-            // label17
+            // currentAnimSet
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(18, 105);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(40, 13);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Angle :";
+            this.currentAnimSet.AutoSize = true;
+            this.currentAnimSet.Location = new System.Drawing.Point(375, 14);
+            this.currentAnimSet.Name = "currentAnimSet";
+            this.currentAnimSet.Size = new System.Drawing.Size(138, 13);
+            this.currentAnimSet.TabIndex = 41;
+            this.currentAnimSet.Text = "Current anim set : Unknown";
             // 
-            // label21
+            // animSet1
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(18, 130);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(88, 13);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "Potential Speed :";
+            this.animSet1.Location = new System.Drawing.Point(378, 50);
+            this.animSet1.Name = "animSet1";
+            this.animSet1.Size = new System.Drawing.Size(113, 23);
+            this.animSet1.TabIndex = 40;
+            this.animSet1.Text = "Anim set 1";
+            this.animSet1.UseVisualStyleBackColor = true;
             // 
-            // label22
+            // animSet2
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(18, 156);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 13);
-            this.label22.TabIndex = 11;
-            this.label22.Text = "Actual Speed :";
+            this.animSet2.Location = new System.Drawing.Point(510, 50);
+            this.animSet2.Name = "animSet2";
+            this.animSet2.Size = new System.Drawing.Size(113, 23);
+            this.animSet2.TabIndex = 39;
+            this.animSet2.Text = "Anim set 2";
+            this.animSet2.UseVisualStyleBackColor = true;
             // 
-            // label23
+            // resumeGame
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(10, 99);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(39, 13);
-            this.label23.TabIndex = 15;
-            this.label23.Text = "Layer :";
+            this.resumeGame.Location = new System.Drawing.Point(201, 39);
+            this.resumeGame.Name = "resumeGame";
+            this.resumeGame.Size = new System.Drawing.Size(123, 23);
+            this.resumeGame.TabIndex = 37;
+            this.resumeGame.Text = "Resume";
+            this.resumeGame.UseVisualStyleBackColor = true;
             // 
-            // label24
+            // pauseGame
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(10, 73);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(60, 13);
-            this.label24.TabIndex = 14;
-            this.label24.Text = "Spawn ID :";
+            this.pauseGame.Location = new System.Drawing.Point(201, 12);
+            this.pauseGame.Name = "pauseGame";
+            this.pauseGame.Size = new System.Drawing.Size(123, 23);
+            this.pauseGame.TabIndex = 38;
+            this.pauseGame.Text = "Pause";
+            this.pauseGame.UseVisualStyleBackColor = true;
             // 
-            // label25
+            // button4
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(10, 48);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(55, 13);
-            this.label25.TabIndex = 13;
-            this.label25.Text = "Room ID :";
+            this.button4.Location = new System.Drawing.Point(201, 80);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(123, 23);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "Advance one frame";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // label26
+            // infAir
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(10, 22);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(41, 13);
-            this.label26.TabIndex = 12;
-            this.label26.Text = "Stage :";
+            this.infAir.AutoSize = true;
+            this.infAir.Location = new System.Drawing.Point(211, 286);
+            this.infAir.Name = "infAir";
+            this.infAir.Size = new System.Drawing.Size(72, 17);
+            this.infAir.TabIndex = 36;
+            this.infAir.Text = "Infinite Air";
+            this.infAir.UseVisualStyleBackColor = true;
+            // 
+            // infMagic
+            // 
+            this.infMagic.AutoSize = true;
+            this.infMagic.Location = new System.Drawing.Point(211, 262);
+            this.infMagic.Name = "infMagic";
+            this.infMagic.Size = new System.Drawing.Size(89, 17);
+            this.infMagic.TabIndex = 35;
+            this.infMagic.Text = "Infinite Magic";
+            this.infMagic.UseVisualStyleBackColor = true;
+            // 
+            // infHealth
+            // 
+            this.infHealth.AutoSize = true;
+            this.infHealth.Location = new System.Drawing.Point(211, 239);
+            this.infHealth.Name = "infHealth";
+            this.infHealth.Size = new System.Drawing.Size(91, 17);
+            this.infHealth.TabIndex = 34;
+            this.infHealth.Text = "Infinite Health";
+            this.infHealth.UseVisualStyleBackColor = true;
+            // 
+            // fullCapacities
+            // 
+            this.fullCapacities.Location = new System.Drawing.Point(700, 291);
+            this.fullCapacities.Name = "fullCapacities";
+            this.fullCapacities.Size = new System.Drawing.Size(92, 23);
+            this.fullCapacities.TabIndex = 21;
+            this.fullCapacities.Text = "Full Capacities";
+            this.fullCapacities.UseVisualStyleBackColor = true;
+            // 
+            // magic80
+            // 
+            this.magic80.Location = new System.Drawing.Point(502, 320);
+            this.magic80.Name = "magic80";
+            this.magic80.Size = new System.Drawing.Size(94, 23);
+            this.magic80.TabIndex = 33;
+            this.magic80.Text = "80x Magic";
+            this.magic80.UseVisualStyleBackColor = true;
+            // 
+            // fullHealth
+            // 
+            this.fullHealth.Location = new System.Drawing.Point(602, 320);
+            this.fullHealth.Name = "fullHealth";
+            this.fullHealth.Size = new System.Drawing.Size(92, 23);
+            this.fullHealth.TabIndex = 20;
+            this.fullHealth.Text = "20 hearts";
+            this.fullHealth.UseVisualStyleBackColor = true;
+            // 
+            // infArrows
+            // 
+            this.infArrows.Location = new System.Drawing.Point(603, 291);
+            this.infArrows.Name = "infArrows";
+            this.infArrows.Size = new System.Drawing.Size(91, 23);
+            this.infArrows.TabIndex = 32;
+            this.infArrows.Text = "255 Max Arrows";
+            this.infArrows.UseVisualStyleBackColor = true;
+            // 
+            // infBombs
+            // 
+            this.infBombs.Location = new System.Drawing.Point(503, 291);
+            this.infBombs.Name = "infBombs";
+            this.infBombs.Size = new System.Drawing.Size(94, 23);
+            this.infBombs.TabIndex = 14;
+            this.infBombs.Text = "255 Max Bombs";
+            this.infBombs.UseVisualStyleBackColor = true;
+            // 
+            // allSongs
+            // 
+            this.allSongs.Location = new System.Drawing.Point(700, 320);
+            this.allSongs.Name = "allSongs";
+            this.allSongs.Size = new System.Drawing.Size(92, 23);
+            this.allSongs.TabIndex = 16;
+            this.allSongs.Text = "Give All Songs";
+            this.allSongs.UseVisualStyleBackColor = true;
+            // 
+            // storageCheckbox
+            // 
+            this.storageCheckbox.AutoSize = true;
+            this.storageCheckbox.Checked = true;
+            this.storageCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.storageCheckbox.Location = new System.Drawing.Point(18, 75);
+            this.storageCheckbox.Name = "storageCheckbox";
+            this.storageCheckbox.Size = new System.Drawing.Size(134, 17);
+            this.storageCheckbox.TabIndex = 31;
+            this.storageCheckbox.Text = "Dpad down for storage";
+            this.storageCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // refillAmmoCheckbox
+            // 
+            this.refillAmmoCheckbox.AutoSize = true;
+            this.refillAmmoCheckbox.Checked = true;
+            this.refillAmmoCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.refillAmmoCheckbox.Location = new System.Drawing.Point(18, 275);
+            this.refillAmmoCheckbox.Name = "refillAmmoCheckbox";
+            this.refillAmmoCheckbox.Size = new System.Drawing.Size(170, 30);
+            this.refillAmmoCheckbox.TabIndex = 29;
+            this.refillAmmoCheckbox.Text = "(Masterkey)\r\nDpad up to refill bombs/arrows";
+            this.refillAmmoCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // refillHealthCheckbox
+            // 
+            this.refillHealthCheckbox.AutoSize = true;
+            this.refillHealthCheckbox.Checked = true;
+            this.refillHealthCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.refillHealthCheckbox.Location = new System.Drawing.Point(18, 244);
+            this.refillHealthCheckbox.Name = "refillHealthCheckbox";
+            this.refillHealthCheckbox.Size = new System.Drawing.Size(99, 30);
+            this.refillHealthCheckbox.TabIndex = 28;
+            this.refillHealthCheckbox.Text = "(Masterkey)\r\nR to refill health";
+            this.refillHealthCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // refillMagicCheckbox
+            // 
+            this.refillMagicCheckbox.AutoSize = true;
+            this.refillMagicCheckbox.Checked = true;
+            this.refillMagicCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.refillMagicCheckbox.Location = new System.Drawing.Point(18, 208);
+            this.refillMagicCheckbox.Name = "refillMagicCheckbox";
+            this.refillMagicCheckbox.Size = new System.Drawing.Size(96, 30);
+            this.refillMagicCheckbox.TabIndex = 27;
+            this.refillMagicCheckbox.Text = "(Masterkey)\r\nL to refill magic";
+            this.refillMagicCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // reloadRoomCheckbox
+            // 
+            this.reloadRoomCheckbox.AutoSize = true;
+            this.reloadRoomCheckbox.Checked = true;
+            this.reloadRoomCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.reloadRoomCheckbox.Location = new System.Drawing.Point(18, 172);
+            this.reloadRoomCheckbox.Name = "reloadRoomCheckbox";
+            this.reloadRoomCheckbox.Size = new System.Drawing.Size(151, 30);
+            this.reloadRoomCheckbox.TabIndex = 26;
+            this.reloadRoomCheckbox.Text = "(Masterkey)\r\nDpad down to reload room";
+            this.reloadRoomCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // superswimCheckbox
+            // 
+            this.superswimCheckbox.AutoSize = true;
+            this.superswimCheckbox.Checked = true;
+            this.superswimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.superswimCheckbox.Location = new System.Drawing.Point(18, 54);
+            this.superswimCheckbox.Name = "superswimCheckbox";
+            this.superswimCheckbox.Size = new System.Drawing.Size(148, 17);
+            this.superswimCheckbox.TabIndex = 25;
+            this.superswimCheckbox.Text = "Dpad right for superspeed";
+            this.superswimCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // doorCancelCheckbox
+            // 
+            this.doorCancelCheckbox.AutoSize = true;
+            this.doorCancelCheckbox.Checked = true;
+            this.doorCancelCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.doorCancelCheckbox.Location = new System.Drawing.Point(18, 31);
+            this.doorCancelCheckbox.Name = "doorCancelCheckbox";
+            this.doorCancelCheckbox.Size = new System.Drawing.Size(143, 17);
+            this.doorCancelCheckbox.TabIndex = 24;
+            this.doorCancelCheckbox.Text = "Dpad left for door cancel\r\n";
+            this.doorCancelCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // masterkey
+            // 
+            this.masterkey.AutoSize = true;
+            this.masterkey.Checked = true;
+            this.masterkey.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.masterkey.Location = new System.Drawing.Point(18, 98);
+            this.masterkey.Name = "masterkey";
+            this.masterkey.Size = new System.Drawing.Size(132, 17);
+            this.masterkey.TabIndex = 21;
+            this.masterkey.Text = "Hold ZR for masterkey";
+            this.masterkey.UseVisualStyleBackColor = true;
+            // 
+            // storeRestoreCheckbox
+            // 
+            this.storeRestoreCheckbox.AutoSize = true;
+            this.storeRestoreCheckbox.Checked = true;
+            this.storeRestoreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.storeRestoreCheckbox.Location = new System.Drawing.Point(18, 121);
+            this.storeRestoreCheckbox.Name = "storeRestoreCheckbox";
+            this.storeRestoreCheckbox.Size = new System.Drawing.Size(122, 43);
+            this.storeRestoreCheckbox.TabIndex = 22;
+            this.storeRestoreCheckbox.Text = "(Masterkey)\r\nDpad right for store, \r\nDpad left for restore\r\n";
+            this.storeRestoreCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // lToLevitateCheckbox
+            // 
+            this.lToLevitateCheckbox.AutoSize = true;
+            this.lToLevitateCheckbox.Checked = true;
+            this.lToLevitateCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.lToLevitateCheckbox.Location = new System.Drawing.Point(18, 8);
+            this.lToLevitateCheckbox.Name = "lToLevitateCheckbox";
+            this.lToLevitateCheckbox.Size = new System.Drawing.Size(81, 17);
+            this.lToLevitateCheckbox.TabIndex = 23;
+            this.lToLevitateCheckbox.Text = "L to levitate";
+            this.lToLevitateCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // advancedPanel
+            // 
+            this.advancedPanel.Controls.Add(this.groupBox6);
+            this.advancedPanel.Controls.Add(this.peekButton);
+            this.advancedPanel.Controls.Add(this.pokeButton);
+            this.advancedPanel.Controls.Add(this.typeDropdown);
+            this.advancedPanel.Controls.Add(this.valueTextbox);
+            this.advancedPanel.Controls.Add(this.memoryAddress);
+            this.advancedPanel.Controls.Add(this.label20);
+            this.advancedPanel.Controls.Add(this.label19);
+            this.advancedPanel.Controls.Add(this.label18);
+            this.advancedPanel.Location = new System.Drawing.Point(0, 0);
+            this.advancedPanel.Name = "advancedPanel";
+            this.advancedPanel.Size = new System.Drawing.Size(803, 348);
+            this.advancedPanel.TabIndex = 38;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.itemList);
+            this.groupBox6.Controls.Add(this.addItem);
+            this.groupBox6.Controls.Add(this.removeItem);
+            this.groupBox6.Controls.Add(this.slotList);
+            this.groupBox6.Location = new System.Drawing.Point(444, 16);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(356, 325);
+            this.groupBox6.TabIndex = 17;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Item Modifier";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 130);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Will go into slot...";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Item ...";
+            // 
+            // itemList
+            // 
+            this.itemList.FormattingEnabled = true;
+            this.itemList.Location = new System.Drawing.Point(8, 32);
+            this.itemList.Name = "itemList";
+            this.itemList.Size = new System.Drawing.Size(324, 95);
+            this.itemList.TabIndex = 14;
+            // 
+            // addItem
+            // 
+            this.addItem.Location = new System.Drawing.Point(8, 255);
+            this.addItem.Name = "addItem";
+            this.addItem.Size = new System.Drawing.Size(92, 23);
+            this.addItem.TabIndex = 6;
+            this.addItem.Text = "Add";
+            this.addItem.UseVisualStyleBackColor = true;
+            // 
+            // removeItem
+            // 
+            this.removeItem.Location = new System.Drawing.Point(245, 255);
+            this.removeItem.Name = "removeItem";
+            this.removeItem.Size = new System.Drawing.Size(87, 23);
+            this.removeItem.TabIndex = 9;
+            this.removeItem.Text = "Remove";
+            this.removeItem.UseVisualStyleBackColor = true;
+            // 
+            // slotList
+            // 
+            this.slotList.FormattingEnabled = true;
+            this.slotList.Location = new System.Drawing.Point(8, 148);
+            this.slotList.Name = "slotList";
+            this.slotList.Size = new System.Drawing.Size(324, 95);
+            this.slotList.TabIndex = 15;
+            // 
+            // peekButton
+            // 
+            this.peekButton.Location = new System.Drawing.Point(211, 86);
+            this.peekButton.Name = "peekButton";
+            this.peekButton.Size = new System.Drawing.Size(75, 23);
+            this.peekButton.TabIndex = 7;
+            this.peekButton.Text = "Peek";
+            this.peekButton.UseVisualStyleBackColor = true;
+            // 
+            // pokeButton
+            // 
+            this.pokeButton.Location = new System.Drawing.Point(292, 86);
+            this.pokeButton.Name = "pokeButton";
+            this.pokeButton.Size = new System.Drawing.Size(75, 23);
+            this.pokeButton.TabIndex = 6;
+            this.pokeButton.Text = "Poke";
+            this.pokeButton.UseVisualStyleBackColor = true;
+            // 
+            // typeDropdown
+            // 
+            this.typeDropdown.FormattingEnabled = true;
+            this.typeDropdown.Location = new System.Drawing.Point(5, 80);
+            this.typeDropdown.Name = "typeDropdown";
+            this.typeDropdown.Size = new System.Drawing.Size(121, 21);
+            this.typeDropdown.TabIndex = 5;
+            // 
+            // valueTextbox
+            // 
+            this.valueTextbox.Location = new System.Drawing.Point(211, 26);
+            this.valueTextbox.Name = "valueTextbox";
+            this.valueTextbox.Size = new System.Drawing.Size(100, 20);
+            this.valueTextbox.TabIndex = 4;
+            // 
+            // memoryAddress
+            // 
+            this.memoryAddress.Location = new System.Drawing.Point(5, 29);
+            this.memoryAddress.Name = "memoryAddress";
+            this.memoryAddress.Size = new System.Drawing.Size(100, 20);
+            this.memoryAddress.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(5, 64);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(31, 13);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "Type";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(210, 6);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Value (Hex/float)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(8, 6);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(112, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Memory address (Hex)";
             // 
             // updateValuesTimer
             // 
             this.updateValuesTimer.Interval = 10;
             this.updateValuesTimer.Tick += new System.EventHandler(this.updateValuesTimer_Tick);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(252, 37);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(70, 13);
+            this.label27.TabIndex = 13;
+            this.label27.Text = "Speed angle:";
+            // 
+            // speedAngleTextbox
+            // 
+            this.speedAngleTextbox.Location = new System.Drawing.Point(241, 48);
+            this.speedAngleTextbox.Name = "speedAngleTextbox";
+            this.speedAngleTextbox.ReadOnly = true;
+            this.speedAngleTextbox.Size = new System.Drawing.Size(100, 20);
+            this.speedAngleTextbox.TabIndex = 12;
             // 
             // DataViewer
             // 
@@ -2430,6 +2450,7 @@
             this.Name = "DataViewer";
             this.Size = new System.Drawing.Size(803, 348);
             this.dataViewerPanel.ResumeLayout(false);
+            this.dataViewerPanel.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -2461,12 +2482,6 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).EndInit();
             this.itemsPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.advancedPanel.ResumeLayout(false);
-            this.advancedPanel.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nayrusPearlCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.faroresPearlCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dinsPearlCheck)).EndInit();
@@ -2507,6 +2522,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.windWakerCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sailCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telescopeCheck)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.advancedPanel.ResumeLayout(false);
+            this.advancedPanel.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2699,5 +2720,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Timer updateValuesTimer;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox speedAngleTextbox;
     }
 }
