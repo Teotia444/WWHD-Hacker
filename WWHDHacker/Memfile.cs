@@ -36,6 +36,7 @@ namespace WWHDHacker
         public static int interiorflagStart = 0x1506BA0C;
         public static int interiorflagEnd = 0x1506BA30;
         public static bool isLoading = false;
+        public static Memfile lastLoadedMemfile = null;
 
         public uint health;
         public uint magic;

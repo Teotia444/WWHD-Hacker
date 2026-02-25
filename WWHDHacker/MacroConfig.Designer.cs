@@ -89,16 +89,17 @@
             this.refillAmmoCombo = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.refillAmmoCheckbox = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SoftReset = new System.Windows.Forms.GroupBox();
             this.softResetMK = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.softResetCombo = new System.Windows.Forms.ComboBox();
             this.softResetCheckbox = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ReloadMemfile = new System.Windows.Forms.GroupBox();
             this.reloadMemfileMK = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.reloadMemfileCombo = new System.Windows.Forms.ComboBox();
             this.reloadMemfileCheckbox = new System.Windows.Forms.CheckBox();
+            this.alternativeStoreRestore = new System.Windows.Forms.CheckBox();
             this.Levitate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.levitateHeight)).BeginInit();
             this.DoorCancel.SuspendLayout();
@@ -112,8 +113,8 @@
             this.RefillHealth.SuspendLayout();
             this.RefillMagic.SuspendLayout();
             this.RefillAmmo.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.SoftReset.SuspendLayout();
+            this.ReloadMemfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // Levitate
@@ -124,7 +125,7 @@
             this.Levitate.Controls.Add(this.label21);
             this.Levitate.Controls.Add(this.levitateCombo);
             this.Levitate.Controls.Add(this.lToLevitateCheckbox);
-            this.Levitate.Location = new System.Drawing.Point(12, 184);
+            this.Levitate.Location = new System.Drawing.Point(15, 255);
             this.Levitate.Name = "Levitate";
             this.Levitate.Size = new System.Drawing.Size(244, 58);
             this.Levitate.TabIndex = 54;
@@ -270,7 +271,7 @@
             this.Superspeed.Controls.Add(this.superswimCombo);
             this.Superspeed.Controls.Add(this.superswimCheckbox);
             this.Superspeed.Controls.Add(this.alternativeDpadRight);
-            this.Superspeed.Location = new System.Drawing.Point(262, 212);
+            this.Superspeed.Location = new System.Drawing.Point(357, 200);
             this.Superspeed.Name = "Superspeed";
             this.Superspeed.Size = new System.Drawing.Size(245, 90);
             this.Superspeed.TabIndex = 56;
@@ -522,6 +523,7 @@
             // 
             // SaveReloadPos
             // 
+            this.SaveReloadPos.Controls.Add(this.alternativeStoreRestore);
             this.SaveReloadPos.Controls.Add(this.saveReloadMK);
             this.SaveReloadPos.Controls.Add(this.label32);
             this.SaveReloadPos.Controls.Add(this.storePositionCombo);
@@ -530,7 +532,7 @@
             this.SaveReloadPos.Controls.Add(this.storeRestoreCheckbox);
             this.SaveReloadPos.Location = new System.Drawing.Point(200, 71);
             this.SaveReloadPos.Name = "SaveReloadPos";
-            this.SaveReloadPos.Size = new System.Drawing.Size(186, 98);
+            this.SaveReloadPos.Size = new System.Drawing.Size(218, 128);
             this.SaveReloadPos.TabIndex = 63;
             this.SaveReloadPos.TabStop = false;
             this.SaveReloadPos.Text = "Save/Reload position";
@@ -605,7 +607,7 @@
             this.ReloadRoom.Controls.Add(this.label27);
             this.ReloadRoom.Controls.Add(this.reloadRoomCombo);
             this.ReloadRoom.Controls.Add(this.reloadRoomCheckbox);
-            this.ReloadRoom.Location = new System.Drawing.Point(12, 248);
+            this.ReloadRoom.Location = new System.Drawing.Point(12, 191);
             this.ReloadRoom.Name = "ReloadRoom";
             this.ReloadRoom.Size = new System.Drawing.Size(178, 58);
             this.ReloadRoom.TabIndex = 60;
@@ -663,7 +665,7 @@
             this.RefillHealth.Controls.Add(this.label28);
             this.RefillHealth.Controls.Add(this.refillHealthCombo);
             this.RefillHealth.Controls.Add(this.refillHealthCheckbox);
-            this.RefillHealth.Location = new System.Drawing.Point(389, 127);
+            this.RefillHealth.Location = new System.Drawing.Point(424, 127);
             this.RefillHealth.Name = "RefillHealth";
             this.RefillHealth.Size = new System.Drawing.Size(178, 58);
             this.RefillHealth.TabIndex = 61;
@@ -721,7 +723,7 @@
             this.RefillMagic.Controls.Add(this.label31);
             this.RefillMagic.Controls.Add(this.refillMagicCombo);
             this.RefillMagic.Controls.Add(this.refillMagicCheckbox);
-            this.RefillMagic.Location = new System.Drawing.Point(389, 67);
+            this.RefillMagic.Location = new System.Drawing.Point(424, 67);
             this.RefillMagic.Name = "RefillMagic";
             this.RefillMagic.Size = new System.Drawing.Size(178, 58);
             this.RefillMagic.TabIndex = 64;
@@ -779,7 +781,7 @@
             this.RefillAmmo.Controls.Add(this.refillAmmoCombo);
             this.RefillAmmo.Controls.Add(this.label29);
             this.RefillAmmo.Controls.Add(this.refillAmmoCheckbox);
-            this.RefillAmmo.Location = new System.Drawing.Point(389, 7);
+            this.RefillAmmo.Location = new System.Drawing.Point(424, 7);
             this.RefillAmmo.Name = "RefillAmmo";
             this.RefillAmmo.Size = new System.Drawing.Size(178, 58);
             this.RefillAmmo.TabIndex = 62;
@@ -831,18 +833,18 @@
             this.refillAmmoCheckbox.UseVisualStyleBackColor = true;
             this.refillAmmoCheckbox.CheckedChanged += new System.EventHandler(this.refillAmmoCheckbox_CheckedChanged);
             // 
-            // groupBox1
+            // SoftReset
             // 
-            this.groupBox1.Controls.Add(this.softResetMK);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.softResetCombo);
-            this.groupBox1.Controls.Add(this.softResetCheckbox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 315);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(178, 58);
-            this.groupBox1.TabIndex = 61;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Soft Reset";
+            this.SoftReset.Controls.Add(this.softResetMK);
+            this.SoftReset.Controls.Add(this.label1);
+            this.SoftReset.Controls.Add(this.softResetCombo);
+            this.SoftReset.Controls.Add(this.softResetCheckbox);
+            this.SoftReset.Location = new System.Drawing.Point(12, 315);
+            this.SoftReset.Name = "SoftReset";
+            this.SoftReset.Size = new System.Drawing.Size(178, 58);
+            this.SoftReset.TabIndex = 61;
+            this.SoftReset.TabStop = false;
+            this.SoftReset.Text = "Soft Reset";
             // 
             // softResetMK
             // 
@@ -889,18 +891,18 @@
             this.softResetCheckbox.UseVisualStyleBackColor = true;
             this.softResetCheckbox.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // groupBox2
+            // ReloadMemfile
             // 
-            this.groupBox2.Controls.Add(this.reloadMemfileMK);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.reloadMemfileCombo);
-            this.groupBox2.Controls.Add(this.reloadMemfileCheckbox);
-            this.groupBox2.Location = new System.Drawing.Point(200, 315);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(178, 58);
-            this.groupBox2.TabIndex = 62;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Reload last memfile";
+            this.ReloadMemfile.Controls.Add(this.reloadMemfileMK);
+            this.ReloadMemfile.Controls.Add(this.label2);
+            this.ReloadMemfile.Controls.Add(this.reloadMemfileCombo);
+            this.ReloadMemfile.Controls.Add(this.reloadMemfileCheckbox);
+            this.ReloadMemfile.Location = new System.Drawing.Point(200, 315);
+            this.ReloadMemfile.Name = "ReloadMemfile";
+            this.ReloadMemfile.Size = new System.Drawing.Size(178, 58);
+            this.ReloadMemfile.TabIndex = 62;
+            this.ReloadMemfile.TabStop = false;
+            this.ReloadMemfile.Text = "Reload last memfile";
             // 
             // reloadMemfileMK
             // 
@@ -947,13 +949,24 @@
             this.reloadMemfileCheckbox.UseVisualStyleBackColor = true;
             this.reloadMemfileCheckbox.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
+            // alternativeStoreRestore
+            // 
+            this.alternativeStoreRestore.AutoSize = true;
+            this.alternativeStoreRestore.Location = new System.Drawing.Point(3, 93);
+            this.alternativeStoreRestore.Name = "alternativeStoreRestore";
+            this.alternativeStoreRestore.Size = new System.Drawing.Size(214, 30);
+            this.alternativeStoreRestore.TabIndex = 65;
+            this.alternativeStoreRestore.Text = "Position store/restore also \r\nstores/restores health, magic and ammo";
+            this.alternativeStoreRestore.UseVisualStyleBackColor = true;
+            this.alternativeStoreRestore.CheckedChanged += new System.EventHandler(this.alternativeStoreRestore_CheckedChanged);
+            // 
             // MacroConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 395);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.ReloadMemfile);
+            this.Controls.Add(this.SoftReset);
             this.Controls.Add(this.Levitate);
             this.Controls.Add(this.DoorCancel);
             this.Controls.Add(this.Superspeed);
@@ -992,10 +1005,10 @@
             this.RefillMagic.PerformLayout();
             this.RefillAmmo.ResumeLayout(false);
             this.RefillAmmo.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.SoftReset.ResumeLayout(false);
+            this.SoftReset.PerformLayout();
+            this.ReloadMemfile.ResumeLayout(false);
+            this.ReloadMemfile.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1063,15 +1076,16 @@
         private System.Windows.Forms.ComboBox refillAmmoCombo;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.CheckBox refillAmmoCheckbox;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox SoftReset;
         private System.Windows.Forms.CheckBox softResetMK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox softResetCombo;
         private System.Windows.Forms.CheckBox softResetCheckbox;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox ReloadMemfile;
         private System.Windows.Forms.CheckBox reloadMemfileMK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox reloadMemfileCombo;
         private System.Windows.Forms.CheckBox reloadMemfileCheckbox;
+        private System.Windows.Forms.CheckBox alternativeStoreRestore;
     }
 }

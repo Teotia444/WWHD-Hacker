@@ -34,6 +34,11 @@ namespace WWHDHacker
         float storedLinkY;
         float storedLinkZ;
         int storedLinkAngle;
+        int storedHealth;
+        int storedMagic;
+        int storedBombs;
+        int storedArrows;
+
         DateTime lastDpadRight;
         DateTime lastFrameAdvance;
         bool doorCancelFromMacro;
@@ -164,11 +169,12 @@ namespace WWHDHacker
             macrosPausedCheckBox.Checked = ConfigObject.config.disableMacrosWhenPaused;
             accuratePositionRestore.Checked = ConfigObject.config.accuratePosRestore;
 
-            FormClosed += (object sender, FormClosedEventArgs e) => { if (tcpGecko.client != null) { tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); looping.Abort(); }
-                ; 
+            FormClosed += (object sender, FormClosedEventArgs e) => 
+            {   if (tcpGecko.client != null) { 
+                    tcpGecko.DisplayText(".", 255, 255, 255, 2); tcpGecko.Disconnect(); looping.Abort(); 
+                }
                 string json = JsonConvert.SerializeObject(ConfigObject.config, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Config.json", json); 
-
                 System.Windows.Forms.Application.Exit(); 
             };
 
@@ -201,7 +207,6 @@ namespace WWHDHacker
         #region Top menu
         private void connect_Click(object sender, EventArgs e)
         {
-            
             if (connect.Text == "Connect")
             {
                 MemfileRefresh(null, null);
@@ -298,6 +303,8 @@ namespace WWHDHacker
             itemsManager.Visible = true;
             memfilesPanel.Visible = false;
             teleporterPanel.Visible = false;
+
+            CheckInv_Tick(this, null);
         }
 
         private void memfilesManager_Click(object sender, EventArgs e)
@@ -455,6 +462,13 @@ namespace WWHDHacker
             float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef4c), out storedLinkY);
             float.TryParse(tcpGecko.Peek(TCPGecko.Datatype.f32, 0x1096ef50), out storedLinkZ);
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out storedLinkAngle);
+            if (ConfigObject.config.macros["storePosition"].alternative)
+            {
+                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b514), out storedMagic);
+                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b503), out storedHealth);
+                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56a), out storedBombs);
+                Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b569), out storedArrows);
+            }
 
         }
 
@@ -465,13 +479,21 @@ namespace WWHDHacker
             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
+            if (ConfigObject.config.macros["storePosition"].alternative)
+            {
+                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, storedMagic);
+                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, storedHealth);
+                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, storedBombs);
+                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, storedArrows);
+            }
+
             Cheats.DoorCancel(tcpGecko, false);
         }
 
 
         #endregion
 
-        #region Macros
+        #region Teleport
         private void triggerLoadingButton_Click(object sender, EventArgs e)
         {
             byte[] array = new byte[stageNameLoader.TextLength];
@@ -593,45 +615,7 @@ namespace WWHDHacker
         }
         #endregion
 
-        private void infBombs_Click(object sender, EventArgs e)
-        {
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56f, 0xFF);
-        }
-
-        private void infArrows_Click(object sender, EventArgs e)
-        {
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b570, 0xFF);
-        }
-
-        private void magic80_Click(object sender, EventArgs e)
-        {
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b513, 128);
-        }
-
-        private void fullHealth_Click(object sender, EventArgs e)
-        {
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b501, 0x80);
-        }
-
-        private void fullCapacities_Click(object sender, EventArgs e)
-        {
-            //magic
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b513, 32);
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, 32);
-            //arrows
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56f, 99);
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, 99);
-            //bombs
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b570, 99);
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, 99);
-        }
-        private void giveAllSongs_Click(object sender, EventArgs e)
-        {
-            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b5bd, 0x3F);
-        }
-
-
-        private void button4_Click(object sender, EventArgs e)
+        private void advanceFrame_Click(object sender, EventArgs e)
         {
             if(paused && lastFrameAdvance + TimeSpan.FromMilliseconds(100) < DateTime.Now)
             {
@@ -671,6 +655,7 @@ namespace WWHDHacker
             tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2D, (animSetByte | 0b0000_0001));
             currentAnimSet.Text = "Current anim set : Anim set 2";
         }
+        
         private void giveTunic_Click(object sender, EventArgs e)
         {
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506bb24 + 0x2A), out int tunicByte);
@@ -741,6 +726,43 @@ namespace WWHDHacker
         #endregion
 
         #region Items manager
+
+        private void infBombs_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56f, 0xFF);
+        }
+
+        private void infArrows_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b570, 0xFF);
+        }
+
+        private void magic80_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b513, 128);
+        }
+
+        private void fullHealth_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b501, 0x80);
+        }
+
+        private void fullCapacities_Click(object sender, EventArgs e)
+        {
+            //magic
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b513, 32);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, 32);
+            //arrows
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56f, 99);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, 99);
+            //bombs
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b570, 99);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, 99);
+        }
+        private void giveAllSongs_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b5bd, 0x3F);
+        }
         private void giveAll_Click(object sender, EventArgs e)
         {
             foreach (CheckBoxImage item in itemsPanel.Controls)
@@ -788,16 +810,18 @@ namespace WWHDHacker
 
             if (memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Text == "(Temporary memfile)")
             {
+                Memfile.lastLoadedMemfile = tempMemfile;
                 tempMemfile.Load(tcpGecko, this);
             }
             else
             {
+                Memfile.lastLoadedMemfile = availableMemfiles[memfilesViewer.SelectedNode.Text];
                 availableMemfiles[memfilesViewer.SelectedNode.Text].Load(tcpGecko, this);
             }
             ftDate = DateTime.Now;
             SavefileIndicator.Text = "Succesfully loaded the memfile!";
             favoriteText = true;
-        }
+                    }
 
         void MemfileRefresh(object sender, FileSystemEventArgs e)
         {
@@ -1523,6 +1547,15 @@ namespace WWHDHacker
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef48, FloatToHex(storedLinkX));
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
                             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
+
+                            if (ConfigObject.config.macros["storePosition"].alternative)
+                            {
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, storedMagic);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, storedHealth);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, storedBombs);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, storedArrows);
+                            }
+
                             Cheats.DoorCancel(tcpGecko, false);
 
                             Thread.Sleep(100);
@@ -1536,26 +1569,21 @@ namespace WWHDHacker
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef4c, FloatToHex(storedLinkY));
                             tcpGecko.Poke(TCPGecko.Datatype.f32, 0x1096ef50, FloatToHex(storedLinkZ));
                             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, storedLinkAngle);
+                            
+                            if (ConfigObject.config.macros["storePosition"].alternative)
+                            {
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b514, storedMagic);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b503, storedHealth);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b56a, storedBombs);
+                                tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b569, storedArrows);
+                            }
+
                             Cheats.DoorCancel(tcpGecko, false);
                         }
                         if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore Position", 255, 153, 0, 255);
                         cheatActivated = true;
 
                     }
-                    else if (ConfigObject.config.macros["restorePosition"].alternative)
-                    {
-                        if (memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Text == "(Temporary memfile)")
-                        {
-                            tempMemfile.Load(tcpGecko, this);
-                        }
-                        else
-                        {
-                            availableMemfiles[memfilesViewer.SelectedNode.Name].Load(tcpGecko, this);
-                        }
-                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Restore selected memfile", 255, 153, 0, 255);
-                        cheatActivated = true;
-                    }
-
                 }
 
                 //dpad right + zr
@@ -1563,19 +1591,36 @@ namespace WWHDHacker
                     (ConfigObject.config.macros["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                     && ConfigObject.config.macros["storePosition"].enabled)
                 {
-                    if (!ConfigObject.config.macros["storePosition"].alternative)
+                    storedLinkX = linkCoordinates.Item1;
+                    storedLinkY = linkCoordinates.Item2;
+                    storedLinkZ = linkCoordinates.Item3;
+                    storedLinkAngle = linkAngle;
+                    if (ConfigObject.config.macros["storePosition"].alternative) {
+                        Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b514), out storedMagic);
+                        Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b503), out storedHealth);
+                        Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56a), out storedBombs);
+                        Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b569), out storedArrows);
+                    }
+                    
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
+                    cheatActivated = true;
+                }
+
+
+                Console.WriteLine(ConfigObject.config.macros["reloadMemfile"].input);
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadMemfile"].input)) &&
+                    (ConfigObject.config.macros["reloadMemfile"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && ConfigObject.config.macros["reloadMemfile"].enabled)
+                {
+                    
+                    if (Memfile.lastLoadedMemfile == null)
                     {
-                        storedLinkX = linkCoordinates.Item1;
-                        storedLinkY = linkCoordinates.Item2;
-                        storedLinkZ = linkCoordinates.Item3;
-                        storedLinkAngle = linkAngle;
-                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Store Position", 255, 153, 0, 255);
-                        cheatActivated = true;
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Error: no memfiles were loaded previously!", 255, 0, 0, 255);
                     }
                     else
                     {
-                        tempMemfile = Memfile.Create(tcpGecko, true);
-                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Save into temp memfile", 255, 153, 0, 255);
+                        if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Reload Memfile", 255, 153, 0, 255);
+                        Memfile.lastLoadedMemfile.Load(tcpGecko, this);
                         cheatActivated = true;
                     }
                 }
@@ -1715,7 +1760,7 @@ namespace WWHDHacker
 
 
 
-            if (itemsManager.Visible != true || !autoupdateTracker.Checked)
+            if ((itemsManager.Visible != true || !autoupdateTracker.Checked) && e != null)
             {
                 return;
             }

@@ -149,7 +149,7 @@ namespace WWHDHacker
 
         public static Slot bomb_bag_slot = Slot.Instance(0x1506b570);
         public static Slot quiver_slot = Slot.Instance(0x1506b56f);
-        public static Slot wallet_slot = Slot.Instance(0x00);
+        public static Slot wallet_slot = Slot.Instance(0x1506b512);
         public static Slot magic_meter_slot = Slot.Instance(0x1506b513);
 
         public static Slot mail_bag_1_slot = Slot.Instance(0x1506b586);
@@ -225,8 +225,8 @@ namespace WWHDHacker
         public static Item bomb_bag_big = Item.Instance(Slots.bomb_bag_slot, 99, "BiggestBombBag", ItemEnum.BombBag);
         public static Item quiver = Item.Instance(Slots.quiver_slot, 60, "BiggerQuiver", ItemEnum.Quiver);
         public static Item quiver_big = Item.Instance(Slots.quiver_slot, 99, "BiggestQuiver", ItemEnum.Quiver);
-        public static Item wallet = Item.Instance(Slots.wallet_slot, 1000, "BiggerWallet", ItemEnum.Wallet);
-        public static Item wallet_big = Item.Instance(Slots.wallet_slot, 5000, "BiggestWallet", ItemEnum.Wallet);
+        public static Item wallet = Item.Instance(Slots.wallet_slot, 1, "BiggerWallet", ItemEnum.Wallet);
+        public static Item wallet_big = Item.Instance(Slots.wallet_slot, 2, "BiggestWallet", ItemEnum.Wallet);
         public static Item magic_meter_half = Item.Instance(Slots.magic_meter_slot, 16, "MagicBottle", ItemEnum.MagicMeter);
         public static Item magic_meter_full = Item.Instance(Slots.magic_meter_slot, 32, "MagicDoubleBottle", ItemEnum.MagicMeter);
 

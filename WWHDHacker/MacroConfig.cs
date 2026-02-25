@@ -34,6 +34,8 @@ namespace WWHDHacker
             refillMagicMK.Checked = ConfigObject.config.macros["refillHealth"].masterkey;
             refillAmmoMK.Checked = ConfigObject.config.macros["refillAmmo"].masterkey;
             windDirectionMK.Checked = ConfigObject.config.macros["windDirection"].masterkey;
+            reloadMemfileMK.Checked = ConfigObject.config.macros["reloadMemfile"].masterkey;
+            softResetMK.Checked = ConfigObject.config.macros["softReset"].masterkey;
 
             levitateHeight.Value = (decimal)ConfigObject.config.macros["levitate"].value;
             superswimSpeed.Value = (decimal)ConfigObject.config.macros["superswim"].value;
@@ -50,7 +52,11 @@ namespace WWHDHacker
             refillAmmoCheckbox.Checked = ConfigObject.config.macros["refillAmmo"].enabled;
             changeWindCheckbox.Checked = ConfigObject.config.macros["windDirection"].enabled;
             alternativeDpadRight.Checked = ConfigObject.config.macros["superswim"].alternative;
+            alternativeStoreRestore.Checked = ConfigObject.config.macros["storePosition"].alternative;
+            reloadMemfileCheckbox.Checked = ConfigObject.config.macros["reloadMemfile"].enabled;
+            softResetCheckbox.Checked = ConfigObject.config.macros["softReset"].enabled;
 
+            Console.WriteLine(ConfigObject.config.macros["reloadMemfile"].input);
             foreach (GroupBox gb in this.Controls.OfType<GroupBox>())
             {
                 foreach (ComboBox item in gb.Controls.OfType<ComboBox>())
@@ -59,9 +65,14 @@ namespace WWHDHacker
                     {
                         item.Items.Add(e);
                     }
+                    Console.WriteLine(item.Items.Count);
+
                     item.SelectedIndex = ConfigObject.config.macros[item.Name.Substring(0, item.Name.LastIndexOf("Combo") == -1 ? 0 : item.Name.LastIndexOf("Combo")) == "" ? "storage" : item.Name.Substring(0, item.Name.LastIndexOf("Combo"))].input;
                 }
+
             }
+
+            
         }
 
         private void levitateCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,8 +162,8 @@ namespace WWHDHacker
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ConfigObject.config.macros["reloadMemfile"].input = softResetCombo.SelectedIndex;
-            ConfigObject.config.macros["reloadMemfile"].masterkey = softResetCheckbox.Checked;
+            ConfigObject.config.macros["reloadMemfile"].input = reloadMemfileCombo.SelectedIndex;
+            ConfigObject.config.macros["reloadMemfile"].masterkey = reloadMemfileCheckbox.Checked;
         }
 
         private void lToLevitateCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -223,7 +234,6 @@ namespace WWHDHacker
         private void alternativeDpadRight_CheckedChanged(object sender, EventArgs e)
         {
             ConfigObject.config.macros["superswim"].alternative = alternativeDpadRight.Checked;
-
         }
 
         private void levitateMK_CheckedChanged(object sender, EventArgs e)
@@ -293,10 +303,6 @@ namespace WWHDHacker
         {
             ConfigObject.config.macros["reloadMemfile"].enabled = reloadMemfileCheckbox.Checked;
         }
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void levitateHeight_ValueChanged(object sender, EventArgs e)
         {
@@ -307,6 +313,10 @@ namespace WWHDHacker
         {
             ConfigObject.config.macros["superswim"].value = (float)superswimSpeed.Value;
         }
+        private void alternativeStoreRestore_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigObject.config.macros["storePosition"].alternative = alternativeStoreRestore.Checked;
+        }
 
         private void MacroConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -316,5 +326,7 @@ namespace WWHDHacker
                 Hide();
             }
         }
+
+        
     }
 }
