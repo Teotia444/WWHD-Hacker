@@ -33,9 +33,9 @@ namespace WWHDHacker
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("b");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("a", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("b");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("a", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             this.ipTextBox = new System.Windows.Forms.TextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -165,6 +165,44 @@ namespace WWHDHacker
             this.setHCValue = new System.Windows.Forms.NumericUpDown();
             this.giveAll = new System.Windows.Forms.Button();
             this.itemsPanel = new System.Windows.Forms.Panel();
+            this.itemsList = new System.Windows.Forms.ImageList(this.components);
+            this.CheckInv = new System.Windows.Forms.Timer(this.components);
+            this.memfilesPanel = new System.Windows.Forms.Panel();
+            this.SavefileIndicator = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.memfilesViewer = new System.Windows.Forms.TreeView();
+            this.deleteMemfile = new System.Windows.Forms.Button();
+            this.openMemfileFolder = new System.Windows.Forms.Button();
+            this.loadMemfile = new System.Windows.Forms.Button();
+            this.createMemfile = new System.Windows.Forms.Button();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.openSFDir = new System.Windows.Forms.Button();
+            this.dumpSF = new System.Windows.Forms.Button();
+            this.loadSF = new System.Windows.Forms.Button();
+            this.fileRep = new System.Windows.Forms.ListView();
+            this.Save = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.teleporterPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
+            this.addCustomFavorite = new System.Windows.Forms.Button();
+            this.displayOnMap = new System.Windows.Forms.CheckBox();
+            this.transparentLayer = new System.Windows.Forms.Panel();
+            this.movingLink = new System.Windows.Forms.PictureBox();
+            this.teleporterMap = new System.Windows.Forms.PictureBox();
+            this.addedRemoved = new System.Windows.Forms.Label();
+            this.teleporterToggleFavorites = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.teleporterRoomId = new System.Windows.Forms.TextBox();
+            this.teleporterLayer = new System.Windows.Forms.TextBox();
+            this.teleporterSpawnId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.linkLocationLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.teleporterToggleHyrule = new System.Windows.Forms.Button();
+            this.islandLabel = new System.Windows.Forms.Label();
             this.checkBoxImage40 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage39 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage38 = new WWHDHacker.CheckBoxImage();
@@ -205,44 +243,7 @@ namespace WWHDHacker
             this.checkBoxImage3 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage2 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage1 = new WWHDHacker.CheckBoxImage();
-            this.itemsList = new System.Windows.Forms.ImageList(this.components);
-            this.CheckInv = new System.Windows.Forms.Timer(this.components);
-            this.memfilesPanel = new System.Windows.Forms.Panel();
-            this.SavefileIndicator = new System.Windows.Forms.Label();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.memfilesViewer = new System.Windows.Forms.TreeView();
-            this.deleteMemfile = new System.Windows.Forms.Button();
-            this.openMemfileFolder = new System.Windows.Forms.Button();
-            this.loadMemfile = new System.Windows.Forms.Button();
-            this.createMemfile = new System.Windows.Forms.Button();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.openSFDir = new System.Windows.Forms.Button();
-            this.dumpSF = new System.Windows.Forms.Button();
-            this.loadSF = new System.Windows.Forms.Button();
-            this.fileRep = new System.Windows.Forms.ListView();
-            this.Save = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.teleporterPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
-            this.addCustomFavorite = new System.Windows.Forms.Button();
-            this.displayOnMap = new System.Windows.Forms.CheckBox();
-            this.transparentLayer = new System.Windows.Forms.Panel();
-            this.movingLink = new System.Windows.Forms.PictureBox();
-            this.teleporterMap = new System.Windows.Forms.PictureBox();
-            this.addedRemoved = new System.Windows.Forms.Label();
-            this.teleporterToggleFavorites = new System.Windows.Forms.Button();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.teleporterRoomId = new System.Windows.Forms.TextBox();
-            this.teleporterLayer = new System.Windows.Forms.TextBox();
-            this.teleporterSpawnId = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.linkLocationLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.teleporterToggleHyrule = new System.Windows.Forms.Button();
-            this.islandLabel = new System.Windows.Forms.Label();
+            this.hookshotMod = new System.Windows.Forms.CheckBox();
             this.miscFeaturesPanel.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -270,6 +271,16 @@ namespace WWHDHacker
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).BeginInit();
             this.itemsPanel.SuspendLayout();
+            this.memfilesPanel.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.teleporterPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.transparentLayer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).BeginInit();
@@ -310,16 +321,6 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).BeginInit();
-            this.memfilesPanel.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.teleporterPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.transparentLayer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ipTextBox
@@ -351,6 +352,7 @@ namespace WWHDHacker
             // 
             // miscFeaturesPanel
             // 
+            this.miscFeaturesPanel.Controls.Add(this.hookshotMod);
             this.miscFeaturesPanel.Controls.Add(this.rotateLeft);
             this.miscFeaturesPanel.Controls.Add(this.rotateRight);
             this.miscFeaturesPanel.Controls.Add(this.macroConfigOpen);
@@ -1726,6 +1728,394 @@ namespace WWHDHacker
             this.itemsPanel.Size = new System.Drawing.Size(450, 332);
             this.itemsPanel.TabIndex = 39;
             // 
+            // itemsList
+            // 
+            this.itemsList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.itemsList.ImageSize = new System.Drawing.Size(16, 16);
+            this.itemsList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // CheckInv
+            // 
+            this.CheckInv.Interval = 1000;
+            this.CheckInv.Tick += new System.EventHandler(this.CheckInv_Tick);
+            // 
+            // memfilesPanel
+            // 
+            this.memfilesPanel.Controls.Add(this.SavefileIndicator);
+            this.memfilesPanel.Controls.Add(this.groupBox13);
+            this.memfilesPanel.Controls.Add(this.groupBox12);
+            this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
+            this.memfilesPanel.Name = "memfilesPanel";
+            this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
+            this.memfilesPanel.TabIndex = 32;
+            // 
+            // SavefileIndicator
+            // 
+            this.SavefileIndicator.AutoSize = true;
+            this.SavefileIndicator.ForeColor = System.Drawing.Color.ForestGreen;
+            this.SavefileIndicator.Location = new System.Drawing.Point(16, 330);
+            this.SavefileIndicator.Name = "SavefileIndicator";
+            this.SavefileIndicator.Size = new System.Drawing.Size(0, 13);
+            this.SavefileIndicator.TabIndex = 5;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.memfilesViewer);
+            this.groupBox13.Controls.Add(this.deleteMemfile);
+            this.groupBox13.Controls.Add(this.openMemfileFolder);
+            this.groupBox13.Controls.Add(this.loadMemfile);
+            this.groupBox13.Controls.Add(this.createMemfile);
+            this.groupBox13.Location = new System.Drawing.Point(14, 13);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(325, 315);
+            this.groupBox13.TabIndex = 4;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Memfiles";
+            // 
+            // memfilesViewer
+            // 
+            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
+            this.memfilesViewer.Name = "memfilesViewer";
+            treeNode5.Name = "Node1";
+            treeNode5.Text = "b";
+            treeNode6.Name = "test";
+            treeNode6.Text = "a";
+            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
+            this.memfilesViewer.TabIndex = 6;
+            // 
+            // deleteMemfile
+            // 
+            this.deleteMemfile.Location = new System.Drawing.Point(4, 280);
+            this.deleteMemfile.Name = "deleteMemfile";
+            this.deleteMemfile.Size = new System.Drawing.Size(126, 23);
+            this.deleteMemfile.TabIndex = 8;
+            this.deleteMemfile.Text = "Delete memfile";
+            this.deleteMemfile.UseVisualStyleBackColor = true;
+            this.deleteMemfile.Click += new System.EventHandler(this.deleteMemfile_Click);
+            // 
+            // openMemfileFolder
+            // 
+            this.openMemfileFolder.Location = new System.Drawing.Point(205, 280);
+            this.openMemfileFolder.Name = "openMemfileFolder";
+            this.openMemfileFolder.Size = new System.Drawing.Size(114, 23);
+            this.openMemfileFolder.TabIndex = 7;
+            this.openMemfileFolder.Text = "Open Memfile Folder";
+            this.openMemfileFolder.UseVisualStyleBackColor = true;
+            this.openMemfileFolder.Click += new System.EventHandler(this.openMemfileFolder_Click);
+            // 
+            // loadMemfile
+            // 
+            this.loadMemfile.Location = new System.Drawing.Point(205, 252);
+            this.loadMemfile.Name = "loadMemfile";
+            this.loadMemfile.Size = new System.Drawing.Size(114, 23);
+            this.loadMemfile.TabIndex = 1;
+            this.loadMemfile.Text = "Load Memfile";
+            this.loadMemfile.UseVisualStyleBackColor = true;
+            this.loadMemfile.Click += new System.EventHandler(this.loadMemfile_Click);
+            // 
+            // createMemfile
+            // 
+            this.createMemfile.Location = new System.Drawing.Point(3, 252);
+            this.createMemfile.Name = "createMemfile";
+            this.createMemfile.Size = new System.Drawing.Size(127, 23);
+            this.createMemfile.TabIndex = 0;
+            this.createMemfile.Text = "Create memfile";
+            this.createMemfile.UseVisualStyleBackColor = true;
+            this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.openSFDir);
+            this.groupBox12.Controls.Add(this.dumpSF);
+            this.groupBox12.Controls.Add(this.loadSF);
+            this.groupBox12.Controls.Add(this.fileRep);
+            this.groupBox12.Location = new System.Drawing.Point(467, 13);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(327, 315);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Save files";
+            // 
+            // openSFDir
+            // 
+            this.openSFDir.Location = new System.Drawing.Point(116, 278);
+            this.openSFDir.Name = "openSFDir";
+            this.openSFDir.Size = new System.Drawing.Size(103, 33);
+            this.openSFDir.TabIndex = 8;
+            this.openSFDir.Text = "Open Savefiles Dir";
+            this.openSFDir.UseVisualStyleBackColor = true;
+            this.openSFDir.Click += new System.EventHandler(this.openSFDir_Click);
+            // 
+            // dumpSF
+            // 
+            this.dumpSF.Location = new System.Drawing.Point(223, 278);
+            this.dumpSF.Name = "dumpSF";
+            this.dumpSF.Size = new System.Drawing.Size(90, 33);
+            this.dumpSF.TabIndex = 7;
+            this.dumpSF.Text = "Dump Savefile";
+            this.dumpSF.UseVisualStyleBackColor = true;
+            this.dumpSF.Click += new System.EventHandler(this.dumpSF_Click);
+            // 
+            // loadSF
+            // 
+            this.loadSF.Location = new System.Drawing.Point(20, 278);
+            this.loadSF.Name = "loadSF";
+            this.loadSF.Size = new System.Drawing.Size(90, 33);
+            this.loadSF.TabIndex = 6;
+            this.loadSF.Text = "Load Savefile";
+            this.loadSF.UseVisualStyleBackColor = true;
+            this.loadSF.Click += new System.EventHandler(this.loadSF_Click);
+            // 
+            // fileRep
+            // 
+            this.fileRep.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.fileRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Save});
+            this.fileRep.HideSelection = false;
+            this.fileRep.Location = new System.Drawing.Point(20, 26);
+            this.fileRep.MultiSelect = false;
+            this.fileRep.Name = "fileRep";
+            this.fileRep.Size = new System.Drawing.Size(288, 239);
+            this.fileRep.TabIndex = 5;
+            this.fileRep.UseCompatibleStateImageBehavior = false;
+            this.fileRep.View = System.Windows.Forms.View.Details;
+            // 
+            // Save
+            // 
+            this.Save.Text = "Save";
+            this.Save.Width = 284;
+            // 
+            // teleporterPanel
+            // 
+            this.teleporterPanel.Controls.Add(this.panel1);
+            this.teleporterPanel.Controls.Add(this.addCustomFavorite);
+            this.teleporterPanel.Controls.Add(this.displayOnMap);
+            this.teleporterPanel.Controls.Add(this.transparentLayer);
+            this.teleporterPanel.Controls.Add(this.addedRemoved);
+            this.teleporterPanel.Controls.Add(this.teleporterToggleFavorites);
+            this.teleporterPanel.Controls.Add(this.groupBox8);
+            this.teleporterPanel.Controls.Add(this.linkLocationLabel);
+            this.teleporterPanel.Controls.Add(this.pictureBox1);
+            this.teleporterPanel.Controls.Add(this.teleporterToggleHyrule);
+            this.teleporterPanel.Controls.Add(this.islandLabel);
+            this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
+            this.teleporterPanel.Name = "teleporterPanel";
+            this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
+            this.teleporterPanel.TabIndex = 33;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.subAreas);
+            this.panel1.Location = new System.Drawing.Point(339, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 304);
+            this.panel1.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(10, 9);
+            this.label6.MaximumSize = new System.Drawing.Size(92, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Island: ";
+            // 
+            // subAreas
+            // 
+            this.subAreas.AutoScroll = true;
+            this.subAreas.BackColor = System.Drawing.Color.Transparent;
+            this.subAreas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.subAreas.Location = new System.Drawing.Point(10, 26);
+            this.subAreas.Name = "subAreas";
+            this.subAreas.Size = new System.Drawing.Size(280, 260);
+            this.subAreas.TabIndex = 4;
+            // 
+            // addCustomFavorite
+            // 
+            this.addCustomFavorite.Location = new System.Drawing.Point(660, 251);
+            this.addCustomFavorite.Name = "addCustomFavorite";
+            this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
+            this.addCustomFavorite.TabIndex = 20;
+            this.addCustomFavorite.Text = "Add custom favorite";
+            this.addCustomFavorite.UseVisualStyleBackColor = true;
+            this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
+            // 
+            // displayOnMap
+            // 
+            this.displayOnMap.AutoSize = true;
+            this.displayOnMap.Location = new System.Drawing.Point(663, 235);
+            this.displayOnMap.Name = "displayOnMap";
+            this.displayOnMap.Size = new System.Drawing.Size(98, 17);
+            this.displayOnMap.TabIndex = 19;
+            this.displayOnMap.Text = "Display on map";
+            this.displayOnMap.UseVisualStyleBackColor = true;
+            // 
+            // transparentLayer
+            // 
+            this.transparentLayer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transparentLayer.BackgroundImage")));
+            this.transparentLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.transparentLayer.Controls.Add(this.movingLink);
+            this.transparentLayer.Controls.Add(this.teleporterMap);
+            this.transparentLayer.Location = new System.Drawing.Point(19, 26);
+            this.transparentLayer.Name = "transparentLayer";
+            this.transparentLayer.Size = new System.Drawing.Size(306, 302);
+            this.transparentLayer.TabIndex = 18;
+            // 
+            // movingLink
+            // 
+            this.movingLink.BackColor = System.Drawing.Color.Transparent;
+            this.movingLink.Enabled = false;
+            this.movingLink.Image = ((System.Drawing.Image)(resources.GetObject("movingLink.Image")));
+            this.movingLink.Location = new System.Drawing.Point(0, 0);
+            this.movingLink.Name = "movingLink";
+            this.movingLink.Size = new System.Drawing.Size(35, 33);
+            this.movingLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.movingLink.TabIndex = 19;
+            this.movingLink.TabStop = false;
+            // 
+            // teleporterMap
+            // 
+            this.teleporterMap.BackColor = System.Drawing.Color.Transparent;
+            this.teleporterMap.Location = new System.Drawing.Point(0, 0);
+            this.teleporterMap.Name = "teleporterMap";
+            this.teleporterMap.Size = new System.Drawing.Size(306, 302);
+            this.teleporterMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.teleporterMap.TabIndex = 0;
+            this.teleporterMap.TabStop = false;
+            this.teleporterMap.Click += new System.EventHandler(this.teleporterMap_Click);
+            this.teleporterMap.MouseLeave += new System.EventHandler(this.teleporterMap_MouseLeave);
+            this.teleporterMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.teleporterMap_MouseMove);
+            // 
+            // addedRemoved
+            // 
+            this.addedRemoved.AutoSize = true;
+            this.addedRemoved.Location = new System.Drawing.Point(349, 331);
+            this.addedRemoved.Name = "addedRemoved";
+            this.addedRemoved.Size = new System.Drawing.Size(0, 13);
+            this.addedRemoved.TabIndex = 17;
+            // 
+            // teleporterToggleFavorites
+            // 
+            this.teleporterToggleFavorites.Location = new System.Drawing.Point(660, 291);
+            this.teleporterToggleFavorites.Name = "teleporterToggleFavorites";
+            this.teleporterToggleFavorites.Size = new System.Drawing.Size(100, 23);
+            this.teleporterToggleFavorites.TabIndex = 5;
+            this.teleporterToggleFavorites.Text = "Favorites";
+            this.teleporterToggleFavorites.UseVisualStyleBackColor = true;
+            this.teleporterToggleFavorites.Click += new System.EventHandler(this.teleporterToggleFavorites_Click);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.label7);
+            this.groupBox8.Controls.Add(this.teleporterRoomId);
+            this.groupBox8.Controls.Add(this.teleporterLayer);
+            this.groupBox8.Controls.Add(this.teleporterSpawnId);
+            this.groupBox8.Controls.Add(this.label8);
+            this.groupBox8.Location = new System.Drawing.Point(663, 26);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(122, 156);
+            this.groupBox8.TabIndex = 16;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Advanced (leave default if unsure)";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(49, 13);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Room ID";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 114);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Layer";
+            // 
+            // teleporterRoomId
+            // 
+            this.teleporterRoomId.Location = new System.Drawing.Point(6, 47);
+            this.teleporterRoomId.Name = "teleporterRoomId";
+            this.teleporterRoomId.Size = new System.Drawing.Size(87, 20);
+            this.teleporterRoomId.TabIndex = 10;
+            this.teleporterRoomId.Text = "00";
+            // 
+            // teleporterLayer
+            // 
+            this.teleporterLayer.Location = new System.Drawing.Point(6, 130);
+            this.teleporterLayer.Name = "teleporterLayer";
+            this.teleporterLayer.Size = new System.Drawing.Size(87, 20);
+            this.teleporterLayer.TabIndex = 14;
+            this.teleporterLayer.Text = "ff";
+            // 
+            // teleporterSpawnId
+            // 
+            this.teleporterSpawnId.Location = new System.Drawing.Point(6, 88);
+            this.teleporterSpawnId.Name = "teleporterSpawnId";
+            this.teleporterSpawnId.Size = new System.Drawing.Size(87, 20);
+            this.teleporterSpawnId.TabIndex = 12;
+            this.teleporterSpawnId.Text = "00";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 72);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Spawn ID";
+            // 
+            // linkLocationLabel
+            // 
+            this.linkLocationLabel.AutoSize = true;
+            this.linkLocationLabel.Location = new System.Drawing.Point(701, 191);
+            this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
+            this.linkLocationLabel.Name = "linkLocationLabel";
+            this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
+            this.linkLocationLabel.TabIndex = 7;
+            this.linkLocationLabel.Text = ": Unknown";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(660, 188);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // teleporterToggleHyrule
+            // 
+            this.teleporterToggleHyrule.Location = new System.Drawing.Point(660, 314);
+            this.teleporterToggleHyrule.Name = "teleporterToggleHyrule";
+            this.teleporterToggleHyrule.Size = new System.Drawing.Size(101, 23);
+            this.teleporterToggleHyrule.TabIndex = 5;
+            this.teleporterToggleHyrule.Text = "Hyrule zones";
+            this.teleporterToggleHyrule.UseVisualStyleBackColor = true;
+            this.teleporterToggleHyrule.Click += new System.EventHandler(this.teleporterToggleHyrule_Click);
+            // 
+            // islandLabel
+            // 
+            this.islandLabel.AutoSize = true;
+            this.islandLabel.Location = new System.Drawing.Point(22, 328);
+            this.islandLabel.Name = "islandLabel";
+            this.islandLabel.Size = new System.Drawing.Size(44, 13);
+            this.islandLabel.TabIndex = 1;
+            this.islandLabel.Text = "Island : ";
+            // 
             // checkBoxImage40
             // 
             this.checkBoxImage40.BackColor = System.Drawing.Color.Transparent;
@@ -2287,393 +2677,16 @@ namespace WWHDHacker
             this.checkBoxImage1.TabIndex = 0;
             this.checkBoxImage1.TabStop = false;
             // 
-            // itemsList
-            // 
-            this.itemsList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.itemsList.ImageSize = new System.Drawing.Size(16, 16);
-            this.itemsList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // CheckInv
-            // 
-            this.CheckInv.Interval = 1000;
-            this.CheckInv.Tick += new System.EventHandler(this.CheckInv_Tick);
-            // 
-            // memfilesPanel
-            // 
-            this.memfilesPanel.Controls.Add(this.SavefileIndicator);
-            this.memfilesPanel.Controls.Add(this.groupBox13);
-            this.memfilesPanel.Controls.Add(this.groupBox12);
-            this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
-            this.memfilesPanel.Name = "memfilesPanel";
-            this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
-            this.memfilesPanel.TabIndex = 32;
-            // 
-            // SavefileIndicator
-            // 
-            this.SavefileIndicator.AutoSize = true;
-            this.SavefileIndicator.ForeColor = System.Drawing.Color.ForestGreen;
-            this.SavefileIndicator.Location = new System.Drawing.Point(16, 330);
-            this.SavefileIndicator.Name = "SavefileIndicator";
-            this.SavefileIndicator.Size = new System.Drawing.Size(0, 13);
-            this.SavefileIndicator.TabIndex = 5;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.memfilesViewer);
-            this.groupBox13.Controls.Add(this.deleteMemfile);
-            this.groupBox13.Controls.Add(this.openMemfileFolder);
-            this.groupBox13.Controls.Add(this.loadMemfile);
-            this.groupBox13.Controls.Add(this.createMemfile);
-            this.groupBox13.Location = new System.Drawing.Point(14, 13);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(325, 315);
-            this.groupBox13.TabIndex = 4;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Memfiles";
-            // 
-            // memfilesViewer
-            // 
-            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
-            this.memfilesViewer.Name = "memfilesViewer";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "b";
-            treeNode2.Name = "test";
-            treeNode2.Text = "a";
-            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
-            this.memfilesViewer.TabIndex = 6;
-            // 
-            // deleteMemfile
-            // 
-            this.deleteMemfile.Location = new System.Drawing.Point(4, 280);
-            this.deleteMemfile.Name = "deleteMemfile";
-            this.deleteMemfile.Size = new System.Drawing.Size(126, 23);
-            this.deleteMemfile.TabIndex = 8;
-            this.deleteMemfile.Text = "Delete memfile";
-            this.deleteMemfile.UseVisualStyleBackColor = true;
-            this.deleteMemfile.Click += new System.EventHandler(this.deleteMemfile_Click);
-            // 
-            // openMemfileFolder
-            // 
-            this.openMemfileFolder.Location = new System.Drawing.Point(205, 280);
-            this.openMemfileFolder.Name = "openMemfileFolder";
-            this.openMemfileFolder.Size = new System.Drawing.Size(114, 23);
-            this.openMemfileFolder.TabIndex = 7;
-            this.openMemfileFolder.Text = "Open Memfile Folder";
-            this.openMemfileFolder.UseVisualStyleBackColor = true;
-            this.openMemfileFolder.Click += new System.EventHandler(this.openMemfileFolder_Click);
-            // 
-            // loadMemfile
-            // 
-            this.loadMemfile.Location = new System.Drawing.Point(205, 252);
-            this.loadMemfile.Name = "loadMemfile";
-            this.loadMemfile.Size = new System.Drawing.Size(114, 23);
-            this.loadMemfile.TabIndex = 1;
-            this.loadMemfile.Text = "Load Memfile";
-            this.loadMemfile.UseVisualStyleBackColor = true;
-            this.loadMemfile.Click += new System.EventHandler(this.loadMemfile_Click);
-            // 
-            // createMemfile
-            // 
-            this.createMemfile.Location = new System.Drawing.Point(3, 252);
-            this.createMemfile.Name = "createMemfile";
-            this.createMemfile.Size = new System.Drawing.Size(127, 23);
-            this.createMemfile.TabIndex = 0;
-            this.createMemfile.Text = "Create memfile";
-            this.createMemfile.UseVisualStyleBackColor = true;
-            this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.openSFDir);
-            this.groupBox12.Controls.Add(this.dumpSF);
-            this.groupBox12.Controls.Add(this.loadSF);
-            this.groupBox12.Controls.Add(this.fileRep);
-            this.groupBox12.Location = new System.Drawing.Point(467, 13);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(327, 315);
-            this.groupBox12.TabIndex = 3;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Save files";
-            // 
-            // openSFDir
-            // 
-            this.openSFDir.Location = new System.Drawing.Point(116, 278);
-            this.openSFDir.Name = "openSFDir";
-            this.openSFDir.Size = new System.Drawing.Size(103, 33);
-            this.openSFDir.TabIndex = 8;
-            this.openSFDir.Text = "Open Savefiles Dir";
-            this.openSFDir.UseVisualStyleBackColor = true;
-            this.openSFDir.Click += new System.EventHandler(this.openSFDir_Click);
-            // 
-            // dumpSF
-            // 
-            this.dumpSF.Location = new System.Drawing.Point(223, 278);
-            this.dumpSF.Name = "dumpSF";
-            this.dumpSF.Size = new System.Drawing.Size(90, 33);
-            this.dumpSF.TabIndex = 7;
-            this.dumpSF.Text = "Dump Savefile";
-            this.dumpSF.UseVisualStyleBackColor = true;
-            this.dumpSF.Click += new System.EventHandler(this.dumpSF_Click);
-            // 
-            // loadSF
-            // 
-            this.loadSF.Location = new System.Drawing.Point(20, 278);
-            this.loadSF.Name = "loadSF";
-            this.loadSF.Size = new System.Drawing.Size(90, 33);
-            this.loadSF.TabIndex = 6;
-            this.loadSF.Text = "Load Savefile";
-            this.loadSF.UseVisualStyleBackColor = true;
-            this.loadSF.Click += new System.EventHandler(this.loadSF_Click);
-            // 
-            // fileRep
-            // 
-            this.fileRep.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.fileRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Save});
-            this.fileRep.HideSelection = false;
-            this.fileRep.Location = new System.Drawing.Point(20, 26);
-            this.fileRep.MultiSelect = false;
-            this.fileRep.Name = "fileRep";
-            this.fileRep.Size = new System.Drawing.Size(288, 239);
-            this.fileRep.TabIndex = 5;
-            this.fileRep.UseCompatibleStateImageBehavior = false;
-            this.fileRep.View = System.Windows.Forms.View.Details;
-            // 
-            // Save
-            // 
-            this.Save.Text = "Save";
-            this.Save.Width = 284;
-            // 
-            // teleporterPanel
-            // 
-            this.teleporterPanel.Controls.Add(this.panel1);
-            this.teleporterPanel.Controls.Add(this.addCustomFavorite);
-            this.teleporterPanel.Controls.Add(this.displayOnMap);
-            this.teleporterPanel.Controls.Add(this.transparentLayer);
-            this.teleporterPanel.Controls.Add(this.addedRemoved);
-            this.teleporterPanel.Controls.Add(this.teleporterToggleFavorites);
-            this.teleporterPanel.Controls.Add(this.groupBox8);
-            this.teleporterPanel.Controls.Add(this.linkLocationLabel);
-            this.teleporterPanel.Controls.Add(this.pictureBox1);
-            this.teleporterPanel.Controls.Add(this.teleporterToggleHyrule);
-            this.teleporterPanel.Controls.Add(this.islandLabel);
-            this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
-            this.teleporterPanel.Name = "teleporterPanel";
-            this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
-            this.teleporterPanel.TabIndex = 33;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.subAreas);
-            this.panel1.Location = new System.Drawing.Point(339, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 304);
-            this.panel1.TabIndex = 21;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(10, 9);
-            this.label6.MaximumSize = new System.Drawing.Size(92, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Island: ";
-            // 
-            // subAreas
-            // 
-            this.subAreas.AutoScroll = true;
-            this.subAreas.BackColor = System.Drawing.Color.Transparent;
-            this.subAreas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.subAreas.Location = new System.Drawing.Point(10, 26);
-            this.subAreas.Name = "subAreas";
-            this.subAreas.Size = new System.Drawing.Size(280, 260);
-            this.subAreas.TabIndex = 4;
-            // 
-            // addCustomFavorite
-            // 
-            this.addCustomFavorite.Location = new System.Drawing.Point(660, 251);
-            this.addCustomFavorite.Name = "addCustomFavorite";
-            this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
-            this.addCustomFavorite.TabIndex = 20;
-            this.addCustomFavorite.Text = "Add custom favorite";
-            this.addCustomFavorite.UseVisualStyleBackColor = true;
-            this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
-            // 
-            // displayOnMap
-            // 
-            this.displayOnMap.AutoSize = true;
-            this.displayOnMap.Location = new System.Drawing.Point(663, 235);
-            this.displayOnMap.Name = "displayOnMap";
-            this.displayOnMap.Size = new System.Drawing.Size(98, 17);
-            this.displayOnMap.TabIndex = 19;
-            this.displayOnMap.Text = "Display on map";
-            this.displayOnMap.UseVisualStyleBackColor = true;
-            // 
-            // transparentLayer
-            // 
-            this.transparentLayer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transparentLayer.BackgroundImage")));
-            this.transparentLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.transparentLayer.Controls.Add(this.movingLink);
-            this.transparentLayer.Controls.Add(this.teleporterMap);
-            this.transparentLayer.Location = new System.Drawing.Point(19, 26);
-            this.transparentLayer.Name = "transparentLayer";
-            this.transparentLayer.Size = new System.Drawing.Size(306, 302);
-            this.transparentLayer.TabIndex = 18;
-            // 
-            // movingLink
-            // 
-            this.movingLink.BackColor = System.Drawing.Color.Transparent;
-            this.movingLink.Enabled = false;
-            this.movingLink.Image = ((System.Drawing.Image)(resources.GetObject("movingLink.Image")));
-            this.movingLink.Location = new System.Drawing.Point(0, 0);
-            this.movingLink.Name = "movingLink";
-            this.movingLink.Size = new System.Drawing.Size(35, 33);
-            this.movingLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.movingLink.TabIndex = 19;
-            this.movingLink.TabStop = false;
-            // 
-            // teleporterMap
-            // 
-            this.teleporterMap.BackColor = System.Drawing.Color.Transparent;
-            this.teleporterMap.Location = new System.Drawing.Point(0, 0);
-            this.teleporterMap.Name = "teleporterMap";
-            this.teleporterMap.Size = new System.Drawing.Size(306, 302);
-            this.teleporterMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.teleporterMap.TabIndex = 0;
-            this.teleporterMap.TabStop = false;
-            this.teleporterMap.Click += new System.EventHandler(this.teleporterMap_Click);
-            this.teleporterMap.MouseLeave += new System.EventHandler(this.teleporterMap_MouseLeave);
-            this.teleporterMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.teleporterMap_MouseMove);
-            // 
-            // addedRemoved
-            // 
-            this.addedRemoved.AutoSize = true;
-            this.addedRemoved.Location = new System.Drawing.Point(349, 331);
-            this.addedRemoved.Name = "addedRemoved";
-            this.addedRemoved.Size = new System.Drawing.Size(0, 13);
-            this.addedRemoved.TabIndex = 17;
-            // 
-            // teleporterToggleFavorites
-            // 
-            this.teleporterToggleFavorites.Location = new System.Drawing.Point(660, 291);
-            this.teleporterToggleFavorites.Name = "teleporterToggleFavorites";
-            this.teleporterToggleFavorites.Size = new System.Drawing.Size(100, 23);
-            this.teleporterToggleFavorites.TabIndex = 5;
-            this.teleporterToggleFavorites.Text = "Favorites";
-            this.teleporterToggleFavorites.UseVisualStyleBackColor = true;
-            this.teleporterToggleFavorites.Click += new System.EventHandler(this.teleporterToggleFavorites_Click);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.label17);
-            this.groupBox8.Controls.Add(this.label7);
-            this.groupBox8.Controls.Add(this.teleporterRoomId);
-            this.groupBox8.Controls.Add(this.teleporterLayer);
-            this.groupBox8.Controls.Add(this.teleporterSpawnId);
-            this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Location = new System.Drawing.Point(663, 26);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(122, 156);
-            this.groupBox8.TabIndex = 16;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Advanced (leave default if unsure)";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(49, 13);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "Room ID";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 114);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Layer";
-            // 
-            // teleporterRoomId
-            // 
-            this.teleporterRoomId.Location = new System.Drawing.Point(6, 47);
-            this.teleporterRoomId.Name = "teleporterRoomId";
-            this.teleporterRoomId.Size = new System.Drawing.Size(87, 20);
-            this.teleporterRoomId.TabIndex = 10;
-            this.teleporterRoomId.Text = "00";
-            // 
-            // teleporterLayer
-            // 
-            this.teleporterLayer.Location = new System.Drawing.Point(6, 130);
-            this.teleporterLayer.Name = "teleporterLayer";
-            this.teleporterLayer.Size = new System.Drawing.Size(87, 20);
-            this.teleporterLayer.TabIndex = 14;
-            this.teleporterLayer.Text = "ff";
-            // 
-            // teleporterSpawnId
-            // 
-            this.teleporterSpawnId.Location = new System.Drawing.Point(6, 88);
-            this.teleporterSpawnId.Name = "teleporterSpawnId";
-            this.teleporterSpawnId.Size = new System.Drawing.Size(87, 20);
-            this.teleporterSpawnId.TabIndex = 12;
-            this.teleporterSpawnId.Text = "00";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Spawn ID";
-            // 
-            // linkLocationLabel
-            // 
-            this.linkLocationLabel.AutoSize = true;
-            this.linkLocationLabel.Location = new System.Drawing.Point(701, 191);
-            this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
-            this.linkLocationLabel.Name = "linkLocationLabel";
-            this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
-            this.linkLocationLabel.TabIndex = 7;
-            this.linkLocationLabel.Text = ": Unknown";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(660, 188);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // teleporterToggleHyrule
-            // 
-            this.teleporterToggleHyrule.Location = new System.Drawing.Point(660, 314);
-            this.teleporterToggleHyrule.Name = "teleporterToggleHyrule";
-            this.teleporterToggleHyrule.Size = new System.Drawing.Size(101, 23);
-            this.teleporterToggleHyrule.TabIndex = 5;
-            this.teleporterToggleHyrule.Text = "Hyrule zones";
-            this.teleporterToggleHyrule.UseVisualStyleBackColor = true;
-            this.teleporterToggleHyrule.Click += new System.EventHandler(this.teleporterToggleHyrule_Click);
-            // 
-            // islandLabel
-            // 
-            this.islandLabel.AutoSize = true;
-            this.islandLabel.Location = new System.Drawing.Point(22, 328);
-            this.islandLabel.Name = "islandLabel";
-            this.islandLabel.Size = new System.Drawing.Size(44, 13);
-            this.islandLabel.TabIndex = 1;
-            this.islandLabel.Text = "Island : ";
+            // hookshotMod
+            // 
+            this.hookshotMod.AutoSize = true;
+            this.hookshotMod.Location = new System.Drawing.Point(150, 197);
+            this.hookshotMod.Name = "hookshotMod";
+            this.hookshotMod.Size = new System.Drawing.Size(117, 30);
+            this.hookshotMod.TabIndex = 64;
+            this.hookshotMod.Text = "Increase hookshot \r\nrange and length";
+            this.hookshotMod.UseVisualStyleBackColor = true;
+            this.hookshotMod.CheckedChanged += new System.EventHandler(this.hookshotMod_CheckedChanged);
             // 
             // Form1
             // 
@@ -2740,6 +2753,20 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).EndInit();
             this.itemsPanel.ResumeLayout(false);
             this.itemsPanel.PerformLayout();
+            this.memfilesPanel.ResumeLayout(false);
+            this.memfilesPanel.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.teleporterPanel.ResumeLayout(false);
+            this.teleporterPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.transparentLayer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).EndInit();
@@ -2780,20 +2807,6 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).EndInit();
-            this.memfilesPanel.ResumeLayout(false);
-            this.memfilesPanel.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
-            this.teleporterPanel.ResumeLayout(false);
-            this.teleporterPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.transparentLayer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3009,6 +3022,7 @@ namespace WWHDHacker
         private Button macroConfigOpen;
         private Button rotateLeft;
         private Button rotateRight;
+        private CheckBox hookshotMod;
     }
 }
 

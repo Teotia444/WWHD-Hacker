@@ -1850,6 +1850,11 @@ namespace WWHDHacker
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096EF0A), out int sAngle);
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096EF0A, sAngle - 16384 < 0 ? sAngle - 16384 + 65536 : sAngle - 16384);
         }
+
+        private void hookshotMod_CheckedChanged(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u32, 0x1051392C, hookshotMod.Checked ? 0x45800000 : 0x41700000);
+        }
     }
 
     public class MemViewerEntry
