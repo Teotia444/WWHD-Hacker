@@ -441,7 +441,6 @@ namespace WWHDHacker
         {
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
             tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, FloatToHex((float)speedNumber.Value));
-            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 900);
         }
 
         private void setSAButton_Click(object sender, EventArgs e)
@@ -1860,6 +1859,14 @@ namespace WWHDHacker
         private void setRupees_Click(object sender, EventArgs e)
         {
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1506b504, (int)setRupeesValue.Value);
+        }
+
+        private void setAllSpeedButton_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, (int)angleNumber.Value);
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
+            tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, FloatToHex((float)speedNumber.Value));
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096EF0A, (int)speedAngleNumber.Value);
         }
     }
 
