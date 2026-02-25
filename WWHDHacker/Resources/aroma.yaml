@@ -2,10 +2,7 @@ Angular Isles - Cave: SubD43
 Beedle's Shop Ship: Obshop
 Bird's Peak Rock - Triforce Cave: TF_03
 Boating Course: Ocean
-Bomb Island - Another Early Cave: SubD71
 Bomb Island - Cave: Cave01
-Bomb Island - Cave Test: ITest61
-Bomb Island - Early Cave: SubD51
 Cliff Plateau Isles - Cave: Cave03
 Credits: sea_E
 Diamond Steppe Island - Cave: WarpD
@@ -78,8 +75,6 @@ Outset Island - Link's House: LinkRM
 Outset Island - Mesa's House: Omasao
 Outset Island - Orca's House: Ojhous
 Outset Island - Sturgeon's House: Ojhous2
-Outset Island - Test: DmSpot0
-Outset Island - Unused Cave: Cave06
 Overlook Island - Triforce Cave: TF_02
 Pawprint Isle - Cave: TyuTyu
 Pawprint Isle - Wizzrobe Cave: Cave07
@@ -103,7 +98,6 @@ Title Screen: sea_T
 Tower of Gods: Siren
 Tower of Gods - Boss Room: SirenB
 Tower of Gods - Cutscene: ADMumi
-Tower of Gods - Miniboss Room: SirenMB
 Unused Fire Mountain: kazan
 Unused Temple Island: Mukao
 Western Fairy Island - Fairy: Fairy03
@@ -119,6 +113,8 @@ Windfall Island - Minigame House: Kaisen
 Windfall Island - Potion Shop: Pdrgsh
 Windfall Island - Prison: Pnezumi
 Windfall Island - School of Joy: Nitiyou
+Windfall Island - FF1 cs: sea, 11, C8, 08
+
 
 #ty al for this
 Outset Island - aryll lookout: sea, 44, 06, FF
@@ -126,18 +122,18 @@ Forsaken Fortress - FF1 exterior from first jail cell: MajyuE, 00, 04, FF
 Forsaken Fortress - FF1 2 moblins: majroom, 03, 08, FF
 Forsaken Fortress - FF1 Last moblin: MajyuE, 00, 0A, FF
 Forsaken Fortress - FF1 Between sidles: MajyuE, 00, 13, FF
-Dragon Roost Island - DRI Beedle shop: Obshop, 02, 00, FF
-Dragon Roost Cavern - DRC Main big room: M_NewD2, 02, 00, FF
-Dragon Roost Cavern - DRC Water pots: M_NewD2, 13, 00, FF
-Dragon Roost Cavern - DRC Sword boko in pot: M_NewD2, 01, 00, FF
-Dragon Roost Cavern - DRC Many chus room: M_NewD2, 11, 00, FF
-Dragon Roost Cavern - DRC Big ladder outdoor: M_NewD2, 03, 00, FF
-Dragon Roost Cavern - DRC Dark keese room: M_NewD2, 04, 00, FF
-Dragon Roost Cavern - DRC Top bridge warp pot: M_NewD2, 02, 05, FF
-Dragon Roost Cavern - DRC 3 bokoblin fight: M_NewD2, 06, 00, FF
-Dragon Roost Cavern - DRC Magtail lava platform: M_NewD2, 08, 00, FF
-Dragon Roost Cavern - DRC Outside boos door: M_NewD2, 10, 01, FF
-Dragon Roost Cavern - DRC miniboss: M_Dra09, 09, 00, FF
+Dragon Roost Island - Beedle shop: Obshop, 02, 00, FF
+Dragon Roost Cavern - Main big room: M_NewD2, 02, 00, FF
+Dragon Roost Cavern - Water pots: M_NewD2, 13, 00, FF
+Dragon Roost Cavern - Sword boko in pot: M_NewD2, 01, 00, FF
+Dragon Roost Cavern - Many chus room: M_NewD2, 11, 00, FF
+Dragon Roost Cavern - Big ladder outdoor: M_NewD2, 03, 00, FF
+Dragon Roost Cavern - Dark keese room: M_NewD2, 04, 00, FF
+Dragon Roost Cavern - Top bridge warp pot: M_NewD2, 02, 05, FF
+Dragon Roost Cavern - 3 bokoblin fight: M_NewD2, 06, 00, FF
+Dragon Roost Cavern - Magtail lava platform: M_NewD2, 08, 00, FF
+Dragon Roost Cavern - Outside boos door: M_NewD2, 10, 01, FF
+Dragon Roost Cavern - miniboss: M_Dra09, 09, 00, FF
 Forest Haven - outside main entrance: sea, 41, 05, FF
 Forest Haven - main entrance: Omori, 00, 05, FF
 Forbidden Woods - FW miniboss: kinMB, 10, 00, FF
@@ -146,9 +142,10 @@ Forbidden Woods - FW in front of boss door: kindan, 16, 01, FF
 Tower of Gods - TOTG beemos: Siren, 06, 00, FF
 Tower of Gods - TOTG scales: Siren, 08, 00, FF
 Tower of Gods - TOTG before miniboss: Siren, 14, 00, FF
-Tower of Gods - TOTG miniboss: Miniboss - SirenMB, 23, 00, FF
-Tower of Gods - TOTG floor 3: Floor 3 - Siren, 17, 00, FF
-Tower of Gods - TOTG before boss: Outdoors - Siren, 18, 00,FF
+Tower of Gods - TOTG miniboss: SirenMB, 23, 00, FF
+Tower of Gods - TOTG floor 3: Siren, 17, 00, FF
+Tower of Gods - TOTG before boss: Siren, 18, 00,FF
+Tower of Gods - TOTG bell: ADMumi, 00, C8, 09
 Forsaken Fortress - Helmaroc fight: M2tower, 00, 14, FF
 Earth Temple - ET moblins and poes: M_Dai, 00, 08, FF
 Earth Temple - ET miniboss: M_DaiMB, 12, 00, FF
@@ -158,14 +155,27 @@ Wind Temple - WT snipe the warp pot: kaze, 00, 02, FF
 Wind Temple - WT BK room: Kaze, 00, 08, FF
 Wind Temple - WT bottom floor: Kaze, 00, 14, FF
 Wind Temple - WT miniboss: kazeMB, 06, 00, FF
-Savage Floor 10 : Cave09, 15, 00, FF
-Savage Floor 20 : Cave10, 15, 00, FF
-Savage Floor 30 : Cave09, 20, 00, FF
-Savage Floor 40 : Cave11, 15, 00, FF
-Savage many bokoblins floor : Cave10, 09, 00, FF
-Bomb island interior second room: Cave01, 01, 00, FF
-Flight control platform minigame : sea, 14, 01, 02
-Ghost ship: PShip, 02, 00, FF
-Trials hub: GanonA, 01, 00, FF
-Earth temple trial exit: GanonA, 01, 04, FF
-Puppet ganon warp pot: GanonK, 00, 02, FF
+Outset Island - Savage Floor 0 : Cave09, 00, 00, FF
+Outset Island - Savage Floor 10 : Cave09, 15, 00, FF
+Outset Island - Savage Floor 20 : Cave10, 15, 00, FF
+Outset Island - Savage Floor 30 : Cave09, 20, 00, FF
+Outset Island - Savage Floor 40 : Cave11, 15, 00, FF
+Outset Island - Savage many bokoblins floor : Cave10, 09, 00, FF
+Forbidden Woods - FW main room: kindan, 05, 00, FF
+
+Bomb island - Interior second room: Cave01, 01, 00, FF
+Flight Control Platform - minigame : sea, 14, 01, 02
+Ghost Ship: PShip, 02, 00, FF
+Ganon's Tower - Trials hub: GanonA, 01, 00, FF
+
+Ganon's Tower - Earth temple trial exit: GanonA, 01, 04, FF
+Ganon's Tower - Puppet ganon warp pot: GanonK, 00, 02, FF
+Northern Fairy Island - Sub: Abship, 04, 00, FF
+Earth Temple - Headstone Sub: Abship, 05, 00, FF
+Crescent Moon Island - Sub: Abship, 07, 00, FF
+Six-Eye Reef - Sub: Abship, 01, 00, FF
+Five-Star Isles - Sub: Abship, 00, 00, FF
+Bomb island - Sub: Abship, 02, 00, FF
+Flight Control Platform - Sub: Abship, 06, 00, FF
+
+

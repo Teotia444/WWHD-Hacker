@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewer));
             this.dataViewerPanel = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
             this.roomIdTextbox = new System.Windows.Forms.TextBox();
@@ -43,6 +44,7 @@
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.speedAngleTextbox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -216,8 +218,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.updateValuesTimer = new System.Windows.Forms.Timer(this.components);
-            this.label27 = new System.Windows.Forms.Label();
-            this.speedAngleTextbox = new System.Windows.Forms.TextBox();
+            this.stickFloat = new System.Windows.Forms.CheckBox();
             this.dataViewerPanel.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -297,6 +298,15 @@
             this.dataViewerPanel.Name = "dataViewerPanel";
             this.dataViewerPanel.Size = new System.Drawing.Size(803, 348);
             this.dataViewerPanel.TabIndex = 37;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(252, 37);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(70, 13);
+            this.label27.TabIndex = 13;
+            this.label27.Text = "Speed angle:";
             // 
             // groupBox9
             // 
@@ -423,6 +433,14 @@
             this.label21.TabIndex = 10;
             this.label21.Text = "Potential Speed :";
             // 
+            // speedAngleTextbox
+            // 
+            this.speedAngleTextbox.Location = new System.Drawing.Point(241, 48);
+            this.speedAngleTextbox.Name = "speedAngleTextbox";
+            this.speedAngleTextbox.ReadOnly = true;
+            this.speedAngleTextbox.Size = new System.Drawing.Size(100, 20);
+            this.speedAngleTextbox.TabIndex = 12;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -509,6 +527,7 @@
             // 
             // inputDisplay
             // 
+            this.inputDisplay.Controls.Add(this.stickFloat);
             this.inputDisplay.Controls.Add(this.dpadRightButtonCheckbox);
             this.inputDisplay.Controls.Add(this.dpadLeftButtonCheckbox);
             this.inputDisplay.Controls.Add(this.dpadDownButtonCheckbox);
@@ -535,7 +554,7 @@
             this.inputDisplay.Controls.Add(this.cStick);
             this.inputDisplay.Location = new System.Drawing.Point(402, 16);
             this.inputDisplay.Name = "inputDisplay";
-            this.inputDisplay.Size = new System.Drawing.Size(390, 322);
+            this.inputDisplay.Size = new System.Drawing.Size(396, 322);
             this.inputDisplay.TabIndex = 1;
             this.inputDisplay.TabStop = false;
             this.inputDisplay.Text = "Input Display";
@@ -544,7 +563,7 @@
             // 
             this.dpadRightButtonCheckbox.AutoCheck = false;
             this.dpadRightButtonCheckbox.AutoSize = true;
-            this.dpadRightButtonCheckbox.Location = new System.Drawing.Point(215, 269);
+            this.dpadRightButtonCheckbox.Location = new System.Drawing.Point(215, 271);
             this.dpadRightButtonCheckbox.Name = "dpadRightButtonCheckbox";
             this.dpadRightButtonCheckbox.Size = new System.Drawing.Size(62, 17);
             this.dpadRightButtonCheckbox.TabIndex = 25;
@@ -555,7 +574,7 @@
             // 
             this.dpadLeftButtonCheckbox.AutoCheck = false;
             this.dpadLeftButtonCheckbox.AutoSize = true;
-            this.dpadLeftButtonCheckbox.Location = new System.Drawing.Point(146, 269);
+            this.dpadLeftButtonCheckbox.Location = new System.Drawing.Point(146, 271);
             this.dpadLeftButtonCheckbox.Name = "dpadLeftButtonCheckbox";
             this.dpadLeftButtonCheckbox.Size = new System.Drawing.Size(55, 17);
             this.dpadLeftButtonCheckbox.TabIndex = 24;
@@ -566,7 +585,7 @@
             // 
             this.dpadDownButtonCheckbox.AutoCheck = false;
             this.dpadDownButtonCheckbox.AutoSize = true;
-            this.dpadDownButtonCheckbox.Location = new System.Drawing.Point(75, 269);
+            this.dpadDownButtonCheckbox.Location = new System.Drawing.Point(75, 271);
             this.dpadDownButtonCheckbox.Name = "dpadDownButtonCheckbox";
             this.dpadDownButtonCheckbox.Size = new System.Drawing.Size(65, 17);
             this.dpadDownButtonCheckbox.TabIndex = 23;
@@ -577,7 +596,7 @@
             // 
             this.dpadUpButtonCheckbox.AutoCheck = false;
             this.dpadUpButtonCheckbox.AutoSize = true;
-            this.dpadUpButtonCheckbox.Location = new System.Drawing.Point(9, 269);
+            this.dpadUpButtonCheckbox.Location = new System.Drawing.Point(9, 271);
             this.dpadUpButtonCheckbox.Name = "dpadUpButtonCheckbox";
             this.dpadUpButtonCheckbox.Size = new System.Drawing.Size(51, 17);
             this.dpadUpButtonCheckbox.TabIndex = 22;
@@ -588,7 +607,7 @@
             // 
             this.r3ButtonCheckbox.AutoCheck = false;
             this.r3ButtonCheckbox.AutoSize = true;
-            this.r3ButtonCheckbox.Location = new System.Drawing.Point(264, 295);
+            this.r3ButtonCheckbox.Location = new System.Drawing.Point(264, 297);
             this.r3ButtonCheckbox.Name = "r3ButtonCheckbox";
             this.r3ButtonCheckbox.Size = new System.Drawing.Size(40, 17);
             this.r3ButtonCheckbox.TabIndex = 21;
@@ -599,7 +618,7 @@
             // 
             this.l3ButtonCheckbox.AutoCheck = false;
             this.l3ButtonCheckbox.AutoSize = true;
-            this.l3ButtonCheckbox.Location = new System.Drawing.Point(214, 295);
+            this.l3ButtonCheckbox.Location = new System.Drawing.Point(214, 297);
             this.l3ButtonCheckbox.Name = "l3ButtonCheckbox";
             this.l3ButtonCheckbox.Size = new System.Drawing.Size(38, 17);
             this.l3ButtonCheckbox.TabIndex = 20;
@@ -610,7 +629,7 @@
             // 
             this.zrButtonCheckbox.AutoCheck = false;
             this.zrButtonCheckbox.AutoSize = true;
-            this.zrButtonCheckbox.Location = new System.Drawing.Point(161, 295);
+            this.zrButtonCheckbox.Location = new System.Drawing.Point(161, 297);
             this.zrButtonCheckbox.Name = "zrButtonCheckbox";
             this.zrButtonCheckbox.Size = new System.Drawing.Size(41, 17);
             this.zrButtonCheckbox.TabIndex = 19;
@@ -621,7 +640,7 @@
             // 
             this.zlButtonCheckbox.AutoCheck = false;
             this.zlButtonCheckbox.AutoSize = true;
-            this.zlButtonCheckbox.Location = new System.Drawing.Point(109, 295);
+            this.zlButtonCheckbox.Location = new System.Drawing.Point(109, 297);
             this.zlButtonCheckbox.Name = "zlButtonCheckbox";
             this.zlButtonCheckbox.Size = new System.Drawing.Size(39, 17);
             this.zlButtonCheckbox.TabIndex = 18;
@@ -632,7 +651,7 @@
             // 
             this.rButtonCheckbox.AutoCheck = false;
             this.rButtonCheckbox.AutoSize = true;
-            this.rButtonCheckbox.Location = new System.Drawing.Point(60, 295);
+            this.rButtonCheckbox.Location = new System.Drawing.Point(60, 297);
             this.rButtonCheckbox.Name = "rButtonCheckbox";
             this.rButtonCheckbox.Size = new System.Drawing.Size(34, 17);
             this.rButtonCheckbox.TabIndex = 17;
@@ -643,7 +662,7 @@
             // 
             this.lButtonCheckbox.AutoCheck = false;
             this.lButtonCheckbox.AutoSize = true;
-            this.lButtonCheckbox.Location = new System.Drawing.Point(9, 295);
+            this.lButtonCheckbox.Location = new System.Drawing.Point(9, 297);
             this.lButtonCheckbox.Name = "lButtonCheckbox";
             this.lButtonCheckbox.Size = new System.Drawing.Size(32, 17);
             this.lButtonCheckbox.TabIndex = 16;
@@ -654,7 +673,7 @@
             // 
             this.minusButtonCheckbox.AutoCheck = false;
             this.minusButtonCheckbox.AutoSize = true;
-            this.minusButtonCheckbox.Location = new System.Drawing.Point(259, 241);
+            this.minusButtonCheckbox.Location = new System.Drawing.Point(259, 243);
             this.minusButtonCheckbox.Name = "minusButtonCheckbox";
             this.minusButtonCheckbox.Size = new System.Drawing.Size(29, 17);
             this.minusButtonCheckbox.TabIndex = 15;
@@ -665,7 +684,7 @@
             // 
             this.plusButtonCheckbox.AutoCheck = false;
             this.plusButtonCheckbox.AutoSize = true;
-            this.plusButtonCheckbox.Location = new System.Drawing.Point(209, 241);
+            this.plusButtonCheckbox.Location = new System.Drawing.Point(209, 243);
             this.plusButtonCheckbox.Name = "plusButtonCheckbox";
             this.plusButtonCheckbox.Size = new System.Drawing.Size(32, 17);
             this.plusButtonCheckbox.TabIndex = 14;
@@ -676,7 +695,7 @@
             // 
             this.yButtonCheckbox.AutoCheck = false;
             this.yButtonCheckbox.AutoSize = true;
-            this.yButtonCheckbox.Location = new System.Drawing.Point(161, 241);
+            this.yButtonCheckbox.Location = new System.Drawing.Point(161, 243);
             this.yButtonCheckbox.Name = "yButtonCheckbox";
             this.yButtonCheckbox.Size = new System.Drawing.Size(33, 17);
             this.yButtonCheckbox.TabIndex = 13;
@@ -687,7 +706,7 @@
             // 
             this.xButtonCheckbox.AutoCheck = false;
             this.xButtonCheckbox.AutoSize = true;
-            this.xButtonCheckbox.Location = new System.Drawing.Point(109, 241);
+            this.xButtonCheckbox.Location = new System.Drawing.Point(109, 243);
             this.xButtonCheckbox.Name = "xButtonCheckbox";
             this.xButtonCheckbox.Size = new System.Drawing.Size(33, 17);
             this.xButtonCheckbox.TabIndex = 12;
@@ -698,7 +717,7 @@
             // 
             this.bButtonCheckbox.AutoCheck = false;
             this.bButtonCheckbox.AutoSize = true;
-            this.bButtonCheckbox.Location = new System.Drawing.Point(60, 241);
+            this.bButtonCheckbox.Location = new System.Drawing.Point(60, 243);
             this.bButtonCheckbox.Name = "bButtonCheckbox";
             this.bButtonCheckbox.Size = new System.Drawing.Size(33, 17);
             this.bButtonCheckbox.TabIndex = 11;
@@ -727,7 +746,7 @@
             // 
             this.aButtonCheckbox.AutoCheck = false;
             this.aButtonCheckbox.AutoSize = true;
-            this.aButtonCheckbox.Location = new System.Drawing.Point(9, 241);
+            this.aButtonCheckbox.Location = new System.Drawing.Point(9, 243);
             this.aButtonCheckbox.Name = "aButtonCheckbox";
             this.aButtonCheckbox.Size = new System.Drawing.Size(33, 17);
             this.aButtonCheckbox.TabIndex = 8;
@@ -737,28 +756,28 @@
             // cStickX
             // 
             this.cStickX.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.cStickX.Location = new System.Drawing.Point(261, 194);
+            this.cStickX.Location = new System.Drawing.Point(252, 194);
             this.cStickX.Name = "cStickX";
             this.cStickX.ReadOnly = true;
-            this.cStickX.Size = new System.Drawing.Size(31, 20);
+            this.cStickX.Size = new System.Drawing.Size(73, 20);
             this.cStickX.TabIndex = 5;
             // 
             // mainStickX
             // 
             this.mainStickX.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.mainStickX.Location = new System.Drawing.Point(76, 194);
+            this.mainStickX.Location = new System.Drawing.Point(64, 196);
             this.mainStickX.Name = "mainStickX";
             this.mainStickX.ReadOnly = true;
-            this.mainStickX.Size = new System.Drawing.Size(31, 20);
+            this.mainStickX.Size = new System.Drawing.Size(73, 20);
             this.mainStickX.TabIndex = 4;
             // 
             // cStickY
             // 
             this.cStickY.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.cStickY.Location = new System.Drawing.Point(350, 112);
+            this.cStickY.Location = new System.Drawing.Point(347, 111);
             this.cStickY.Name = "cStickY";
             this.cStickY.ReadOnly = true;
-            this.cStickY.Size = new System.Drawing.Size(31, 20);
+            this.cStickY.Size = new System.Drawing.Size(45, 20);
             this.cStickY.TabIndex = 3;
             // 
             // mainStickY
@@ -767,7 +786,7 @@
             this.mainStickY.Location = new System.Drawing.Point(159, 111);
             this.mainStickY.Name = "mainStickY";
             this.mainStickY.ReadOnly = true;
-            this.mainStickY.Size = new System.Drawing.Size(31, 20);
+            this.mainStickY.Size = new System.Drawing.Size(45, 20);
             this.mainStickY.TabIndex = 2;
             // 
             // mainStick
@@ -2421,22 +2440,15 @@
             this.updateValuesTimer.Interval = 10;
             this.updateValuesTimer.Tick += new System.EventHandler(this.updateValuesTimer_Tick);
             // 
-            // label27
+            // stickFloat
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(252, 37);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(70, 13);
-            this.label27.TabIndex = 13;
-            this.label27.Text = "Speed angle:";
-            // 
-            // speedAngleTextbox
-            // 
-            this.speedAngleTextbox.Location = new System.Drawing.Point(241, 48);
-            this.speedAngleTextbox.Name = "speedAngleTextbox";
-            this.speedAngleTextbox.ReadOnly = true;
-            this.speedAngleTextbox.Size = new System.Drawing.Size(100, 20);
-            this.speedAngleTextbox.TabIndex = 12;
+            this.stickFloat.AutoSize = true;
+            this.stickFloat.Location = new System.Drawing.Point(139, 219);
+            this.stickFloat.Name = "stickFloat";
+            this.stickFloat.Size = new System.Drawing.Size(121, 17);
+            this.stickFloat.TabIndex = 26;
+            this.stickFloat.Text = "Stick values as float";
+            this.stickFloat.UseVisualStyleBackColor = true;
             // 
             // DataViewer
             // 
@@ -2722,5 +2734,6 @@
         private System.Windows.Forms.Timer updateValuesTimer;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox speedAngleTextbox;
+        private System.Windows.Forms.CheckBox stickFloat;
     }
 }

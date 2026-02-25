@@ -71,7 +71,6 @@ namespace WWHDHacker
         public static Input enumToInput(InputEnum e)
         {
             var fields = typeof(Inputs).GetFields();
-            Console.WriteLine(e.ToString());
             return (Input)fields[(int)e].GetValue(null);
 
         }

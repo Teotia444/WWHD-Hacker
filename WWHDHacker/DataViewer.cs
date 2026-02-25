@@ -68,12 +68,12 @@ namespace WWHDHacker
             e.Graphics.DrawEllipse(pen, r);
             e.Graphics.FillEllipse(Brushes.White, r);
             pen = new Pen(Color.Blue);
-            Rectangle dot = new Rectangle((122 / 2) + origin.mainStickValues.Item1 / 2, (122 / 2) - origin.mainStickValues.Item2 / 2, 10, 10);
+            Rectangle dot = new Rectangle((122 / 2) + (int)(origin.mainStickValues.Item1*128) / 2, (122 / 2) - (int)(origin.mainStickValues.Item2 * 128) / 2, 10, 10);
             e.Graphics.DrawEllipse(pen, dot);
             e.Graphics.FillEllipse(Brushes.Blue, dot);
             pen = new Pen(Color.Black);
             pen.Width = 2;
-            e.Graphics.DrawLine(pen, new Point((122 / 2) + origin.mainStickValues.Item1 / 2 + 5, (122 / 2) - origin.mainStickValues.Item2 / 2 + 5), new Point(122 / 2 + 5, 122 / 2 + 5));
+            e.Graphics.DrawLine(pen, new Point((122 / 2) + (int)(origin.mainStickValues.Item1 * 128) / 2 + 5, (122 / 2) - (int)(origin.mainStickValues.Item2 * 128) / 2 + 5), new Point(122 / 2 + 5, 122 / 2 + 5));
         }
 
         private void CStick_Paint(object sender, PaintEventArgs e)
@@ -89,12 +89,12 @@ namespace WWHDHacker
             e.Graphics.DrawEllipse(pen, r);
             e.Graphics.FillEllipse(Brushes.White, r);
             pen = new Pen(Color.Blue);
-            Rectangle dot = new Rectangle((122 / 2) + origin.cStickValues.Item1 / 2, (122 / 2) - origin.cStickValues.Item2 / 2, 10, 10);
+            Rectangle dot = new Rectangle((122 / 2) + (int)(origin.cStickValues.Item1 * 128) / 2, (122 / 2) - (int)(origin.cStickValues.Item2 * 128) / 2, 10, 10);
             e.Graphics.DrawEllipse(pen, dot);
             e.Graphics.FillEllipse(Brushes.Blue, dot);
             pen = new Pen(Color.Black);
             pen.Width = 2;
-            e.Graphics.DrawLine(pen, new Point((122 / 2) + origin.cStickValues.Item1 / 2 + 5, (122 / 2) - origin.cStickValues.Item2 / 2 + 5), new Point(122 / 2 + 5, 122 / 2 + 5));
+            e.Graphics.DrawLine(pen, new Point((122 / 2) + (int)(origin.cStickValues.Item1 * 128) / 2 + 5, (122 / 2) - (int)(origin.cStickValues.Item2 * 128) / 2 + 5), new Point(122 / 2 + 5, 122 / 2 + 5));
         }
 
         private void updateValuesTimer_Tick(object sender, EventArgs e)
@@ -112,10 +112,10 @@ namespace WWHDHacker
             spawnIdTextbox.Text = $"{origin.spawnId:X}";
             layerTextbox.Text = $"{origin.layer:X}";
 
-            cStickX.Text = origin.cStickValues.Item2.ToString();
-            cStickY.Text = origin.cStickValues.Item1.ToString();
-            mainStickX.Text = origin.mainStickValues.Item2.ToString();
-            mainStickY.Text = origin.mainStickValues.Item1.ToString();
+            cStickX.Text = stickFloat.Checked ? (origin.cStickValues.Item2).ToString() : ((int)(origin.cStickValues.Item2*128)).ToString();
+            cStickY.Text = stickFloat.Checked ? (origin.cStickValues.Item1).ToString() : ((int)(origin.cStickValues.Item1 * 128)).ToString();
+            mainStickX.Text = stickFloat.Checked ? (origin.mainStickValues.Item2).ToString() : ((int)(origin.mainStickValues.Item2 * 128)).ToString();
+            mainStickY.Text = stickFloat.Checked ? (origin.mainStickValues.Item1).ToString() : ((int)(origin.mainStickValues.Item1 * 128)).ToString();
 
 
         }

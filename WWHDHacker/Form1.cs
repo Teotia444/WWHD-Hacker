@@ -54,8 +54,8 @@ namespace WWHDHacker
 
         MacroConfig macroConfig;
 
-        public (int, int) mainStickValues { get; set; }
-        public (int, int) cStickValues { get; set; }
+        public (float, float) mainStickValues { get; set; }
+        public (float, float) cStickValues { get; set; }
         public (float, float, float) linkCoordinates { get; set; }
         public int linkAngle { get; set; }
         public float linkSpeed { get; set; }
@@ -793,7 +793,6 @@ namespace WWHDHacker
             (bool, string) infos = MemfilePrompt.ShowDialog("Enter Memfile name", "Enter Memfile name");
             if (infos.Item2 != "")
             {
-                Console.WriteLine(infos.Item1);
                 Memfile memfile = Memfile.Create(tcpGecko, infos.Item1);
                 string json = JsonConvert.SerializeObject(memfile, Formatting.Indented);
                 File.WriteAllText(settingsDir + "\\Memfiles\\" + ((memfilesViewer.SelectedNode == null || memfilesViewer.SelectedNode.Nodes.Count == 0)? "" : memfilesViewer.SelectedNode.FullPath + "\\") + infos.Item2 + ".json", json);
@@ -992,6 +991,8 @@ namespace WWHDHacker
                 tcpGecko.PokeMultiple(TCPGecko.Datatype.u8, packedAddress[i].ToArray(), packedValues[i].ToArray());
             }
 
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1098f293, 0x01);
+
             ftDate = DateTime.Now;
             SavefileIndicator.Text = "Succesfully injected the save!";
             favoriteText = true;
@@ -1150,7 +1151,7 @@ namespace WWHDHacker
                             }
                             break;
                         case 7: // hyrule
-                            if (key.Contains("Hyrule") || key.StartsWith("Ganon"))
+                            if (key.Contains("Hyrule") || key.StartsWith("Ganon") || key.StartsWith("Ghost Ship"))
                             {
                                 System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                                 element.Text = key;
@@ -1183,7 +1184,6 @@ namespace WWHDHacker
                     string[] sub = yamlMap[a.Text].Split(',');
                     stage = sub[0];
                     b = byte.Parse(sub[1]);
-                    Console.WriteLine(sub[2]);
                     b2 = Convert.ToByte(sub[2].TrimStart(' '), 16);
                     b3 = Convert.ToByte(sub[3].TrimStart(' '), 16);
                 }
@@ -1269,7 +1269,7 @@ namespace WWHDHacker
             subAreas.Controls.Clear();
             foreach (var key in yamlMap.Keys)
             {
-                if (key.Contains("Hyrule") || key.StartsWith("Ganon"))
+                if (key.Contains("Hyrule") || key.StartsWith("Ganon") || key.StartsWith("Ghost Ship"))
                 {
                     System.Windows.Forms.Label element = new System.Windows.Forms.Label();
                     element.Text = key;
@@ -1371,8 +1371,8 @@ namespace WWHDHacker
 
             if (raw.Count < 11) return;
             Int32.TryParse(raw[0], out int inputs);
-            mainStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0) * 128));
-            cStickValues = ((int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0) * 128), (int)(BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0) * 128));
+            mainStickValues = ((BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[1])), 0)), (BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[2])), 0)));
+            cStickValues = ((BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[3])), 0)), (BitConverter.ToSingle(BitConverter.GetBytes((Int32)UInt32.Parse(raw[4])), 0)));
             linkCoordinates = ((BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[5])), 0)),
                 (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[6])), 0)),
                 (BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[7])), 0)));
@@ -1382,9 +1382,8 @@ namespace WWHDHacker
 
             linkSpeedAngle = (int)(UInt32.Parse(raw[10]) >> 16);
             if(inputs == 0) inputs = Inputs.wpadToVpad(tcpGecko.wpad_inputs());
-            if (Math.Abs(mainStickValues.Item1) <= 30 && Math.Abs(mainStickValues.Item2) <= 30) mainStickValues = ((int)(tcpGecko.wpad_lstick_x() * 128), (int)(tcpGecko.wpad_lstick_y() * 128));
-            if (Math.Abs(cStickValues.Item1) <= 30 && Math.Abs(cStickValues.Item2) <= 30) cStickValues = ((int)(tcpGecko.wpad_rstick_x() * 128), (int)(tcpGecko.wpad_rstick_y() * 128));
-
+            if (Math.Abs(mainStickValues.Item1) <= 0.05 && Math.Abs(mainStickValues.Item2) <= 0.05) mainStickValues = (tcpGecko.wpad_lstick_x(), tcpGecko.wpad_lstick_y());
+            if (Math.Abs(cStickValues.Item1) <= 0.05 && Math.Abs(cStickValues.Item2) <= 0.05) cStickValues = (tcpGecko.wpad_rstick_x() , tcpGecko.wpad_rstick_y());
 
             if (stageInfo.Count < 11) return;
             stage = Encoding.ASCII.GetString(new byte[]{
@@ -1607,7 +1606,6 @@ namespace WWHDHacker
                 }
 
 
-                Console.WriteLine(ConfigObject.config.macros["reloadMemfile"].input);
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadMemfile"].input)) &&
                     (ConfigObject.config.macros["reloadMemfile"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
                     && ConfigObject.config.macros["reloadMemfile"].enabled)
@@ -1743,9 +1741,6 @@ namespace WWHDHacker
                     raw.AddRange(tcpGecko.PeekMultiple(TCPGecko.Datatype.u32, toSend.ToArray()));
                 }
 
-                Console.WriteLine(addr.Count);
-                Console.WriteLine(raw.Count);
-
                 for (int i = 0; i < raw.Count; i+=4)
                 {
                     uint zero = unchecked((UInt32)Int64.Parse(raw[i]));
@@ -1854,6 +1849,17 @@ namespace WWHDHacker
         private void hookshotMod_CheckedChanged(object sender, EventArgs e)
         {
             tcpGecko.Poke(TCPGecko.Datatype.u32, 0x1051392C, hookshotMod.Checked ? 0x45800000 : 0x41700000);
+        }
+
+        private void setHP_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b501), out int curr);
+            tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506b501, curr - (curr%4) + (int)setHPValue.Value);
+        }
+
+        private void setRupees_Click(object sender, EventArgs e)
+        {
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1506b504, (int)setRupeesValue.Value);
         }
     }
 
