@@ -23,16 +23,14 @@ End Game Cutscene: ENDumi
 File Select: Name
 Forbidden Woods: kindan
 Forbidden Woods - Boss Room: kinBOSS
-Forbidden Woods - Miniboss Room: kinMB
 Forest Haven - Behind Waterfall: Otkura
 Forest Haven - Bomb Shop: Ocrogh
 Forest Haven - Interior: Omori
 Forsaken Fortress - Exterior: MajyuE
 Forsaken Fortress - Ganon's Lair: M2ganon
-Forsaken Fortress - Helmroc's Room: Mjtower
 Forsaken Fortress - Interior 1: ma2room
 Forsaken Fortress - Interior 2: ma3room
-Forsaken Fortress - Interior 3: majroom
+Forsaken Fortress - Jail: majroom
 Gallery - Boss Figurines: figureD
 Gallery - DRC Figurines: figureF
 Gallery - Enemy Figurines: figureE
@@ -41,20 +39,20 @@ Gallery - Great Sea Figurines: figureA
 Gallery - Outset Island Figurines: figureC
 Gallery - Windfall Island Figurines: figureB
 Ganon's Tower - Center: GanonM
-Ganon's Tower - DRC Trail: GanonB
-Ganon's Tower - DRC Trail Boss: Xboxx0
-Ganon's Tower - ET Trail: GanonE
-Ganon's Tower - ET Trail Boss: Xboss2
+Ganon's Tower - DRC Trial: GanonB
+Ganon's Tower - DRC Trial Boss: Xboss0
+Ganon's Tower - ET Trial: GanonE
+Ganon's Tower - ET Trial Boss: Xboss2
 Ganon's Tower - Entrance: GanonA
-Ganon's Tower - FW Trail: GanonD
-Ganon's Tower - FW Trail Boss: Xboss1
+Ganon's Tower - FW Trial: GanonD
+Ganon's Tower - FW Trial Boss: Xboss1
 Ganon's Tower - Final Fight: GTower
 Ganon's Tower - Ganon's Room: GanonK
 Ganon's Tower - Maze: GanonJ
 Ganon's Tower - Staircase to Center: GanonN
 Ganon's Tower - Staircase to Ganon: GanonL
-Ganon's Tower - WT Trail: GanonD
-Ganon's Tower - WT Trail Boss: Xboss3
+Ganon's Tower - WT Trial: GanonC
+Ganon's Tower - WT Trial Boss: Xboss3
 Ghost Ship: PShip
 Great Sea: sea
 Horseshoe Island - Cave: Cave05
@@ -121,3 +119,53 @@ Windfall Island - Minigame House: Kaisen
 Windfall Island - Potion Shop: Pdrgsh
 Windfall Island - Prison: Pnezumi
 Windfall Island - School of Joy: Nitiyou
+
+#ty al for this
+Outset Island - aryll lookout: sea, 44, 06, FF
+Forsaken Fortress - FF1 exterior from first jail cell: MajyuE, 00, 04, FF
+Forsaken Fortress - FF1 2 moblins: majroom, 03, 08, FF
+Forsaken Fortress - FF1 Last moblin: MajyuE, 00, 0A, FF
+Forsaken Fortress - FF1 Between sidles: MajyuE, 00, 13, FF
+Dragon Roost Island - DRI Beedle shop: Obshop, 02, 00, FF
+Dragon Roost Cavern - DRC Main big room: M_NewD2, 02, 00, FF
+Dragon Roost Cavern - DRC Water pots: M_NewD2, 13, 00, FF
+Dragon Roost Cavern - DRC Sword boko in pot: M_NewD2, 01, 00, FF
+Dragon Roost Cavern - DRC Many chus room: M_NewD2, 11, 00, FF
+Dragon Roost Cavern - DRC Big ladder outdoor: M_NewD2, 03, 00, FF
+Dragon Roost Cavern - DRC Dark keese room: M_NewD2, 04, 00, FF
+Dragon Roost Cavern - DRC Top bridge warp pot: M_NewD2, 02, 05, FF
+Dragon Roost Cavern - DRC 3 bokoblin fight: M_NewD2, 06, 00, FF
+Dragon Roost Cavern - DRC Magtail lava platform: M_NewD2, 08, 00, FF
+Dragon Roost Cavern - DRC Outside boos door: M_NewD2, 10, 01, FF
+Dragon Roost Cavern - DRC miniboss: M_Dra09, 09, 00, FF
+Forest Haven - outside main entrance: sea, 41, 05, FF
+Forest Haven - main entrance: Omori, 00, 05, FF
+Forbidden Woods - FW miniboss: kinMB, 10, 00, FF
+Forbidden Woods - FW basement room 2: kindan, 12, 01, FF
+Forbidden Woods - FW in front of boss door: kindan, 16, 01, FF
+Tower of Gods - TOTG beemos: Siren, 06, 00, FF
+Tower of Gods - TOTG scales: Siren, 08, 00, FF
+Tower of Gods - TOTG before miniboss: Siren, 14, 00, FF
+Tower of Gods - TOTG miniboss: Miniboss - SirenMB, 23, 00, FF
+Tower of Gods - TOTG floor 3: Floor 3 - Siren, 17, 00, FF
+Tower of Gods - TOTG before boss: Outdoors - Siren, 18, 00,FF
+Forsaken Fortress - Helmaroc fight: M2tower, 00, 14, FF
+Earth Temple - ET moblins and poes: M_Dai, 00, 08, FF
+Earth Temple - ET miniboss: M_DaiMB, 12, 00, FF
+Earth Temple - ET Before last crypt: M_Dai, 13, 0E, FF
+Earth Temple - ET before boss door: M_Dai, 15, 18, FF
+Wind Temple - WT snipe the warp pot: kaze, 00, 02, FF
+Wind Temple - WT BK room: Kaze, 00, 08, FF
+Wind Temple - WT bottom floor: Kaze, 00, 14, FF
+Wind Temple - WT miniboss: kazeMB, 06, 00, FF
+Savage Floor 10 : Cave09, 15, 00, FF
+Savage Floor 20 : Cave10, 15, 00, FF
+Savage Floor 30 : Cave09, 20, 00, FF
+Savage Floor 40 : Cave11, 15, 00, FF
+Savage many bokoblins floor : Cave10, 09, 00, FF
+Bomb island interior second room: Cave01, 01, 00, FF
+Flight control platform minigame : sea, 14, 01, 02
+Ghost ship: PShip, 02, 00, FF
+Trials hub: GanonA, 01, 00, FF
+Earth temple trial exit: GanonA, 01, 04, FF
+Puppet ganon warp pot: GanonK, 00, 02, FF

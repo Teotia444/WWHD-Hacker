@@ -47,6 +47,8 @@ namespace WWHDHacker
         SeparateForm separate = new SeparateForm();
         DataViewer separateDataViewerControl;
 
+        MacroConfig macroConfig;
+
         public (int, int) mainStickValues { get; set; }
         public (int, int) cStickValues { get; set; }
         public (float, float, float) linkCoordinates { get; set; }
@@ -113,41 +115,8 @@ namespace WWHDHacker
             }
 
             
-            ConfigObject.config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText(settingsDir + "\\Config.json"));
-            ConfigObject.config.FillConfig();
-
             
-            #region Config checks
-            lToLevitateCheckbox.Checked = ConfigObject.config.macros["levitate"].enabled;
-            doorCancelCheckbox.Checked = ConfigObject.config.macros["doorCancel"].enabled;
-            superswimCheckbox.Checked = ConfigObject.config.macros["superswim"].enabled;
-            storageCheckbox.Checked = ConfigObject.config.macros["storage"].enabled;
-            masterkey.Checked = ConfigObject.config.macros["masterkey"].enabled;
-            storeRestoreCheckbox.Checked = ConfigObject.config.macros["storePosition"].enabled;
-            reloadRoomCheckbox.Checked = ConfigObject.config.macros["reloadRoom"].enabled;
-            refillMagicCheckbox.Checked = ConfigObject.config.macros["refillMagic"].enabled;
-            refillHealthCheckbox.Checked = ConfigObject.config.macros["refillHealth"].enabled;
-            refillAmmoCheckbox.Checked = ConfigObject.config.macros["refillAmmo"].enabled;
-            changeWindCheckbox.Checked = ConfigObject.config.macros["windDirection"].enabled;
-            alternativeDpadRight.Checked = ConfigObject.config.macros["superswim"].alternative;
-            alternativeMemfiles.Checked = ConfigObject.config.macros["storePosition"].alternative;
-
-            levitateMK.Checked = ConfigObject.config.macros["levitate"].masterkey;
-            doorCancelMK.Checked = ConfigObject.config.macros["doorCancel"].masterkey;
-            superswimMK.Checked = ConfigObject.config.macros["superswim"].masterkey;
-            storageMK.Checked = ConfigObject.config.macros["storage"].masterkey;
-            
-            saveReloadMK.Checked = ConfigObject.config.macros["storePosition"].masterkey;
-            reloadRoomMK.Checked = ConfigObject.config.macros["reloadRoom"].masterkey;
-            refillHealthMK.Checked = ConfigObject.config.macros["refillMagic"].masterkey;
-            refillMagicMK.Checked = ConfigObject.config.macros["refillHealth"].masterkey;
-            refillAmmoMK.Checked = ConfigObject.config.macros["refillAmmo"].masterkey;
-            windDirectionMK.Checked = ConfigObject.config.macros["windDirection"].masterkey;
-
-            levitateHeight.Value = (decimal)ConfigObject.config.macros["levitate"].value;
-            superswimSpeed.Value = (decimal)ConfigObject.config.macros["superswim"].value;
-
-            #endregion
+            macroConfig = new MacroConfig(settingsDir);
 
             #region FSWatcher
             memfilesWatcher = new FileSystemWatcher(settingsDir + "\\Memfiles");
@@ -187,23 +156,8 @@ namespace WWHDHacker
 
             savefilesWatcher.EnableRaisingEvents = true;
             #endregion
-            
+
             availableMemfiles = new Dictionary<string, Memfile>();
-            
-            foreach (GroupBox gb in miscFeaturesPanel.Controls.OfType<GroupBox>())
-            {
-                foreach (ComboBox item in gb.Controls.OfType<ComboBox>())
-                {
-                    foreach (InputEnum e in Enum.GetValues(typeof(InputEnum)).Cast<InputEnum>().ToArray())
-                    {
-                        item.Items.Add(e);
-                    }
-                    item.SelectedIndex = ConfigObject.config.macros[item.Name.Substring(0, item.Name.LastIndexOf("Combo"))].input;
-                }
-            }
-
-
-
             ipTextBox.Text = ConfigObject.config.wiiuIP;
             warningRuns.Checked = ConfigObject.config.warningBeforeRuns;
             displayMacros.Checked = ConfigObject.config.displayMacros;
@@ -617,17 +571,6 @@ namespace WWHDHacker
         #region Misc features
 
         #region Checkboxes
-
-        private void levitateHeight_ValueChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["levitate"].value = (float)levitateHeight.Value;
-        }
-
-        private void superswimSpeed_ValueChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["superswim"].value = (float)superswimSpeed.Value;
-        }
-
         private void warningRuns_CheckedChanged(object sender, EventArgs e)
         {
             ConfigObject.config.warningBeforeRuns = warningRuns.Checked;
@@ -639,135 +582,6 @@ namespace WWHDHacker
             
         }
 
-        private void lToLevitateCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["levitate"].enabled = lToLevitateCheckbox.Enabled;
-        }
-
-        private void doorCancelCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["doorCancel"].enabled = doorCancelCheckbox.Checked;
-            
-        }
-
-        private void superswimCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["superswim"].enabled = superswimCheckbox.Checked;
-            
-        }
-        private void storageCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storage"].enabled = storageCheckbox.Checked;
-            
-        }
-
-        private void masterkey_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["masterkey"].enabled = masterkey.Checked;
-            
-        }
-
-        private void storeRestoreCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storePosition"].enabled = storeRestoreCheckbox.Checked;
-            ConfigObject.config.macros["restorePosition"].enabled = storeRestoreCheckbox.Checked;
-            
-        }
-
-        private void reloadRoomCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["reloadRoom"].enabled = reloadRoomCheckbox.Checked;
-            
-        }
-
-        private void refillMagicCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillMagic"].enabled = refillMagicCheckbox.Checked;
-            
-        }
-
-        private void refillHealthCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillHealth"].enabled = refillHealthCheckbox.Checked;
-            
-        }
-
-        private void refillAmmoCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillAmmo"].enabled = refillAmmoCheckbox.Checked;
-            
-        }
-
-        private void changeWindCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["windDirection"].enabled = changeWindCheckbox.Checked;
-            
-        }
-
-        private void alternativeDpadRight_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["superswim"].alternative = alternativeDpadRight.Checked;
-            
-        }
-
-        private void alternativeMemfiles_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storePosition"].alternative = alternativeMemfiles.Checked;
-            ConfigObject.config.macros["restorePosition"].alternative = alternativeMemfiles.Checked;
-            
-        }
-
-        private void levitateMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["levitate"].masterkey = levitateMK.Checked;
-        }
-
-        private void doorCancelMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["doorCancel"].masterkey = doorCancelMK.Checked;
-        }
-
-        private void superswimMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["superswim"].masterkey = superswimMK.Checked;
-        }
-
-        private void storageMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storage"].masterkey = storageMK.Checked;
-        }
-
-        private void windDirectionMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["windDirection"].masterkey = windDirectionMK.Checked;
-        }
-
-        private void saveReloadMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storePosition"].masterkey = saveReloadMK.Checked;
-            ConfigObject.config.macros["restorePosition"].masterkey = saveReloadMK.Checked;
-        }
-
-        private void reloadRoomMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["reloadRoom"].masterkey = reloadRoomMK.Checked;
-        }
-
-        private void refillHealthMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillHealth"].masterkey = refillHealthMK.Checked;
-        }
-
-        private void refillMagicMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillMagic"].masterkey = refillMagicMK.Checked;
-        }
-
-        private void refillAmmoMK_CheckedChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillAmmo"].masterkey = refillAmmoMK.Checked;
-        }
-
         private void macrosPausedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             ConfigObject.config.disableMacrosWhenPaused = macrosPausedCheckBox.Checked;
@@ -776,88 +590,6 @@ namespace WWHDHacker
         private void accuratePositionRestore_CheckedChanged(object sender, EventArgs e)
         {
             ConfigObject.config.accuratePosRestore = accuratePositionRestore.Checked;
-        }
-        #endregion
-
-        #region Combos
-        private void levitateCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["levitate"].input = levitateCombo.SelectedIndex;
-            ConfigObject.config.macros["levitate"].masterkey = levitateMK.Checked;
-        }
-
-        private void doorCancelCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["doorCancel"].input = doorCancelCombo.SelectedIndex;
-            ConfigObject.config.macros["doorCancel"].masterkey = doorCancelMK.Checked;
-        }
-
-        private void superspeedCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["superswim"].input = superswimCombo.SelectedIndex;
-            ConfigObject.config.macros["superswim"].masterkey = superswimMK.Checked;
-            
-        }
-
-        private void storageCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storage"].input = storageCombo.SelectedIndex;
-            ConfigObject.config.macros["storage"].masterkey = storageMK.Checked;
-            
-        }
-
-        private void windDirectionCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["windDirection"].input = windDirectionCombo.SelectedIndex;
-            ConfigObject.config.macros["windDirection"].masterkey = windDirectionMK.Checked;
-            
-        }
-
-        private void masterkeyCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["masterkey"].input = masterkeyCombo.SelectedIndex;
-            
-        }
-
-        private void savePosCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["storePosition"].input = storePositionCombo.SelectedIndex;
-            ConfigObject.config.macros["storePosition"].masterkey = saveReloadMK.Checked;
-            
-        }
-
-        private void reloadPosCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["restorePosition"].input = restorePositionCombo.SelectedIndex;
-            ConfigObject.config.macros["restorePosition"].masterkey = saveReloadMK.Checked;
-        }
-
-        private void reloadRoomCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["reloadRoom"].input = reloadRoomCombo.SelectedIndex;
-            ConfigObject.config.macros["reloadRoom"].masterkey = reloadRoomMK.Checked;
-            
-        }
-
-        private void refillHealthCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillHealth"].input = refillHealthCombo.SelectedIndex;
-            ConfigObject.config.macros["refillHealth"].masterkey = refillHealthMK.Checked;
-            
-        }
-
-        private void refillMagicCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillMagic"].input = refillMagicCombo.SelectedIndex;
-            ConfigObject.config.macros["refillMagic"].masterkey = refillMagicMK.Checked;
-
-        }
-
-        private void refillAmmoCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConfigObject.config.macros["refillAmmo"].input = refillAmmoCombo.SelectedIndex;
-            ConfigObject.config.macros["refillAmmo"].masterkey = refillAmmoMK.Checked;
-
         }
         #endregion
 
@@ -1252,10 +984,17 @@ namespace WWHDHacker
                 MessageBox.Show("Could not communicate through FTP with the wii u. Make sure to have the ftpiiu plugin installed and have the \"Allow access to system files\" checkbox checked in its settings.", "Alert");
                 return;
             }
-
-            if (Memfile.ListFolders("fs\\vol\\save\\80000001", 2000) != "DirNotFound")
+            bool foundUser = false;
+            int i = 0;
+            while (!foundUser && i<16)
             {
-                filePath = "fs\\vol\\save\\80000001\\cking.sav";
+                i++;
+                foundUser = (Memfile.ListFolders("fs\\vol\\save\\8000000" + i.ToString("X"), 2000) != "DirNotFound");
+                
+            }
+            if (Memfile.ListFolders("fs\\vol\\save\\8000000" + i.ToString("X"), 2000) != "DirNotFound")
+            {
+                filePath = "fs\\vol\\save\\8000000" + i.ToString("X") + "\\cking.sav";
 
                 string name = Prompt.ShowDialog("Enter Savefile name", "Enter Savefile name");
 
@@ -1415,15 +1154,27 @@ namespace WWHDHacker
             if (yamlMap.ContainsKey(a.Text))
             {
                 stage = yamlMap[a.Text];
-                b = byte.Parse(teleporterRoomId.Text);
-                if (stage.Contains("M_Dra09") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("9");
-                if (stage.Contains("kinMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("10");
-                if (stage.Contains("SirenMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("23");
-                if (stage.Contains("M_DaiMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("12");
-                if (stage.Contains("kazeMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("06");
+                if (stage.Contains(","))
+                {
+                    string[] sub = yamlMap[a.Text].Split(',');
+                    stage = sub[0];
+                    b = byte.Parse(sub[1]);
+                    Console.WriteLine(sub[2]);
+                    b2 = Convert.ToByte(sub[2].TrimStart(' '), 16);
+                    b3 = Convert.ToByte(sub[3].TrimStart(' '), 16);
+                }
+                else
+                {
+                    b = byte.Parse(teleporterRoomId.Text);
+                    if (stage.Contains("M_Dra09") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("9");
+                    if (stage.Contains("kinMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("10");
+                    if (stage.Contains("SirenMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("23");
+                    if (stage.Contains("M_DaiMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("12");
+                    if (stage.Contains("kazeMB") && Convert.ToByte(teleporterRoomId.Text, 16) == 0) b = byte.Parse("06");
 
-                b2 = Convert.ToByte(teleporterSpawnId.Text, 16);
-                b3 = Convert.ToByte(teleporterLayer.Text, 16);
+                    b2 = Convert.ToByte(teleporterSpawnId.Text, 16);
+                    b3 = Convert.ToByte(teleporterLayer.Text, 16);
+                }  
             }
             else
             {
@@ -1570,7 +1321,7 @@ namespace WWHDHacker
                 0x1096ef50,
                 0x1096ef12,
                 0,
-                0x1096EF0A
+                0x1096EF0A,
             };
 
             Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u32, 0x10976de4), out int link_ptr);
@@ -1606,6 +1357,9 @@ namespace WWHDHacker
             linkSpeed = BitConverter.ToSingle(BitConverter.GetBytes(UInt32.Parse(raw[9])), 0);
 
             linkSpeedAngle = (int)(UInt32.Parse(raw[10]) >> 16);
+            if(inputs == 0) inputs = Inputs.wpadToVpad(tcpGecko.wpad_inputs());
+            if (Math.Abs(mainStickValues.Item1) <= 30 && Math.Abs(mainStickValues.Item2) <= 30) mainStickValues = ((int)(tcpGecko.wpad_lstick_x() * 128), (int)(tcpGecko.wpad_lstick_y() * 128));
+            if (Math.Abs(cStickValues.Item1) <= 30 && Math.Abs(cStickValues.Item2) <= 30) cStickValues = ((int)(tcpGecko.wpad_rstick_x() * 128), (int)(tcpGecko.wpad_rstick_y() * 128));
 
 
             if (stageInfo.Count < 11) return;
@@ -1631,7 +1385,7 @@ namespace WWHDHacker
                 //l
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["levitate"].input)) &&
                     (ConfigObject.config.macros["levitate"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && lToLevitateCheckbox.Checked)
+                    && ConfigObject.config.macros["levitate"].enabled)
                 {
                     Cheats.LToLevitate(tcpGecko, ConfigObject.config.macros["levitate"].value, displayMacros.Checked);
                     cheatActivated = true;
@@ -1640,7 +1394,7 @@ namespace WWHDHacker
                 //left dpad
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input)) &&
                     (ConfigObject.config.macros["doorCancel"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && doorCancelCheckbox.Checked)
+                    && ConfigObject.config.macros["doorCancel"].enabled)
                 {
                     Cheats.DoorCancel(tcpGecko, true);
                     doorCancelFromMacro = true;
@@ -1658,11 +1412,11 @@ namespace WWHDHacker
                 //right dpad
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["superswim"].input)) &&
                     (ConfigObject.config.macros["superswim"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && superswimCheckbox.Checked &&
+                    && ConfigObject.config.macros["superswim"].enabled &&
                     lastDpadRight + TimeSpan.FromMilliseconds(100) < DateTime.Now)
                 {
-                    bool zlHeld = Inputs.isPressed(inputs, Inputs.zlButton) || !ConfigObject.config.macros["superswim"].alternative;
-                    Cheats.Superswim(tcpGecko, ConfigObject.config.macros["superswim"].value, linkSpeed, zlHeld, link_ptr, displayMacros.Checked);
+
+                    Cheats.Superswim(tcpGecko, ConfigObject.config.macros["superswim"].value, linkSpeed, ConfigObject.config.macros["superswim"].alternative, link_ptr, displayMacros.Checked);
                     cheatActivated = true;
                     lastDpadRight = DateTime.Now;
                 }
@@ -1670,7 +1424,7 @@ namespace WWHDHacker
                 //down dpad 
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storage"].input)) &&
                     (ConfigObject.config.macros["storage"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && storageCheckbox.Checked)
+                    && ConfigObject.config.macros["storage"].enabled)
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x10976543, 0x1);
                     if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Give Storage", 255, 153, 0, 255);
@@ -1679,7 +1433,7 @@ namespace WWHDHacker
                 //l3
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["windDirection"].input)) &&
                     (ConfigObject.config.macros["windDirection"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && storageCheckbox.Checked)
+                    && ConfigObject.config.macros["windDirection"].enabled)
                 {
                     Cheats.ChangeWindDir(tcpGecko, displayMacros.Checked);
                     cheatActivated = true;
@@ -1688,7 +1442,7 @@ namespace WWHDHacker
                 //l + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillHealth"].input)) &&
                     (ConfigObject.config.macros["refillHealth"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && refillHealthCheckbox.Checked)
+                    && ConfigObject.config.macros["refillHealth"].enabled)
                 {
                     Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b501), out int maxHealth);
                     if (maxHealth != 0)
@@ -1702,7 +1456,7 @@ namespace WWHDHacker
                 //r + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillMagic"].input)) &&
                     (ConfigObject.config.macros["refillMagic"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && refillMagicCheckbox.Checked)
+                    && ConfigObject.config.macros["refillMagic"].enabled)
                 {
                     Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b513), out int maxMagic);
                     if (maxMagic != 0)
@@ -1716,7 +1470,7 @@ namespace WWHDHacker
                 //dpad up + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["refillAmmo"].input)) &&
                     (ConfigObject.config.macros["refillAmmo"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && refillAmmoCheckbox.Checked)
+                    && ConfigObject.config.macros["refillAmmo"].enabled)
                 {
                     Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u8, 0x1506b56f), out int maxArrows);
                     if (maxArrows != 0)
@@ -1738,7 +1492,7 @@ namespace WWHDHacker
                 //dpad down + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["reloadRoom"].input)) &&
                     (ConfigObject.config.macros["reloadRoom"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && reloadRoomCheckbox.Checked)
+                    && ConfigObject.config.macros["reloadRoom"].enabled)
                 {
                     tcpGecko.Poke(TCPGecko.Datatype.u8, 0x109763fc, 0x1);
                     if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Reload Room", 255, 153, 0, 255);
@@ -1748,7 +1502,7 @@ namespace WWHDHacker
                 //dpad left + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["restorePosition"].input)) &&
                     (ConfigObject.config.macros["restorePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && storeRestoreCheckbox.Checked)
+                    && ConfigObject.config.macros["restorePosition"].enabled)
                 {
                     if (!ConfigObject.config.macros["restorePosition"].alternative && (storedLinkX != 0 || storedLinkY != 0 || storedLinkZ != 0))
                     {
@@ -1807,7 +1561,7 @@ namespace WWHDHacker
                 //dpad right + zr
                 if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["storePosition"].input)) &&
                     (ConfigObject.config.macros["storePosition"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
-                    && storeRestoreCheckbox.Checked)
+                    && ConfigObject.config.macros["storePosition"].enabled)
                 {
                     if (!ConfigObject.config.macros["storePosition"].alternative)
                     {
@@ -1825,6 +1579,16 @@ namespace WWHDHacker
                         cheatActivated = true;
                     }
                 }
+
+                if (Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["softReset"].input)) &&
+                    (ConfigObject.config.macros["softReset"].masterkey == Inputs.isPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["masterkey"].input)))
+                    && ConfigObject.config.macros["softReset"].enabled)
+                {
+                    if (displayMacros.Checked) tcpGecko.DisplayText("[Macros] Soft Reset", 255, 153, 0, 255);
+                    tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1098f293, 0x01);
+                    cheatActivated = true;
+                }
+
                 if (Inputs.isNotPressed(inputs, Inputs.enumToInput((InputEnum)ConfigObject.config.macros["doorCancel"].input))
                     && doorCancelFromMacro)
                 {
@@ -2019,6 +1783,27 @@ namespace WWHDHacker
         private void setKey_Click(object sender, EventArgs e)
         {
             tcpGecko.Poke(TCPGecko.Datatype.u8, 0x1506bc78 + 0x20, (int)keyNumber.Value);
+        }
+
+        private void macroConfigOpen_Click(object sender, EventArgs e)
+        {
+            macroConfig.Show();
+        }
+
+        private void rotateLeft_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out int angle);
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, angle + 16384 > 65536 ? angle + 16384 - 65536 : angle + 16384);
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096EF0A), out int sAngle);
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096EF0A, sAngle + 16384 > 65536 ? sAngle + 16384 - 65536 : sAngle + 16384);
+        }
+
+        private void rotateRight_Click(object sender, EventArgs e)
+        {
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096ef12), out int angle);
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096ef12, angle - 16384 < 0 ? angle - 16384 + 65536 : angle - 16384);
+            Int32.TryParse(tcpGecko.Peek(TCPGecko.Datatype.u16, 0x1096EF0A), out int sAngle);
+            tcpGecko.Poke(TCPGecko.Datatype.u16, 0x1096EF0A, sAngle - 16384 < 0 ? sAngle - 16384 + 65536 : sAngle - 16384);
         }
     }
 

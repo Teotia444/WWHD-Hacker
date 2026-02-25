@@ -155,12 +155,14 @@ namespace WWHDHacker
             if (display) tcpGecko.DisplayText("[Macros] Levitate", 255, 153, 0, 255);
         }
 
-        public static void Superswim(TCPGecko tcpGecko, float value, float initialSpeed, bool convert, int link_ptr, bool display)
+        public static void Superswim(TCPGecko tcpGecko, float value, float initialSpeed, bool alt, int link_ptr, bool display)
         {
             float speedToApply = initialSpeed;
             bool flag = speedToApply < 0f;
+
+            if (!alt) speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + value) : ((speedToApply < -50f && flag) ? (speedToApply - value) : ((!(speedToApply < 50f) || flag) ? (speedToApply - 100f) : (speedToApply + 100f)));
+            else speedToApply = Math.Abs(speedToApply)<500? (flag ? speedToApply - 100 : speedToApply + 100):(flag ? speedToApply - value: speedToApply + value);
             
-            speedToApply = (speedToApply > 50f && !flag) ? (speedToApply + value) : ((speedToApply < -50f && flag) ? (speedToApply - value) : ((!(speedToApply < 50f) || flag) ? (speedToApply - (convert ? 1 : -1) * 100f) : (speedToApply + (convert ? 1 : -1) * 100f)));
             tcpGecko.Poke(TCPGecko.Datatype.f32, link_ptr + 27156, Form1.FloatToHex(speedToApply));
             tcpGecko.Poke(TCPGecko.Datatype.u16, 0x10976dfe, 900);
             if (display) tcpGecko.DisplayText("[Macros] Superswim", 255, 153, 0, 255);

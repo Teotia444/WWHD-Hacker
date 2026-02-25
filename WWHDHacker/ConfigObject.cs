@@ -29,6 +29,8 @@ namespace WWHDHacker
                { "refillHealth", new JsonInput((int)InputEnum.L, masterkey:true)},
                { "refillAmmo", new JsonInput((int)InputEnum.DpadUp, masterkey:true)},
                { "windDirection", new JsonInput((int)InputEnum.L3)},
+               { "softReset", new JsonInput((int)InputEnum.TV)},
+               { "reloadMemfile", new JsonInput((int)InputEnum.DpadLeft, masterkey:true)},
         };
         static Dictionary<string, Stage> defaultFavorites = new Dictionary<string, Stage>();
 
@@ -82,6 +84,14 @@ namespace WWHDHacker
             if (macros == null)
             {
                 macros = defaultMacros;
+            }
+            if (!macros.ContainsKey("softReset"))
+            {
+                macros["softReset"] = new JsonInput((int)InputEnum.TV);
+            }
+            if (!macros.ContainsKey("reloadMemfile"))
+            {
+                macros["reloadMemfile"] = new JsonInput((int)InputEnum.DpadLeft, masterkey:true);
             }
             if (favorites is null)
             {

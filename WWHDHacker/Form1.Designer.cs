@@ -59,68 +59,6 @@ namespace WWHDHacker
             this.resumeGame = new System.Windows.Forms.Button();
             this.displayMacros = new System.Windows.Forms.CheckBox();
             this.warningRuns = new System.Windows.Forms.CheckBox();
-            this.Levitate = new System.Windows.Forms.GroupBox();
-            this.levitateHeight = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.levitateMK = new System.Windows.Forms.CheckBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.levitateCombo = new System.Windows.Forms.ComboBox();
-            this.lToLevitateCheckbox = new System.Windows.Forms.CheckBox();
-            this.DoorCancel = new System.Windows.Forms.GroupBox();
-            this.doorCancelMK = new System.Windows.Forms.CheckBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.doorCancelCombo = new System.Windows.Forms.ComboBox();
-            this.doorCancelCheckbox = new System.Windows.Forms.CheckBox();
-            this.Superspeed = new System.Windows.Forms.GroupBox();
-            this.superswimSpeed = new System.Windows.Forms.NumericUpDown();
-            this.superswimMK = new System.Windows.Forms.CheckBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.superswimCombo = new System.Windows.Forms.ComboBox();
-            this.superswimCheckbox = new System.Windows.Forms.CheckBox();
-            this.alternativeDpadRight = new System.Windows.Forms.CheckBox();
-            this.Storage = new System.Windows.Forms.GroupBox();
-            this.storageMK = new System.Windows.Forms.CheckBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.storageCombo = new System.Windows.Forms.ComboBox();
-            this.storageCheckbox = new System.Windows.Forms.CheckBox();
-            this.WindDirection = new System.Windows.Forms.GroupBox();
-            this.windDirectionMK = new System.Windows.Forms.CheckBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.windDirectionCombo = new System.Windows.Forms.ComboBox();
-            this.changeWindCheckbox = new System.Windows.Forms.CheckBox();
-            this.MasterkeyGroup = new System.Windows.Forms.GroupBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.masterkeyCombo = new System.Windows.Forms.ComboBox();
-            this.masterkey = new System.Windows.Forms.CheckBox();
-            this.SaveReloadPos = new System.Windows.Forms.GroupBox();
-            this.saveReloadMK = new System.Windows.Forms.CheckBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.storePositionCombo = new System.Windows.Forms.ComboBox();
-            this.restorePositionCombo = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.alternativeMemfiles = new System.Windows.Forms.CheckBox();
-            this.storeRestoreCheckbox = new System.Windows.Forms.CheckBox();
-            this.ReloadRoom = new System.Windows.Forms.GroupBox();
-            this.reloadRoomMK = new System.Windows.Forms.CheckBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.reloadRoomCombo = new System.Windows.Forms.ComboBox();
-            this.reloadRoomCheckbox = new System.Windows.Forms.CheckBox();
-            this.RefillHealth = new System.Windows.Forms.GroupBox();
-            this.refillHealthMK = new System.Windows.Forms.CheckBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.refillHealthCombo = new System.Windows.Forms.ComboBox();
-            this.refillHealthCheckbox = new System.Windows.Forms.CheckBox();
-            this.RefillMagic = new System.Windows.Forms.GroupBox();
-            this.refillMagicMK = new System.Windows.Forms.CheckBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.refillMagicCombo = new System.Windows.Forms.ComboBox();
-            this.refillMagicCheckbox = new System.Windows.Forms.CheckBox();
-            this.RefillAmmo = new System.Windows.Forms.GroupBox();
-            this.refillAmmoMK = new System.Windows.Forms.CheckBox();
-            this.refillAmmoCombo = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.refillAmmoCheckbox = new System.Windows.Forms.CheckBox();
             this.fullCapacities = new System.Windows.Forms.Button();
             this.magic80 = new System.Windows.Forms.Button();
             this.fullHealth = new System.Windows.Forms.Button();
@@ -224,6 +162,47 @@ namespace WWHDHacker
             this.setHCValue = new System.Windows.Forms.NumericUpDown();
             this.giveAll = new System.Windows.Forms.Button();
             this.itemsPanel = new System.Windows.Forms.Panel();
+            this.itemsList = new System.Windows.Forms.ImageList(this.components);
+            this.CheckInv = new System.Windows.Forms.Timer(this.components);
+            this.memfilesPanel = new System.Windows.Forms.Panel();
+            this.SavefileIndicator = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.memfilesViewer = new System.Windows.Forms.TreeView();
+            this.deleteMemfile = new System.Windows.Forms.Button();
+            this.openMemfileFolder = new System.Windows.Forms.Button();
+            this.loadMemfile = new System.Windows.Forms.Button();
+            this.createMemfile = new System.Windows.Forms.Button();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.openSFDir = new System.Windows.Forms.Button();
+            this.dumpSF = new System.Windows.Forms.Button();
+            this.loadSF = new System.Windows.Forms.Button();
+            this.fileRep = new System.Windows.Forms.ListView();
+            this.Save = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.teleporterPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
+            this.addCustomFavorite = new System.Windows.Forms.Button();
+            this.displayOnMap = new System.Windows.Forms.CheckBox();
+            this.transparentLayer = new System.Windows.Forms.Panel();
+            this.movingLink = new System.Windows.Forms.PictureBox();
+            this.teleporterMap = new System.Windows.Forms.PictureBox();
+            this.addedRemoved = new System.Windows.Forms.Label();
+            this.teleporterToggleFavorites = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.teleporterRoomId = new System.Windows.Forms.TextBox();
+            this.teleporterLayer = new System.Windows.Forms.TextBox();
+            this.teleporterSpawnId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.linkLocationLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.teleporterToggleHyrule = new System.Windows.Forms.Button();
+            this.islandLabel = new System.Windows.Forms.Label();
+            this.macroConfigOpen = new System.Windows.Forms.Button();
+            this.rotateRight = new System.Windows.Forms.Button();
+            this.rotateLeft = new System.Windows.Forms.Button();
             this.checkBoxImage40 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage39 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage38 = new WWHDHacker.CheckBoxImage();
@@ -264,61 +243,10 @@ namespace WWHDHacker
             this.checkBoxImage3 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage2 = new WWHDHacker.CheckBoxImage();
             this.checkBoxImage1 = new WWHDHacker.CheckBoxImage();
-            this.itemsList = new System.Windows.Forms.ImageList(this.components);
-            this.CheckInv = new System.Windows.Forms.Timer(this.components);
-            this.memfilesPanel = new System.Windows.Forms.Panel();
-            this.SavefileIndicator = new System.Windows.Forms.Label();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.memfilesViewer = new System.Windows.Forms.TreeView();
-            this.deleteMemfile = new System.Windows.Forms.Button();
-            this.openMemfileFolder = new System.Windows.Forms.Button();
-            this.loadMemfile = new System.Windows.Forms.Button();
-            this.createMemfile = new System.Windows.Forms.Button();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.openSFDir = new System.Windows.Forms.Button();
-            this.dumpSF = new System.Windows.Forms.Button();
-            this.loadSF = new System.Windows.Forms.Button();
-            this.fileRep = new System.Windows.Forms.ListView();
-            this.Save = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.teleporterPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.subAreas = new System.Windows.Forms.FlowLayoutPanel();
-            this.addCustomFavorite = new System.Windows.Forms.Button();
-            this.displayOnMap = new System.Windows.Forms.CheckBox();
-            this.transparentLayer = new System.Windows.Forms.Panel();
-            this.movingLink = new System.Windows.Forms.PictureBox();
-            this.teleporterMap = new System.Windows.Forms.PictureBox();
-            this.addedRemoved = new System.Windows.Forms.Label();
-            this.teleporterToggleFavorites = new System.Windows.Forms.Button();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.teleporterRoomId = new System.Windows.Forms.TextBox();
-            this.teleporterLayer = new System.Windows.Forms.TextBox();
-            this.teleporterSpawnId = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.linkLocationLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.teleporterToggleHyrule = new System.Windows.Forms.Button();
-            this.islandLabel = new System.Windows.Forms.Label();
             this.miscFeaturesPanel.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.Levitate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levitateHeight)).BeginInit();
-            this.DoorCancel.SuspendLayout();
-            this.Superspeed.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.superswimSpeed)).BeginInit();
-            this.Storage.SuspendLayout();
-            this.WindDirection.SuspendLayout();
-            this.MasterkeyGroup.SuspendLayout();
-            this.SaveReloadPos.SuspendLayout();
-            this.ReloadRoom.SuspendLayout();
-            this.RefillHealth.SuspendLayout();
-            this.RefillMagic.SuspendLayout();
-            this.RefillAmmo.SuspendLayout();
             this.mainFeaturesPanel.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -342,6 +270,16 @@ namespace WWHDHacker
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).BeginInit();
             this.itemsPanel.SuspendLayout();
+            this.memfilesPanel.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.teleporterPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.transparentLayer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).BeginInit();
@@ -382,16 +320,6 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).BeginInit();
-            this.memfilesPanel.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.teleporterPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.transparentLayer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ipTextBox
@@ -423,6 +351,9 @@ namespace WWHDHacker
             // 
             // miscFeaturesPanel
             // 
+            this.miscFeaturesPanel.Controls.Add(this.rotateLeft);
+            this.miscFeaturesPanel.Controls.Add(this.rotateRight);
+            this.miscFeaturesPanel.Controls.Add(this.macroConfigOpen);
             this.miscFeaturesPanel.Controls.Add(this.accuratePositionRestore);
             this.miscFeaturesPanel.Controls.Add(this.macrosPausedCheckBox);
             this.miscFeaturesPanel.Controls.Add(this.groupBox11);
@@ -430,17 +361,6 @@ namespace WWHDHacker
             this.miscFeaturesPanel.Controls.Add(this.groupBox9);
             this.miscFeaturesPanel.Controls.Add(this.displayMacros);
             this.miscFeaturesPanel.Controls.Add(this.warningRuns);
-            this.miscFeaturesPanel.Controls.Add(this.Levitate);
-            this.miscFeaturesPanel.Controls.Add(this.DoorCancel);
-            this.miscFeaturesPanel.Controls.Add(this.Superspeed);
-            this.miscFeaturesPanel.Controls.Add(this.Storage);
-            this.miscFeaturesPanel.Controls.Add(this.WindDirection);
-            this.miscFeaturesPanel.Controls.Add(this.MasterkeyGroup);
-            this.miscFeaturesPanel.Controls.Add(this.SaveReloadPos);
-            this.miscFeaturesPanel.Controls.Add(this.ReloadRoom);
-            this.miscFeaturesPanel.Controls.Add(this.RefillHealth);
-            this.miscFeaturesPanel.Controls.Add(this.RefillMagic);
-            this.miscFeaturesPanel.Controls.Add(this.RefillAmmo);
             this.miscFeaturesPanel.Location = new System.Drawing.Point(7, 70);
             this.miscFeaturesPanel.Name = "miscFeaturesPanel";
             this.miscFeaturesPanel.Size = new System.Drawing.Size(803, 348);
@@ -449,7 +369,7 @@ namespace WWHDHacker
             // accuratePositionRestore
             // 
             this.accuratePositionRestore.AutoSize = true;
-            this.accuratePositionRestore.Location = new System.Drawing.Point(400, 45);
+            this.accuratePositionRestore.Location = new System.Drawing.Point(8, 301);
             this.accuratePositionRestore.Name = "accuratePositionRestore";
             this.accuratePositionRestore.Size = new System.Drawing.Size(119, 43);
             this.accuratePositionRestore.TabIndex = 60;
@@ -460,7 +380,7 @@ namespace WWHDHacker
             // macrosPausedCheckBox
             // 
             this.macrosPausedCheckBox.AutoSize = true;
-            this.macrosPausedCheckBox.Location = new System.Drawing.Point(400, 12);
+            this.macrosPausedCheckBox.Location = new System.Drawing.Point(8, 268);
             this.macrosPausedCheckBox.Name = "macrosPausedCheckBox";
             this.macrosPausedCheckBox.Size = new System.Drawing.Size(102, 30);
             this.macrosPausedCheckBox.TabIndex = 59;
@@ -473,7 +393,7 @@ namespace WWHDHacker
             this.groupBox11.Controls.Add(this.infHealth);
             this.groupBox11.Controls.Add(this.infMagic);
             this.groupBox11.Controls.Add(this.infAir);
-            this.groupBox11.Location = new System.Drawing.Point(689, 124);
+            this.groupBox11.Location = new System.Drawing.Point(285, 254);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(105, 91);
             this.groupBox11.TabIndex = 58;
@@ -518,7 +438,7 @@ namespace WWHDHacker
             this.groupBox10.Controls.Add(this.animSet2);
             this.groupBox10.Controls.Add(this.animSet1);
             this.groupBox10.Controls.Add(this.currentAnimSet);
-            this.groupBox10.Location = new System.Drawing.Point(530, 5);
+            this.groupBox10.Location = new System.Drawing.Point(14, 10);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(264, 117);
             this.groupBox10.TabIndex = 57;
@@ -589,7 +509,7 @@ namespace WWHDHacker
             this.groupBox9.Controls.Add(this.pauseGame);
             this.groupBox9.Controls.Add(this.button4);
             this.groupBox9.Controls.Add(this.resumeGame);
-            this.groupBox9.Location = new System.Drawing.Point(653, 248);
+            this.groupBox9.Location = new System.Drawing.Point(131, 251);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(141, 96);
             this.groupBox9.TabIndex = 56;
@@ -629,7 +549,7 @@ namespace WWHDHacker
             // displayMacros
             // 
             this.displayMacros.AutoSize = true;
-            this.displayMacros.Location = new System.Drawing.Point(578, 159);
+            this.displayMacros.Location = new System.Drawing.Point(8, 230);
             this.displayMacros.Name = "displayMacros";
             this.displayMacros.Size = new System.Drawing.Size(101, 30);
             this.displayMacros.TabIndex = 55;
@@ -640,740 +560,13 @@ namespace WWHDHacker
             // warningRuns
             // 
             this.warningRuns.AutoSize = true;
-            this.warningRuns.Location = new System.Drawing.Point(578, 126);
+            this.warningRuns.Location = new System.Drawing.Point(8, 197);
             this.warningRuns.Name = "warningRuns";
             this.warningRuns.Size = new System.Drawing.Size(102, 30);
             this.warningRuns.TabIndex = 54;
             this.warningRuns.Text = "Warning before \r\nstarting a run";
             this.warningRuns.UseVisualStyleBackColor = true;
             this.warningRuns.CheckedChanged += new System.EventHandler(this.warningRuns_CheckedChanged);
-            // 
-            // Levitate
-            // 
-            this.Levitate.Controls.Add(this.levitateHeight);
-            this.Levitate.Controls.Add(this.label5);
-            this.Levitate.Controls.Add(this.levitateMK);
-            this.Levitate.Controls.Add(this.label21);
-            this.Levitate.Controls.Add(this.levitateCombo);
-            this.Levitate.Controls.Add(this.lToLevitateCheckbox);
-            this.Levitate.Location = new System.Drawing.Point(8, 195);
-            this.Levitate.Name = "Levitate";
-            this.Levitate.Size = new System.Drawing.Size(244, 58);
-            this.Levitate.TabIndex = 47;
-            this.Levitate.TabStop = false;
-            this.Levitate.Text = "Levitate";
-            // 
-            // levitateHeight
-            // 
-            this.levitateHeight.Location = new System.Drawing.Point(187, 33);
-            this.levitateHeight.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.levitateHeight.Minimum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            -2147483648});
-            this.levitateHeight.Name = "levitateHeight";
-            this.levitateHeight.Size = new System.Drawing.Size(49, 20);
-            this.levitateHeight.TabIndex = 50;
-            this.levitateHeight.ValueChanged += new System.EventHandler(this.levitateHeight_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(184, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "Height";
-            // 
-            // levitateMK
-            // 
-            this.levitateMK.AutoSize = true;
-            this.levitateMK.Checked = true;
-            this.levitateMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.levitateMK.Location = new System.Drawing.Point(101, 15);
-            this.levitateMK.Name = "levitateMK";
-            this.levitateMK.Size = new System.Drawing.Size(75, 17);
-            this.levitateMK.TabIndex = 48;
-            this.levitateMK.Text = "Masterkey";
-            this.levitateMK.UseVisualStyleBackColor = true;
-            this.levitateMK.CheckedChanged += new System.EventHandler(this.levitateMK_CheckedChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 20);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(38, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Button";
-            // 
-            // levitateCombo
-            // 
-            this.levitateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.levitateCombo.FormattingEnabled = true;
-            this.levitateCombo.Location = new System.Drawing.Point(3, 33);
-            this.levitateCombo.Name = "levitateCombo";
-            this.levitateCombo.Size = new System.Drawing.Size(102, 21);
-            this.levitateCombo.TabIndex = 46;
-            this.levitateCombo.SelectedIndexChanged += new System.EventHandler(this.levitateCombo_SelectedIndexChanged);
-            // 
-            // lToLevitateCheckbox
-            // 
-            this.lToLevitateCheckbox.AutoSize = true;
-            this.lToLevitateCheckbox.Checked = true;
-            this.lToLevitateCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lToLevitateCheckbox.Location = new System.Drawing.Point(110, 39);
-            this.lToLevitateCheckbox.Name = "lToLevitateCheckbox";
-            this.lToLevitateCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.lToLevitateCheckbox.TabIndex = 23;
-            this.lToLevitateCheckbox.Text = "Enabled";
-            this.lToLevitateCheckbox.UseVisualStyleBackColor = true;
-            this.lToLevitateCheckbox.CheckedChanged += new System.EventHandler(this.lToLevitateCheckbox_CheckedChanged);
-            // 
-            // DoorCancel
-            // 
-            this.DoorCancel.Controls.Add(this.doorCancelMK);
-            this.DoorCancel.Controls.Add(this.label22);
-            this.DoorCancel.Controls.Add(this.doorCancelCombo);
-            this.DoorCancel.Controls.Add(this.doorCancelCheckbox);
-            this.DoorCancel.Location = new System.Drawing.Point(8, 69);
-            this.DoorCancel.Name = "DoorCancel";
-            this.DoorCancel.Size = new System.Drawing.Size(178, 61);
-            this.DoorCancel.TabIndex = 48;
-            this.DoorCancel.TabStop = false;
-            this.DoorCancel.Text = "Door Cancel";
-            // 
-            // doorCancelMK
-            // 
-            this.doorCancelMK.AutoSize = true;
-            this.doorCancelMK.Checked = true;
-            this.doorCancelMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.doorCancelMK.Location = new System.Drawing.Point(101, 13);
-            this.doorCancelMK.Name = "doorCancelMK";
-            this.doorCancelMK.Size = new System.Drawing.Size(75, 17);
-            this.doorCancelMK.TabIndex = 49;
-            this.doorCancelMK.Text = "Masterkey";
-            this.doorCancelMK.UseVisualStyleBackColor = true;
-            this.doorCancelMK.CheckedChanged += new System.EventHandler(this.doorCancelMK_CheckedChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 20);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(38, 13);
-            this.label22.TabIndex = 47;
-            this.label22.Text = "Button";
-            // 
-            // doorCancelCombo
-            // 
-            this.doorCancelCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.doorCancelCombo.FormattingEnabled = true;
-            this.doorCancelCombo.Location = new System.Drawing.Point(3, 33);
-            this.doorCancelCombo.Name = "doorCancelCombo";
-            this.doorCancelCombo.Size = new System.Drawing.Size(102, 21);
-            this.doorCancelCombo.TabIndex = 46;
-            this.doorCancelCombo.SelectedIndexChanged += new System.EventHandler(this.doorCancelCombo_SelectedIndexChanged);
-            // 
-            // doorCancelCheckbox
-            // 
-            this.doorCancelCheckbox.AutoSize = true;
-            this.doorCancelCheckbox.Checked = true;
-            this.doorCancelCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.doorCancelCheckbox.Location = new System.Drawing.Point(111, 36);
-            this.doorCancelCheckbox.Name = "doorCancelCheckbox";
-            this.doorCancelCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.doorCancelCheckbox.TabIndex = 24;
-            this.doorCancelCheckbox.Text = "Enabled";
-            this.doorCancelCheckbox.UseVisualStyleBackColor = true;
-            this.doorCancelCheckbox.CheckedChanged += new System.EventHandler(this.doorCancelCheckbox_CheckedChanged);
-            // 
-            // Superspeed
-            // 
-            this.Superspeed.Controls.Add(this.superswimSpeed);
-            this.Superspeed.Controls.Add(this.superswimMK);
-            this.Superspeed.Controls.Add(this.label34);
-            this.Superspeed.Controls.Add(this.label23);
-            this.Superspeed.Controls.Add(this.superswimCombo);
-            this.Superspeed.Controls.Add(this.superswimCheckbox);
-            this.Superspeed.Controls.Add(this.alternativeDpadRight);
-            this.Superspeed.Location = new System.Drawing.Point(8, 254);
-            this.Superspeed.Name = "Superspeed";
-            this.Superspeed.Size = new System.Drawing.Size(244, 90);
-            this.Superspeed.TabIndex = 49;
-            this.Superspeed.TabStop = false;
-            this.Superspeed.Text = "Superswim";
-            // 
-            // superswimSpeed
-            // 
-            this.superswimSpeed.Location = new System.Drawing.Point(188, 62);
-            this.superswimSpeed.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.superswimSpeed.Minimum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            -2147483648});
-            this.superswimSpeed.Name = "superswimSpeed";
-            this.superswimSpeed.Size = new System.Drawing.Size(49, 20);
-            this.superswimSpeed.TabIndex = 52;
-            this.superswimSpeed.ValueChanged += new System.EventHandler(this.superswimSpeed_ValueChanged);
-            // 
-            // superswimMK
-            // 
-            this.superswimMK.AutoSize = true;
-            this.superswimMK.Checked = true;
-            this.superswimMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.superswimMK.Location = new System.Drawing.Point(101, 13);
-            this.superswimMK.Name = "superswimMK";
-            this.superswimMK.Size = new System.Drawing.Size(75, 17);
-            this.superswimMK.TabIndex = 50;
-            this.superswimMK.Text = "Masterkey";
-            this.superswimMK.UseVisualStyleBackColor = true;
-            this.superswimMK.CheckedChanged += new System.EventHandler(this.superswimMK_CheckedChanged);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(185, 46);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(38, 13);
-            this.label34.TabIndex = 51;
-            this.label34.Text = "Speed";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 20);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 13);
-            this.label23.TabIndex = 47;
-            this.label23.Text = "Button";
-            // 
-            // superswimCombo
-            // 
-            this.superswimCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.superswimCombo.FormattingEnabled = true;
-            this.superswimCombo.Location = new System.Drawing.Point(3, 33);
-            this.superswimCombo.Name = "superswimCombo";
-            this.superswimCombo.Size = new System.Drawing.Size(102, 21);
-            this.superswimCombo.TabIndex = 46;
-            this.superswimCombo.SelectedIndexChanged += new System.EventHandler(this.superspeedCombo_SelectedIndexChanged);
-            // 
-            // superswimCheckbox
-            // 
-            this.superswimCheckbox.AutoSize = true;
-            this.superswimCheckbox.Checked = true;
-            this.superswimCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.superswimCheckbox.Location = new System.Drawing.Point(111, 36);
-            this.superswimCheckbox.Name = "superswimCheckbox";
-            this.superswimCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.superswimCheckbox.TabIndex = 25;
-            this.superswimCheckbox.Text = "Enabled";
-            this.superswimCheckbox.UseVisualStyleBackColor = true;
-            this.superswimCheckbox.CheckedChanged += new System.EventHandler(this.superswimCheckbox_CheckedChanged);
-            // 
-            // alternativeDpadRight
-            // 
-            this.alternativeDpadRight.AutoSize = true;
-            this.alternativeDpadRight.Location = new System.Drawing.Point(3, 55);
-            this.alternativeDpadRight.Name = "alternativeDpadRight";
-            this.alternativeDpadRight.Size = new System.Drawing.Size(153, 30);
-            this.alternativeDpadRight.TabIndex = 43;
-            this.alternativeDpadRight.Text = "ZL to charge positive,\r\nnothing to charge negative";
-            this.alternativeDpadRight.UseVisualStyleBackColor = true;
-            this.alternativeDpadRight.CheckedChanged += new System.EventHandler(this.alternativeDpadRight_CheckedChanged);
-            // 
-            // Storage
-            // 
-            this.Storage.Controls.Add(this.storageMK);
-            this.Storage.Controls.Add(this.label24);
-            this.Storage.Controls.Add(this.storageCombo);
-            this.Storage.Controls.Add(this.storageCheckbox);
-            this.Storage.Location = new System.Drawing.Point(196, 13);
-            this.Storage.Name = "Storage";
-            this.Storage.Size = new System.Drawing.Size(178, 58);
-            this.Storage.TabIndex = 50;
-            this.Storage.TabStop = false;
-            this.Storage.Text = "Storage";
-            // 
-            // storageMK
-            // 
-            this.storageMK.AutoSize = true;
-            this.storageMK.Checked = true;
-            this.storageMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.storageMK.Location = new System.Drawing.Point(101, 12);
-            this.storageMK.Name = "storageMK";
-            this.storageMK.Size = new System.Drawing.Size(75, 17);
-            this.storageMK.TabIndex = 51;
-            this.storageMK.Text = "Masterkey";
-            this.storageMK.UseVisualStyleBackColor = true;
-            this.storageMK.CheckedChanged += new System.EventHandler(this.storageMK_CheckedChanged);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 20);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(38, 13);
-            this.label24.TabIndex = 47;
-            this.label24.Text = "Button";
-            // 
-            // storageCombo
-            // 
-            this.storageCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.storageCombo.FormattingEnabled = true;
-            this.storageCombo.Location = new System.Drawing.Point(3, 33);
-            this.storageCombo.Name = "storageCombo";
-            this.storageCombo.Size = new System.Drawing.Size(102, 21);
-            this.storageCombo.TabIndex = 46;
-            this.storageCombo.SelectedIndexChanged += new System.EventHandler(this.storageCombo_SelectedIndexChanged);
-            // 
-            // storageCheckbox
-            // 
-            this.storageCheckbox.AutoSize = true;
-            this.storageCheckbox.Checked = true;
-            this.storageCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.storageCheckbox.Location = new System.Drawing.Point(110, 35);
-            this.storageCheckbox.Name = "storageCheckbox";
-            this.storageCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.storageCheckbox.TabIndex = 31;
-            this.storageCheckbox.Text = "Enabled";
-            this.storageCheckbox.UseVisualStyleBackColor = true;
-            this.storageCheckbox.CheckedChanged += new System.EventHandler(this.storageCheckbox_CheckedChanged);
-            // 
-            // WindDirection
-            // 
-            this.WindDirection.Controls.Add(this.windDirectionMK);
-            this.WindDirection.Controls.Add(this.label30);
-            this.WindDirection.Controls.Add(this.windDirectionCombo);
-            this.WindDirection.Controls.Add(this.changeWindCheckbox);
-            this.WindDirection.Location = new System.Drawing.Point(8, 129);
-            this.WindDirection.Name = "WindDirection";
-            this.WindDirection.Size = new System.Drawing.Size(178, 58);
-            this.WindDirection.TabIndex = 51;
-            this.WindDirection.TabStop = false;
-            this.WindDirection.Text = "Change wind direction";
-            // 
-            // windDirectionMK
-            // 
-            this.windDirectionMK.AutoSize = true;
-            this.windDirectionMK.Checked = true;
-            this.windDirectionMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.windDirectionMK.Location = new System.Drawing.Point(101, 16);
-            this.windDirectionMK.Name = "windDirectionMK";
-            this.windDirectionMK.Size = new System.Drawing.Size(75, 17);
-            this.windDirectionMK.TabIndex = 52;
-            this.windDirectionMK.Text = "Masterkey";
-            this.windDirectionMK.UseVisualStyleBackColor = true;
-            this.windDirectionMK.CheckedChanged += new System.EventHandler(this.windDirectionMK_CheckedChanged);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 20);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(38, 13);
-            this.label30.TabIndex = 47;
-            this.label30.Text = "Button";
-            // 
-            // windDirectionCombo
-            // 
-            this.windDirectionCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.windDirectionCombo.FormattingEnabled = true;
-            this.windDirectionCombo.Location = new System.Drawing.Point(3, 33);
-            this.windDirectionCombo.Name = "windDirectionCombo";
-            this.windDirectionCombo.Size = new System.Drawing.Size(102, 21);
-            this.windDirectionCombo.TabIndex = 46;
-            this.windDirectionCombo.SelectedIndexChanged += new System.EventHandler(this.windDirectionCombo_SelectedIndexChanged);
-            // 
-            // changeWindCheckbox
-            // 
-            this.changeWindCheckbox.AutoSize = true;
-            this.changeWindCheckbox.Checked = true;
-            this.changeWindCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.changeWindCheckbox.Location = new System.Drawing.Point(110, 36);
-            this.changeWindCheckbox.Name = "changeWindCheckbox";
-            this.changeWindCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.changeWindCheckbox.TabIndex = 45;
-            this.changeWindCheckbox.Text = "Enabled";
-            this.changeWindCheckbox.UseVisualStyleBackColor = true;
-            this.changeWindCheckbox.CheckedChanged += new System.EventHandler(this.changeWindCheckbox_CheckedChanged);
-            // 
-            // MasterkeyGroup
-            // 
-            this.MasterkeyGroup.Controls.Add(this.label25);
-            this.MasterkeyGroup.Controls.Add(this.masterkeyCombo);
-            this.MasterkeyGroup.Controls.Add(this.masterkey);
-            this.MasterkeyGroup.Location = new System.Drawing.Point(8, 9);
-            this.MasterkeyGroup.Name = "MasterkeyGroup";
-            this.MasterkeyGroup.Size = new System.Drawing.Size(178, 58);
-            this.MasterkeyGroup.TabIndex = 51;
-            this.MasterkeyGroup.TabStop = false;
-            this.MasterkeyGroup.Text = "Masterkey";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 20);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(38, 13);
-            this.label25.TabIndex = 47;
-            this.label25.Text = "Button";
-            // 
-            // masterkeyCombo
-            // 
-            this.masterkeyCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.masterkeyCombo.FormattingEnabled = true;
-            this.masterkeyCombo.Location = new System.Drawing.Point(3, 33);
-            this.masterkeyCombo.Name = "masterkeyCombo";
-            this.masterkeyCombo.Size = new System.Drawing.Size(102, 21);
-            this.masterkeyCombo.TabIndex = 46;
-            this.masterkeyCombo.SelectedIndexChanged += new System.EventHandler(this.masterkeyCombo_SelectedIndexChanged);
-            // 
-            // masterkey
-            // 
-            this.masterkey.AutoSize = true;
-            this.masterkey.Checked = true;
-            this.masterkey.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.masterkey.Location = new System.Drawing.Point(110, 35);
-            this.masterkey.Name = "masterkey";
-            this.masterkey.Size = new System.Drawing.Size(65, 17);
-            this.masterkey.TabIndex = 21;
-            this.masterkey.Text = "Enabled";
-            this.masterkey.UseVisualStyleBackColor = true;
-            this.masterkey.CheckedChanged += new System.EventHandler(this.masterkey_CheckedChanged);
-            // 
-            // SaveReloadPos
-            // 
-            this.SaveReloadPos.Controls.Add(this.saveReloadMK);
-            this.SaveReloadPos.Controls.Add(this.label32);
-            this.SaveReloadPos.Controls.Add(this.storePositionCombo);
-            this.SaveReloadPos.Controls.Add(this.restorePositionCombo);
-            this.SaveReloadPos.Controls.Add(this.label26);
-            this.SaveReloadPos.Controls.Add(this.alternativeMemfiles);
-            this.SaveReloadPos.Controls.Add(this.storeRestoreCheckbox);
-            this.SaveReloadPos.Location = new System.Drawing.Point(196, 90);
-            this.SaveReloadPos.Name = "SaveReloadPos";
-            this.SaveReloadPos.Size = new System.Drawing.Size(294, 96);
-            this.SaveReloadPos.TabIndex = 52;
-            this.SaveReloadPos.TabStop = false;
-            this.SaveReloadPos.Text = "Save/Reload position";
-            // 
-            // saveReloadMK
-            // 
-            this.saveReloadMK.AutoSize = true;
-            this.saveReloadMK.Checked = true;
-            this.saveReloadMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.saveReloadMK.Location = new System.Drawing.Point(190, 33);
-            this.saveReloadMK.Name = "saveReloadMK";
-            this.saveReloadMK.Size = new System.Drawing.Size(75, 17);
-            this.saveReloadMK.TabIndex = 48;
-            this.saveReloadMK.Text = "Masterkey";
-            this.saveReloadMK.UseVisualStyleBackColor = true;
-            this.saveReloadMK.CheckedChanged += new System.EventHandler(this.saveReloadMK_CheckedChanged);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(9, 55);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(75, 13);
-            this.label32.TabIndex = 49;
-            this.label32.Text = "Reload Button";
-            // 
-            // storePositionCombo
-            // 
-            this.storePositionCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.storePositionCombo.FormattingEnabled = true;
-            this.storePositionCombo.Location = new System.Drawing.Point(6, 31);
-            this.storePositionCombo.Name = "storePositionCombo";
-            this.storePositionCombo.Size = new System.Drawing.Size(102, 21);
-            this.storePositionCombo.TabIndex = 46;
-            this.storePositionCombo.SelectedIndexChanged += new System.EventHandler(this.savePosCombo_SelectedIndexChanged);
-            // 
-            // restorePositionCombo
-            // 
-            this.restorePositionCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.restorePositionCombo.FormattingEnabled = true;
-            this.restorePositionCombo.Location = new System.Drawing.Point(6, 68);
-            this.restorePositionCombo.Name = "restorePositionCombo";
-            this.restorePositionCombo.Size = new System.Drawing.Size(102, 21);
-            this.restorePositionCombo.TabIndex = 48;
-            this.restorePositionCombo.SelectedIndexChanged += new System.EventHandler(this.reloadPosCombo_SelectedIndexChanged);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 18);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(66, 13);
-            this.label26.TabIndex = 47;
-            this.label26.Text = "Save Button";
-            // 
-            // alternativeMemfiles
-            // 
-            this.alternativeMemfiles.AutoSize = true;
-            this.alternativeMemfiles.Location = new System.Drawing.Point(113, 64);
-            this.alternativeMemfiles.Name = "alternativeMemfiles";
-            this.alternativeMemfiles.Size = new System.Drawing.Size(173, 30);
-            this.alternativeMemfiles.TabIndex = 44;
-            this.alternativeMemfiles.Text = "Switch for save temporary \r\nmemfile / load selected memfile\r\n";
-            this.alternativeMemfiles.UseVisualStyleBackColor = true;
-            this.alternativeMemfiles.CheckedChanged += new System.EventHandler(this.alternativeMemfiles_CheckedChanged);
-            // 
-            // storeRestoreCheckbox
-            // 
-            this.storeRestoreCheckbox.AutoSize = true;
-            this.storeRestoreCheckbox.Checked = true;
-            this.storeRestoreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.storeRestoreCheckbox.Location = new System.Drawing.Point(114, 33);
-            this.storeRestoreCheckbox.Name = "storeRestoreCheckbox";
-            this.storeRestoreCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.storeRestoreCheckbox.TabIndex = 22;
-            this.storeRestoreCheckbox.Text = "Enabled";
-            this.storeRestoreCheckbox.UseVisualStyleBackColor = true;
-            this.storeRestoreCheckbox.CheckedChanged += new System.EventHandler(this.storeRestoreCheckbox_CheckedChanged);
-            // 
-            // ReloadRoom
-            // 
-            this.ReloadRoom.Controls.Add(this.reloadRoomMK);
-            this.ReloadRoom.Controls.Add(this.label27);
-            this.ReloadRoom.Controls.Add(this.reloadRoomCombo);
-            this.ReloadRoom.Controls.Add(this.reloadRoomCheckbox);
-            this.ReloadRoom.Location = new System.Drawing.Point(264, 223);
-            this.ReloadRoom.Name = "ReloadRoom";
-            this.ReloadRoom.Size = new System.Drawing.Size(178, 58);
-            this.ReloadRoom.TabIndex = 51;
-            this.ReloadRoom.TabStop = false;
-            this.ReloadRoom.Text = "Reload Room";
-            // 
-            // reloadRoomMK
-            // 
-            this.reloadRoomMK.AutoSize = true;
-            this.reloadRoomMK.Checked = true;
-            this.reloadRoomMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.reloadRoomMK.Location = new System.Drawing.Point(100, 16);
-            this.reloadRoomMK.Name = "reloadRoomMK";
-            this.reloadRoomMK.Size = new System.Drawing.Size(75, 17);
-            this.reloadRoomMK.TabIndex = 48;
-            this.reloadRoomMK.Text = "Masterkey";
-            this.reloadRoomMK.UseVisualStyleBackColor = true;
-            this.reloadRoomMK.CheckedChanged += new System.EventHandler(this.reloadRoomMK_CheckedChanged);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 20);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(38, 13);
-            this.label27.TabIndex = 47;
-            this.label27.Text = "Button";
-            // 
-            // reloadRoomCombo
-            // 
-            this.reloadRoomCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.reloadRoomCombo.FormattingEnabled = true;
-            this.reloadRoomCombo.Location = new System.Drawing.Point(3, 33);
-            this.reloadRoomCombo.Name = "reloadRoomCombo";
-            this.reloadRoomCombo.Size = new System.Drawing.Size(102, 21);
-            this.reloadRoomCombo.TabIndex = 46;
-            this.reloadRoomCombo.SelectedIndexChanged += new System.EventHandler(this.reloadRoomCombo_SelectedIndexChanged);
-            // 
-            // reloadRoomCheckbox
-            // 
-            this.reloadRoomCheckbox.AutoSize = true;
-            this.reloadRoomCheckbox.Checked = true;
-            this.reloadRoomCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.reloadRoomCheckbox.Location = new System.Drawing.Point(110, 35);
-            this.reloadRoomCheckbox.Name = "reloadRoomCheckbox";
-            this.reloadRoomCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.reloadRoomCheckbox.TabIndex = 26;
-            this.reloadRoomCheckbox.Text = "Enabled";
-            this.reloadRoomCheckbox.UseVisualStyleBackColor = true;
-            this.reloadRoomCheckbox.CheckedChanged += new System.EventHandler(this.reloadRoomCheckbox_CheckedChanged);
-            // 
-            // RefillHealth
-            // 
-            this.RefillHealth.Controls.Add(this.refillHealthMK);
-            this.RefillHealth.Controls.Add(this.label28);
-            this.RefillHealth.Controls.Add(this.refillHealthCombo);
-            this.RefillHealth.Controls.Add(this.refillHealthCheckbox);
-            this.RefillHealth.Location = new System.Drawing.Point(264, 285);
-            this.RefillHealth.Name = "RefillHealth";
-            this.RefillHealth.Size = new System.Drawing.Size(178, 58);
-            this.RefillHealth.TabIndex = 51;
-            this.RefillHealth.TabStop = false;
-            this.RefillHealth.Text = "Refill Health";
-            // 
-            // refillHealthMK
-            // 
-            this.refillHealthMK.AutoSize = true;
-            this.refillHealthMK.Checked = true;
-            this.refillHealthMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillHealthMK.Location = new System.Drawing.Point(100, 16);
-            this.refillHealthMK.Name = "refillHealthMK";
-            this.refillHealthMK.Size = new System.Drawing.Size(75, 17);
-            this.refillHealthMK.TabIndex = 49;
-            this.refillHealthMK.Text = "Masterkey";
-            this.refillHealthMK.UseVisualStyleBackColor = true;
-            this.refillHealthMK.CheckedChanged += new System.EventHandler(this.refillHealthMK_CheckedChanged);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 20);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(38, 13);
-            this.label28.TabIndex = 47;
-            this.label28.Text = "Button";
-            // 
-            // refillHealthCombo
-            // 
-            this.refillHealthCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.refillHealthCombo.FormattingEnabled = true;
-            this.refillHealthCombo.Location = new System.Drawing.Point(3, 33);
-            this.refillHealthCombo.Name = "refillHealthCombo";
-            this.refillHealthCombo.Size = new System.Drawing.Size(102, 21);
-            this.refillHealthCombo.TabIndex = 46;
-            this.refillHealthCombo.SelectedIndexChanged += new System.EventHandler(this.refillHealthCombo_SelectedIndexChanged);
-            // 
-            // refillHealthCheckbox
-            // 
-            this.refillHealthCheckbox.AutoSize = true;
-            this.refillHealthCheckbox.Checked = true;
-            this.refillHealthCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillHealthCheckbox.Location = new System.Drawing.Point(110, 35);
-            this.refillHealthCheckbox.Name = "refillHealthCheckbox";
-            this.refillHealthCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.refillHealthCheckbox.TabIndex = 28;
-            this.refillHealthCheckbox.Text = "Enabled";
-            this.refillHealthCheckbox.UseVisualStyleBackColor = true;
-            this.refillHealthCheckbox.CheckedChanged += new System.EventHandler(this.refillHealthCheckbox_CheckedChanged);
-            // 
-            // RefillMagic
-            // 
-            this.RefillMagic.Controls.Add(this.refillMagicMK);
-            this.RefillMagic.Controls.Add(this.label31);
-            this.RefillMagic.Controls.Add(this.refillMagicCombo);
-            this.RefillMagic.Controls.Add(this.refillMagicCheckbox);
-            this.RefillMagic.Location = new System.Drawing.Point(458, 284);
-            this.RefillMagic.Name = "RefillMagic";
-            this.RefillMagic.Size = new System.Drawing.Size(178, 58);
-            this.RefillMagic.TabIndex = 53;
-            this.RefillMagic.TabStop = false;
-            this.RefillMagic.Text = "Refill Magic";
-            // 
-            // refillMagicMK
-            // 
-            this.refillMagicMK.AutoSize = true;
-            this.refillMagicMK.Checked = true;
-            this.refillMagicMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillMagicMK.Location = new System.Drawing.Point(101, 16);
-            this.refillMagicMK.Name = "refillMagicMK";
-            this.refillMagicMK.Size = new System.Drawing.Size(75, 17);
-            this.refillMagicMK.TabIndex = 51;
-            this.refillMagicMK.Text = "Masterkey";
-            this.refillMagicMK.UseVisualStyleBackColor = true;
-            this.refillMagicMK.CheckedChanged += new System.EventHandler(this.refillMagicMK_CheckedChanged);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 20);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(38, 13);
-            this.label31.TabIndex = 47;
-            this.label31.Text = "Button";
-            // 
-            // refillMagicCombo
-            // 
-            this.refillMagicCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.refillMagicCombo.FormattingEnabled = true;
-            this.refillMagicCombo.Location = new System.Drawing.Point(3, 33);
-            this.refillMagicCombo.Name = "refillMagicCombo";
-            this.refillMagicCombo.Size = new System.Drawing.Size(102, 21);
-            this.refillMagicCombo.TabIndex = 46;
-            this.refillMagicCombo.SelectedIndexChanged += new System.EventHandler(this.refillMagicCombo_SelectedIndexChanged);
-            // 
-            // refillMagicCheckbox
-            // 
-            this.refillMagicCheckbox.AutoSize = true;
-            this.refillMagicCheckbox.Checked = true;
-            this.refillMagicCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillMagicCheckbox.Location = new System.Drawing.Point(111, 35);
-            this.refillMagicCheckbox.Name = "refillMagicCheckbox";
-            this.refillMagicCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.refillMagicCheckbox.TabIndex = 27;
-            this.refillMagicCheckbox.Text = "Enabled";
-            this.refillMagicCheckbox.UseVisualStyleBackColor = true;
-            this.refillMagicCheckbox.CheckedChanged += new System.EventHandler(this.refillMagicCheckbox_CheckedChanged);
-            // 
-            // RefillAmmo
-            // 
-            this.RefillAmmo.Controls.Add(this.refillAmmoMK);
-            this.RefillAmmo.Controls.Add(this.refillAmmoCombo);
-            this.RefillAmmo.Controls.Add(this.label29);
-            this.RefillAmmo.Controls.Add(this.refillAmmoCheckbox);
-            this.RefillAmmo.Location = new System.Drawing.Point(458, 226);
-            this.RefillAmmo.Name = "RefillAmmo";
-            this.RefillAmmo.Size = new System.Drawing.Size(178, 58);
-            this.RefillAmmo.TabIndex = 51;
-            this.RefillAmmo.TabStop = false;
-            this.RefillAmmo.Text = "Refill Ammo";
-            // 
-            // refillAmmoMK
-            // 
-            this.refillAmmoMK.AutoSize = true;
-            this.refillAmmoMK.Checked = true;
-            this.refillAmmoMK.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillAmmoMK.Location = new System.Drawing.Point(100, 13);
-            this.refillAmmoMK.Name = "refillAmmoMK";
-            this.refillAmmoMK.Size = new System.Drawing.Size(75, 17);
-            this.refillAmmoMK.TabIndex = 50;
-            this.refillAmmoMK.Text = "Masterkey";
-            this.refillAmmoMK.UseVisualStyleBackColor = true;
-            this.refillAmmoMK.CheckedChanged += new System.EventHandler(this.refillAmmoMK_CheckedChanged);
-            // 
-            // refillAmmoCombo
-            // 
-            this.refillAmmoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.refillAmmoCombo.FormattingEnabled = true;
-            this.refillAmmoCombo.Location = new System.Drawing.Point(3, 33);
-            this.refillAmmoCombo.Name = "refillAmmoCombo";
-            this.refillAmmoCombo.Size = new System.Drawing.Size(102, 21);
-            this.refillAmmoCombo.TabIndex = 48;
-            this.refillAmmoCombo.SelectedIndexChanged += new System.EventHandler(this.refillAmmoCombo_SelectedIndexChanged);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(6, 20);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(38, 13);
-            this.label29.TabIndex = 47;
-            this.label29.Text = "Button";
-            // 
-            // refillAmmoCheckbox
-            // 
-            this.refillAmmoCheckbox.AutoSize = true;
-            this.refillAmmoCheckbox.Checked = true;
-            this.refillAmmoCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.refillAmmoCheckbox.Location = new System.Drawing.Point(110, 35);
-            this.refillAmmoCheckbox.Name = "refillAmmoCheckbox";
-            this.refillAmmoCheckbox.Size = new System.Drawing.Size(65, 17);
-            this.refillAmmoCheckbox.TabIndex = 29;
-            this.refillAmmoCheckbox.Text = "Enabled";
-            this.refillAmmoCheckbox.UseVisualStyleBackColor = true;
-            this.refillAmmoCheckbox.CheckedChanged += new System.EventHandler(this.refillAmmoCheckbox_CheckedChanged);
             // 
             // fullCapacities
             // 
@@ -2456,7 +1649,7 @@ namespace WWHDHacker
             // 
             // itemsPanel
             // 
-            this.itemsPanel.BackgroundImage = global::WWHDHacker.Properties.Resources.trackerbg;
+            this.itemsPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("itemsPanel.BackgroundImage")));
             this.itemsPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.itemsPanel.Controls.Add(this.checkBoxImage40);
             this.itemsPanel.Controls.Add(this.checkBoxImage39);
@@ -2502,6 +1695,424 @@ namespace WWHDHacker
             this.itemsPanel.Name = "itemsPanel";
             this.itemsPanel.Size = new System.Drawing.Size(450, 332);
             this.itemsPanel.TabIndex = 39;
+            // 
+            // itemsList
+            // 
+            this.itemsList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.itemsList.ImageSize = new System.Drawing.Size(16, 16);
+            this.itemsList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // CheckInv
+            // 
+            this.CheckInv.Interval = 1000;
+            this.CheckInv.Tick += new System.EventHandler(this.CheckInv_Tick);
+            // 
+            // memfilesPanel
+            // 
+            this.memfilesPanel.Controls.Add(this.SavefileIndicator);
+            this.memfilesPanel.Controls.Add(this.groupBox13);
+            this.memfilesPanel.Controls.Add(this.groupBox12);
+            this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
+            this.memfilesPanel.Name = "memfilesPanel";
+            this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
+            this.memfilesPanel.TabIndex = 32;
+            // 
+            // SavefileIndicator
+            // 
+            this.SavefileIndicator.AutoSize = true;
+            this.SavefileIndicator.ForeColor = System.Drawing.Color.ForestGreen;
+            this.SavefileIndicator.Location = new System.Drawing.Point(16, 330);
+            this.SavefileIndicator.Name = "SavefileIndicator";
+            this.SavefileIndicator.Size = new System.Drawing.Size(0, 13);
+            this.SavefileIndicator.TabIndex = 5;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.memfilesViewer);
+            this.groupBox13.Controls.Add(this.deleteMemfile);
+            this.groupBox13.Controls.Add(this.openMemfileFolder);
+            this.groupBox13.Controls.Add(this.loadMemfile);
+            this.groupBox13.Controls.Add(this.createMemfile);
+            this.groupBox13.Location = new System.Drawing.Point(14, 13);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(325, 315);
+            this.groupBox13.TabIndex = 4;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Memfiles";
+            // 
+            // memfilesViewer
+            // 
+            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
+            this.memfilesViewer.Name = "memfilesViewer";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "b";
+            treeNode2.Name = "test";
+            treeNode2.Text = "a";
+            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
+            this.memfilesViewer.TabIndex = 6;
+            // 
+            // deleteMemfile
+            // 
+            this.deleteMemfile.Location = new System.Drawing.Point(4, 280);
+            this.deleteMemfile.Name = "deleteMemfile";
+            this.deleteMemfile.Size = new System.Drawing.Size(126, 23);
+            this.deleteMemfile.TabIndex = 8;
+            this.deleteMemfile.Text = "Delete memfile";
+            this.deleteMemfile.UseVisualStyleBackColor = true;
+            this.deleteMemfile.Click += new System.EventHandler(this.deleteMemfile_Click);
+            // 
+            // openMemfileFolder
+            // 
+            this.openMemfileFolder.Location = new System.Drawing.Point(205, 280);
+            this.openMemfileFolder.Name = "openMemfileFolder";
+            this.openMemfileFolder.Size = new System.Drawing.Size(114, 23);
+            this.openMemfileFolder.TabIndex = 7;
+            this.openMemfileFolder.Text = "Open Memfile Folder";
+            this.openMemfileFolder.UseVisualStyleBackColor = true;
+            this.openMemfileFolder.Click += new System.EventHandler(this.openMemfileFolder_Click);
+            // 
+            // loadMemfile
+            // 
+            this.loadMemfile.Location = new System.Drawing.Point(205, 252);
+            this.loadMemfile.Name = "loadMemfile";
+            this.loadMemfile.Size = new System.Drawing.Size(114, 23);
+            this.loadMemfile.TabIndex = 1;
+            this.loadMemfile.Text = "Load Memfile";
+            this.loadMemfile.UseVisualStyleBackColor = true;
+            this.loadMemfile.Click += new System.EventHandler(this.loadMemfile_Click);
+            // 
+            // createMemfile
+            // 
+            this.createMemfile.Location = new System.Drawing.Point(3, 252);
+            this.createMemfile.Name = "createMemfile";
+            this.createMemfile.Size = new System.Drawing.Size(127, 23);
+            this.createMemfile.TabIndex = 0;
+            this.createMemfile.Text = "Create memfile";
+            this.createMemfile.UseVisualStyleBackColor = true;
+            this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.openSFDir);
+            this.groupBox12.Controls.Add(this.dumpSF);
+            this.groupBox12.Controls.Add(this.loadSF);
+            this.groupBox12.Controls.Add(this.fileRep);
+            this.groupBox12.Location = new System.Drawing.Point(467, 13);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(327, 315);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Save files";
+            // 
+            // openSFDir
+            // 
+            this.openSFDir.Location = new System.Drawing.Point(116, 278);
+            this.openSFDir.Name = "openSFDir";
+            this.openSFDir.Size = new System.Drawing.Size(103, 33);
+            this.openSFDir.TabIndex = 8;
+            this.openSFDir.Text = "Open Savefiles Dir";
+            this.openSFDir.UseVisualStyleBackColor = true;
+            this.openSFDir.Click += new System.EventHandler(this.openSFDir_Click);
+            // 
+            // dumpSF
+            // 
+            this.dumpSF.Location = new System.Drawing.Point(223, 278);
+            this.dumpSF.Name = "dumpSF";
+            this.dumpSF.Size = new System.Drawing.Size(90, 33);
+            this.dumpSF.TabIndex = 7;
+            this.dumpSF.Text = "Dump Savefile";
+            this.dumpSF.UseVisualStyleBackColor = true;
+            this.dumpSF.Click += new System.EventHandler(this.dumpSF_Click);
+            // 
+            // loadSF
+            // 
+            this.loadSF.Location = new System.Drawing.Point(20, 278);
+            this.loadSF.Name = "loadSF";
+            this.loadSF.Size = new System.Drawing.Size(90, 33);
+            this.loadSF.TabIndex = 6;
+            this.loadSF.Text = "Load Savefile";
+            this.loadSF.UseVisualStyleBackColor = true;
+            this.loadSF.Click += new System.EventHandler(this.loadSF_Click);
+            // 
+            // fileRep
+            // 
+            this.fileRep.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.fileRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Save});
+            this.fileRep.HideSelection = false;
+            this.fileRep.Location = new System.Drawing.Point(20, 26);
+            this.fileRep.MultiSelect = false;
+            this.fileRep.Name = "fileRep";
+            this.fileRep.Size = new System.Drawing.Size(288, 239);
+            this.fileRep.TabIndex = 5;
+            this.fileRep.UseCompatibleStateImageBehavior = false;
+            this.fileRep.View = System.Windows.Forms.View.Details;
+            // 
+            // Save
+            // 
+            this.Save.Text = "Save";
+            this.Save.Width = 284;
+            // 
+            // teleporterPanel
+            // 
+            this.teleporterPanel.Controls.Add(this.panel1);
+            this.teleporterPanel.Controls.Add(this.addCustomFavorite);
+            this.teleporterPanel.Controls.Add(this.displayOnMap);
+            this.teleporterPanel.Controls.Add(this.transparentLayer);
+            this.teleporterPanel.Controls.Add(this.addedRemoved);
+            this.teleporterPanel.Controls.Add(this.teleporterToggleFavorites);
+            this.teleporterPanel.Controls.Add(this.groupBox8);
+            this.teleporterPanel.Controls.Add(this.linkLocationLabel);
+            this.teleporterPanel.Controls.Add(this.pictureBox1);
+            this.teleporterPanel.Controls.Add(this.teleporterToggleHyrule);
+            this.teleporterPanel.Controls.Add(this.islandLabel);
+            this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
+            this.teleporterPanel.Name = "teleporterPanel";
+            this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
+            this.teleporterPanel.TabIndex = 33;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.subAreas);
+            this.panel1.Location = new System.Drawing.Point(339, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 304);
+            this.panel1.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(10, 9);
+            this.label6.MaximumSize = new System.Drawing.Size(92, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Island: ";
+            // 
+            // subAreas
+            // 
+            this.subAreas.AutoScroll = true;
+            this.subAreas.BackColor = System.Drawing.Color.Transparent;
+            this.subAreas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.subAreas.Location = new System.Drawing.Point(10, 26);
+            this.subAreas.Name = "subAreas";
+            this.subAreas.Size = new System.Drawing.Size(280, 260);
+            this.subAreas.TabIndex = 4;
+            // 
+            // addCustomFavorite
+            // 
+            this.addCustomFavorite.Location = new System.Drawing.Point(660, 251);
+            this.addCustomFavorite.Name = "addCustomFavorite";
+            this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
+            this.addCustomFavorite.TabIndex = 20;
+            this.addCustomFavorite.Text = "Add custom favorite";
+            this.addCustomFavorite.UseVisualStyleBackColor = true;
+            this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
+            // 
+            // displayOnMap
+            // 
+            this.displayOnMap.AutoSize = true;
+            this.displayOnMap.Location = new System.Drawing.Point(663, 235);
+            this.displayOnMap.Name = "displayOnMap";
+            this.displayOnMap.Size = new System.Drawing.Size(98, 17);
+            this.displayOnMap.TabIndex = 19;
+            this.displayOnMap.Text = "Display on map";
+            this.displayOnMap.UseVisualStyleBackColor = true;
+            // 
+            // transparentLayer
+            // 
+            this.transparentLayer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transparentLayer.BackgroundImage")));
+            this.transparentLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.transparentLayer.Controls.Add(this.movingLink);
+            this.transparentLayer.Controls.Add(this.teleporterMap);
+            this.transparentLayer.Location = new System.Drawing.Point(19, 26);
+            this.transparentLayer.Name = "transparentLayer";
+            this.transparentLayer.Size = new System.Drawing.Size(306, 302);
+            this.transparentLayer.TabIndex = 18;
+            // 
+            // movingLink
+            // 
+            this.movingLink.BackColor = System.Drawing.Color.Transparent;
+            this.movingLink.Enabled = false;
+            this.movingLink.Image = ((System.Drawing.Image)(resources.GetObject("movingLink.Image")));
+            this.movingLink.Location = new System.Drawing.Point(0, 0);
+            this.movingLink.Name = "movingLink";
+            this.movingLink.Size = new System.Drawing.Size(35, 33);
+            this.movingLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.movingLink.TabIndex = 19;
+            this.movingLink.TabStop = false;
+            // 
+            // teleporterMap
+            // 
+            this.teleporterMap.BackColor = System.Drawing.Color.Transparent;
+            this.teleporterMap.Location = new System.Drawing.Point(0, 0);
+            this.teleporterMap.Name = "teleporterMap";
+            this.teleporterMap.Size = new System.Drawing.Size(306, 302);
+            this.teleporterMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.teleporterMap.TabIndex = 0;
+            this.teleporterMap.TabStop = false;
+            this.teleporterMap.Click += new System.EventHandler(this.teleporterMap_Click);
+            this.teleporterMap.MouseLeave += new System.EventHandler(this.teleporterMap_MouseLeave);
+            this.teleporterMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.teleporterMap_MouseMove);
+            // 
+            // addedRemoved
+            // 
+            this.addedRemoved.AutoSize = true;
+            this.addedRemoved.Location = new System.Drawing.Point(349, 331);
+            this.addedRemoved.Name = "addedRemoved";
+            this.addedRemoved.Size = new System.Drawing.Size(0, 13);
+            this.addedRemoved.TabIndex = 17;
+            // 
+            // teleporterToggleFavorites
+            // 
+            this.teleporterToggleFavorites.Location = new System.Drawing.Point(660, 291);
+            this.teleporterToggleFavorites.Name = "teleporterToggleFavorites";
+            this.teleporterToggleFavorites.Size = new System.Drawing.Size(100, 23);
+            this.teleporterToggleFavorites.TabIndex = 5;
+            this.teleporterToggleFavorites.Text = "Favorites";
+            this.teleporterToggleFavorites.UseVisualStyleBackColor = true;
+            this.teleporterToggleFavorites.Click += new System.EventHandler(this.teleporterToggleFavorites_Click);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.label7);
+            this.groupBox8.Controls.Add(this.teleporterRoomId);
+            this.groupBox8.Controls.Add(this.teleporterLayer);
+            this.groupBox8.Controls.Add(this.teleporterSpawnId);
+            this.groupBox8.Controls.Add(this.label8);
+            this.groupBox8.Location = new System.Drawing.Point(663, 26);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(122, 156);
+            this.groupBox8.TabIndex = 16;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Advanced (leave default if unsure)";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(49, 13);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Room ID";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 114);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Layer";
+            // 
+            // teleporterRoomId
+            // 
+            this.teleporterRoomId.Location = new System.Drawing.Point(6, 47);
+            this.teleporterRoomId.Name = "teleporterRoomId";
+            this.teleporterRoomId.Size = new System.Drawing.Size(87, 20);
+            this.teleporterRoomId.TabIndex = 10;
+            this.teleporterRoomId.Text = "00";
+            // 
+            // teleporterLayer
+            // 
+            this.teleporterLayer.Location = new System.Drawing.Point(6, 130);
+            this.teleporterLayer.Name = "teleporterLayer";
+            this.teleporterLayer.Size = new System.Drawing.Size(87, 20);
+            this.teleporterLayer.TabIndex = 14;
+            this.teleporterLayer.Text = "ff";
+            // 
+            // teleporterSpawnId
+            // 
+            this.teleporterSpawnId.Location = new System.Drawing.Point(6, 88);
+            this.teleporterSpawnId.Name = "teleporterSpawnId";
+            this.teleporterSpawnId.Size = new System.Drawing.Size(87, 20);
+            this.teleporterSpawnId.TabIndex = 12;
+            this.teleporterSpawnId.Text = "00";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 72);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Spawn ID";
+            // 
+            // linkLocationLabel
+            // 
+            this.linkLocationLabel.AutoSize = true;
+            this.linkLocationLabel.Location = new System.Drawing.Point(701, 191);
+            this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
+            this.linkLocationLabel.Name = "linkLocationLabel";
+            this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
+            this.linkLocationLabel.TabIndex = 7;
+            this.linkLocationLabel.Text = ": Unknown";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(660, 188);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // teleporterToggleHyrule
+            // 
+            this.teleporterToggleHyrule.Location = new System.Drawing.Point(660, 314);
+            this.teleporterToggleHyrule.Name = "teleporterToggleHyrule";
+            this.teleporterToggleHyrule.Size = new System.Drawing.Size(101, 23);
+            this.teleporterToggleHyrule.TabIndex = 5;
+            this.teleporterToggleHyrule.Text = "Hyrule zones";
+            this.teleporterToggleHyrule.UseVisualStyleBackColor = true;
+            this.teleporterToggleHyrule.Click += new System.EventHandler(this.teleporterToggleHyrule_Click);
+            // 
+            // islandLabel
+            // 
+            this.islandLabel.AutoSize = true;
+            this.islandLabel.Location = new System.Drawing.Point(22, 328);
+            this.islandLabel.Name = "islandLabel";
+            this.islandLabel.Size = new System.Drawing.Size(44, 13);
+            this.islandLabel.TabIndex = 1;
+            this.islandLabel.Text = "Island : ";
+            // 
+            // macroConfigOpen
+            // 
+            this.macroConfigOpen.Location = new System.Drawing.Point(14, 137);
+            this.macroConfigOpen.Name = "macroConfigOpen";
+            this.macroConfigOpen.Size = new System.Drawing.Size(113, 23);
+            this.macroConfigOpen.TabIndex = 61;
+            this.macroConfigOpen.Text = "Open Macro Config";
+            this.macroConfigOpen.UseVisualStyleBackColor = true;
+            this.macroConfigOpen.Click += new System.EventHandler(this.macroConfigOpen_Click);
+            // 
+            // rotateRight
+            // 
+            this.rotateRight.Location = new System.Drawing.Point(520, 136);
+            this.rotateRight.Name = "rotateRight";
+            this.rotateRight.Size = new System.Drawing.Size(102, 23);
+            this.rotateRight.TabIndex = 62;
+            this.rotateRight.Text = "Rotate 90° right";
+            this.rotateRight.UseVisualStyleBackColor = true;
+            this.rotateRight.Click += new System.EventHandler(this.rotateRight_Click);
+            // 
+            // rotateLeft
+            // 
+            this.rotateLeft.Location = new System.Drawing.Point(405, 137);
+            this.rotateLeft.Name = "rotateLeft";
+            this.rotateLeft.Size = new System.Drawing.Size(109, 23);
+            this.rotateLeft.TabIndex = 63;
+            this.rotateLeft.Text = "Rotate 90° left";
+            this.rotateLeft.UseVisualStyleBackColor = true;
+            this.rotateLeft.Click += new System.EventHandler(this.rotateLeft_Click);
             // 
             // checkBoxImage40
             // 
@@ -3064,394 +2675,6 @@ namespace WWHDHacker
             this.checkBoxImage1.TabIndex = 0;
             this.checkBoxImage1.TabStop = false;
             // 
-            // itemsList
-            // 
-            this.itemsList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.itemsList.ImageSize = new System.Drawing.Size(16, 16);
-            this.itemsList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // CheckInv
-            // 
-            this.CheckInv.Interval = 1000;
-            this.CheckInv.Tick += new System.EventHandler(this.CheckInv_Tick);
-            // 
-            // memfilesPanel
-            // 
-            this.memfilesPanel.Controls.Add(this.SavefileIndicator);
-            this.memfilesPanel.Controls.Add(this.groupBox13);
-            this.memfilesPanel.Controls.Add(this.groupBox12);
-            this.memfilesPanel.Location = new System.Drawing.Point(7, 70);
-            this.memfilesPanel.Name = "memfilesPanel";
-            this.memfilesPanel.Size = new System.Drawing.Size(803, 348);
-            this.memfilesPanel.TabIndex = 32;
-            // 
-            // SavefileIndicator
-            // 
-            this.SavefileIndicator.AutoSize = true;
-            this.SavefileIndicator.ForeColor = System.Drawing.Color.ForestGreen;
-            this.SavefileIndicator.Location = new System.Drawing.Point(16, 330);
-            this.SavefileIndicator.Name = "SavefileIndicator";
-            this.SavefileIndicator.Size = new System.Drawing.Size(0, 13);
-            this.SavefileIndicator.TabIndex = 5;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.memfilesViewer);
-            this.groupBox13.Controls.Add(this.deleteMemfile);
-            this.groupBox13.Controls.Add(this.openMemfileFolder);
-            this.groupBox13.Controls.Add(this.loadMemfile);
-            this.groupBox13.Controls.Add(this.createMemfile);
-            this.groupBox13.Location = new System.Drawing.Point(14, 13);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(325, 315);
-            this.groupBox13.TabIndex = 4;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Memfiles";
-            // 
-            // memfilesViewer
-            // 
-            this.memfilesViewer.Location = new System.Drawing.Point(8, 22);
-            this.memfilesViewer.Name = "memfilesViewer";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "b";
-            treeNode2.Name = "test";
-            treeNode2.Text = "a";
-            this.memfilesViewer.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.memfilesViewer.Size = new System.Drawing.Size(305, 213);
-            this.memfilesViewer.TabIndex = 6;
-            // 
-            // deleteMemfile
-            // 
-            this.deleteMemfile.Location = new System.Drawing.Point(4, 280);
-            this.deleteMemfile.Name = "deleteMemfile";
-            this.deleteMemfile.Size = new System.Drawing.Size(126, 23);
-            this.deleteMemfile.TabIndex = 8;
-            this.deleteMemfile.Text = "Delete memfile";
-            this.deleteMemfile.UseVisualStyleBackColor = true;
-            this.deleteMemfile.Click += new System.EventHandler(this.deleteMemfile_Click);
-            // 
-            // openMemfileFolder
-            // 
-            this.openMemfileFolder.Location = new System.Drawing.Point(205, 280);
-            this.openMemfileFolder.Name = "openMemfileFolder";
-            this.openMemfileFolder.Size = new System.Drawing.Size(114, 23);
-            this.openMemfileFolder.TabIndex = 7;
-            this.openMemfileFolder.Text = "Open Memfile Folder";
-            this.openMemfileFolder.UseVisualStyleBackColor = true;
-            this.openMemfileFolder.Click += new System.EventHandler(this.openMemfileFolder_Click);
-            // 
-            // loadMemfile
-            // 
-            this.loadMemfile.Location = new System.Drawing.Point(205, 252);
-            this.loadMemfile.Name = "loadMemfile";
-            this.loadMemfile.Size = new System.Drawing.Size(114, 23);
-            this.loadMemfile.TabIndex = 1;
-            this.loadMemfile.Text = "Load Memfile";
-            this.loadMemfile.UseVisualStyleBackColor = true;
-            this.loadMemfile.Click += new System.EventHandler(this.loadMemfile_Click);
-            // 
-            // createMemfile
-            // 
-            this.createMemfile.Location = new System.Drawing.Point(3, 252);
-            this.createMemfile.Name = "createMemfile";
-            this.createMemfile.Size = new System.Drawing.Size(127, 23);
-            this.createMemfile.TabIndex = 0;
-            this.createMemfile.Text = "Create memfile";
-            this.createMemfile.UseVisualStyleBackColor = true;
-            this.createMemfile.Click += new System.EventHandler(this.createMemfile_Click);
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.openSFDir);
-            this.groupBox12.Controls.Add(this.dumpSF);
-            this.groupBox12.Controls.Add(this.loadSF);
-            this.groupBox12.Controls.Add(this.fileRep);
-            this.groupBox12.Location = new System.Drawing.Point(467, 13);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(327, 315);
-            this.groupBox12.TabIndex = 3;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Save files";
-            // 
-            // openSFDir
-            // 
-            this.openSFDir.Location = new System.Drawing.Point(116, 278);
-            this.openSFDir.Name = "openSFDir";
-            this.openSFDir.Size = new System.Drawing.Size(103, 33);
-            this.openSFDir.TabIndex = 8;
-            this.openSFDir.Text = "Open Savefiles Dir";
-            this.openSFDir.UseVisualStyleBackColor = true;
-            this.openSFDir.Click += new System.EventHandler(this.openSFDir_Click);
-            // 
-            // dumpSF
-            // 
-            this.dumpSF.Location = new System.Drawing.Point(223, 278);
-            this.dumpSF.Name = "dumpSF";
-            this.dumpSF.Size = new System.Drawing.Size(90, 33);
-            this.dumpSF.TabIndex = 7;
-            this.dumpSF.Text = "Dump Savefile";
-            this.dumpSF.UseVisualStyleBackColor = true;
-            this.dumpSF.Click += new System.EventHandler(this.dumpSF_Click);
-            // 
-            // loadSF
-            // 
-            this.loadSF.Location = new System.Drawing.Point(20, 278);
-            this.loadSF.Name = "loadSF";
-            this.loadSF.Size = new System.Drawing.Size(90, 33);
-            this.loadSF.TabIndex = 6;
-            this.loadSF.Text = "Load Savefile";
-            this.loadSF.UseVisualStyleBackColor = true;
-            this.loadSF.Click += new System.EventHandler(this.loadSF_Click);
-            // 
-            // fileRep
-            // 
-            this.fileRep.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.fileRep.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Save});
-            this.fileRep.HideSelection = false;
-            this.fileRep.Location = new System.Drawing.Point(20, 26);
-            this.fileRep.MultiSelect = false;
-            this.fileRep.Name = "fileRep";
-            this.fileRep.Size = new System.Drawing.Size(288, 239);
-            this.fileRep.TabIndex = 5;
-            this.fileRep.UseCompatibleStateImageBehavior = false;
-            this.fileRep.View = System.Windows.Forms.View.Details;
-            // 
-            // Save
-            // 
-            this.Save.Text = "Save";
-            this.Save.Width = 284;
-            // 
-            // teleporterPanel
-            // 
-            this.teleporterPanel.Controls.Add(this.panel1);
-            this.teleporterPanel.Controls.Add(this.addCustomFavorite);
-            this.teleporterPanel.Controls.Add(this.displayOnMap);
-            this.teleporterPanel.Controls.Add(this.transparentLayer);
-            this.teleporterPanel.Controls.Add(this.addedRemoved);
-            this.teleporterPanel.Controls.Add(this.teleporterToggleFavorites);
-            this.teleporterPanel.Controls.Add(this.groupBox8);
-            this.teleporterPanel.Controls.Add(this.linkLocationLabel);
-            this.teleporterPanel.Controls.Add(this.pictureBox1);
-            this.teleporterPanel.Controls.Add(this.teleporterToggleHyrule);
-            this.teleporterPanel.Controls.Add(this.islandLabel);
-            this.teleporterPanel.Location = new System.Drawing.Point(7, 70);
-            this.teleporterPanel.Name = "teleporterPanel";
-            this.teleporterPanel.Size = new System.Drawing.Size(803, 348);
-            this.teleporterPanel.TabIndex = 33;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::WWHDHacker.Properties.Resources.area_empty;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.subAreas);
-            this.panel1.Location = new System.Drawing.Point(339, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 304);
-            this.panel1.TabIndex = 21;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(10, 9);
-            this.label6.MaximumSize = new System.Drawing.Size(92, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Island: ";
-            // 
-            // subAreas
-            // 
-            this.subAreas.AutoScroll = true;
-            this.subAreas.BackColor = System.Drawing.Color.Transparent;
-            this.subAreas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.subAreas.Location = new System.Drawing.Point(10, 26);
-            this.subAreas.Name = "subAreas";
-            this.subAreas.Size = new System.Drawing.Size(280, 260);
-            this.subAreas.TabIndex = 4;
-            // 
-            // addCustomFavorite
-            // 
-            this.addCustomFavorite.Location = new System.Drawing.Point(660, 251);
-            this.addCustomFavorite.Name = "addCustomFavorite";
-            this.addCustomFavorite.Size = new System.Drawing.Size(125, 23);
-            this.addCustomFavorite.TabIndex = 20;
-            this.addCustomFavorite.Text = "Add custom favorite";
-            this.addCustomFavorite.UseVisualStyleBackColor = true;
-            this.addCustomFavorite.Click += new System.EventHandler(this.addCustomFavorite_Click);
-            // 
-            // displayOnMap
-            // 
-            this.displayOnMap.AutoSize = true;
-            this.displayOnMap.Location = new System.Drawing.Point(663, 235);
-            this.displayOnMap.Name = "displayOnMap";
-            this.displayOnMap.Size = new System.Drawing.Size(98, 17);
-            this.displayOnMap.TabIndex = 19;
-            this.displayOnMap.Text = "Display on map";
-            this.displayOnMap.UseVisualStyleBackColor = true;
-            // 
-            // transparentLayer
-            // 
-            this.transparentLayer.BackgroundImage = global::WWHDHacker.Properties.Resources.legend_of_zelda_wind_waker_map_17;
-            this.transparentLayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.transparentLayer.Controls.Add(this.movingLink);
-            this.transparentLayer.Controls.Add(this.teleporterMap);
-            this.transparentLayer.Location = new System.Drawing.Point(19, 26);
-            this.transparentLayer.Name = "transparentLayer";
-            this.transparentLayer.Size = new System.Drawing.Size(306, 302);
-            this.transparentLayer.TabIndex = 18;
-            // 
-            // movingLink
-            // 
-            this.movingLink.BackColor = System.Drawing.Color.Transparent;
-            this.movingLink.Enabled = false;
-            this.movingLink.Image = global::WWHDHacker.Properties.Resources.MapLinkS_00_l_bflim;
-            this.movingLink.Location = new System.Drawing.Point(0, 0);
-            this.movingLink.Name = "movingLink";
-            this.movingLink.Size = new System.Drawing.Size(35, 33);
-            this.movingLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.movingLink.TabIndex = 19;
-            this.movingLink.TabStop = false;
-            // 
-            // teleporterMap
-            // 
-            this.teleporterMap.BackColor = System.Drawing.Color.Transparent;
-            this.teleporterMap.Location = new System.Drawing.Point(0, 0);
-            this.teleporterMap.Name = "teleporterMap";
-            this.teleporterMap.Size = new System.Drawing.Size(306, 302);
-            this.teleporterMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.teleporterMap.TabIndex = 0;
-            this.teleporterMap.TabStop = false;
-            this.teleporterMap.Click += new System.EventHandler(this.teleporterMap_Click);
-            this.teleporterMap.MouseLeave += new System.EventHandler(this.teleporterMap_MouseLeave);
-            this.teleporterMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.teleporterMap_MouseMove);
-            // 
-            // addedRemoved
-            // 
-            this.addedRemoved.AutoSize = true;
-            this.addedRemoved.Location = new System.Drawing.Point(349, 331);
-            this.addedRemoved.Name = "addedRemoved";
-            this.addedRemoved.Size = new System.Drawing.Size(0, 13);
-            this.addedRemoved.TabIndex = 17;
-            // 
-            // teleporterToggleFavorites
-            // 
-            this.teleporterToggleFavorites.Location = new System.Drawing.Point(660, 291);
-            this.teleporterToggleFavorites.Name = "teleporterToggleFavorites";
-            this.teleporterToggleFavorites.Size = new System.Drawing.Size(100, 23);
-            this.teleporterToggleFavorites.TabIndex = 5;
-            this.teleporterToggleFavorites.Text = "Favorites";
-            this.teleporterToggleFavorites.UseVisualStyleBackColor = true;
-            this.teleporterToggleFavorites.Click += new System.EventHandler(this.teleporterToggleFavorites_Click);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.label17);
-            this.groupBox8.Controls.Add(this.label7);
-            this.groupBox8.Controls.Add(this.teleporterRoomId);
-            this.groupBox8.Controls.Add(this.teleporterLayer);
-            this.groupBox8.Controls.Add(this.teleporterSpawnId);
-            this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Location = new System.Drawing.Point(663, 26);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(122, 156);
-            this.groupBox8.TabIndex = 16;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Advanced (leave default if unsure)";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(49, 13);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "Room ID";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 114);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Layer";
-            // 
-            // teleporterRoomId
-            // 
-            this.teleporterRoomId.Location = new System.Drawing.Point(6, 47);
-            this.teleporterRoomId.Name = "teleporterRoomId";
-            this.teleporterRoomId.Size = new System.Drawing.Size(87, 20);
-            this.teleporterRoomId.TabIndex = 10;
-            this.teleporterRoomId.Text = "00";
-            // 
-            // teleporterLayer
-            // 
-            this.teleporterLayer.Location = new System.Drawing.Point(6, 130);
-            this.teleporterLayer.Name = "teleporterLayer";
-            this.teleporterLayer.Size = new System.Drawing.Size(87, 20);
-            this.teleporterLayer.TabIndex = 14;
-            this.teleporterLayer.Text = "ff";
-            // 
-            // teleporterSpawnId
-            // 
-            this.teleporterSpawnId.Location = new System.Drawing.Point(6, 88);
-            this.teleporterSpawnId.Name = "teleporterSpawnId";
-            this.teleporterSpawnId.Size = new System.Drawing.Size(87, 20);
-            this.teleporterSpawnId.TabIndex = 12;
-            this.teleporterSpawnId.Text = "00";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Spawn ID";
-            // 
-            // linkLocationLabel
-            // 
-            this.linkLocationLabel.AutoSize = true;
-            this.linkLocationLabel.Location = new System.Drawing.Point(701, 191);
-            this.linkLocationLabel.MaximumSize = new System.Drawing.Size(92, 60);
-            this.linkLocationLabel.Name = "linkLocationLabel";
-            this.linkLocationLabel.Size = new System.Drawing.Size(59, 13);
-            this.linkLocationLabel.TabIndex = 7;
-            this.linkLocationLabel.Text = ": Unknown";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WWHDHacker.Properties.Resources.MapLinkS_00_l_bflim;
-            this.pictureBox1.Location = new System.Drawing.Point(660, 188);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // teleporterToggleHyrule
-            // 
-            this.teleporterToggleHyrule.Location = new System.Drawing.Point(660, 314);
-            this.teleporterToggleHyrule.Name = "teleporterToggleHyrule";
-            this.teleporterToggleHyrule.Size = new System.Drawing.Size(101, 23);
-            this.teleporterToggleHyrule.TabIndex = 5;
-            this.teleporterToggleHyrule.Text = "Hyrule zones";
-            this.teleporterToggleHyrule.UseVisualStyleBackColor = true;
-            this.teleporterToggleHyrule.Click += new System.EventHandler(this.teleporterToggleHyrule_Click);
-            // 
-            // islandLabel
-            // 
-            this.islandLabel.AutoSize = true;
-            this.islandLabel.Location = new System.Drawing.Point(22, 328);
-            this.islandLabel.Name = "islandLabel";
-            this.islandLabel.Size = new System.Drawing.Size(44, 13);
-            this.islandLabel.TabIndex = 1;
-            this.islandLabel.Text = "Island : ";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3468,13 +2691,13 @@ namespace WWHDHacker
             this.Controls.Add(this.label1);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.ipTextBox);
-            this.Controls.Add(this.mainFeaturesPanel);
-            this.Controls.Add(this.itemsManager);
             this.Controls.Add(this.miscFeaturesPanel);
             this.Controls.Add(this.advancedPanel);
             this.Controls.Add(this.teleporterPanel);
             this.Controls.Add(this.memfilesPanel);
             this.Controls.Add(this.dataViewerPanel);
+            this.Controls.Add(this.mainFeaturesPanel);
+            this.Controls.Add(this.itemsManager);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "WWHD Hacker";
@@ -3485,30 +2708,6 @@ namespace WWHDHacker
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
-            this.Levitate.ResumeLayout(false);
-            this.Levitate.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levitateHeight)).EndInit();
-            this.DoorCancel.ResumeLayout(false);
-            this.DoorCancel.PerformLayout();
-            this.Superspeed.ResumeLayout(false);
-            this.Superspeed.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.superswimSpeed)).EndInit();
-            this.Storage.ResumeLayout(false);
-            this.Storage.PerformLayout();
-            this.WindDirection.ResumeLayout(false);
-            this.WindDirection.PerformLayout();
-            this.MasterkeyGroup.ResumeLayout(false);
-            this.MasterkeyGroup.PerformLayout();
-            this.SaveReloadPos.ResumeLayout(false);
-            this.SaveReloadPos.PerformLayout();
-            this.ReloadRoom.ResumeLayout(false);
-            this.ReloadRoom.PerformLayout();
-            this.RefillHealth.ResumeLayout(false);
-            this.RefillHealth.PerformLayout();
-            this.RefillMagic.ResumeLayout(false);
-            this.RefillMagic.PerformLayout();
-            this.RefillAmmo.ResumeLayout(false);
-            this.RefillAmmo.PerformLayout();
             this.mainFeaturesPanel.ResumeLayout(false);
             this.mainFeaturesPanel.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -3541,6 +2740,20 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.setHCValue)).EndInit();
             this.itemsPanel.ResumeLayout(false);
             this.itemsPanel.PerformLayout();
+            this.memfilesPanel.ResumeLayout(false);
+            this.memfilesPanel.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.teleporterPanel.ResumeLayout(false);
+            this.teleporterPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.transparentLayer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage38)).EndInit();
@@ -3581,20 +2794,6 @@ namespace WWHDHacker
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBoxImage1)).EndInit();
-            this.memfilesPanel.ResumeLayout(false);
-            this.memfilesPanel.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
-            this.teleporterPanel.ResumeLayout(false);
-            this.teleporterPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.transparentLayer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.movingLink)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teleporterMap)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3613,15 +2812,6 @@ namespace WWHDHacker
         private System.Windows.Forms.Button advanced;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button allSongs;
-        private System.Windows.Forms.CheckBox masterkey;
-        private System.Windows.Forms.CheckBox storeRestoreCheckbox;
-        private System.Windows.Forms.CheckBox lToLevitateCheckbox;
-        private System.Windows.Forms.CheckBox superswimCheckbox;
-        private System.Windows.Forms.CheckBox doorCancelCheckbox;
-        private System.Windows.Forms.CheckBox refillAmmoCheckbox;
-        private System.Windows.Forms.CheckBox refillHealthCheckbox;
-        private System.Windows.Forms.CheckBox refillMagicCheckbox;
-        private System.Windows.Forms.CheckBox reloadRoomCheckbox;
         private System.Windows.Forms.Panel mainFeaturesPanel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button resetCollisionButton;
@@ -3664,7 +2854,6 @@ namespace WWHDHacker
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox stageNameLoader;
         private System.Windows.Forms.Button triggerLoadingButton;
-        private System.Windows.Forms.CheckBox storageCheckbox;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
@@ -3720,9 +2909,6 @@ namespace WWHDHacker
         private PictureBox teleporterMap;
         private Label islandLabel;
         private FlowLayoutPanel subAreas;
-        private CheckBox changeWindCheckbox;
-        private CheckBox alternativeMemfiles;
-        private CheckBox alternativeDpadRight;
         private Button teleporterToggleHyrule;
         private PictureBox pictureBox1;
         private Label linkLocationLabel;
@@ -3750,51 +2936,6 @@ namespace WWHDHacker
         private Panel transparentLayer;
         private PictureBox movingLink;
         private CheckBox displayOnMap;
-        private ComboBox levitateCombo;
-        private GroupBox MasterkeyGroup;
-        private Label label25;
-        private ComboBox masterkeyCombo;
-        private GroupBox Storage;
-        private Label label24;
-        private ComboBox storageCombo;
-        private GroupBox Superspeed;
-        private Label label23;
-        private ComboBox superswimCombo;
-        private GroupBox DoorCancel;
-        private Label label22;
-        private ComboBox doorCancelCombo;
-        private GroupBox Levitate;
-        private Label label21;
-        private GroupBox RefillAmmo;
-        private Label label29;
-        private GroupBox RefillHealth;
-        private Label label28;
-        private ComboBox refillHealthCombo;
-        private GroupBox ReloadRoom;
-        private Label label27;
-        private ComboBox reloadRoomCombo;
-        private GroupBox WindDirection;
-        private Label label30;
-        private ComboBox windDirectionCombo;
-        private GroupBox SaveReloadPos;
-        private Label label26;
-        private ComboBox storePositionCombo;
-        private GroupBox RefillMagic;
-        private Label label31;
-        private ComboBox refillMagicCombo;
-        private Label label32;
-        private ComboBox restorePositionCombo;
-        private ComboBox refillAmmoCombo;
-        private CheckBox levitateMK;
-        private CheckBox doorCancelMK;
-        private CheckBox superswimMK;
-        private CheckBox storageMK;
-        private CheckBox windDirectionMK;
-        private CheckBox saveReloadMK;
-        private CheckBox reloadRoomMK;
-        private CheckBox refillHealthMK;
-        private CheckBox refillMagicMK;
-        private CheckBox refillAmmoMK;
         private DataGridView memViewer;
         private CheckBox displayMacros;
         private CheckBox warningRuns;
@@ -3815,10 +2956,6 @@ namespace WWHDHacker
         private Button dumpSF;
         private Button openSFDir;
         private Label SavefileIndicator;
-        private NumericUpDown levitateHeight;
-        private Label label5;
-        private NumericUpDown superswimSpeed;
-        private Label label34;
         private Button addCustomFavorite;
         private CheckBoxImage checkBoxImage1;
         private CheckBoxImage checkBoxImage8;
@@ -3869,6 +3006,9 @@ namespace WWHDHacker
         private Label label33;
         private Button setKey;
         private NumericUpDown keyNumber;
+        private Button macroConfigOpen;
+        private Button rotateLeft;
+        private Button rotateRight;
     }
 }
 

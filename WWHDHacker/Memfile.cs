@@ -558,7 +558,7 @@ namespace WWHDHacker
             }
             catch (System.Net.WebException e)
             {
-
+                Console.WriteLine(((FtpWebResponse)e.Response).StatusDescription);
                 response = (FtpWebResponse)e.Response;
                 if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                 {
